@@ -1,0 +1,97 @@
+/* COULEURS  */
+:root {
+    --wh: #f2ede6;
+    --wh2: #ffffff;
+    --wh3: #7a7168;
+
+    --ink: #0e0d0c; /* Blanc cassé crème*/
+    --ink2: #1a1917; /* Beige gris */
+    --ink3: #252320; /* Gris moka*/
+
+    --color1: #123456;
+
+    --icon-color: #676666;
+    --box-icon-color-hover: #33312d;
+
+
+    /*taille de texte*/
+    --text-xs: 0.75rem;
+    --text-sm: 0.875rem;
+    --text-base: 1rem;
+    --text-lg: 1.125rem;
+    --text-xl: 1.375rem;
+    --text-2xl: 1.75rem;
+    --text-3xl: 2.5rem;
+    --text-4xl: 3.5rem;
+    --text-5xl: 5rem;
+
+    /*marge de texte*/
+    --marge-xs: 0.75rem;
+    --marge-sm: 0.875rem;
+    --marge-base: 1rem;
+    --marge-lg: 1.5rem;
+    --marge-xl: 2rem;
+    --marge-2xl: 2.5rem;
+    --marge-3xl: 3rem;
+    --marge-4xl: 3.5rem;
+    --marge-5xl: 4rem;
+}
+
+/*  POLICE  */
+:root {
+    --font-title: 'Embed code', sans-serif;
+    --font-subtitle: 'Montserrat ', sans-serif;
+    --font-text: 'DM Sans', sans-serif;
+    --font-button: 'Syne', sans-serif;
+}
+
+/* BADGES */
+:root {
+    /* ROUGE*/
+    --badge-bg-red: rgba(192, 40, 26, 0.15);
+    --badge-col-red: #e04030;
+    --badge-bor-red: rgba(192, 40, 26, 0.40);
+
+    /* BLEU */
+    --badge-bg-blue: rgba(60, 100, 180, 0.12);
+    --badge-col-blue: #5c90e8;
+    --badge-bor-blue: rgba(60, 100, 180, 0.35);
+
+    /* JAUNE */
+    --badge-bg-yellow: rgba(200, 130, 20, 0.12);
+    --badge-col-yellow: #d4901a;
+    --badge-bor-yellow: rgba(200, 130, 20, 0.35);
+
+    /* VERT */
+    --badge-bg-green: rgba(30, 160, 90, 0.12);
+    --badge-col-green: #28b870;
+    --badge-bor-green: rgba(30, 160, 90, 0.35);
+}
+
+
+:root {
+    --radiusBox-xs: 6px;
+    --radiusBox-sm: 7px;
+    --radiusBox-xxs: 4px;
+    --radiusBox-md: 14px;
+    --radiusBox-full: 100%;
+}
+
+
+*, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    text-decoration: none;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+*, *::before, *::after {
+    transition: background-color 0.25s ease,
+    border-color 0.25s ease,
+    color 0.15s ease;
+}
+
