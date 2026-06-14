@@ -5,6 +5,8 @@
   <title>Together</title>
   <link rel="stylesheet" href="assets/style/paletteStyle.css">
   <link rel="stylesheet" href="assets/style/index.css">
+  <link rel="stylesheet" href="assets/style/header+sidebar.css">
+  <link rel="stylesheet" href="assets/style/nonConnecterSection.css">
   <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Syne:wght@700;800&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&display=swap"
         rel="stylesheet">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css">
@@ -17,7 +19,7 @@
 
   <section class="header-disposition-top">
     <div class="header-disposition-left" style="margin-left: 5px;">
-      <div class="menu menu-header tooltip-container" id="menuBtn">
+      <div class="menu tooltip-container" id="menuBtn">
         <i class="ti ti-menu-2" aria-hidden="true"></i>
         <span class="tooltip-text menuHelp">Ouvrir menu</span>
       </div>
@@ -39,7 +41,6 @@
       </div>
     </div>
   </section>
-
   <section class="header-disposition-bottom">
 
     <div class="header-disposition-line">
@@ -130,7 +131,6 @@
     <p class="sb-label">Travail</p>
     <div class="sb-item"><i class="ti ti-checklist" aria-hidden="true"></i>Mes tâches</div>
     <div class="sb-item"><i class="ti ti-clock" aria-hidden="true"></i>Récent</div>
-    <div class="sb-item"><i class="ti ti-star" aria-hidden="true"></i>Favoris</div>
   </div>
 
   <div class="sb-divider"></div>
@@ -149,6 +149,26 @@
     <div class="sb-item"><i class="ti ti-help" aria-hidden="true"></i>Aide</div>
   </div>
 </aside>
+
+<main>
+  <section class="nonConnecter">
+    <div class="nonConnecter-card">
+
+      <div class="nonConnecter-icon">
+        <i class="ti ti-lock" aria-hidden="true"></i>
+      </div>
+
+      <h1>Vous n'êtes pas connecté</h1>
+      <p>Connectez-vous pour accéder à vos projets et collaborer avec votre équipe.</p>
+
+      <button class="btn-connexion">
+        <i class="ti ti-user" aria-hidden="true"></i>
+        Connexion / Inscription
+      </button>
+
+    </div>
+  </section>
+</main>
 
 <script src="assets/script/index.js"></script>
 </body>

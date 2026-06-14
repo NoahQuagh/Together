@@ -1,0 +1,81 @@
+.nonConnecter {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: var(--marge-5xl);
+    min-height: 60vh;
+}
+
+.nonConnecter-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--marge-lg);
+    text-align: center;
+}
+
+.nonConnecter-icon {
+    width: 56px;
+    height: 56px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--ink3);
+    border: 1px solid var(--icon-color);
+    border-radius: var(--radiusBox-md);
+    color: var(--wh3);
+}
+
+.nonConnecter-icon i {
+    font-size: 26px;
+    line-height: 1;
+}
+
+.nonConnecter-card h1 {
+    color: var(--wh);
+    font-family: var(--font-text);
+    font-weight: 500;
+    font-size: var(--text-xl);
+}
+
+.nonConnecter-card p {
+    color: var(--wh3);
+    font-family: var(--font-text);
+    font-size: var(--text-sm);
+    max-width: 280px;
+    line-height: 1.6;
+}
+
+.btn-connexion {
+    display: inline-flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 8px;
+
+    padding: 10px 20px;
+    height: 40px;
+
+    background: var(--color1);
+    border: 1px solid transparent;
+    border-radius: var(--radiusBox-sm);
+    cursor: pointer;
+    color: var(--wh);
+
+    font-family: var(--font-text);
+    font-size: var(--text-sm);
+    font-weight: 500;
+
+    transition: background 0.2s ease, border-color 0.2s ease, color 0.15s ease;
+}
+
+.btn-connexion:hover {
+    background: var(--color1-hover);
+    border-color: var(--color1);
+    color: var(--wh);
+}
+
+.btn-connexion i {
+    font-size: 17px;
+    line-height: 1;
+    flex-shrink: 0;
+}
