@@ -2,7 +2,7 @@
 require_once "includes/Session.php";
 
 if (Session::estConnecte()) {
-  header('Location: /together/index.php');
+  header('Location: index.php');
   exit;
 }
 ?>

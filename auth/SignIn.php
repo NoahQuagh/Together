@@ -3,7 +3,7 @@ require_once '../api/db.php';
 require_once '../includes/Session.php';
 
 if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
-    header('Location: /together/login.php');
+    header('Location: ../login.php');
     exit;
 }
 
@@ -26,7 +26,7 @@ if (!$cgu) $erreurs[] = 'Vous devez accepter les CGU.';
 
 if (!empty($erreurs)) {
     Session::setFlash('erreur_register', implode(' ', $erreurs));
-    header('Location: /together/login.php');
+    header('Location: ../login.php');
     exit;
 }
 
@@ -36,18 +36,18 @@ $req->execute([$email]);
 
 if ($req->fetch()) {
     Session::setFlash('erreur_register', 'Cette adresse e-mail est déjà utilisée.');
-    header('Location: /together/login.php');
+    header('Location: ../login.php');
     exit;
 }
 
 $hash = password_hash($mdp, PASSWORD_BCRYPT);
 
 $insert = $db->prepare('
-    INSERT INTO users (prenom, nom, email, mot_de_passe, role, created_at)
-    VALUES (?, ?, ?, ?, ?, NOW())
+    INSERT INTO users (prenom, nom, email, mot_de_passe)
+    VALUES (?, ?, ?, ?)
 ');
 
-$insert->execute([$prenom, $nom, $email, $hash, 'member']);
+$insert->execute([$prenom, $nom, $email, $hash]);
 
 $newId = (int) $db->lastInsertId();
 
@@ -58,5 +58,5 @@ Session::login([
 ]);
 
 Session::setFlash('succes', 'Bienvenue ' . htmlspecialchars($prenom) . ' ! Votre compte a été créé.');
-header('Location: /together/index.php');
+header('Location: ../index.php');
 exit;

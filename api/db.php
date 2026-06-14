@@ -1,8 +1,12 @@
 <?php
-define('DB_HOST', 'localhost');
-define('DB_NAME', 'together');
+$isLocal = in_array($_SERVER['SERVER_NAME'] ?? '', ['localhost', '127.0.0.1']);
+
+define('DB_HOST', '127.0.0.1');
+define('DB_PORT', $isLocal ? '3307' : '3306');
 define('DB_USER', 'together_admin');
 define('DB_PASS', '2007,MAri');
+define('DB_NAME', 'together');
+define('DB_CHARSET', 'utf8mb4');
 
 function getDB(): PDO {
     static $pdo = null;
@@ -12,7 +16,8 @@ function getDB(): PDO {
     }
 
     $dsn = sprintf(
-        "mysql:host=" . DB_HOST . ";dbname=" . DB_NAME . ";charset=utf8", DB_USER, DB_PASS
+        'mysql:host=%s;port=%s;dbname=%s;charset=%s',
+        DB_HOST, DB_PORT, DB_NAME, DB_CHARSET
     );
 
     $options = [

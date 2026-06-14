@@ -6,7 +6,7 @@ $db=getDB();
 $array="";
 
 if($_SERVER["REQUEST_METHOD"] !== "POST"){
-    header('Location: /together/login.php');
+    header('Location: ../login.php');
     exit;
 }
 
@@ -15,7 +15,7 @@ $mdp   = $_POST['mot_de_passe'] ?? '';
 
 if (!$email || !$mdp) {
     Session::setFlash('erreur', 'Veuillez remplir tous les champs.');
-    header('Location: /together/login.php');
+    header('Location: ../login.php');
     exit;
 }
 
@@ -32,12 +32,12 @@ if ($user && password_verify($mdp, $user['mot_de_passe'])) {
         'role' => $user['role'],
     ]);
 
-    header('Location: /together/index.php');
+    header('Location: ../index.php');
     exit;
 }
 
 Session::setFlash('erreur', 'Email ou mot de passe incorrect.');
-header('Location: /together/login.php');
+header('Location: ../login.php');
 exit;
 ?>
 
