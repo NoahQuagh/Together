@@ -2,7 +2,6 @@ body {
     background: var(--ink2);
 }
 
-/* ─── HEADER ─────────────────────────────────────── */
 
 header {
     background: var(--ink);
@@ -28,13 +27,12 @@ header {
 
 .header-disposition-left h3 {
     color: var(--wh2);
-    font-family: 'IBM Plex Mono', monospace;
+    font-family: var(--font-together);
     font-weight: 500;
     font-size: var(--text-base);
-    letter-spacing: 0.05em;
+    letter-spacing: 0.03em;
 }
 
-/* ─── BOUTONS ICÔNE (menu burger + compte) ────────── */
 
 .menu,
 .account-menu {
@@ -64,7 +62,6 @@ header {
     line-height: 1;
 }
 
-/* ─── TOOLTIP ─────────────────────────────────────── */
 
 .tooltip-text {
     position: absolute;
@@ -91,7 +88,12 @@ header {
 
 .userHelp{
     top: 120%;
-    left: -40%;
+    left: -120%;
+}
+
+.normalHelp{
+    top: 120%;
+    left: 60%;
 }
 
 .tooltip-container:hover .tooltip-text {
@@ -100,7 +102,6 @@ header {
     transform: translateX(-50%) translateY(0);
 }
 
-/* ─── NAV ─────────────────────────────────────────── */
 
 .header-disposition-line {
     display: flex;
@@ -152,14 +153,143 @@ header {
     white-space: nowrap;
 }
 
-/* état actif */
 .nav-item.active-nav .item i,
 .nav-item.active-nav h4 {
     color: var(--wh);
 }
 
-/* hover texte + icône */
 .nav-item:hover .item i,
 .nav-item:hover h4 {
     color: var(--wh);
+}
+
+
+.sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    width: 0;
+    background: var(--ink);
+    border-right: 1px solid var(--ink3);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    z-index: 100;
+    transition: width 0.28s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.sidebar.open {
+    width: 240px;
+}
+
+.sb-header {
+    padding: 16px 14px 12px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid var(--ink3);
+    white-space: nowrap;
+}
+
+.sb-title {
+    color: var(--wh);
+    font-size: var(--text-sm);
+    font-weight: 500;
+    font-family: var(--font-together);
+    letter-spacing: 0.03em;
+}
+
+.sb-close {
+    width: 26px;
+    height: 26px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    background: transparent;
+    color: var(--wh3);
+    cursor: pointer;
+    border-radius: var(--radiusBox-xxs);
+    font-size: 15px;
+    transition: background 0.2s, color 0.15s;
+}
+
+.sb-close:hover {
+    background: var(--box-icon-color-hover);
+    color: var(--wh);
+}
+
+.sb-section {
+    padding: 10px 8px 4px;
+    white-space: nowrap;
+}
+
+.sb-label {
+    font-size: 10.5px;
+    color: #4a4843;
+    font-weight: 500;
+    font-family: var(--font-text);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 0 6px;
+    margin-bottom: 4px;
+}
+
+.sb-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 8px 10px;
+    border-radius: var(--radiusBox-sm);
+    cursor: pointer;
+    color: var(--wh3);
+    font-size: var(--text-sm);
+    font-family: var(--font-text);
+    transition: background 0.15s, color 0.15s;
+}
+
+.sb-item:hover {
+    background: var(--ink2);
+    color: var(--wh);
+}
+
+.sb-item.active {
+    background: var(--ink3);
+    color: var(--wh);
+}
+
+.sb-item i {
+    font-size: 17px;
+    flex-shrink: 0;
+}
+
+.sb-badge {
+    margin-left: auto;
+    background: var(--color1);
+    color: #a8c4e0;
+    font-size: 11px;
+    padding: 1px 7px;
+    border-radius: 20px;
+    font-weight: 500;
+}
+
+.sb-dot {
+    margin-left: auto;
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: var(--badge-col-green);
+    flex-shrink: 0;
+}
+
+.sb-divider {
+    height: 1px;
+    background: var(--ink3);
+    margin: 6px 8px;
+}
+
+.sb-user-row i {
+    font-size: 16px;
+    color: #4a4843;
 }
