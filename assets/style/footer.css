@@ -1,0 +1,80 @@
+
+footer{
+    display: flex;
+    flex-direction: column;
+    background: var(--ink);
+    border-top: 1px solid var(--box-icon-color-hover);
+}
+
+.footerSection div ul{
+    list-style: none
+}
+
+.footerSection{
+    display: flex;
+    justify-content: flex-start;
+    height: auto;
+    gap: var(--marge-5xl);
+    padding: var(--marge-xl) var(--marge-5xl) var(--marge-xl) var(--marge-5xl);
+}
+
+footer section div{
+    margin: var(--marge-xl) var(--marge-5xl) var(--marge-xl) var(--marge-5xl);
+    display: flex;
+    flex-direction: column;
+    gap: var(--marge-sm);
+}
+
+footer section div h4{
+    color: var(--wh2);
+    font-family: var(--font-text);
+    font-weight: 500;
+    font-size: var(--text-base);
+}
+
+footer section div ul,footer section div ul li a,footer section div ul li{
+    color: var(--wh3);
+    font-family: var(--font-text);
+    font-weight: 400;
+    font-size: var(--text-sm);
+    display: flex;
+    flex-direction: column;
+    gap: var(--marge-sm);
+}
+
+footer section div li:hover{
+    color : var(--wh2);
+}
+
+footer section div li a:hover{
+    color : var(--wh2);
+    cursor: pointer;
+    text-decoration: underline;
+}
+
+.separator{
+    height: 1px;
+    background: var(--ink3);
+    margin: 0 var(--marge-5xl);
+}
+
+.footerSection p{
+    margin: var(--marge-sm) var(--marge-5xl) var(--marge-sm) var(--marge-5xl);
+}
+
+.footerSection2{
+    justify-content: center;
+}
+
+.footerSection p,.footerSection p a{
+    color: var(--icon-color);
+    font-family: var(--font-text);
+    font-weight: 400;
+    font-size: var(--text-sm);
+}
+
+.footerSection p a:hover{
+    color: var(--wh2);
+    cursor: pointer;
+    text-decoration: underline;
+}

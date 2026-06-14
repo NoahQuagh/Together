@@ -4,15 +4,26 @@
     --wh2: #ffffff;
     --wh3: #7a7168;
 
+    --gray: #a79b8f;
+
     --ink: #0e0d0c; /* Blanc cassé crème*/
     --ink2: #1a1917; /* Beige gris */
     --ink3: #252320; /* Gris moka*/
 
-    --color1: #123456;
-    --color1-hover: #0d253e;
+    --color1: #226db8;
+    --color1-hover: #123a61;
 
     --icon-color: #676666;
     --box-icon-color-hover: #33312d;
+
+    --d:red;
+
+    --auth-accent       : #5a8dee;
+    --auth-accent-hover : #4278d6;
+    --auth-accent-glow  : rgba(90, 141, 238, 0.15);
+    --auth-success      : #3ecf8e;
+    --auth-error        : #e05c5c;
+    --auth-warning      : #f0a429;
 
 
     /*taille de texte*/
@@ -97,3 +108,6 @@ html {
     color 0.15s ease;
 }
 
+a{
+    text-decoration: none;
+}

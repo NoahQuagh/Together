@@ -12,6 +12,7 @@
 .output/
 .idea
 .env
+api/db.php
 #Extension App-file
 *.app
 #Rapid Application Development File
