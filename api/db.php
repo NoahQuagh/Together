@@ -30,8 +30,7 @@ function getDB(): PDO {
         $pdo = new PDO($dsn, DB_USER, DB_PASS, $options);
     } catch (PDOException $e) {
         error_log('[DB] Connexion échouée : ' . $e->getMessage());
-        http_response_code(500);
-        exit('Erreur de connexion à la base de données.'.$e->getMessage());
+        throw $e;
     }
 
     return $pdo;

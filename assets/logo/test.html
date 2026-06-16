@@ -1,112 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<style>
+  /* =====================================================
+   FOOTER LOGO v2 — Animation narrative + visage amical
+   Classes isolées .fl- — aucun conflit avec spinner
+===================================================== */
 
-footer{
-    display: flex;
-    flex-direction: column;
-    background: var(--ink);
-    border-top: 1px solid var(--box-icon-color-hover);
-}
-
-.footerSection div ul{
-    list-style: none
-}
-
-.footerSection{
-    display: flex;
-    justify-content: space-around;
-    height: auto;
-    gap: var(--marge-5xl);
-    padding: var(--marge-xl) var(--marge-5xl) var(--marge-xl) var(--marge-5xl);
-}
-
-footer section > div:not(.footer-logo-wrap) {
-    margin: var(--marge-xl) var(--marge-5xl) var(--marge-xl) var(--marge-5xl);
-    display: flex;
-    flex-direction: column;
-    gap: var(--marge-sm);
-}
-
-footer section div h4{
-    color: var(--wh2);
-    font-family: var(--font-text);
-    font-weight: 500;
-    font-size: var(--text-base);
-}
-
-footer section div ul,footer section div ul li a,footer section div ul li{
-    color: var(--wh3);
-    font-family: var(--font-text);
-    font-weight: 400;
-    font-size: var(--text-sm);
-    display: flex;
-    flex-direction: column;
-    gap: var(--marge-sm);
-}
-
-footer section div li:hover{
-    color : var(--wh2);
-}
-
-footer section div li a:hover{
-    color : var(--wh2);
-    cursor: pointer;
-    text-decoration: underline;
-}
-
-.separator{
-    height: 1px;
-    background: var(--ink3);
-    margin: 0 var(--marge-5xl);
-}
-
-.footerSection p{
-    margin: var(--marge-sm) var(--marge-5xl) var(--marge-sm) var(--marge-5xl);
-}
-
-.footerSection2{
-    justify-content: center;
-}
-
-.footerSection p,.footerSection p a{
-    color: var(--icon-color);
-    font-family: var(--font-text);
-    font-weight: 400;
-    font-size: var(--text-sm);
-}
-
-.footerSection p a:hover{
-    color: var(--wh2);
-    cursor: pointer;
-    text-decoration: underline;
-}
-
-/**/
-.footer-logo-wrap {
+  .footer-logo-wrap {
     display: flex;
     flex-direction: row;
     align-items: center;
     gap: var(--marge-lg);
     cursor: default;
     user-select: none;
-}
+  }
 
-/* ── Conteneur logo 80px ── */
-.footer-logo-wrap .fl-spinner {
+  /* ── Conteneur logo 80px ── */
+  .footer-logo-wrap .fl-spinner {
     width: 80px;
     height: 80px;
     position: relative;
     flex-shrink: 0;
-}
+  }
 
-.footer-logo-wrap .fl-bg {
+  .footer-logo-wrap .fl-bg {
     position: absolute;
     inset: 0;
     background: #226db8;
     border-radius: 18px;
     transition: background 0.4s ease;
-}
+  }
 
-/* ── Éléments du logo (barres + blocs) ── */
-.footer-logo-wrap .fl-elements {
+  /* ── Éléments du logo (barres + blocs) ── */
+  .footer-logo-wrap .fl-elements {
     position: absolute;
     inset: 0;
     display: flex;
@@ -116,46 +46,46 @@ footer section div li a:hover{
     gap: 6px;
     padding: 14px 15px;
     transition: opacity 0.3s ease;
-}
+  }
 
-.footer-logo-wrap .fl-top {
+  .footer-logo-wrap .fl-top {
     width: 100%;
     display: flex;
     flex-direction: column;
     gap: 4px;
-}
+  }
 
-.footer-logo-wrap .fl-bar-long {
+  .footer-logo-wrap .fl-bar-long {
     height: 5px;
     border-radius: 3px;
     background: #fff;
     transform-origin: left center;
-}
+  }
 
-.footer-logo-wrap .fl-bar-short {
+  .footer-logo-wrap .fl-bar-short {
     height: 5px;
     width: 55%;
     border-radius: 3px;
     background: rgba(255,255,255,0.55);
     transform-origin: left center;
-}
+  }
 
-.footer-logo-wrap .fl-bottom {
+  .footer-logo-wrap .fl-bottom {
     width: 100%;
     display: flex;
     gap: 5px;
-}
+  }
 
-.footer-logo-wrap .fl-block {
+  .footer-logo-wrap .fl-block {
     flex: 1;
     height: 13px;
     border-radius: 4px;
     background: #fff;
     transform-origin: bottom center;
-}
+  }
 
-/* ── Visage (caché par défaut) ── */
-.footer-logo-wrap .fl-face {
+  /* ── Visage (caché par défaut) ── */
+  .footer-logo-wrap .fl-face {
     position: absolute;
     inset: 0;
     display: flex;
@@ -166,37 +96,37 @@ footer section div li a:hover{
     opacity: 0;
     transition: opacity 0.3s ease;
     pointer-events: none;
-}
+  }
 
-.fl-eyes {
+  .fl-eyes {
     display: flex;
     gap: 14px;
     margin-bottom: 6px;
-}
+  }
 
-.fl-eye {
+  .fl-eye {
     width: 5px;
     height: 10px;
     border-radius: 25%;
     background: #fff;
-}
+  }
 
-.fl-mouth {
+  .fl-mouth {
     width: 20px;
     height: 6px;
     border-radius: 15% 15% 12px 12px;
     border: 4px solid #fff;
     border-top: none;
-}
+  }
 
-/* ── Texte ── */
-.footer-logo-wrap .fl-text {
+  /* ── Texte ── */
+  .footer-logo-wrap .fl-text {
     display: flex;
     flex-direction: column;
     gap: 5px;
-}
+  }
 
-.footer-logo-wrap .fl-text h2 {
+  .footer-logo-wrap .fl-text h2 {
     color: var(--wh2);
     font-family: var(--font-text);
     font-size: var(--text-xl);
@@ -204,133 +134,170 @@ footer section div li a:hover{
     margin: 0;
     line-height: 1;
     transition: color 0.25s ease;
-}
+  }
 
-.footer-logo-wrap .fl-text .fl-signature {
+  .footer-logo-wrap .fl-text .fl-signature {
     color: var(--wh3);
     font-family: var(--font-text);
     font-size: var(--text-sm);
     margin: 0;
     line-height: 1.5;
     transition: color 0.25s ease;
-}
+  }
 
-/* ══════════════════════════════════════════════════
-   HOVER — Animation narrative en 3 temps
-   1. Logo se remplit (barres slidées)
-   2. Se vide progressivement
-   3. Visage apparaît
-══════════════════════════════════════════════════ */
+  /* ══════════════════════════════════════════════════
+     HOVER — Animation narrative en 3 temps
+     1. Logo se remplit (barres slidées)
+     2. Se vide progressivement
+     3. Visage apparaît
+  ══════════════════════════════════════════════════ */
 
-/* Fond devient plus doux */
-.footer-logo-wrap:hover .fl-bg {
+  /* Fond devient plus doux */
+  .footer-logo-wrap:hover .fl-bg {
     background: #1d5ea0;
-}
+  }
 
-/* Éléments logo : apparaissent puis disparaissent */
-.footer-logo-wrap:hover .fl-elements {
+  /* Éléments logo : apparaissent puis disparaissent */
+  .footer-logo-wrap:hover .fl-elements {
     animation: flElementsOut 2.4s cubic-bezier(0.4, 0, 0.2, 1) infinite;
-}
-@keyframes flElementsOut {
+  }
+  @keyframes flElementsOut {
     0%   { opacity: 1; }
     55%  { opacity: 1; }
     75%  { opacity: 0; }
     90%  { opacity: 0; }
     100% { opacity: 1; }
-}
+  }
 
-/* Barre longue : slide in depuis gauche */
-.footer-logo-wrap:hover .fl-bar-long {
+  /* Barre longue : slide in depuis gauche */
+  .footer-logo-wrap:hover .fl-bar-long {
     animation: flBarIn 2.4s cubic-bezier(0.4, 0, 0.2, 1) infinite;
-}
-@keyframes flBarIn {
+  }
+  @keyframes flBarIn {
     0%   { transform: scaleX(0); opacity: 0; }
     18%  { transform: scaleX(1); opacity: 1; }
     55%  { transform: scaleX(1); opacity: 1; }
     70%  { transform: scaleX(0); opacity: 0; }
     100% { transform: scaleX(0); opacity: 0; }
-}
+  }
 
-/* Barre courte : slide in avec délai */
-.footer-logo-wrap:hover .fl-bar-short {
+  /* Barre courte : slide in avec délai */
+  .footer-logo-wrap:hover .fl-bar-short {
     animation: flBarShortIn 2.4s cubic-bezier(0.4, 0, 0.2, 1) infinite;
     animation-delay: 0.1s;
-}
-@keyframes flBarShortIn {
+  }
+  @keyframes flBarShortIn {
     0%   { transform: scaleX(0); opacity: 0; }
     22%  { transform: scaleX(1); opacity: 0.6; }
     55%  { transform: scaleX(1); opacity: 0.6; }
     70%  { transform: scaleX(0); opacity: 0; }
     100% { transform: scaleX(0); opacity: 0; }
-}
+  }
 
-/* Bloc gauche : monte depuis le bas */
-.footer-logo-wrap:hover .fl-block:nth-child(1) {
+  /* Bloc gauche : monte depuis le bas */
+  .footer-logo-wrap:hover .fl-block:nth-child(1) {
     animation: flBlockUp 2.4s cubic-bezier(0.34, 1.56, 0.64, 1) infinite;
     transform-origin: bottom center;
     animation-delay: 0.15s;
-}
-@keyframes flBlockUp {
+  }
+  @keyframes flBlockUp {
     0%   { transform: scaleY(0); opacity: 0; }
     28%  { transform: scaleY(1); opacity: 1; }
     55%  { transform: scaleY(1); opacity: 1; }
     70%  { transform: scaleY(0); opacity: 0; }
     100% { transform: scaleY(0); opacity: 0; }
-}
+  }
 
-/* Bloc droit : monte avec décalage */
-.footer-logo-wrap:hover .fl-block:nth-child(2) {
+  /* Bloc droit : monte avec décalage */
+  .footer-logo-wrap:hover .fl-block:nth-child(2) {
     animation: flBlockUp 2.4s cubic-bezier(0.34, 1.56, 0.64, 1) infinite;
     transform-origin: bottom center;
     animation-delay: 0.25s;
-}
+  }
 
-/* Visage : apparaît quand le logo se vide */
-.footer-logo-wrap:hover .fl-face {
+  /* Visage : apparaît quand le logo se vide */
+  .footer-logo-wrap:hover .fl-face {
     animation: flFaceIn 2.4s ease infinite;
-}
-@keyframes flFaceIn {
+  }
+  @keyframes flFaceIn {
     0%   { opacity: 0; transform: scale(0.7); }
     65%  { opacity: 0; transform: scale(0.7); }
     80%  { opacity: 1; transform: scale(1.1); }
     88%  { transform: scale(0.95); }
     95%  { opacity: 1; transform: scale(1); }
     100% { opacity: 0; transform: scale(0.7); }
-}
+  }
 
-/* Yeux : clignent de façon décalée */
-.footer-logo-wrap:hover .fl-eye:nth-child(1) {
+  /* Yeux : clignent de façon décalée */
+  .footer-logo-wrap:hover .fl-eye:nth-child(1) {
     animation: flBlink 2.4s ease infinite;
     animation-delay: 0.05s;
-}
-.footer-logo-wrap:hover .fl-eye:nth-child(2) {
+  }
+  .footer-logo-wrap:hover .fl-eye:nth-child(2) {
     animation: flBlink 2.4s ease infinite;
     animation-delay: 0.15s;
-}
-@keyframes flBlink {
+  }
+  @keyframes flBlink {
     0%,60%,100% { transform: scaleY(1); }
     70%          { transform: scaleY(0.1); }
     75%          { transform: scaleY(1); }
     82%          { transform: scaleY(0.1); }
     87%          { transform: scaleY(1); }
-}
+  }
 
-/* Sourire : apparaît avec un léger bounce */
-.footer-logo-wrap:hover .fl-mouth {
+  /* Sourire : apparaît avec un léger bounce */
+  .footer-logo-wrap:hover .fl-mouth {
     animation: flSmile 2.4s ease infinite;
-}
-@keyframes flSmile {
+  }
+  @keyframes flSmile {
     0%,63% { transform: scale(0); opacity: 0; }
     78%    { transform: scale(1.15); opacity: 1; }
     85%    { transform: scale(0.95); }
     95%    { transform: scale(1); opacity: 1; }
     100%   { transform: scale(0); opacity: 0; }
-}
+  }
 
-/* Texte s'illumine */
-.footer-logo-wrap:hover .fl-text h2 {
+  /* Texte s'illumine */
+  .footer-logo-wrap:hover .fl-text h2 {
     color: var(--wh2);
-}
-.footer-logo-wrap:hover .fl-text .fl-signature {
+  }
+  .footer-logo-wrap:hover .fl-text .fl-signature {
     color: var(--wh);
-}
+  }
+</style>
+<body>
+<div class="footer-logo-wrap">
+  <div class="fl-spinner">
+    <div class="fl-bg"></div>
+
+    <!-- Logo Together -->
+    <div class="fl-elements">
+      <div class="fl-top">
+        <div class="fl-bar-long"></div>
+        <div class="fl-bar-short"></div>
+      </div>
+      <div class="fl-bottom">
+        <div class="fl-block"></div>
+        <div class="fl-block"></div>
+      </div>
+    </div>
+
+    <!-- Visage amical (caché par défaut) -->
+    <div class="fl-face">
+      <div class="fl-eyes">
+        <div class="fl-eye"></div>
+        <div class="fl-eye"></div>
+      </div>
+      <div class="fl-mouth"></div>
+    </div>
+
+  </div>
+
+  <div class="fl-text">
+    <h2>Together</h2>
+    <p class="fl-signature">Organisez, collaborez,<br>livrez — ensemble.</p>
+  </div>
+</div>
+
+</body>
+</html>

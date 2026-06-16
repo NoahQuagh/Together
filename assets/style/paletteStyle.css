@@ -11,8 +11,8 @@
     --ink2: #1a1917; /* Beige gris */
     --ink3: #252320; /* Gris moka*/
 
-    --color1: #5c90e8;
-    --color1-hover: #385a91;
+    --color1: #226db8;
+    --color1-hover: #123f6a;
 
     --icon-color: #676666;
     --box-icon-color-hover: #33312d;
@@ -25,6 +25,8 @@
     --auth-success      : #3ecf8e;
     --auth-error        : #e05c5c;
     --auth-warning      : #f0a429;
+
+    --color-c: #26b3b3;
 
 
     /*taille de texte*/
@@ -49,7 +51,8 @@
     --marge-4xl: 3.5rem;
     --marge-5xl: 4rem;
 
-    --boxshadow-white-s:rgba(255, 255, 255, 0.1) 0px 1px 1px 0px inset, var(--box-icon-color-hover) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px;
+    --boxshadow-white-s:rgba(255, 255, 255, 0.05) 0px 1px 0px 0px inset, /* Léger reflet brillant en haut */
+    rgba(0, 0, 0, 0.12) 0px 1px 3px 0px,             /* Ombre de contact très proche */ rgb(28 26 26 / 0.08) 0px 4px 12px 0px;
 }
 
 /*  POLICE  */
@@ -65,7 +68,7 @@
 :root {
     /* ROUGE*/
     --badge-bg-red: rgba(192, 40, 26, 0.15);
-    --badge-col-red: #e04030;
+    --badge-col-red: #df493a;
     --badge-bor-red: rgba(192, 40, 26, 0.40);
 
     /* BLEU */

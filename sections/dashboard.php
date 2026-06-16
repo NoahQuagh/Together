@@ -19,7 +19,7 @@
         <div class="tog-dot"></div>
         <div class="tog-dot"></div>
       </div>
-      <span class="demo-caption">Nous recherchons où vous avez été le plus productif… les pauses café ne comptent pas, bien sûr.</span>
+      <span class="demo-caption" id="wait">Nous recherchons où vous avez été le plus productif… les pauses café ne comptent pas, bien sûr.</span>
     </div>
   </div>
 </article>

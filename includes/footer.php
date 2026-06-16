@@ -37,12 +37,45 @@
                 <li><a href="">Statut</a></li>
             </ul>
         </div>
+
+      <div class="footer-logo-wrap">
+        <div class="fl-spinner">
+          <div class="fl-bg"></div>
+
+          <!-- Logo Together -->
+          <div class="fl-elements">
+            <div class="fl-top">
+              <div class="fl-bar-long"></div>
+              <div class="fl-bar-short"></div>
+            </div>
+            <div class="fl-bottom">
+              <div class="fl-block"></div>
+              <div class="fl-block"></div>
+            </div>
+          </div>
+
+          <!-- Visage amical (caché par défaut) -->
+          <div class="fl-face">
+            <div class="fl-eyes">
+              <div class="fl-eye"></div>
+              <div class="fl-eye"></div>
+            </div>
+            <div class="fl-mouth"></div>
+          </div>
+
+        </div>
+
+        <div class="fl-text">
+          <h2>Together</h2>
+          <p class="fl-signature">Organisez, collaborez,<br>livrez — ensemble.</p>
+        </div>
+      </div>
     </section>
 
     <div class="separator"></div>
 
     <section class="footerSection footerSection2">
-        <p>Copyright © 2026 Together | <a href="">Politique de confidentialité</a> | Version de l'app v1.0.0</p>
+        <p>Copyright © 2026 Together | <a href="">Politique de confidentialité</a> | Version de l'app v1.0.0 — bêta</p>
     </section>
 
 </footer>

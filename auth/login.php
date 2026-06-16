@@ -14,6 +14,7 @@ if (Session::estConnecte()) {
   <link rel="stylesheet" href="../assets/style/paletteStyle.css">
   <link rel="stylesheet" href="../assets/style/footer.css">
   <link rel="stylesheet" href="../assets/style/login.css">
+  <link rel="stylesheet" href="../assets/style/logo.css">
   <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Syne:wght@700;800&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&display=swap"
         rel="stylesheet">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css">
@@ -35,15 +36,31 @@ if (Session::estConnecte()) {
 
       <div class="logo-complete">
         <div class="line">
-          <div class="auth-logo-mark">
-            <i class="ti ti-layout-kanban" aria-hidden="true"></i>
+          <div class="demo-item">
+            <div class="tog-spinner large">
+              <div class="tog-bg"></div>
+              <div class="tog-elements">
+                <div class="tog-top">
+                  <div class="tog-bar-long"></div>
+                  <div class="tog-bar-short"></div>
+                </div>
+                <div class="tog-bottom">
+                  <div class="tog-block"></div>
+                  <div class="tog-block"></div>
+                </div>
+              </div>
+            </div>
+            <div class="tog-dots">
+              <div class="tog-dot"></div>
+              <div class="tog-dot"></div>
+              <div class="tog-dot"></div>
+            </div>
           </div>
           <div class="auth-side-copy">
             <h2>Together</h2>
+            <p class="signature">Organisez, collaborez,<br>livrez — ensemble.</p>
           </div>
         </div>
-
-        <p class="signature">Organisez, collaborez,<br>livrez — ensemble.</p>
       </div>
 
 
@@ -64,7 +81,7 @@ if (Session::estConnecte()) {
 
       <div class="auth-side-badge">
         <span class="badge-dot"></span>
-        v1.0 — bêta
+        v1.0.0 — bêta
       </div>
 
     </div>

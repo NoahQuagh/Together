@@ -1,0 +1,30 @@
+<div class="fl-face">
+    <svg class="fl-face-svg" viewBox="0 0 46 46" fill="none" xmlns="http://www.w3.org/2000/svg">
+
+        <!-- Sourcils -->
+        <path class="f-brow-l" d="M10 13 Q13 11 16 13"
+              stroke="white" stroke-width="2" stroke-linecap="round" fill="none"/>
+        <path class="f-brow-r" d="M30 13 Q33 11 36 13"
+              stroke="white" stroke-width="2" stroke-linecap="round" fill="none"/>
+
+        <!-- Yeux ouverts -->
+        <line class="f-eye-l" x1="11" y1="20" x2="16" y2="20"
+              stroke="white" stroke-width="2.5" stroke-linecap="round"/>
+        <line class="f-eye-r" x1="30" y1="20" x2="35" y2="20"
+              stroke="white" stroke-width="2.5" stroke-linecap="round"/>
+
+        <!-- Yeux fermés (superposés, invisibles par défaut) -->
+        <path class="f-eye-l-closed" d="M11 20 Q13.5 17.5 16 20"
+              stroke="white" stroke-width="2" stroke-linecap="round" fill="none" opacity="0"/>
+        <path class="f-eye-r-closed" d="M30 20 Q32.5 17.5 35 20"
+              stroke="white" stroke-width="2" stroke-linecap="round" fill="none" opacity="0"/>
+
+        <!-- Nez -->
+        <circle cx="23" cy="27" r="1.2" fill="rgba(255,255,255,0.45)"/>
+
+        <!-- Bouche -->
+        <path class="f-mouth" d="M16 34 Q23 37 30 34"
+              stroke="white" stroke-width="2" stroke-linecap="round" fill="none"/>
+
+    </svg>
+</div>

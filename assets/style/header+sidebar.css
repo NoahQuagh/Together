@@ -25,7 +25,7 @@ header {
 .header-disposition-left h3 {
     color: var(--wh2);
     font-family: var(--font-together);
-    font-weight: 500;
+    font-weight: 800;
     font-size: var(--text-base);
     letter-spacing: 0.03em;
 }

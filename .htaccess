@@ -1,1 +1,13 @@
 php_flag display_errors on
+# 1. On sécurise en vérifiant que le module de réécriture est bien disponible sur le serveur
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+
+    # 2. Si le fichier ou le dossier demandé existe vraiment (ex: tes assets, CSS, JS), on le laisse passer
+    RewriteCond %{REQUEST_FILENAME} -f [OR]
+    RewriteCond %{REQUEST_FILENAME} -d
+    RewriteRule ^ - [L]
+
+    # 3. Réécriture douce vers index.php
+    RewriteRule ^([a-zA-Z0-9\-_]+)/?$ index.php?tab=$1 [QSA,L]
+</IfModule>
