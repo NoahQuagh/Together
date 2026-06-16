@@ -1,0 +1,28 @@
+.dash-error-msg {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 3rem;
+    text-align: center;
+    color: var(--wh3); /* Adapte selon tes variables */
+    gap: 15px;
+}
+
+.dash-error-msg i {
+    font-size: 48px;
+    color: #e74c3c; /* Rouge pour bien marquer l'erreur */
+    animation: pulse 2s infinite; /* Petite touche d'animation pour attirer l'attention */
+}
+
+.dash-error-msg p {
+    font-size: 14px;
+    font-family: var(--font-text);
+    margin: 0;
+}
+
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+    100% { transform: scale(1); }
+}

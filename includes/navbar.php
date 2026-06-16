@@ -1,3 +1,6 @@
+<?php
+require_once 'includes/Session.php'
+?>
 <div class="sidebar-overlay" id="sidebarOverlay"></div>
 <header>
 
@@ -19,38 +22,35 @@
                 <i class="ti ti-settings-2" aria-hidden="true"></i>
                 <span class="tooltip-text normalHelp">Paramètres</span>
             </div>
-            <div class="menu account-menu tooltip-container">
-                <i class="ti ti-user" aria-hidden="true"></i>
-                <span class="tooltip-text userHelp">Ouvrir menu utilisateur</span>
-            </div>
+            <?php require_once 'includes/ongletNavUser.php'?>
         </div>
     </section>
     <section class="header-disposition-bottom">
 
         <div class="header-disposition-line">
 
-            <a href="#" class="nav-item active-nav">
+            <a href="index.php?tab=dashboard" class="<?= $tab === 'dashboard' ? 'nav-item active-nav' : 'nav-item' ?>">
                 <div class="item">
                     <i class="ti ti-layout-dashboard" aria-hidden="true"></i>
                     <h4>Dashboard</h4>
                 </div>
             </a>
 
-            <a href="#" class="nav-item">
+            <a href="index.php?tab=mesProjets" class="<?= $tab === 'mesProjets' ? 'nav-item active-nav' : 'nav-item' ?>">
                 <div class="item">
                     <i class="ti ti-folder" aria-hidden="true"></i>
                     <h4>Mes projets</h4>
                 </div>
             </a>
 
-            <a href="#" class="nav-item">
+            <a href="index.php?tab=contributions" class="<?= $tab === 'contributions' ? 'nav-item active-nav' : 'nav-item' ?>">
                 <div class="item">
                     <i class="ti ti-users" aria-hidden="true"></i>
                     <h4>Contributions</h4>
                 </div>
             </a>
 
-            <a href="#" class="nav-item">
+            <a href="index.php?tab=taches" class="<?= $tab === 'taches' ? 'nav-item active-nav' : 'nav-item' ?>">
                 <div class="item">
                     <i class="ti ti-checklist" aria-hidden="true"></i>
                     <h4>Mes tâches</h4>

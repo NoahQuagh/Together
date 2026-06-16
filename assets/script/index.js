@@ -24,3 +24,4 @@ document.querySelectorAll('.sb-item').forEach(item => {
         item.classList.add('active');
     });
 });
+

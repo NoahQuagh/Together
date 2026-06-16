@@ -3,15 +3,16 @@
     --wh: #f2ede6;
     --wh2: #ffffff;
     --wh3: #7a7168;
+    --wh4: #575350;
 
-    --gray: #a79b8f;
+    --gray: #8b949e;
 
     --ink: #0e0d0c; /* Blanc cassé crème*/
     --ink2: #1a1917; /* Beige gris */
     --ink3: #252320; /* Gris moka*/
 
-    --color1: #226db8;
-    --color1-hover: #123a61;
+    --color1: #5c90e8;
+    --color1-hover: #385a91;
 
     --icon-color: #676666;
     --box-icon-color-hover: #33312d;
@@ -47,6 +48,8 @@
     --marge-3xl: 3rem;
     --marge-4xl: 3.5rem;
     --marge-5xl: 4rem;
+
+    --boxshadow-white-s:rgba(255, 255, 255, 0.1) 0px 1px 1px 0px inset, var(--box-icon-color-hover) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px;
 }
 
 /*  POLICE  */

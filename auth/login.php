@@ -1,8 +1,8 @@
 <?php
-require_once "includes/Session.php";
+require_once "../includes/Session.php";
 
 if (Session::estConnecte()) {
-  header('Location: index.php');
+  header('Location: ../index.php');
   exit;
 }
 ?>
@@ -11,9 +11,9 @@ if (Session::estConnecte()) {
 <head>
   <meta charset="UTF-8">
   <title>Together</title>
-  <link rel="stylesheet" href="assets/style/paletteStyle.css">
-  <link rel="stylesheet" href="assets/style/footer.css">
-  <link rel="stylesheet" href="assets/style/login.css">
+  <link rel="stylesheet" href="../assets/style/paletteStyle.css">
+  <link rel="stylesheet" href="../assets/style/footer.css">
+  <link rel="stylesheet" href="../assets/style/login.css">
   <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Syne:wght@700;800&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&display=swap"
         rel="stylesheet">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css">
@@ -64,7 +64,7 @@ if (Session::estConnecte()) {
 
       <div class="auth-side-badge">
         <span class="badge-dot"></span>
-        v1.0 — bêta privée
+        v1.0 — bêta
       </div>
 
     </div>
@@ -93,7 +93,7 @@ if (Session::estConnecte()) {
           </div>
         <?php endif; ?>
 
-        <form class="auth-form" method="POST" action="auth/loginUser.php">
+        <form class="auth-form" method="POST" action="loginUser.php">
 
           <div class="auth-field">
             <label for="login-email">E-mail</label>
@@ -108,7 +108,7 @@ if (Session::estConnecte()) {
           <div class="auth-field">
             <div class="auth-field-head">
               <label for="login-mdp">Mot de passe</label>
-              <a href="/together/auth/reset.php" class="auth-link-xs">Oublié ?</a>
+              <a href="reset.php" class="auth-link-xs">Oublié ?</a>
             </div>
             <div class="auth-input-wrap">
               <i class="ti ti-lock" aria-hidden="true"></i>
@@ -161,7 +161,7 @@ if (Session::estConnecte()) {
           </div>
         <?php endif; ?>
 
-        <form class="auth-form" method="POST" action="auth/SignIn.php" novalidate>
+        <form class="auth-form" method="POST" action="SignIn.php" novalidate>
 
           <div class="auth-row-2">
             <div class="auth-field">
@@ -226,7 +226,7 @@ if (Session::estConnecte()) {
           <label class="auth-checkbox">
             <input type="checkbox" name="cgu" required>
             <span class="check-box"></span>
-            J'accepte les <a href="/together/cgu.php" class="auth-link-inline">CGU</a>
+            J'accepte les <a href="../legal/cgu.php" class="auth-link-inline">CGU</a>
           </label>
 
           <button type="submit" class="auth-btn-submit">
@@ -252,7 +252,7 @@ if (Session::estConnecte()) {
 
 </main>
 
-<script src="assets/script/login.js"></script>
+<script src="../assets/script/login.js"></script>
 <script>
     window.__authInit = '<?= Session::hasFlash('erreur_register') ? 'register' : 'login' ?>';
 </script>

@@ -1,0 +1,213 @@
+.spinner-wrap {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 24px;
+    padding: 3rem 0;
+}
+.spinner-label {
+    font-size: 13px;
+    color: var(--color-text-secondary);
+    font-family: var(--font-sans);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+}
+
+.tog-spinner {
+    width: 64px;
+    height: 64px;
+    position: relative;
+}
+
+/* Fond arrondi */
+.tog-bg {
+    position: absolute;
+    inset: 0;
+    background: #226db8;
+    border-radius: 14px;
+}
+
+/* Conteneur des éléments du logo */
+.tog-elements {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+    padding: 10px 11px;
+}
+
+/* Ligne supérieure : barre + petite barre (le ō) */
+.tog-top {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+}
+.tog-bar-long {
+    height: 4px;
+    border-radius: 2px;
+    background: #fff;
+    transform-origin: left center;
+}
+.tog-bar-short {
+    height: 4px;
+    width: 55%;
+    border-radius: 2px;
+    background: rgba(255,255,255,0.55);
+    transform-origin: left center;
+}
+
+/* Ligne inférieure : deux blocs (le o) */
+.tog-bottom {
+    width: 100%;
+    display: flex;
+    gap: 4px;
+}
+.tog-block {
+    flex: 1;
+    height: 10px;
+    border-radius: 3px;
+    background: #fff;
+}
+
+/* ── Animations ── */
+
+/* Barre longue : slide depuis la gauche, puis pulse de largeur */
+.tog-bar-long {
+    animation: barSlide 1.8s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+}
+@keyframes barSlide {
+    0%   { transform: scaleX(0); opacity: 0; }
+    15%  { transform: scaleX(1); opacity: 1; }
+    45%  { transform: scaleX(1); opacity: 1; }
+    60%  { transform: scaleX(0.6); opacity: 0.7; }
+    75%  { transform: scaleX(1); opacity: 1; }
+    90%  { transform: scaleX(1); opacity: 1; }
+    100% { transform: scaleX(0); opacity: 0; }
+}
+
+/* Barre courte : slide avec délai */
+.tog-bar-short {
+    animation: barShortSlide 1.8s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+    animation-delay: 0.12s;
+}
+@keyframes barShortSlide {
+    0%   { transform: scaleX(0); opacity: 0; }
+    20%  { transform: scaleX(1); opacity: 1; }
+    50%  { transform: scaleX(1); opacity: 0.55; }
+    65%  { transform: scaleX(0.4); opacity: 0.3; }
+    80%  { transform: scaleX(1); opacity: 0.55; }
+    92%  { transform: scaleX(1); opacity: 0.55; }
+    100% { transform: scaleX(0); opacity: 0; }
+}
+
+/* Bloc gauche : monte depuis le bas */
+.tog-block:nth-child(1) {
+    animation: blockLeft 1.8s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+    transform-origin: bottom center;
+}
+@keyframes blockLeft {
+    0%   { transform: scaleY(0) translateY(5px); opacity: 0; }
+    25%  { transform: scaleY(1) translateY(0);   opacity: 1; }
+    55%  { transform: scaleY(1) translateY(0);   opacity: 1; }
+    70%  { transform: scaleY(1.2) translateY(-2px); opacity: 1; }
+    80%  { transform: scaleY(1) translateY(0);   opacity: 1; }
+    92%  { transform: scaleY(1) translateY(0);   opacity: 1; }
+    100% { transform: scaleY(0) translateY(5px); opacity: 0; }
+}
+
+/* Bloc droit : monte avec décalage */
+.tog-block:nth-child(2) {
+    animation: blockRight 1.8s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+    animation-delay: 0.18s;
+    transform-origin: bottom center;
+}
+@keyframes blockRight {
+    0%   { transform: scaleY(0) translateY(5px); opacity: 0; }
+    25%  { transform: scaleY(1) translateY(0);   opacity: 1; }
+    55%  { transform: scaleY(1) translateY(0);   opacity: 1; }
+    70%  { transform: scaleY(1.2) translateY(-2px); opacity: 1; }
+    80%  { transform: scaleY(1) translateY(0);   opacity: 1; }
+    92%  { transform: scaleY(1) translateY(0);   opacity: 1; }
+    100% { transform: scaleY(0) translateY(5px); opacity: 0; }
+}
+
+/* Fond : léger pulse de scale */
+.demo-item .tog-spinner,.demo-item .tog-dots {
+    animation: bgPulse 1.8s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+}
+@keyframes bgPulse {
+    0%   { transform: scale(0.85); opacity: 0; }
+    12%  { transform: scale(1.04); opacity: 1; }
+    20%  { transform: scale(1);    opacity: 1; }
+    80%  { transform: scale(1);    opacity: 1; }
+    92%  { transform: scale(0.96); opacity: 0.8; }
+    100% { transform: scale(0.85); opacity: 0; }
+}
+
+/* Variante grande taille pour la démo */
+.tog-spinner.large {
+    width: 96px;
+    height: 96px;
+}
+.tog-spinner.large .tog-bg { border-radius: 20px; }
+.tog-spinner.large .tog-elements { padding: 16px 17px; gap: 7px; }
+.tog-spinner.large .tog-top { gap: 5px; }
+.tog-spinner.large .tog-bar-long { height: 6px; }
+.tog-spinner.large .tog-bar-short { height: 6px; }
+.tog-spinner.large .tog-block { height: 15px; border-radius: 4px; }
+.tog-spinner.large .tog-bottom { gap: 6px; }
+
+/* ── Points de chargement dessous ── */
+.tog-dots {
+    display: flex;
+    gap: 6px;
+    align-items: center;
+}
+.tog-dot {
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background: var(--color-text-secondary);
+    animation: dotBounce 1.2s ease-in-out infinite;
+    opacity: 0.4;
+}
+.tog-dot:nth-child(2) { animation-delay: 0.2s; }
+.tog-dot:nth-child(3) { animation-delay: 0.4s; }
+@keyframes dotBounce {
+    0%, 100% { transform: translateY(0); opacity: 0.4; }
+    50%       { transform: translateY(-4px); opacity: 1; }
+}
+
+/* Séparateur de section */
+.demo-sep {
+    width: 100%;
+    border: none;
+    border-top: 0.5px solid var(--color-border-tertiary);
+    margin: 2rem 0;
+}
+.demo-row {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 48px;
+    flex-wrap: wrap;
+}
+.demo-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+}
+.demo-caption {
+    font-size: 12px;
+    color: var(--wh3);
+    font-family: var(--font-text);
+    font-weight: var(--text-2xl);
+}
+
+

@@ -31,7 +31,7 @@ if (!empty($erreurs)) {
 }
 
 $db  = getDB();
-$req = $db->prepare('SELECT id FROM users WHERE email = ? LIMIT 1');
+$req = $db->prepare('SELECT use_id FROM TOG_USERS WHERE use_email = ? LIMIT 1');
 $req->execute([$email]);
 
 if ($req->fetch()) {
@@ -43,7 +43,7 @@ if ($req->fetch()) {
 $hash = password_hash($mdp, PASSWORD_BCRYPT);
 
 $insert = $db->prepare('
-    INSERT INTO users (prenom, nom, email, mot_de_passe)
+    INSERT INTO TOG_USERS (use_prenom, use_nom, use_email, use_mot_de_passe)
     VALUES (?, ?, ?, ?)
 ');
 
@@ -54,7 +54,7 @@ $newId = (int) $db->lastInsertId();
 Session::login([
     'id'   => $newId,
     'nom'  => $nom,
-    'role' => 'member',
+    'role' => 2,
 ]);
 
 Session::setFlash('succes', 'Bienvenue ' . htmlspecialchars($prenom) . ' ! Votre compte a été créé.');

@@ -2,7 +2,7 @@
     <section class="footerSection">
 
         <div>
-            <h4>Riens rapides</h4>
+            <h4>Liens rapides</h4>
             <ul>
                 <li><a href="">Dashboard</a></li>
                 <li><a href="">Mes projets</a></li>
@@ -22,18 +22,19 @@
                 <li><a href="">Documentation</a></li>
                 <li><a href="">Support</a></li>
                 <li><a href="">Signaler un bug</a></li>
-                <li><a href="">Suggestions</a></li>
-                <li><a href="">Raccourcis</a></li>
+                <li><a href="">Soumettre une idée</a></li>
+                <li><a href="">Raccourcis clavier</a></li>
             </ul>
         </div>
 
         <div>
             <h4>Réseau</h4>
             <ul>
-                <li><a href="">A propos</a></li>
+                <li><a href="">À propos</a></li>
                 <li><a href="">FAQ</a></li>
                 <li><a href="">Changelog</a></li>
-                <li><a href="">Github</a></li>
+                <li><a href="">GitHub</a></li>
+                <li><a href="">Statut</a></li>
             </ul>
         </div>
     </section>

@@ -19,17 +19,17 @@ if (!$email || !$mdp) {
     exit;
 }
 
-$req = $db->prepare('SELECT id, nom, role, mot_de_passe FROM users WHERE email = ? LIMIT 1');
+$req = $db->prepare('SELECT use_id, use_nom, use_role_id, use_mot_de_passe FROM TOG_USERS WHERE use_email = ? LIMIT 1');
 $req->execute([$email]);
 $user = $req->fetch();
 
 
 
-if ($user && password_verify($mdp, $user['mot_de_passe'])) {
+if ($user && password_verify($mdp, $user['use_mot_de_passe'])) {
     Session::login([
-        'id'   => $user['id'],
-        'nom'  => $user['nom'],
-        'role' => $user['role'],
+        'id'   => $user['use_id'],
+        'nom'  => $user['use_nom'],
+        'role' => $user['use_role_id'],
     ]);
 
     header('Location: ../index.php');
