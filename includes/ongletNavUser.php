@@ -1,5 +1,5 @@
 <?php
-require_once 'api/loadUserInfo.php';
+require_once BASE_PATH.'/api/loadUserInfo.php';
 ?>
 <?php if(Session::estConnecte()): ?>
 
@@ -17,7 +17,8 @@ require_once 'api/loadUserInfo.php';
 
             <div class="gh-dropdown-divider"></div>
 
-            <a href="#" class="gh-dropdown-item"><i class="ti ti-user"></i> Profile</a>
+            <a href="../settings/profile.php?tab=profile" class="gh-dropdown-item"><i class="ti ti-user"></i> Profile</a>
+            <a href="../settings/profile.php?tab=settings" class="gh-dropdown-item"><i class="ti ti-settings-2"></i> Paramètres</a>
             <a href="#" class="gh-dropdown-item"><i class="ti ti-folder"></i> Projets</a>
 
             <div class="gh-dropdown-divider"></div>
@@ -27,14 +28,14 @@ require_once 'api/loadUserInfo.php';
 
             <div class="gh-dropdown-divider"></div>
 
-            <a href="auth/logout.php" class="gh-dropdown-item"><i class="ti ti-logout"></i> Déconnexion</a>
+            <a href="../auth/logout.php" class="gh-dropdown-item"><i class="ti ti-logout"></i> Déconnexion</a>
         </div>
     </div>
 
 <?php else: ?>
 
     <div class="menu account-menu tooltip-container" id="account-menu-trigger"
-         onclick="window.location.href='auth/login.php'">
+         onclick="window.location.href='../auth/login.php'">
         <i class="ti ti-user" aria-hidden="true"></i>
         <span class="tooltip-text userHelp">Connexion / Inscription</span>
     </div>

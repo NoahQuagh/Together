@@ -58,5 +58,5 @@ Session::login([
 ]);
 
 Session::setFlash('succes', 'Bienvenue ' . htmlspecialchars($prenom) . ' ! Votre compte a été créé.');
-header('Location: ../index.php');
+header('Location: ../home/home.php');
 exit;

@@ -8,7 +8,7 @@
         <h1>Vous n'êtes pas connecté</h1>
         <p>Connectez-vous pour accéder à vos projets et collaborer avec votre équipe.</p>
 
-        <button class="btn-connexion" onclick="window.location.href='auth/login.php'">
+        <button class="btn-connexion" onclick="window.location.href='../auth/login.php'">
             <i class="ti ti-user" aria-hidden="true"></i>
             Connexion / Inscription
         </button>

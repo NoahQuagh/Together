@@ -1,8 +1,9 @@
 <?php
-require_once "../includes/Session.php";
+require_once '../config.php';
+require_once BASE_PATH."/includes/Session.php";
 
 if (Session::estConnecte()) {
-  header('Location: ../index.php');
+  header('Location: ../home/home.php');
   exit;
 }
 ?>

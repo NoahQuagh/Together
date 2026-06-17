@@ -19,7 +19,6 @@
         <div class="tog-dot"></div>
         <div class="tog-dot"></div>
       </div>
-      <span class="demo-caption">Analyse en cours... Nous essayons de distinguer le travail réel des pauses café.</span>
       <span class="demo-caption">Nous compilons les projets auxquels vous contribuez... café compris, mais pas comptabilisé.</span>
     </div>
   </div>

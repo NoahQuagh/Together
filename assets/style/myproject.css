@@ -1,0 +1,240 @@
+.proj-page{
+    display: flex;
+    flex-direction: column;
+    gap: var(--marge-3xl);
+}
+
+.proj-filters{
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--marge-base);
+}
+
+.proj-filter-btn{
+    width: 110px;
+    height: 30px;
+    font-family: var(--font-text);
+    font-size: var(--text-sm);
+    font-weight: 500;
+    background: var(--ink);
+    color: var(--wh3);
+    border: 1px solid var(--wh4);
+    border-radius: var(--radiusBox-xs);
+    cursor: pointer;
+}
+
+.proj-filter-btn i{
+    font-size: var(--text-sm);
+    margin-right: 5px;
+}
+
+.proj-filter-btn:hover{
+    color: var(--wh2);
+}
+
+.proj-filter-btn:hover i{
+    color: var(--wh2);
+}
+
+.proj-filter-btn.active{
+    color: var(--wh2);
+    border: 1px solid var(--wh2);
+}
+
+.proj-filter-btn.active i{
+    color: var(--wh2);
+}
+
+.proj-list{
+    display: flex;
+    flex-direction: column;
+    gap: var(--marge-lg);
+}
+
+.proj-item{
+    cursor: pointer;
+}
+
+.proj-item-main{
+    display: flex;
+    flex-direction: column;
+    gap: var(--marge-xs);
+}
+
+.dash-project-nom{
+    font-family: var(--font-text);
+    font-size: var(--text-lg);
+    font-weight: 500;
+    color: var(--wh2);
+    display: flex;
+    flex-direction: row;
+    gap: var(--marge-xs);
+}
+
+.dash-project-nom i{
+    font-size: var(--text-2xl);
+    color: var(--wh2);
+    margin-right: 5px;
+}
+
+.proj-desc{
+    font-family: var(--font-text);
+    font-size: var(--text-sm);
+    font-weight: 500;
+    color: var(--wh3);
+}
+
+.proj-item-meta{
+    display: flex;
+    flex-direction: row;
+    gap: var(--marge-base);
+}
+
+.proj-date{
+    font-family: var(--font-text);
+    font-size: var(--text-sm);
+    font-weight: 500;
+    color: var(--wh2);
+}
+
+.proj-date i{
+    font-size: var(--text-sm);
+    color: var(--wh2);
+    margin-right: 5px;
+}
+
+.proj-empty-filtered{
+    margin-top: 20vh;
+    display: flex;
+    flex-direction: column;
+    gap: var(--marge-lg);
+}
+
+.proj-empty-global{
+    margin-top: 20vh;
+    display: flex;
+    flex-direction: column;
+    gap: var(--marge-lg);
+    align-content: center;
+}
+
+.proj-create-btn{
+    font-family: var(--font-text);
+    font-size: var(--text-sm);
+    font-weight: 500;
+    background: var(--color1);
+    color: var(--wh2);
+    border: 1px solid var(--auth-accent);
+    border-radius: var(--radiusBox-xs);
+    cursor: pointer;
+    padding: var(--marge-xs) var(--marge-sm) var(--marge-xs) var(--marge-sm);
+    transition: all 0.5s ease;
+}
+
+.proj-create-btn i{
+    font-size: var(--text-sm);
+    margin-right: 5px;
+}
+
+.proj-create-btn:hover{
+    background: var(--color1-hover);
+    border: 1px solid var(--auth-accent-glow);
+}
+
+.optionProject{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+}
+
+.option-btn{
+    opacity: 0;
+    background: var(--ink);
+    color: var(--wh3);
+    border: 1px solid var(--wh4);
+    border-radius: var(--radiusBox-xs);
+    cursor: pointer;
+    padding: 7px;
+    transition: all 0.5s ease;
+}
+
+
+.option-btn i{
+    font-size: var(--text-base);
+}
+
+.proj-item:hover .option-btn{
+    opacity: 1;
+}
+
+.option-red i{
+    color: var(--auth-error);
+}
+
+.option-red:hover{
+    border: 1px solid var(--auth-error);
+}
+
+.option-vert i{
+    color: var(--auth-success);
+}
+
+.option-vert:hover{
+    border: 1px solid var(--auth-success);
+}
+
+.option-blanc i{
+    color: var(--wh2);
+}
+
+.option-blanc:hover{
+    border: 1px solid var(--wh2);
+}
+
+.more-wrapper {
+    position: relative;
+    display: inline-block;
+}
+
+.more-dropdown {
+    display: none;
+    position: absolute;
+    top: calc(100% + 5px);
+    right: 0;
+    background: var(--ink3);
+    width: 180px;
+    border: 1px solid var(--box-icon-color-hover);
+    border-radius: var(--radiusBox-xs);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5);
+    z-index: 1000;
+    flex-direction: column;
+    padding: var(--marge-xs);
+}
+
+.more-dropdown.active {
+    display: flex;
+}
+
+.more-dropdown-item {
+    color: var(--wh3);
+    text-decoration: none;
+    font-family: var(--font-text);
+    font-size: var(--text-sm);
+    padding: 6px 10px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    border-radius: 4px;
+    transition: background 0.15s ease, color 0.15s ease;
+}
+
+.more-dropdown-item i {
+    font-size: var(--text-sm);
+    width: 16px;
+    flex-shrink: 0;
+}
+
+.more-dropdown-item:hover {
+    background: var(--box-icon-color-hover);
+    color: var(--wh2);
+}

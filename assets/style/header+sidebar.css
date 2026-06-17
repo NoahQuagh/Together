@@ -6,13 +6,13 @@ header {
     padding: var(--marge-sm) var(--marge-sm) 0 var(--marge-sm);
     display: flex;
     flex-direction: column;
-    gap: 1rem;
 }
 
 .header-disposition-top {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    margin-bottom: var(--marge-sm);
 }
 
 .header-disposition-left {
@@ -287,7 +287,7 @@ header {
     color: #4a4843;
 }
 
-/*=====profile======*/
+/*=====settings======*/
 
 
 

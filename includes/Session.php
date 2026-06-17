@@ -39,7 +39,7 @@ class Session {
 
     public static function requireLogin(): void {
         if (!self::estConnecte()) {
-            header('Location: /together/index.php');
+            header('Location: /together/home.php');
             exit;
         }
     }
@@ -47,7 +47,7 @@ class Session {
     public static function requireRole(string $role): void {
         self::requireLogin();
         if (self::get('role') !== $role) {
-            header('Location: /together/index.php?error=acces_refuse');
+            header('Location: /together/home.php?error=acces_refuse');
             exit;
         }
     }

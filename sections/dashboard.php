@@ -26,7 +26,7 @@
 
 <script>
     document.addEventListener("DOMContentLoaded", function() {
-        fetch('api/loadDashBoardData.php')
+        fetch('../api/loadDashBoardData.php')
             .then(response => {
                 // Si le serveur renvoie une erreur (ex: code 500), on force le passage dans le .catch()
                 if (!response.ok) {

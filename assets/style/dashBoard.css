@@ -5,6 +5,7 @@
     width: 100%;
     min-height: 100%;
     box-sizing: border-box;
+    margin: var(--marge-5xl);
 }
 
 .dash-page #dashboard-container .demo-item,.dash-page #dashboard-container .dash-error-msg{
@@ -392,5 +393,86 @@
 @media (max-width: 480px) {
     .dash-kpi-grid {
         grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 1024px) {
+    .dash-layout {
+        grid-template-columns: 1fr;
+        padding: 0 var(--marge-lg);
+        gap: var(--marge-lg);
+    }
+
+    .dash-kpi-grid {
+        margin-top: var(--marge-lg);
+        grid-template-columns: repeat(4, 1fr);
+    }
+
+    .dash-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .dash-block--full {
+        grid-column: 1;
+    }
+}
+
+/* ── Mobile ── */
+@media (max-width: 768px) {
+    .dash-page {
+        padding: var(--marge-sm);
+        margin: var(--marge-xl);
+        gap: var(--marge-sm);
+    }
+
+    .dash-layout {
+        padding: 0 var(--marge-sm);
+        gap: var(--marge-base);
+    }
+
+    .dash-kpi-grid {
+        grid-template-columns: repeat(1, 1fr);
+        gap: var(--marge-xs);
+    }
+
+    .dash-kpi-card {
+        padding: var(--marge-sm) var(--marge-base);
+    }
+
+    .dash-kpi-value {
+        font-size: var(--text-xl);
+    }
+
+    .dash-grid {
+        grid-template-columns: 1fr;
+        gap: var(--marge-sm);
+    }
+
+    .dash-block--full {
+        grid-column: 1;
+    }
+
+    .dash-block-header h3 {
+        font-size: var(--text-base);
+    }
+
+    .dash-task-top {
+        flex-wrap: wrap;
+    }
+
+    .dash-task-meta,
+    .proj-item-meta {
+        flex-wrap: wrap;
+    }
+}
+
+/* ── Petit mobile : KPI en 1 colonne ── */
+@media (max-width: 480px) {
+    .dash-kpi-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .dash-kpi-card {
+        gap: var(--marge-sm);
     }
 }
