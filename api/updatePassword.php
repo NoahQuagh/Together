@@ -3,7 +3,7 @@ require_once 'db.php';
 require_once '../includes/Session.php';
 
 if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
-    header('Location: ../settings/profile.php?tab=profile');
+    header('Location: ../settings/user.php?tab=profile');
     exit;
 }
 
@@ -32,7 +32,7 @@ if (!$user || !password_verify($mdpActuel, $user['use_mot_de_passe'])) {
 
 if (!empty($erreurs)) {
     Session::setFlash('erreur_profil', implode(' ', $erreurs));
-    header('Location: ../settings/profile.php?tab=profile');
+    header('Location: ../settings/user.php?tab=profile');
     exit;
 }
 
@@ -42,5 +42,5 @@ $update = $db->prepare('UPDATE TOG_USERS SET use_mot_de_passe = ? WHERE use_id =
 $update->execute([$hash, Session::id()]);
 
 Session::setFlash('succes_profil', 'Votre mot de passe a été mis à jour avec succès.');
-header('Location: ../settings/profile.php?tab=profile');
+header('Location: ../settings/user.php?tab=profile');
 exit;

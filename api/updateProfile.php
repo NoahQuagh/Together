@@ -3,7 +3,7 @@ require_once 'db.php';
 require_once '../includes/Session.php';
 
 if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
-    header('Location: ../settings/profile.php?tab=profile');
+    header('Location: ../settings/user.php?tab=profile');
     exit;
 }
 
@@ -30,7 +30,7 @@ if ($reqCheck->fetch()) {
 
 if (!empty($erreurs)) {
     Session::setFlash('erreur_profil', implode(' ', $erreurs));
-    header('Location: ../settings/profile.php?tab=profile');
+    header('Location: ../settings/user.php?tab=profile');
     exit;
 }
 
@@ -48,5 +48,5 @@ Session::login([
 ]);
 
 Session::setFlash('succes_profil', 'Vos informations ont été mises à jour avec succès.');
-header('Location: ../settings/profile.php?tab=profile');
+header('Location: ../settings/user.php?tab=profile');
 exit;

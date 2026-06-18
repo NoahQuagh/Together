@@ -10,7 +10,7 @@ $tab = $_GET['tab'] ?? 'dashboard';
   <meta charset="UTF-8">
   <title>Together</title>
   <link rel="stylesheet" href="../assets/style/paletteStyle.css">
-  <link rel="stylesheet" href="../assets/style/index.css">
+  <link rel="stylesheet" href="../assets/style/home.css">
   <link rel="stylesheet" href="../assets/style/header+sidebar.css">
   <link rel="stylesheet" href="../assets/style/nonConnecterSection.css">
   <link rel="stylesheet" href="../assets/style/dashBoard.css">
@@ -32,10 +32,10 @@ $tab = $_GET['tab'] ?? 'dashboard';
      require_once BASE_PATH . '/includes/nonConnecterSection.php';
    }else{
     switch($tab) {
-        case 'myprojects':     require BASE_PATH . '/sections/mesProjet.php'; break;
-        case 'contributions': require BASE_PATH.'/sections/contributions.php'; break;
-        case 'mytasks':      require BASE_PATH.'/sections/taches.php'; break;
-        default:            require BASE_PATH.'/sections/dashboard.php'; break;
+        case 'myprojects':     require BASE_PATH . '/home/mesProjet.php'; break;
+        case 'contributions': require BASE_PATH.'/home/contributions.php'; break;
+        case 'mytasks':      require BASE_PATH.'/home/taches.php'; break;
+        default:            require BASE_PATH.'/home/dashboard.php'; break;
     }
   } ?>
 </main>
