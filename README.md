@@ -1,4 +1,4 @@
-# 🚀 Together
+# Together
 
 **Together** est une application web moderne de gestion de projet et de collaboration, pensée pour les équipes et les développeurs qui souhaitent organiser, collaborer et livrer leurs projets plus rapidement sans perdre en clarté.
 
