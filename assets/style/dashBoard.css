@@ -216,6 +216,7 @@
     border-radius: var(--radiusBox-sm);
     padding: var(--marge-sm) var(--marge-base);
     transition: background 0.15s ease;
+    background: var(--ink2);
 }
 
 .dash-task-item:hover {
@@ -280,6 +281,7 @@
     border-radius: var(--radiusBox-sm);
     padding: var(--marge-sm) var(--marge-base);
     transition: background 0.15s ease;
+    background: var(--ink2);
 }
 
 .dash-sprint-item:hover {
@@ -310,6 +312,7 @@
     gap: var(--marge-sm);
     padding: var(--marge-sm) var(--marge-base);
     transition: background 0.15s ease;
+    background: var(--ink2);
 }
 
 .dash-project-item:hover {
@@ -340,6 +343,7 @@
     gap: var(--marge-base);
     padding: var(--marge-sm) var(--marge-base);
     transition: background 0.15s ease;
+    background: var(--ink2);
 }
 
 .dash-activity-item:hover {

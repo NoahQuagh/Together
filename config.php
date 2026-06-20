@@ -5,3 +5,8 @@ define('BASE_PATH', $isLocal
     ? 'C:/xampp/htdocs/together'
     : '/var/www/together'
 );
+
+define('BASE_URL', $isLocal
+    ? '/Together'
+    : ''
+);

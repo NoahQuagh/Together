@@ -2,6 +2,7 @@
 require_once '../config.php';
 require_once BASE_PATH . '/includes/Session.php';
 Session::start();
+Session::requireLogin();
 $tab = $_GET['tab'] ?? 'dashboard';
 ?>
 <!DOCTYPE html>
@@ -13,7 +14,6 @@ $tab = $_GET['tab'] ?? 'dashboard';
   <link rel="stylesheet" href="../assets/style/header+sidebar.css">
   <link rel="stylesheet" href="../assets/style/nonConnecterSection.css">
   <link rel="stylesheet" href="../assets/style/footer.css">
-  <link rel="stylesheet" href="../assets/style/user.css">
   <link rel="stylesheet" href="../assets/style/profile.css">
   <link rel="stylesheet" href="../assets/style/spinnerlogoScaled.css">
   <link rel="stylesheet" href="../assets/style/errorloading+iconTop.css">
@@ -105,5 +105,6 @@ $tab = $_GET['tab'] ?? 'dashboard';
 <?php require_once BASE_PATH."/includes/footer.php" ?>
 
 <script src="../assets/script/navbar+sidebar.js"></script>
+<script src="../assets/script/profile.js"></script>
 </body>
 </html>

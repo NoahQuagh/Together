@@ -2,6 +2,7 @@
 require_once '../config.php';
 require_once BASE_PATH . '/includes/Session.php';
 Session::start();
+Session::requireLogin();
 $tab = $_GET['tab'] ?? 'dashboard';
 ?>
 <!DOCTYPE html>

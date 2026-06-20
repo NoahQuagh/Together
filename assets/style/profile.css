@@ -8,6 +8,7 @@ main{
     display: flex;
     justify-content: center;
     width: 100%;
+    background: linear-gradient(var(--ink1),var(--ink2));
 }
 
 
@@ -332,7 +333,6 @@ main{
 }
 
 .profile-aside-item.active {
-    background: var(--ink3);
     color: var(--wh);
 }
 

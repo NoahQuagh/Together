@@ -6,6 +6,7 @@ header {
     padding: var(--marge-sm) var(--marge-sm) 0 var(--marge-sm);
     display: flex;
     flex-direction: column;
+    border-bottom: 1px solid var(--wh4);
 }
 
 .header-disposition-top {

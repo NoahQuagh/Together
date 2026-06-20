@@ -1,5 +1,5 @@
 <?php
-
+require_once '../config.php';
 class Session {
 
     // DÉMARRAGE
@@ -39,7 +39,7 @@ class Session {
 
     public static function requireLogin(): void {
         if (!self::estConnecte()) {
-            header('Location: /together/home.php');
+            header('Location: '.BASE_URL.'/auth/login.php');
             exit;
         }
     }

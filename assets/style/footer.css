@@ -4,6 +4,7 @@ footer{
     flex-direction: column;
     background: var(--ink);
     border-top: 1px solid var(--box-icon-color-hover);
+    box-shadow: -10px -40px 25px rgba(0, 0, 0, 0.15);
 }
 
 .footerSection div ul{
