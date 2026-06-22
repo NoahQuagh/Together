@@ -122,9 +122,11 @@ function statutBadge(string $statut): string {
             <button class="option-btn option-red btn-delete"
                     data-id="<?= (int)$proj['pro_id'] ?>"
                     data-nom="<?= htmlspecialchars($proj['pro_nom']) ?>"
-                    title="Supprimer le projet">
+                    title="Supprimer le projet"
+                    onclick="preparerSuppression(<?= (int)$proj['pro_id'] ?>, this)">
               <i class="ti ti-trash"></i>
             </button>
+
           </div>
         </li>
       <?php endforeach; ?>

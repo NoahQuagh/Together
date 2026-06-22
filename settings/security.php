@@ -22,6 +22,27 @@
             <span class="demo-caption" id="wait">Nous préparons vos données de sécurité... le nombre café reste confidentiel.</span>
         </div>
     </div>
+  <div id="supCompte" class="modal-overlay" style="display: none;">
+    <div class="modal-box">
+
+      <div class="modal-header">
+        <h3>Confirmer l'action</h3>
+        <button class="modal-close-btn" onclick="closeModal('supCompte')">
+          <i class="ti ti-x"></i>
+        </button>
+      </div>
+
+      <div class="modal-body">
+        <p>Êtes-vous sûr de vouloir supprimer votre compte ? Cette action est irréversible.</p>
+      </div>
+
+      <div class="modal-footer">
+        <button class="modal-btn btn-cancel" onclick="closeModal('supCompte')">Annuler</button>
+        <button class="modal-btn btn-confirm risk" onclick="supCompte()">Confirmer</button>
+      </div>
+
+    </div>
+  </div>
 </article>
 
 <script>

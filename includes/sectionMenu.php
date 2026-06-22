@@ -11,7 +11,7 @@
 
         <a href="home.php?tab=myprojects" class="<?= $tab === 'myprojects' ? 'nav-item active-nav' : 'nav-item' ?>">
             <div class="item">
-                <i class="ti ti-folder" aria-hidden="true"></i>
+                <i class="ti ti-folders" aria-hidden="true"></i>
                 <h4>Mes projets</h4>
             </div>
         </a>

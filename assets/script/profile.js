@@ -1,4 +1,4 @@
-function supprimerCompte() {
+function supCompte(){
     fetch('../api/deleteAccount.php', {
         method : 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -6,10 +6,10 @@ function supprimerCompte() {
         .then(r => r.json())
         .then(data => {
             if (!data.success) {
-                alert('Erreur : ' + (data.message || 'Impossible de supprimer le compte.'));
+                showToast("Action impossible", 'error');
                 return;
             }else{
                 window.location.href='../auth/login.php';
             }
-        }).catch(() => alert('Erreur réseau. Réessayez.'));
+        }).catch(() => showToast("Action impossible", 'error'));
 }

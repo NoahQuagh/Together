@@ -22,6 +22,27 @@
       <span class="demo-caption">Nous recherchons vos projets... même ceux que vous aviez oubliés.</span>
     </div>
   </div>
+  <div id="supProjet" class="modal-overlay" style="display: none;">
+    <div class="modal-box">
+
+      <div class="modal-header">
+        <h3>Suprimer le projet ?</h3>
+        <button class="modal-close-btn" onclick="closeModal('supProjet')">
+          <i class="ti ti-x"></i>
+        </button>
+      </div>
+
+      <div class="modal-body">
+        <p>Êtes-vous sûr de vouloir suprimer ce projet ? Cette action est irréversible.</p>
+      </div>
+
+      <div class="modal-footer">
+        <button class="modal-btn btn-cancel" onclick="closeModal('supProjet')">Annuler</button>
+        <button class="modal-btn btn-confirm risk" onclick="supprimerProjetconfirmer()">Confirmer</button>
+      </div>
+
+    </div>
+  </div>
 </article>
 
 <script>

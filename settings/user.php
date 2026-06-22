@@ -16,6 +16,8 @@ $tab = $_GET['tab'] ?? 'dashboard';
   <link rel="stylesheet" href="../assets/style/footer.css">
   <link rel="stylesheet" href="../assets/style/profile.css">
   <link rel="stylesheet" href="../assets/style/spinnerlogoScaled.css">
+  <link rel="stylesheet" href="../assets/style/modal-dialog.css">
+  <link rel="stylesheet" href="../assets/style/toast-notification.css">
   <link rel="stylesheet" href="../assets/style/errorloading+iconTop.css">
   <link rel="icon" type="image/png" href="../assets/logo/logoheader.png">
   <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Syne:wght@700;800&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&display=swap"
@@ -32,7 +34,7 @@ $tab = $_GET['tab'] ?? 'dashboard';
 
     <div class="profile-aside-section">
       <p class="profile-aside-label">Compte</p>
-      <a href="user.php?tab=profil" class="<?= $tab === 'profil' ? 'profile-aside-item active' : 'profile-aside-item' ?>" data-tab="profil">
+      <a href="user.php?tab=profile" class="<?= $tab === 'profile' ? 'profile-aside-item active' : 'profile-aside-item' ?>" data-tab="profil">
         <i class="ti ti-user" aria-hidden="true"></i> Profil
       </a>
       <a href="user.php?tab=security" class="<?= $tab === 'security' ? 'profile-aside-item active' : 'profile-aside-item' ?>" data-tab="securite">
@@ -106,5 +108,8 @@ $tab = $_GET['tab'] ?? 'dashboard';
 
 <script src="../assets/script/navbar+sidebar.js"></script>
 <script src="../assets/script/profile.js"></script>
+<script src="../assets/script/toast-notification.js"></script>
+<script src="../assets/script/modal-dialog.js"></script>
+<div id="toast-container" class="toast-container"></div>
 </body>
 </html>

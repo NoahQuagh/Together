@@ -19,7 +19,7 @@ require_once BASE_PATH.'/api/loadUserInfo.php';
 
             <a href="../settings/user.php?tab=profile" class="gh-dropdown-item"><i class="ti ti-user"></i> Profile</a>
             <a href="../settings/user.php?tab=settings" class="gh-dropdown-item"><i class="ti ti-settings-2"></i> Paramètres</a>
-            <a href="#" class="gh-dropdown-item"><i class="ti ti-folder"></i> Projets</a>
+            <a href="#" class="gh-dropdown-item"><i class="ti ti-folders"></i> Projets</a>
 
             <div class="gh-dropdown-divider"></div>
 

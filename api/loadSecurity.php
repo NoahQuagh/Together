@@ -45,7 +45,7 @@
             <span class="profile-danger-title">Supprimer mon compte</span>
             <span class="profile-danger-desc">Cette action est irréversible. Tous vos projets et données seront supprimés définitivement.</span>
         </div>
-        <button type="button" class="profile-btn-danger" id="deleteAccountBtn" onclick="supprimerCompte()">
+        <button type="button" class="profile-btn-danger" id="deleteAccountBtn" onclick="openModal('supCompte')">
             Supprimer mon compte
         </button>
     </div>

@@ -1,3 +1,26 @@
+let idProjetASupprimer = null;
+let elementAAfficherAnimation = null;
+
+function preparerSuppression(id, bouton) {
+    idProjetASupprimer = id;
+
+    elementAAfficherAnimation = bouton.closest('.proj-item');
+
+    openModal('supProjet');
+}
+
+function supprimerProjetconfirmer() {
+    if (idProjetASupprimer === null || elementAAfficherAnimation === null) return;
+
+    try{
+        supprimerProjet(idProjetASupprimer, elementAAfficherAnimation);
+        closeModal('supProjet');
+        showToast('Projet supprimer avec succès !', 'success');
+    }catch{
+        showToast('Impossible de supprimer le projet', 'success');
+    }
+}
+
 function projet() {
 
     const filterBtns = document.querySelectorAll('.proj-filter-btn');
@@ -68,17 +91,6 @@ function projet() {
         }
     });
 
-    document.querySelectorAll('.btn-delete').forEach(btn => {
-        btn.addEventListener('click', e => {
-            e.stopPropagation();
-            const proId  = btn.dataset.id;
-            const proNom = btn.dataset.nom;
-
-            if (!confirm(`Supprimer le projet "${proNom}" ? Cette action est irréversible.`)) return;
-            supprimerProjet(proId, btn.closest('.proj-item'));
-        });
-    });
-
     /* ── Bouton Éditer ────────────────────────────── */
     document.querySelectorAll('.btn-edit').forEach(btn => {
         btn.addEventListener('click', e => {
@@ -89,8 +101,6 @@ function projet() {
         });
     });
 }
-
-
 
 function changerStatut(proId, newStatut, liElement) {
     fetch('../api/updateProjectStatut.php', {

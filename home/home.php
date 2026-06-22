@@ -19,6 +19,8 @@ $tab = $_GET['tab'] ?? 'dashboard';
   <link rel="stylesheet" href="../assets/style/spinnerlogoScaled.css">
   <link rel="stylesheet" href="../assets/style/errorloading+iconTop.css">
   <link rel="stylesheet" href="../assets/style/myproject.css">
+  <link rel="stylesheet" href="../assets/style/toast-notification.css">
+  <link rel="stylesheet" href="../assets/style/modal-dialog.css">
   <link rel="icon" type="image/png" href="../assets/logo/logoheader.png">
   <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Syne:wght@700;800&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&display=swap"
         rel="stylesheet">
@@ -45,5 +47,8 @@ $tab = $_GET['tab'] ?? 'dashboard';
 
 <script src="../assets/script/navbar+sidebar.js"></script>
 <script src="../assets/script/myproject.js"></script>
+<script src="../assets/script/toast-notification.js"></script>
+<script src="../assets/script/modal-dialog.js"></script>
+<div id="toast-container" class="toast-container"></div>
 </body>
 </html>
