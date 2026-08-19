@@ -91,7 +91,6 @@ function projet() {
         }
     });
 
-    /* ── Bouton Éditer ────────────────────────────── */
     document.querySelectorAll('.btn-edit').forEach(btn => {
         btn.addEventListener('click', e => {
             e.stopPropagation();
@@ -100,10 +99,16 @@ function projet() {
             console.log('Éditer projet', proId);
         });
     });
+
+    document.querySelectorAll('.proj-item').forEach(item => {
+        item.addEventListener('click', () => {
+            window.location.href = `../project/app.php?key=${item.dataset.id}`;
+        });
+    });
 }
 
 function changerStatut(proId, newStatut, liElement) {
-    fetch('../api/updateProjectStatut.php', {
+    fetch('../api/updater/updateProjectStatut.php', {
         method : 'POST',
         headers: { 'Content-Type': 'application/json' },
         body   : JSON.stringify({ pro_id: proId, statut: newStatut })
@@ -111,27 +116,25 @@ function changerStatut(proId, newStatut, liElement) {
         .then(r => r.json())
         .then(data => {
             if (!data.success) {
-                alert('Erreur : ' + (data.message || 'Impossible de changer le statut.'));
+                showToast('Impossible de modifier le statut du projet', 'error');
                 return;
             }
 
-            /* Mise à jour du data-statut sur le <li> */
             liElement.dataset.statut = newStatut;
 
-            /* Mise à jour du badge visible */
             const badge = liElement.querySelector('.proj-statut-badge');
             if (badge) {
                 badge.textContent = newStatut;
                 badge.className   = 'badge ' + statutBadgeJS(newStatut) + ' proj-statut-badge';
             }
 
-            /* Re-appliquer le filtre actif sans recharger */
             const activeFilter = document.querySelector('.proj-filter-btn.active');
             if (activeFilter && activeFilter.dataset.filter !== 'tout') {
                 activeFilter.click();
             }
+            showToast('Statut du projet modifier', 'success')
         })
-        .catch(() => alert('Erreur réseau. Réessayez.'));
+        .catch(() => showToast('Impossible de modifier le statut du projet', 'error'));
 }
 
 function supprimerProjet(proId, liElement) {
@@ -143,7 +146,7 @@ function supprimerProjet(proId, liElement) {
         .then(r => r.json())
         .then(data => {
             if (!data.success) {
-                alert('Erreur : ' + (data.message || 'Impossible de supprimer.'));
+                showToast('Impossible de supprimer le projet', 'error');
                 return;
             }
 
@@ -155,7 +158,6 @@ function supprimerProjet(proId, liElement) {
 
                 const remaining = document.querySelectorAll('#projectList .proj-item');
                 if (remaining.length === 0) {
-                    /* Plus aucun projet du tout */
                     document.getElementById('projectList').remove();
                     const page = document.querySelector('.proj-page');
                     if (page) {
@@ -174,8 +176,9 @@ function supprimerProjet(proId, liElement) {
                     }
                 }
             }, 280);
+            showToast('Projet supprimer', 'success')
         })
-        .catch(() => alert('Erreur réseau. Réessayez.'));
+        .catch(() => showToast('Impossible de supprimer le projet', 'error'));
 }
 
 function statutBadgeJS(statut) {

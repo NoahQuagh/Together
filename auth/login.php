@@ -1,6 +1,5 @@
 <?php
-require_once '../config.php';
-require_once BASE_PATH."/includes/Session.php";
+require_once __DIR__ . '/../includes/Session.php';
 
 if (Session::estConnecte()) {
   header('Location: ../home/home.php');

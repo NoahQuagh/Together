@@ -1,6 +1,5 @@
 <?php
-require_once '../config.php';
-require_once BASE_PATH . '/includes/Session.php';
+require_once __DIR__ . '/../includes/Session.php';
 Session::start();
 Session::requireLogin();
 $tab = $_GET['tab'] ?? 'dashboard';
@@ -26,7 +25,7 @@ $tab = $_GET['tab'] ?? 'dashboard';
 </head>
 <body>
 
-<?php require_once BASE_PATH . "/includes/navbar.php" ?>
+<?php require_once __DIR__ . "/../includes/navbar.php" ?>
 
 
 <main>
@@ -50,7 +49,7 @@ $tab = $_GET['tab'] ?? 'dashboard';
     <div class="profile-aside-section">
       <p class="profile-aside-label">Préférences</p>
       <a href="user.php?tab=preference" class="<?= $tab === 'preference' ? 'profile-aside-item active' : 'profile-aside-item' ?>" data-tab="apparence">
-        <i class="ti ti-palette" aria-hidden="true"></i> Préférence
+        <i class="ti ti-adjustments" aria-hidden="true"></i> Préférence
       </a>
       <a href="user.php?tab=language" class="<?= $tab === 'language' ? 'profile-aside-item active' : 'profile-aside-item' ?>" data-tab="langue">
         <i class="ti ti-language" aria-hidden="true"></i> Langue &amp; région
@@ -87,24 +86,24 @@ $tab = $_GET['tab'] ?? 'dashboard';
 
   </div>
   <?php if(!Session::estConnecte()){
-    require_once BASE_PATH . '/includes/nonConnecterSection.php';
+    require_once __DIR__ . '/../includes/nonConnecterSection.php';
   }else{
     switch($tab) {
-      case 'security':     require BASE_PATH . '/settings/security.php'; break;
-      case 'notifications':     require BASE_PATH . '/settings/notificationsAcnt.php'; break;
-      case 'preference':     require BASE_PATH . '/settings/appearance.php'; break;
-      case 'language':     require BASE_PATH . '/settings/language.php'; break;
-      case 'accessibility':     require BASE_PATH . '/settings/accessibility.php'; break;
-      case 'new':     require BASE_PATH . '/settings/new.php'; break;
-      case 'help':     require BASE_PATH . '/settings/help.php'; break;
-      case 'about':     require BASE_PATH . '/settings/about.php'; break;
-      case 'integrations':     require BASE_PATH . '/settings/integrations.php'; break;
-      default:            require BASE_PATH.'/settings/acnt.php'; break;
+      case 'security':     require 'security.php'; break;
+      case 'notifications':     require 'notificationsAcnt.php'; break;
+      case 'preference':     require 'appearance.php'; break;
+      case 'language':     require  'language.php'; break;
+      case 'accessibility':     require  'accessibility.php'; break;
+      case 'new':     require  'new.php'; break;
+      case 'help':     require  'help.php'; break;
+      case 'about':     require  'about.php'; break;
+      case 'integrations':     require  'integrations.php'; break;
+      default:            require 'acnt.php'; break;
     }
   } ?>
 </main>
 
-<?php require_once BASE_PATH."/includes/footer.php" ?>
+<?php require_once __DIR__."/../includes/footer.php" ?>
 
 <script src="../assets/script/navbar+sidebar.js"></script>
 <script src="../assets/script/profile.js"></script>

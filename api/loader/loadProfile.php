@@ -1,8 +1,8 @@
 <?php
 
 try{
-  require_once 'db.php';
-  require_once '../includes/Session.php';
+  require_once __DIR__ . '/../db.php';
+  require_once __DIR__ . '/../../includes/Session.php';
 
   $db = getDB();
 
@@ -23,7 +23,7 @@ try{
     return;
   }
 
-  $initiales = strtoupper(mb_substr($user['use_prenom'], 0, 1) . mb_substr($user['use_nom'], 0, 1));
+  $initiales = strtoupper(loadProfile . phpmb_substr($user['use_prenom'], 0, 1) . mb_substr($user['use_nom'], 0, 1));
 }catch (\Throwable $e){
   error_log("[Profile Error] " . $e->getMessage());
 
@@ -69,7 +69,7 @@ try{
       <h3><i class="ti ti-user" aria-hidden="true"></i> Informations personnelles</h3>
     </div>
 
-    <form class="profile-form" method="POST" action="../api/updateProfile.php">
+    <form class="profile-form" method="POST" action="../updater/updateProfile.php">
 
       <div class="profile-row-2">
         <div class="profile-field">
@@ -103,7 +103,7 @@ try{
 <script>
     document.getElementById('deleteAccountBtn').addEventListener('click', function() {
         if (confirm('Êtes-vous certain de vouloir supprimer votre compte ? Cette action est irréversible.')) {
-            window.location.href = '../api/deleteAccount.php';
+            window.location.href = '../deleter/deleteAccount.php';
         }
     });
 </script>

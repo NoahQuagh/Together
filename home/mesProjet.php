@@ -47,19 +47,14 @@
 
 <script>
     document.addEventListener("DOMContentLoaded", function() {
-        fetch('../api/loadMyProject.php')
-            .then(response => {
-                if (!response.ok) {
-                    throw new Error("Erreur serveur : " + response.status);
+        fetch('../api/loader/loadMyProject.php')
+            .then(res => res.json())
+            .then(res => {
+                if (!res.success) {
+                    console.error(res.message);
+                    return;
                 }
-                return response.text();
-            })
-            .then(html => {
-                const container = document.getElementById('dashboard-container');
-                if (container) {
-                    container.innerHTML = html;
-                }
-                projet()
+                renderMyProject(res.data);
             })
             .catch(error => {
                 console.error('Erreur:', error);

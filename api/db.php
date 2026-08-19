@@ -1,8 +1,8 @@
 <?php
-$isLocal = in_array($_SERVER['SERVER_NAME'] ?? '', ['localhost', '127.0.0.1']);
+$isLocal = ($_SERVER['SERVER_NAME'] ?? '') === 'localhost';
 
 define('DB_HOST', '127.0.0.1');
-define('DB_PORT', $isLocal ? '3307' : '3306');
+define('DB_PORT', $isLocal ? '3306' : '3307');
 define('DB_USER', 'together_admin');
 define('DB_PASS', '2007,MAri');
 define('DB_NAME', 'together');
@@ -29,8 +29,14 @@ function getDB(): PDO {
     try {
         $pdo = new PDO($dsn, DB_USER, DB_PASS, $options);
     } catch (PDOException $e) {
-        error_log('[DB] Connexion échouée : ' . $e->getMessage());
-        throw $e;
+        error_log('[DB Error] ' . $e->getMessage());
+        header('Content-Type: application/json; charset=utf-8');
+        http_response_code(500);
+        echo json_encode([
+            'success' => false,
+            'message' => 'Impossible de se connecter à la base de données.'
+        ]);
+        exit;
     }
 
     return $pdo;

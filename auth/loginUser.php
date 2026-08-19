@@ -1,8 +1,8 @@
 <?php
 
 try{
-    require_once '../api/db.php';
-    require_once '../includes/Session.php';
+    require_once __DIR__ . '/../api/db.php';
+    require_once __DIR__ . '/../includes/Session.php';
 
     $db=getDB();
     $array="";
@@ -34,7 +34,7 @@ try{
             'role' => $user['use_role_id'],
         ]);
 
-        header('Location: '.BASE_URL.'/home/home.php');
+        header('Location: ../home/home.php');
         exit;
     }
 

@@ -1,5 +1,5 @@
 <?php
-require_once BASE_PATH.'/includes/Session.php'
+require_once __DIR__.'/../includes/Session.php'
 ?>
 <div class="sidebar-overlay" id="sidebarOverlay"></div>
 <header>
@@ -18,17 +18,17 @@ require_once BASE_PATH.'/includes/Session.php'
             <i class="ti ti-search" aria-hidden="true"></i>
             <span class="tooltip-text normalHelp">Rechercher</span>
           </div>
-            <div class="menu account-menu tooltip-container">
+            <div class="menu account-menu tooltip-container" onclick="window.location.href='../project/create.php'">
                 <i class="ti ti-plus"></i>
                 <span class="tooltip-text normalHelp">Nouveau projet</span>
             </div>
-            <?php require_once BASE_PATH.'/includes/ongletNavUser.php'?>
+            <?php require_once __DIR__.'/../includes/ongletNavUser.php'?>
         </div>
     </section>
     <?php
     $sansOnglet = ['dashboard', 'myprojects','contributions','mytasks'];
     if (in_array($tab ?? '', $sansOnglet)): ?>
-        <?php require_once BASE_PATH.'/includes/sectionMenu.php'?>
+        <?php require_once __DIR__.'/../includes/sectionMenu.php'?>
     <?php endif; ?>
 
 </header>
@@ -45,7 +45,6 @@ require_once BASE_PATH.'/includes/Session.php'
         <p class="sb-label">Général</p>
         <a class="sb-item" href="../home/home.php"><i class="ti ti-smart-home" aria-hidden="true"></i>Home</a>
         <a class="sb-item"><i class="ti ti-bell" aria-hidden="true"></i>Notifications<span class="sb-badge">3</span></a>
-        <a class="sb-item"><i class="ti ti-message" aria-hidden="true"></i>Messages<span class="sb-dot"></span></a>
         <a class="sb-item"><i class="ti ti-calendar" aria-hidden="true"></i>Calendrier</a>
     </div>
 
@@ -55,7 +54,7 @@ require_once BASE_PATH.'/includes/Session.php'
         <p class="sb-label">Projets</p>
         <a class="sb-item"><i class="ti ti-folder" aria-hidden="true"></i>Mes projets</a>
         <a class="sb-item"><i class="ti ti-users" aria-hidden="true"></i>Contributions</a>
-        <a class="sb-item"><i class="ti ti-circle-plus" aria-hidden="true"></i>Nouveau projet</a>
+        <a class="sb-item" href="../project/create.php"><i class="ti ti-circle-plus" aria-hidden="true"></i>Nouveau projet</a>
     </div>
 
     <div class="sb-divider"></div>
@@ -78,7 +77,8 @@ require_once BASE_PATH.'/includes/Session.php'
 
     <div class="sb-section">
         <p class="sb-label">Compte</p>
-        <a class="sb-item"><i class="ti ti-settings-2" aria-hidden="true"></i>Paramètres</a>
+        <a class="sb-item" href="../settings/user.php?tab=notifications"><i class="ti ti-settings-2" aria-hidden="true"></i>Paramètres</a>
+      <a class="sb-item" href="../auth/logout.php"><i class="ti ti-logout" aria-hidden="true"></i>Déconnexion</a>
         <a class="sb-item"><i class="ti ti-help" aria-hidden="true"></i>Aide</a>
     </div>
 </aside>

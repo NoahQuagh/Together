@@ -1,6 +1,5 @@
 <?php
-require_once '../config.php';
-require_once BASE_PATH . '/includes/Session.php';
+require_once __DIR__  . '/../includes/Session.php';
 Session::start();
 Session::requireLogin();
 $tab = $_GET['tab'] ?? 'dashboard';
@@ -28,27 +27,29 @@ $tab = $_GET['tab'] ?? 'dashboard';
 </head>
 <body>
 
-<?php require_once BASE_PATH . "/includes/navbar.php" ?>
+<?php require_once __DIR__ . "/../includes/navbar.php" ?>
 
 <main>
   <?php if(!Session::estConnecte()){
-     require_once BASE_PATH . '/includes/nonConnecterSection.php';
+     require_once __DIR__ . '/../includes/nonConnecterSection.php';
    }else{
     switch($tab) {
-        case 'myprojects':     require BASE_PATH . '/home/mesProjet.php'; break;
-        case 'contributions': require BASE_PATH.'/home/contributions.php'; break;
-        case 'mytasks':      require BASE_PATH.'/home/taches.php'; break;
-        default:            require BASE_PATH.'/home/dashboard.php'; break;
+        case 'myprojects':     require 'mesProjet.php'; break;
+        case 'contributions': require 'contributions.php'; break;
+        case 'mytasks':      require 'taches.php'; break;
+        default:            require 'dashboard.php'; break;
     }
   } ?>
 </main>
 
-<?php require_once BASE_PATH."/includes/footer.php" ?>
+<?php require_once __DIR__."/../includes/footer.php" ?>
 
 <script src="../assets/script/navbar+sidebar.js"></script>
 <script src="../assets/script/myproject.js"></script>
 <script src="../assets/script/toast-notification.js"></script>
 <script src="../assets/script/modal-dialog.js"></script>
-<div id="toast-container" class="toast-container"></div>
+<script src="../assets/script/renderers/dashboardRenderer.js"></script>
+<script src="../assets/script/renderers/myprojectRenderer.js"></script>
+<div id="toast-container" class="toast-container"></div><!--zone de notif-->
 </body>
 </html>

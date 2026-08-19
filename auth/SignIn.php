@@ -1,9 +1,9 @@
 <?php
-require_once '../api/db.php';
-require_once '../includes/Session.php';
+require_once __DIR__ . '/../api/db.php';
+require_once __DIR__ . '/../includes/Session.php';
 
 if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
-    header('Location: ../login.php');
+    header('Location: login.php');
     exit;
 }
 
@@ -26,7 +26,7 @@ if (!$cgu) $erreurs[] = 'Vous devez accepter les CGU.';
 
 if (!empty($erreurs)) {
     Session::setFlash('erreur_register', implode(' ', $erreurs));
-    header('Location: ../login.php');
+    header('Location: login.php');
     exit;
 }
 
@@ -36,7 +36,7 @@ $req->execute([$email]);
 
 if ($req->fetch()) {
     Session::setFlash('erreur_register', 'Cette adresse e-mail est déjà utilisée.');
-    header('Location: ../login.php');
+    header('Location: login.php');
     exit;
 }
 

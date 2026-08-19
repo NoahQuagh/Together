@@ -1,5 +1,6 @@
 <article class="dash-page">
   <div id="dashboard-container">
+
     <div class="demo-item">
       <div class="tog-spinner">
         <div class="tog-bg"></div>
@@ -21,24 +22,20 @@
       </div>
       <span class="demo-caption" id="wait">Nous recherchons où vous avez été le plus productif… les pauses café ne comptent pas, bien sûr.</span>
     </div>
+
   </div>
 </article>
 
 <script>
     document.addEventListener("DOMContentLoaded", function() {
-        fetch('../api/loadDashBoardData.php')
-            .then(response => {
-                // Si le serveur renvoie une erreur (ex: code 500), on force le passage dans le .catch()
-                if (!response.ok) {
-                    throw new Error("Erreur serveur : " + response.status);
+        fetch('../api/loader/loadDashBoardData.php')
+            .then(res => res.json())
+            .then(res => {
+                if (!res.success) {
+                    console.error(res.message);
+                    return;
                 }
-                return response.text();
-            })
-            .then(html => {
-                const container = document.getElementById('dashboard-container');
-                if (container) {
-                    container.innerHTML = html;
-                }
+                renderDashboard(res.data);
             })
             .catch(error => {
                 console.error('Erreur:', error);

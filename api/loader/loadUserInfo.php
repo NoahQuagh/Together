@@ -1,13 +1,13 @@
 <?php
-require_once '../config.php';
+
 $nom    = "Invité";
 $prenom = "";
 $email  = "";
 $role   = "guest";
 
 try{
-require_once BASE_PATH.'/api/db.php';
-require_once BASE_PATH.'/includes/Session.php';
+    require_once __DIR__ . '/../db.php';
+    require_once __DIR__ . '/../../includes/Session.php';
 
 if (session_status() === PHP_SESSION_NONE) {
     session_start();

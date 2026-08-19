@@ -17,8 +17,7 @@
     <div class="landing-hero-content">
 
         <div class="landing-badge">
-            <span class="landing-badge-dot"></span>
-            v1.0 — bêta privée
+            v1.0 — bêta
         </div>
 
         <h1 class="landing-title">Together</h1>
@@ -27,7 +26,7 @@
 
         <p class="landing-desc">
             Together est l'application de gestion de projet pensée pour les équipes qui veulent
-            avancer vite sans perdre en clarté. Tâches, sprints, messages et statistiques,
+            avancer vite sans perdre en clarté. Tâches, sprints, calendrier et statistiques,
             tout au même endroit.
         </p>
 
@@ -40,7 +39,6 @@
 
 </section>
 
-<!-- ── Bandes d'icônes défilantes ── -->
 <div class="landing-icons-wrap">
 
     <div class="landing-icon-row">
@@ -55,7 +53,6 @@
             <span class="landing-icon-item"><i class="ti ti-message"></i></span>
             <span class="landing-icon-item"><i class="ti ti-run"></i></span>
             <span class="landing-icon-item"><i class="ti ti-tag"></i></span>
-            <!-- Répété pour boucle infinie -->
             <span class="landing-icon-item"><i class="ti ti-layout-dashboard"></i></span>
             <span class="landing-icon-item"><i class="ti ti-folder"></i></span>
             <span class="landing-icon-item"><i class="ti ti-checklist"></i></span>
@@ -81,7 +78,6 @@
             <span class="landing-icon-item"><i class="ti ti-flask"></i></span>
             <span class="landing-icon-item"><i class="ti ti-help"></i></span>
             <span class="landing-icon-item"><i class="ti ti-user"></i></span>
-            <!-- Répété pour boucle infinie -->
             <span class="landing-icon-item"><i class="ti ti-settings"></i></span>
             <span class="landing-icon-item"><i class="ti ti-lock"></i></span>
             <span class="landing-icon-item"><i class="ti ti-circle-check"></i></span>
@@ -107,7 +103,6 @@
             <span class="landing-icon-item"><i class="ti ti-message"></i></span>
             <span class="landing-icon-item"><i class="ti ti-run"></i></span>
             <span class="landing-icon-item"><i class="ti ti-tag"></i></span>
-            <!-- Répété pour boucle infinie -->
             <span class="landing-icon-item"><i class="ti ti-layout-dashboard"></i></span>
             <span class="landing-icon-item"><i class="ti ti-folder"></i></span>
             <span class="landing-icon-item"><i class="ti ti-checklist"></i></span>

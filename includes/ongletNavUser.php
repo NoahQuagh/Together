@@ -1,35 +1,12 @@
 <?php
-require_once BASE_PATH.'/api/loadUserInfo.php';
+require_once __DIR__ . '/../api/loader/loadUserInfo.php';
 ?>
 <?php if(Session::estConnecte()): ?>
 
     <div class="menu account-menu tooltip-container" id="account-menu-trigger">
+      <a href="../settings/user.php?tab=profile">
         <i class="ti ti-user" aria-hidden="true"></i>
-        <span class="tooltip-text userHelp">Ouvrir menu utilisateur</span>
-
-        <div class="gh-dropdown" id="account-dropdown">
-            <div class="gh-dropdown-header">
-                <div class="gh-user-info">
-                    <span class="gh-username"><?= htmlspecialchars($prenom.' '.$nom) ?></span>
-                    <span class="gh-pseudo"><?= htmlspecialchars($role) ?></span>
-                </div>
-            </div>
-
-            <div class="gh-dropdown-divider"></div>
-
-            <a href="../settings/user.php?tab=profile" class="gh-dropdown-item"><i class="ti ti-user"></i> Profile</a>
-            <a href="../settings/user.php?tab=settings" class="gh-dropdown-item"><i class="ti ti-settings-2"></i> Paramètres</a>
-            <a href="#" class="gh-dropdown-item"><i class="ti ti-folders"></i> Projets</a>
-
-            <div class="gh-dropdown-divider"></div>
-
-            <a href="#" class="gh-dropdown-item"><i class="ti ti-flask"></i> Nouveautés</a>
-            <a href="#" class="gh-dropdown-item"><i class="ti ti-palette"></i> Appearance</a>
-
-            <div class="gh-dropdown-divider"></div>
-
-            <a href="../auth/logout.php" class="gh-dropdown-item"><i class="ti ti-logout"></i> Déconnexion</a>
-        </div>
+        <span class="tooltip-text userHelp">Profile</span></a>
     </div>
 
 <?php else: ?>

@@ -57,6 +57,7 @@ header {
 .account-menu i {
     font-size: 18px;
     line-height: 1;
+    color : var(--wh3);
 }
 
 .tooltip-text {
@@ -84,7 +85,7 @@ header {
 
 .userHelp{
     top: 120%;
-    left: -120%;
+    left: 50%;
 }
 
 .normalHelp{
