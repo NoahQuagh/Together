@@ -26,18 +26,8 @@ function getDB(): PDO {
         PDO::ATTR_EMULATE_PREPARES   => false,  // requêtes préparées réelles
     ];
 
-    try {
-        $pdo = new PDO($dsn, DB_USER, DB_PASS, $options);
-    } catch (PDOException $e) {
-        error_log('[DB Error] ' . $e->getMessage());
-        header('Content-Type: application/json; charset=utf-8');
-        http_response_code(500);
-        echo json_encode([
-            'success' => false,
-            'message' => 'Impossible de se connecter à la base de données.'
-        ]);
-        exit;
-    }
+
+    $pdo = new PDO($dsn, DB_USER, DB_PASS, $options);
 
     return $pdo;
 }

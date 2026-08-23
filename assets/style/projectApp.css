@@ -1,0 +1,17 @@
+main{
+    background: linear-gradient(var(--ink1),var(--ink2));
+    height: 100vh;
+}
+
+.editZone{
+    border: none;
+}
+
+.editZone:hover{
+    background: transparent;
+}
+
+.editZone i:hover{
+    color: var(--wh);
+}
+

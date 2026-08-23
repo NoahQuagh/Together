@@ -1,5 +1,7 @@
 <?php
 
+header('Content-Type: application/json; charset=utf-8');
+
 try{
     require_once __DIR__ . '/../api/db.php';
     require_once __DIR__ . '/../includes/Session.php';
@@ -42,7 +44,7 @@ try{
     header('Location: login.php');
     exit;
 }catch (Exception $e){
-    Session::setFlash('erreur', 'Une erreur est survenu.');
+    Session::setFlash('erreur', 'Une erreur est survenu. Réessayez plus tard.');
     header('Location: login.php');
     exit;
 }

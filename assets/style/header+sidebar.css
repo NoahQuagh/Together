@@ -48,9 +48,14 @@ header {
 }
 
 .menu:hover,
-.account-menu:hover {
+.account-menu:hover{
     background: var(--box-icon-color-hover);
     color: var(--wh);
+}
+
+.menu:hover i,
+.account-menu:hover i{
+    color : var(--wh);
 }
 
 .menu i,
@@ -393,4 +398,36 @@ header {
     color: #2f81f7;
     border-color: rgba(47, 129, 247, 0.4);
     background: rgba(47, 129, 247, 0.1);
+}
+
+.searchZone{
+    font-family: var(--font-text);
+    display: flex;
+    gap: var(--marge-sm);
+    transition: all 0.5s ease;
+    padding: 0 0 0 15px;
+    overflow: hidden;
+    width: 17rem;
+}
+
+
+.searchZone input{
+    width: 100%;
+    height: 90%;
+    background: transparent;
+    border: none;
+    color:var(--wh2);
+    font-family: var(--font-text);
+    font-size: var(--text-base);
+}
+
+.searchZone input:focus{
+    outline: none;
+    border: none;
+}
+
+
+.searchZone::placeholder {
+    color: #999;
+    opacity: 1;
 }

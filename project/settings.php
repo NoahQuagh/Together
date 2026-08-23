@@ -1,1 +1,1 @@
-<?php
+<h1>Settings : its works !</h1>

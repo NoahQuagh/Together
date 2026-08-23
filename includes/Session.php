@@ -1,4 +1,5 @@
 <?php
+require_once __DIR__ . '/../api/db.php';
 class Session {
 
     // DÉMARRAGE
@@ -95,5 +96,19 @@ class Session {
     public static function hasFlash(string $type): bool {
         self::start();
         return isset($_SESSION['flash'][$type]);
+    }
+
+    public static function isProjectOwner(string $projectIdentifier): bool {
+        $userId = self::id();
+        $db = getDB();
+
+        if (!$userId) {
+            return false;
+        }
+
+        $stmt = $db->prepare("SELECT pro_owner_id FROM TOG_PROJECTS WHERE pro_uuid = ?");
+        $stmt->execute([$projectIdentifier]);
+
+        return (bool) $stmt->fetchColumn();
     }
 }

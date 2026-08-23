@@ -14,8 +14,9 @@ require_once __DIR__.'/../includes/Session.php'
         </div>
 
         <div class="header-disposition-left">
-          <div class="menu account-menu tooltip-container">
+          <div class="menu account-menu tooltip-container searchZone">
             <i class="ti ti-search" aria-hidden="true"></i>
+            <input type="text" placeholder="Rechercher...">
             <span class="tooltip-text normalHelp">Rechercher</span>
           </div>
             <div class="menu account-menu tooltip-container" onclick="window.location.href='../project/create.php'">
