@@ -3,11 +3,10 @@ require_once __DIR__ . '/../api/loader/loadUserInfo.php';
 ?>
 <?php if(Session::estConnecte()): ?>
 
-    <div class="menu account-menu tooltip-container" id="account-menu-trigger">
-      <a href="../settings/user.php?tab=profile">
+    <a class="menu account-menu tooltip-container" id="account-menu-trigger" href="../settings/user.php?tab=profile">
         <i class="ti ti-user" aria-hidden="true"></i>
-        <span class="tooltip-text userHelp">Profile</span></a>
-    </div>
+        <span class="tooltip-text userHelp">Profile</span>
+    </a>
 
 <?php else: ?>
 

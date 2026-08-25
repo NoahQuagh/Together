@@ -98,6 +98,12 @@ header {
     left: 60%;
 }
 
+.navHelp{
+    top: 100%;
+    left: 50%;
+    margin-top: 4px;
+}
+
 .tooltip-container:hover .tooltip-text {
     opacity: 1;
     visibility: visible;

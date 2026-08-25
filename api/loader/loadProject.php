@@ -15,7 +15,7 @@ try{
     join TOG_USERS on TOG_PROJECTS.pro_owner_id = TOG_USERS.use_id where pro_uuid=?');
 
     $project_tasks = $db->prepare('select tas_sprint_id,concat(a.use_prenom," ",a.use_nom) as assigner,concat(r.use_prenom," ",r.use_nom) as reporter,tas_titre,tas_description,rst_label as statut,
-       rpr_label as priorite,tas_date_debut as date_debut,tas_date_fin as date_fin from TOG_TASKS
+       rpr_label as priorite,tas_date_debut as date_debut,tas_date_fin as date_fin,tas_color from TOG_TASKS
            join TOG_USERS a on TOG_TASKS.tas_assignee_id = a.use_id
            join TOG_USERS r on TOG_TASKS.tas_reporter_id = r.use_id
            join TOG_REF_STATUT_TACHE on TOG_TASKS.tas_statut_id = TOG_REF_STATUT_TACHE.rst_id
@@ -47,6 +47,7 @@ where tas_project_id=?');
             'priorite'           => $t['priorite'],
             'date_debut'           => $t['date_debut'],
             'date_fin'           => $t['date_fin'],
+            'couleur'           =>$t['tas_color']
 
         ];
     }, $task);

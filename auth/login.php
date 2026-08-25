@@ -80,7 +80,6 @@ if (Session::estConnecte()) {
       </ul>
 
       <div class="auth-side-badge">
-        <span class="badge-dot"></span>
         v1.0.0 — bêta
       </div>
 

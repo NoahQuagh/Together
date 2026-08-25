@@ -4,6 +4,7 @@
     --wh2: #ffffff;
     --wh3: #7a7168;
     --wh4: #575350;
+    --paper: #efede3;
 
     --gray: #8b949e;
 
@@ -42,6 +43,7 @@
     --text-5xl: 5rem;
 
     /*marge de texte*/
+    --marge-xxs: 0.5rem;
     --marge-xs: 0.75rem;
     --marge-sm: 0.875rem;
     --marge-base: 1rem;
@@ -94,6 +96,7 @@
     --radiusBox-sm: 7px;
     --radiusBox-xxs: 4px;
     --radiusBox-md: 14px;
+    --radiusBox-circle: 25px;
     --radiusBox-full: 100%;
 }
 

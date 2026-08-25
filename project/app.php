@@ -3,6 +3,8 @@ require_once __DIR__ . '/../includes/Session.php';
 Session::start();
 Session::requireLogin();
 $projectId = $_GET['key'] ?? null;
+$tab = $_GET['tab'] ?? 'overview';
+$baseUrl = 'app.php?key=' . htmlspecialchars($projectId);
 
 if (!$projectId) {
     header('Location: /home/home.php');
@@ -19,13 +21,13 @@ require_once __DIR__ . '/../api/loader/loadProjectTitle.php'
     <title><?= $title ?> - Together</title>
     <link rel="stylesheet" href="../assets/style/paletteStyle.css">
     <link rel="stylesheet" href="../assets/style/header+sidebar.css">
-    <link rel="stylesheet" href="../assets/style/nonConnecterSection.css">
     <link rel="stylesheet" href="../assets/style/footer.css">
     <link rel="stylesheet" href="../assets/style/spinnerlogoScaled.css">
     <link rel="stylesheet" href="../assets/style/errorloading+iconTop.css">
     <link rel="stylesheet" href="../assets/style/toast-notification.css">
     <link rel="stylesheet" href="../assets/style/modal-dialog.css">
     <link rel="stylesheet" href="../assets/style/projectApp.css">
+    <link rel="stylesheet" href="../assets/style/navSectionCol.css">
     <link rel="icon" type="image/png" href="../assets/logo/logoheader.png">
     <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Syne:wght@700;800&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&display=swap"
           rel="stylesheet">
@@ -35,29 +37,27 @@ require_once __DIR__ . '/../api/loader/loadProjectTitle.php'
 
 <?php require_once __DIR__ . "/../includes/navbarProject.php" ?>
 
-<main id="main-zone">
-  <div class="demo-item">
-    <div class="tog-spinner">
-      <div class="tog-bg"></div>
-      <div class="tog-elements">
-        <div class="tog-top">
-          <div class="tog-bar-long"></div>
-          <div class="tog-bar-short"></div>
-        </div>
-        <div class="tog-bottom">
-          <div class="tog-block"></div>
-          <div class="tog-block"></div>
-        </div>
-      </div>
-    </div>
-    <div class="tog-dots">
-      <div class="tog-dot"></div>
-      <div class="tog-dot"></div>
-      <div class="tog-dot"></div>
-    </div>
-    <span class="demo-caption" id="wait">Nous recherchons où vous avez été le plus productif… les pauses café ne comptent pas, bien sûr.</span>
-  </div>
+<main id="main-bg">
+  <?php require_once __DIR__ . "/../includes/sectionNavCol.php"?>
+  <section id="main-zone">
+    <?php if(!Session::estConnecte()){
+      require_once __DIR__ . '/../includes/nonConnecterSection.php';
+    }else{
+      switch($tab) {
+        case 'overview':     require 'overview.php'; break;
+        case 'tasks': require 'tasks.php'; break;
+        case 'kanban':      require 'kanban.php'; break;
+        case 'calendar':      require 'calendar.php'; break;
+        case 'sprints':      require 'sprints.php'; break;
+        case 'members':      require 'members.php'; break;
+        case 'insights':      require 'insights.php'; break;
+        default:            require 'overview.php'; break;
+      }
+    } ?>
+  </section>
 </main>
+
+<?php require_once __DIR__ . '/../includes/footer.php'?>
 
 <script src="../assets/script/navbarProject.js"></script>
 <script src="../assets/script/toast-notification.js"></script>

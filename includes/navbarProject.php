@@ -1,12 +1,8 @@
-<?php
-require_once __DIR__.'/../includes/Session.php';
-
-?>
 <header>
 
-    <section class="header-disposition-top">
+  <section class="header-disposition-top">
         <div class="header-disposition-left" style="margin-left: 5px;">
-            <div class="menu tooltip-container" id="menuBtn" onclick="window.history.back()">
+            <div class="menu tooltip-container" id="menuBtn" onclick="window.location.href='../home/home.php'">
                 <i class="ti ti-chevron-left" aria-hidden="true"></i>
             </div>
             <h3><?= $title ?></h3>
@@ -32,9 +28,6 @@ require_once __DIR__.'/../includes/Session.php';
             <?php require_once __DIR__.'/../includes/ongletNavUser.php'?>
         </div>
     </section>
-    <?php
-    $sansOnglet = ['dashboard', 'myprojects','contributions','mytasks'];
-    if (in_array($tab ?? '', $sansOnglet)): ?>
-    <?php endif; ?>
+
 
 </header>

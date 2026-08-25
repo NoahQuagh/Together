@@ -1,0 +1,35 @@
+.header-disposition-line {
+    flex-direction: column;
+    gap: var(--marge-lg);
+    margin-top: 2rem;
+}
+
+.item {
+    padding: 10px;
+}
+
+.item i {
+    font-size: 1.5rem;
+}
+
+.nav-item {
+    position: relative;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    text-decoration: none;
+    border-bottom: 3px solid transparent;
+}
+
+.nav-item.active-nav .item{
+    background:var(--color1);
+}
+
+.nav-item.active-nav {
+    border-bottom: none;
+}
+
+
+.header-disposition-top,.header-disposition-bottom{
+    position: sticky;
+}
