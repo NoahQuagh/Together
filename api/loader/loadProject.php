@@ -1,29 +1,34 @@
 <?php
 header('Content-Type: application/json; charset=utf-8');
-try{
+
+try {
     require_once __DIR__ . '/../db.php';
     require_once __DIR__ . '/../../includes/Session.php';
     Session::start();
     Session::requireLogin();
-    $projectId  = $_GET['project'] ?? null;
 
-    $db=getDB();
+    $projectUuid = $_GET['project'] ?? null;
+    if (!$projectUuid) {
+        http_response_code(400);
+        echo json_encode(['success' => false, 'message' => 'Paramètre project manquant.']);
+        exit;
+    }
 
-    $project_info = $db->prepare('
-    select pro_id,concat(use_nom," ",use_prenom) as manager ,use_id,pro_nom,pro_description 
-    from TOG_PROJECTS
-    join TOG_USERS on TOG_PROJECTS.pro_owner_id = TOG_USERS.use_id where pro_uuid=?');
+    $db = getDB();
 
-    $project_tasks = $db->prepare('select tas_sprint_id,concat(a.use_prenom," ",a.use_nom) as assigner,concat(r.use_prenom," ",r.use_nom) as reporter,tas_titre,tas_description,rst_label as statut,
-       rpr_label as priorite,tas_date_debut as date_debut,tas_date_fin as date_fin,tas_color from TOG_TASKS
-           join TOG_USERS a on TOG_TASKS.tas_assignee_id = a.use_id
-           join TOG_USERS r on TOG_TASKS.tas_reporter_id = r.use_id
-           join TOG_REF_STATUT_TACHE on TOG_TASKS.tas_statut_id = TOG_REF_STATUT_TACHE.rst_id
-           join TOG_REF_PRIORITE on TOG_TASKS.tas_priorite_id = TOG_REF_PRIORITE.rpr_id
-where tas_project_id=?');
-
-    $project_info->execute([$projectId]);
-    $proj = $project_info->fetch();
+    /* ── Info du projet ─────────────────────────────── */
+    $stmtInfo = $db->prepare('
+        SELECT pro_id,
+               pro_nom,
+               pro_description,
+               CONCAT(use_prenom, " ", use_nom) AS manager,
+               use_id                           AS manager_id
+        FROM TOG_PROJECTS
+        JOIN TOG_USERS ON TOG_PROJECTS.pro_owner_id = TOG_USERS.use_id
+        WHERE pro_uuid = ?
+    ');
+    $stmtInfo->execute([$projectUuid]);
+    $proj = $stmtInfo->fetch();
 
     if (!$proj) {
         http_response_code(404);
@@ -31,42 +36,126 @@ where tas_project_id=?');
         exit;
     }
 
-    $project_id=$proj['pro_id'];
+    $projectId = (int) $proj['pro_id'];
 
-    $project_tasks->execute([$project_id]);
-    $task = $project_tasks->fetchAll();
+    /* ── Tâches (sans JOIN sur assignés pour éviter les doublons) ── */
+    $stmtTasks = $db->prepare('
+        SELECT t.tas_id,
+               t.tas_sprint_id,
+               CONCAT(r.use_prenom, " ", r.use_nom) AS reporter,
+               t.tas_titre,
+               t.tas_description,
+               rst.rst_label                         AS statut,
+               rpr.rpr_label                         AS priorite,
+               t.tas_date_debut                      AS date_debut,
+               t.tas_date_fin                        AS date_fin,
+               t.tas_color                           AS couleur
+        FROM TOG_TASKS t
+        JOIN TOG_USERS r              ON t.tas_reporter_id  = r.use_id
+        JOIN TOG_REF_STATUT_TACHE rst ON t.tas_statut_id    = rst.rst_id
+        JOIN TOG_REF_PRIORITE rpr     ON t.tas_priorite_id  = rpr.rpr_id
+        WHERE t.tas_project_id = ?
+        ORDER BY t.tas_priorite_id DESC, t.tas_date_fin ASC
+    ');
+    $stmtTasks->execute([$projectId]);
+    $tasks = $stmtTasks->fetchAll();
 
-    $formattedTasks = array_map(function($t) {
-        return [
-            'sprint_id'           => $t['tas_sprint_id'],
-            'assigner'           => $t['assigner'],
-            'reporter'           => $t['reporter'],
-            'titre'           => $t['tas_titre'],
-            'desc'           => $t['tas_description'],
-            'statut'           => $t['statut'],
-            'priorite'           => $t['priorite'],
-            'date_debut'           => $t['date_debut'],
-            'date_fin'           => $t['date_fin'],
-            'couleur'           =>$t['tas_color']
+    if (empty($tasks)) {
+        echo json_encode([
+            'success' => true,
+            'data'    => [
+                'titre'       => $proj['pro_nom'],
+                'manager'     => $proj['manager'],
+                'manager_id'  => $proj['manager_id'],
+                'description' => $proj['pro_description'],
+                'tasks'       => []
+            ]
+        ]);
+        exit;
+    }
 
+    /* Récupérer les IDs pour les requêtes suivantes */
+    $taskIds = array_column($tasks, 'tas_id');
+    $inParams = implode(',', array_fill(0, count($taskIds), '?'));
+
+    /* ── Assigné (colonne directe tas_assignee_id) ───── */
+    $stmtAssignees = $db->prepare("
+        SELECT t.tas_id                                AS task_id,
+               u.use_id                               AS id,
+               CONCAT(u.use_prenom, ' ', u.use_nom)   AS nom
+        FROM TOG_TASKS t
+        JOIN TOG_USERS u ON t.tas_assignee_id = u.use_id
+        WHERE t.tas_id IN ($inParams)
+          AND t.tas_assignee_id IS NOT NULL
+    ");
+    $stmtAssignees->execute($taskIds);
+    $assigneesRaw = $stmtAssignees->fetchAll();
+
+    /* Indexer par task_id — tableau pour rester compatible
+       avec le format assignes: [{id, nom}] côté JS */
+    $assigneesByTask = [];
+    foreach ($assigneesRaw as $row) {
+        $assigneesByTask[$row['task_id']][] = [
+            'id'  => $row['id'],
+            'nom' => $row['nom'],
         ];
-    }, $task);
+    }
+
+    /* ── Étiquettes (plusieurs par tâche) ───────────── */
+    $stmtEti = $db->prepare("
+        SELECT tte.tte_task_id,
+               e.eti_id,
+               e.eti_label,
+               e.eti_couleur
+        FROM TOG_TASK_ETIQUETTES tte
+        JOIN TOG_ETIQUETTES e ON tte.tte_eti_id = e.eti_id
+        WHERE tte.tte_task_id IN ($inParams)
+    ");
+    $stmtEti->execute($taskIds);
+    $etiquettesRaw = $stmtEti->fetchAll();
+
+    /* Indexer par task_id → tableau d'étiquettes */
+    $etiquettesByTask = [];
+    foreach ($etiquettesRaw as $row) {
+        $etiquettesByTask[$row['tte_task_id']][] = [
+            'id'      => $row['eti_id'],
+            'label'   => $row['eti_label'],
+            'couleur' => $row['eti_couleur'],
+        ];
+    }
+
+    /* ── Assemblage final ───────────────────────────── */
+    $formattedTasks = array_map(function ($t) use ($assigneesByTask, $etiquettesByTask) {
+        $id = $t['tas_id'];
+        return [
+            'id'         => $id,
+            'sprint_id'  => $t['tas_sprint_id'],
+            'reporter'   => $t['reporter'],
+            'assignes'   => $assigneesByTask[$id]   ?? [],
+            'etiquettes' => $etiquettesByTask[$id]  ?? [],
+            'titre'      => $t['tas_titre'],
+            'desc'       => $t['tas_description'],
+            'statut'     => $t['statut'],
+            'priorite'   => $t['priorite'],
+            'date_debut' => $t['date_debut'],
+            'date_fin'   => $t['date_fin'],
+            'couleur'    => $t['couleur'],
+        ];
+    }, $tasks);
 
     echo json_encode([
         'success' => true,
         'data'    => [
             'titre'       => $proj['pro_nom'],
             'manager'     => $proj['manager'],
+            'manager_id'  => $proj['manager_id'],
             'description' => $proj['pro_description'],
             'tasks'       => $formattedTasks
         ]
     ]);
 
 } catch (\Throwable $e) {
-    error_log("[Project Error] " . $e->getMessage());
+    error_log('[loadProject Error] ' . $e->getMessage());
     http_response_code(500);
-    echo json_encode(['success' => false, 'message' => 'Erreur serveur lors du chargement.'.$e]);
+    echo json_encode(['success' => false, 'message' => 'Erreur serveur : ' . $e->getMessage()]);
 }
-
-
-?>

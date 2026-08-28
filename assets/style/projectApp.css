@@ -25,12 +25,14 @@ body{
 .zone-top{
     display: flex;
     justify-content: space-between;
+    align-items: center;
 }
 
 .zone-top div{
     display: flex;
     flex-direction: row;
     gap: var(--marge-base);
+    align-items: center;
 }
 
 .zone-title{
@@ -51,6 +53,39 @@ body{
     color: var(--wh);
 }
 
+.tk-header{
+    border-radius: var(--radiusBox-circle);
+    background: rgb(230 37 37 / 0.71);
+    border: 1px solid var(--wh3);
+    margin: var(--marge-sm) 0;
+}
+
+.tk-header h3{
+    text-align: center;
+    font-family: var(--font-text);
+    font-size: var(--text-base);
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.1rem;
+    color: var(--wh2);
+}
+
+.tk-prio-basse{
+    background: var(--badge-col-blue);
+}
+
+.tk-prio-normale{
+    background: var(--badge-col-green);
+}
+
+.tk-prio-haute{
+    background: var(--badge-col-yellow);
+}
+
+.tk-prio-critique{
+    background: var(--badge-col-red);
+}
+
 .tk-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(min(100%, 500px), 1fr));
@@ -60,7 +95,8 @@ body{
 
 .tk-card {
     height: 20rem;
-    border: 2px solid var(--ink);
+    background: var(--wh2);
+    border: 1px solid var(--wh3);
     border-radius: var(--radiusBox-circle);
     padding: var(--marge-lg);
     display: flex;
@@ -100,6 +136,7 @@ body{
     color: var(--wh2);
     border-radius: var(--radiusBox-sm);
     font-family: var(--font-text);
+    font-weight: 800;
     padding:  8px var(--marge-xs);
     font-size: var(--text-xs);
 }
@@ -108,7 +145,6 @@ body{
     display: flex;
     gap: 6px;
     flex-shrink: 0;
-    flex-wrap: wrap;
     justify-content: space-between;
     width: 100%;
 }
@@ -116,6 +152,15 @@ body{
 .tk-badges div{
     padding: 0;
     align-content: center;
+}
+
+.tk-etiquettes{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: var(--marge-xxs);
+    flex: 1;
+    min-width: 0
 }
 
 .zone-trash{
@@ -131,10 +176,12 @@ body{
     visibility: hidden;
     opacity: 0;
     transition: opacity 0.3s ease;
+    cursor: pointer;
+    flex-shrink: 0;
+    align-self: flex-start;
 }
 
 .btn-new-tas{
-    border: none;
     background: var(--ink);
     color: var(--paper);
     border-radius: var(--radiusBox-md);
@@ -148,7 +195,8 @@ body{
     width: 100%;
     cursor: pointer;
     border: 2px solid var(--ink);
-    transition: color 0.3s ease;
+    transition: all 0.3s ease;
+    white-space: nowrap;
 }
 
 .btn-new-tas:hover{
@@ -172,14 +220,20 @@ body{
 }
 
 .zone-trash:hover i{
-    transform: translateY(-3px);
+    transform: translateY(-2px);
     color: var(--badge-col-red);
 }
 
-/* ── Séparateur ── */
-.tk-divider {
-    height: 0.5px;
-    background: var(--box-icon-color-hover);
+.tk-info{
+
+}
+
+.tk-info h4{
+    font-size: var(--text-base);
+    font-weight: 800;
+    font-family: var(--font-text);
+    color: var(--ink);
+    line-height: 1.4;
 }
 
 .tk-bottom{
@@ -206,7 +260,7 @@ body{
     align-items: center;
     justify-content: center;
     gap: 8px;
-    border-radius: 25px;
+    border-radius: var(--radiusBox-md);
     padding: var(--marge-xs) var(--marge-base);
     font-family: var(--font-text);
     font-size: var(--text-base);
@@ -255,7 +309,11 @@ body{
 .tk-btn-wh{
     background: var(--paper);
     color: var(--ink);
-    border: 2px solid var(--ink);
+    border: 1px solid var(--ink);
+}
+
+.tk-btn-wh:hover{
+    background: #d3d1ca;
 }
 
 .tk-btn-ink i {
@@ -266,6 +324,10 @@ body{
     background: var(--ink);
     color: var(--badge-col-green);
     border: none;
+}
+
+.tk-btn-ink:hover{
+    background: var(--box-icon-color-hover);
 }
 
 
@@ -334,8 +396,13 @@ body{
     font-size: 20px;
 }
 
-.termine{
+.termine {
+    filter: brightness(0.7);
     opacity: 0.6;
+}
+
+.termine .tk-top .tk-titre{
+    text-decoration: line-through;
 }
 
 .review{
@@ -360,5 +427,220 @@ body{
     .tk-people {
         gap: 10px;
     }
+}
+
+/*MODALS TÂCHES*/
+
+
+.modal-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(14, 13, 12, 0.65);
+    backdrop-filter: blur(3px);
+    z-index: 500;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem;
+    opacity: 0;
+    transition: opacity 0.22s ease;
+}
+
+.modal-overlay.modal--open {
+    opacity: 1;
+}
+
+.modal-box {
+    background: var(--ink2);
+    border: 1.5px solid rgba(14, 13, 12, 0.12);
+    border-radius: 16px;
+    width: 100%;
+    max-width: 520px;
+    max-height: 90vh;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    transform: translateY(12px) scale(0.98);
+    transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 24px 64px rgba(0, 0, 0, 0.35);
+}
+
+.modal-overlay.modal--open .modal-box {
+    transform: translateY(0) scale(1);
+}
+
+/* ── Header ── */
+.modal-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1.25rem 1.5rem 0.75rem;
+    border-bottom: 1px solid rgba(14, 13, 12, 0.08);
+}
+
+.modal-header-meta {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.modal-statut {
+    font-family: var(--font-text);
+    font-size: var(--text-xs);
+    color: var(--wh2);
+    text-transform: capitalize;
+}
+
+.modal-close-btn {
+    width: 30px;
+    height: 30px;
+    border: 1.5px solid rgba(14, 13, 12, 0.15);
+    border-radius: 8px;
+    background: transparent;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--wh);
+    font-size: 15px;
+    transition: background 0.15s, border-color 0.15s;
+    flex-shrink: 0;
+}
+
+.modal-close-btn:hover i{
+    color: var(--wh3);
+}
+
+/* ── Titre ── */
+.modal-titre {
+    font-family: var(--font-text);
+    font-size: var(--text-xl);
+    font-weight: 700;
+    color: var(--wh);
+    line-height: 1.4;
+    padding: 1rem 1.5rem 0.5rem;
+}
+
+/* ── Body ── */
+.modal-body {
+    padding: 0.5rem 1.5rem 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: var(--marge-xl);
+}
+
+.modal-desc {
+    font-family: var(--font-text);
+    font-size: var(--text-sm);
+    color: var(--wh3);
+    line-height: 1.65;
+}
+
+/* ── Sections ── */
+.modal-section {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.modal-section-label {
+    font-family: var(--font-text);
+    font-size: var(--text-xs);
+    font-weight: 600;
+    color: var(--wh);
+    text-transform: uppercase;
+    letter-spacing: 0.07em;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.modal-section-label i {
+    font-size: 18px;
+}
+
+.modal-empty {
+    font-family: var(--font-text);
+    font-size: var(--text-xs);
+    color: var(--wh);
+    font-style: italic;
+}
+
+/* ── Dates ── */
+.modal-dates {
+    display: flex;
+    flex-direction: row;
+    gap: 1.5rem;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+.tk-date-modal{
+    color: var(--wh3);
+}
+
+.modal-date-item {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    font-family: var(--font-text);
+    font-size: var(--text-sm);
+    color: var(--wh);
+}
+
+/* ── Footer ── */
+.modal-footer {
+    display: flex;
+    gap: 10px;
+    padding: 1rem 1.5rem 1.25rem;
+    border-top: 1px solid rgba(14, 13, 12, 0.08);
+}
+
+.modal-btn {
+    flex: 1;
+    height: 40px;
+    border-radius: 8px;
+    font-family: var(--font-text);
+    font-size: var(--text-sm);
+    font-weight: 500;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 7px;
+    transition: background 0.15s, border-color 0.15s, transform 0.1s;
+}
+
+.modal-btn:active { transform: scale(0.97); }
+
+.btn-cancel {
+    background: transparent;
+    color: var(--wh3);
+    border: 1.5px solid var(--wh3);
+}
+
+.btn-cancel:hover {
+    color: var(--wh);
+}
+
+.btn-confirm {
+    background: var(--paper);
+    color: var(--ink2);
+}
+
+.btn-confirm:hover {
+    background: #252320;
+    color: var(--wh2);
+    border: 1.5px solid var(--wh3);
+}
+
+.btn-confirm i {
+    color: var(--ink2);
+    font-size: 18px;
+}
+
+.btn-confirm:hover i{
+    color: var(--wh);
 }
 
