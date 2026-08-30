@@ -47,7 +47,7 @@ class Session {
     public static function requireRole(string $role): void {
         self::requireLogin();
         if (self::get('role') !== $role) {
-            header('Location: /together/home.php?error=acces_refuse');
+            header('Location: /together/project.php?error=acces_refuse');
             exit;
         }
     }

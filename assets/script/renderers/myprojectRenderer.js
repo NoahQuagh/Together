@@ -34,7 +34,7 @@ function projectExist(l){
       <i class="ti ti-folder-off" aria-hidden="true"></i>
       <p>Vous n'avez encore créé aucun projet.</p>
       <div>
-        <button class="proj-create-btn" onclick="window.location.href='../../project/create.php'">
+        <button class="proj-create-btn" onclick="window.location.href='../../../project/project_create.php'">
           <i class="ti ti-plus"></i>
           Créer mon premier projet
         </button>
@@ -48,7 +48,7 @@ function projectRenderer(project){
     return `
         <li class="dash-project-item proj-item"
             data-statut="${escapeHtml(project.project_statut_label)}"
-            data-id="${escapeHtml(project.project_uuid)}">
+            data-id="${escapeHtml(project.project_uuid)}" onclick="window.location.href='project.php?key=${escapeHtml(project.project_uuid)}'">
 
           <div class="proj-item-main">
                         <span class="dash-project-nom">

@@ -2,7 +2,7 @@
 
   <section class="header-disposition-top">
         <div class="header-disposition-left" style="margin-left: 5px;">
-            <div class="menu tooltip-container" id="menuBtn" onclick="window.location.href='../home/home.php'">
+            <div class="menu tooltip-container" id="menuBtn" onclick="window.location.href='home.php'">
                 <i class="ti ti-chevron-left" aria-hidden="true"></i>
             </div>
             <h3><?= $title ?></h3>
@@ -20,10 +20,6 @@
                 <i class="ti ti-search" aria-hidden="true"></i>
                 <input type="text" placeholder="Rechercher...">
                 <span class="tooltip-text normalHelp">Rechercher</span>
-            </div>
-            <div class="menu account-menu tooltip-container" onclick="">
-                <i class="ti ti-clipboard-plus"></i>
-                <span class="tooltip-text normalHelp">Nouvelle tâche</span>
             </div>
             <?php require_once __DIR__.'/../includes/ongletNavUser.php'?>
         </div>

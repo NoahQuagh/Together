@@ -32,8 +32,7 @@
             .then(res => res.json())
             .then(res => {
                 if (!res.success) {
-                    console.error(res.message);
-                    return;
+                    throw new Error(res.message || 'Échec du chargement des données');
                 }
                 renderDashboard(res.data);
             })

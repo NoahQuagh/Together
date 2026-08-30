@@ -50,6 +50,6 @@ $tab = $_GET['tab'] ?? 'dashboard';
 <script src="../assets/script/modal-dialog.js"></script>
 <script src="../assets/script/renderers/dashboardRenderer.js"></script>
 <script src="../assets/script/renderers/myprojectRenderer.js"></script>
-<div id="toast-container" class="toast-container"></div><!--zone de notif-->
+<div id="toast-container" class="toast-container"></div><!--zone notif-->
 </body>
 </html>

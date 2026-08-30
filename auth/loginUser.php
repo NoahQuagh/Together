@@ -36,7 +36,7 @@ try{
             'role' => $user['use_role_id'],
         ]);
 
-        header('Location: ../home/home.php');
+        header('Location: ../app/project.php');
         exit;
     }
 

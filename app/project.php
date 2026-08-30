@@ -4,10 +4,10 @@ Session::start();
 Session::requireLogin();
 $projectId = $_GET['key'] ?? null;
 $tab = $_GET['tab'] ?? 'overview';
-$baseUrl = 'app.php?key=' . htmlspecialchars($projectId);
+$baseUrl = 'project.php?key=' . htmlspecialchars($projectId);
 
 if (!$projectId) {
-    header('Location: /home/home.php');
+    header('Location: home.php');
     exit;
 }
 
@@ -38,26 +38,26 @@ require_once __DIR__ . '/../api/loader/loadProjectTitle.php'
 <?php require_once __DIR__ . "/../includes/navbarProject.php" ?>
 
 <main id="main-bg">
-  <?php require_once __DIR__ . "/../includes/sectionNavCol.php"?>
+  <?php require_once __DIR__ . "/../includes/sectionNavCol.php" ?>
   <section id="main-zone">
     <?php if(!Session::estConnecte()){
       require_once __DIR__ . '/../includes/nonConnecterSection.php';
     }else{
       switch($tab) {
-        case 'overview':     require 'overview.php'; break;
-        case 'tasks': require 'tasks.php'; break;
-        case 'kanban':      require 'kanban.php'; break;
-        case 'calendar':      require 'calendar.php'; break;
-        case 'sprints':      require 'sprints.php'; break;
-        case 'members':      require 'members.php'; break;
-        case 'insights':      require 'insights.php'; break;
-        default:            require 'overview.php'; break;
+        case 'overview':     require '../project/overview.php'; break;
+        case 'tasks': require '../project/tasks.php'; break;
+        case 'kanban':      require '../project/kanban.php'; break;
+        case 'calendar':      require '../project/calendar.php'; break;
+        case 'sprints':      require '../project/sprints.php'; break;
+        case 'members':      require '../project/members.php'; break;
+        case 'insights':      require '../project/insights.php'; break;
+        default:            require '../project/overview.php'; break;
       }
     } ?>
   </section>
 </main>
 
-<?php require_once __DIR__ . '/../includes/footer.php'?>
+<?php require_once __DIR__ . '/../includes/footer.php' ?>
 
 <script src="../assets/script/navbarProject.js"></script>
 <script src="../assets/script/toast-notification.js"></script>

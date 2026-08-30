@@ -16,7 +16,6 @@ try {
 
     $db = getDB();
 
-    /* ── Info du projet ─────────────────────────────── */
     $stmtInfo = $db->prepare('
         SELECT pro_id,
                pro_nom,
@@ -38,7 +37,6 @@ try {
 
     $projectId = (int) $proj['pro_id'];
 
-    /* ── Tâches (sans JOIN sur assignés pour éviter les doublons) ── */
     $stmtTasks = $db->prepare('
         SELECT t.tas_id,
                t.tas_sprint_id,
@@ -74,25 +72,20 @@ try {
         exit;
     }
 
-    /* Récupérer les IDs pour les requêtes suivantes */
     $taskIds = array_column($tasks, 'tas_id');
     $inParams = implode(',', array_fill(0, count($taskIds), '?'));
 
-    /* ── Assigné (colonne directe tas_assignee_id) ───── */
     $stmtAssignees = $db->prepare("
-        SELECT t.tas_id                                AS task_id,
+        SELECT tta.tta_task_id                         AS task_id,
                u.use_id                               AS id,
                CONCAT(u.use_prenom, ' ', u.use_nom)   AS nom
-        FROM TOG_TASKS t
-        JOIN TOG_USERS u ON t.tas_assignee_id = u.use_id
-        WHERE t.tas_id IN ($inParams)
-          AND t.tas_assignee_id IS NOT NULL
+        FROM TOG_TASK_ASSIGNEES tta
+        JOIN TOG_USERS u ON tta.tta_user_id = u.use_id
+        WHERE tta.tta_task_id IN ($inParams)
     ");
     $stmtAssignees->execute($taskIds);
     $assigneesRaw = $stmtAssignees->fetchAll();
 
-    /* Indexer par task_id — tableau pour rester compatible
-       avec le format assignes: [{id, nom}] côté JS */
     $assigneesByTask = [];
     foreach ($assigneesRaw as $row) {
         $assigneesByTask[$row['task_id']][] = [
@@ -101,7 +94,6 @@ try {
         ];
     }
 
-    /* ── Étiquettes (plusieurs par tâche) ───────────── */
     $stmtEti = $db->prepare("
         SELECT tte.tte_task_id,
                e.eti_id,
@@ -124,7 +116,6 @@ try {
         ];
     }
 
-    /* ── Assemblage final ───────────────────────────── */
     $formattedTasks = array_map(function ($t) use ($assigneesByTask, $etiquettesByTask) {
         $id = $t['tas_id'];
         return [

@@ -2,7 +2,7 @@
 require_once __DIR__ . '/../includes/Session.php';
 
 if (Session::estConnecte()) {
-  header('Location: ../home/home.php');
+  header('Location: ../app/project.php');
   exit;
 }
 ?>

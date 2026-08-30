@@ -4,37 +4,34 @@
         <div>
             <h4>Liens rapides</h4>
             <ul>
-                <li><a href="">Dashboard</a></li>
-                <li><a href="">Mes projets</a></li>
-                <li><a href="">Contributions</a></li>
-                <li><a href="">Mes tâches</a></li>
-                <li><a href="">Calendrier</a></li>
+                <li><a href="/app/home.php">Home</a></li>
                 <li><a href="">Notification</a></li>
+                <li><a href="">Calendrier</a></li>
                 <li><a href="">Statistiques</a></li>
-                <li><a href="">Paramètres</a></li>
+                <li><a href="">Rapports</a></li>
+                <li><a href="/settings/user.php?tab=preference">Paramètres</a></li>
             </ul>
         </div>
 
         <div>
             <h4>Liens utiles</h4>
             <ul>
-                <li><a href="">Aide</a></li>
-                <li><a href="">Documentation</a></li>
-                <li><a href="">Support</a></li>
-                <li><a href="">Signaler un bug</a></li>
-                <li><a href="">Soumettre une idée</a></li>
-                <li><a href="">Raccourcis clavier</a></li>
+                <li><a href="/quicklinks/help.php">Aide</a></li>
+                <li><a href="/quicklinks/documentation.php">Documentation</a></li>
+                <li><a href="/quicklinks/report.php">Signaler un bug</a></li>
+                <li><a href="/quicklinks/submit.php">Soumettre une idée</a></li>
+                <!--<li><a href="">Raccourcis clavier</a></li>-->
             </ul>
         </div>
 
         <div>
             <h4>Réseau</h4>
             <ul>
-                <li><a href="">À propos</a></li>
-                <li><a href="">FAQ</a></li>
-                <li><a href="">Changelog</a></li>
-                <li><a href="">GitHub</a></li>
-                <li><a href="">Statut</a></li>
+                <li><a href="/network/about.php">À propos</a></li>
+                <li><a href="/network/faq.php">FAQ</a></li>
+                <li><a href="/network/changelog.php">Changelog</a></li>
+                <li><a href="https://github.com/NoahQuagh/Together">GitHub</a></li>
+                <li><a href="/network/statut.php">Statut</a></li>
             </ul>
         </div>
 
@@ -42,7 +39,6 @@
         <div class="fl-spinner">
           <div class="fl-bg"></div>
 
-          <!-- Logo Together -->
           <div class="fl-elements">
             <div class="fl-top">
               <div class="fl-bar-long"></div>
@@ -54,7 +50,6 @@
             </div>
           </div>
 
-          <!-- Visage amical (caché par défaut) -->
           <div class="fl-face">
             <div class="fl-eyes">
               <div class="fl-eye"></div>
@@ -75,7 +70,7 @@
     <div class="separator"></div>
 
     <section class="footerSection footerSection2">
-        <p>Copyright © 2026 Together | <a href="">Politique de confidentialité</a> | Version de l'app v1.0.0 — bêta</p>
+        <p>Copyright © 2026 Together | <a href="/legal/privacy_policy.php">Politique de confidentialité</a> | Version de l'app v1.0.0 — bêta</p>
     </section>
 
 </footer>

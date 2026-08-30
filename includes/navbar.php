@@ -19,7 +19,7 @@ require_once __DIR__.'/../includes/Session.php'
             <input type="text" placeholder="Rechercher...">
             <span class="tooltip-text normalHelp">Rechercher</span>
           </div>
-            <div class="menu account-menu tooltip-container" onclick="window.location.href='../project/create.php'">
+            <div class="menu account-menu tooltip-container" onclick="window.location.href='../project/project_create.php'">
                 <i class="ti ti-plus"></i>
                 <span class="tooltip-text normalHelp">Nouveau projet</span>
             </div>
@@ -44,7 +44,7 @@ require_once __DIR__.'/../includes/Session.php'
 
     <div class="sb-section">
         <p class="sb-label">Général</p>
-        <a class="sb-item" href="../home/home.php"><i class="ti ti-smart-home" aria-hidden="true"></i>Home</a>
+        <a class="sb-item active" href="../app/home.php"><i class="ti ti-smart-home" aria-hidden="true"></i>Home</a>
         <a class="sb-item"><i class="ti ti-bell" aria-hidden="true"></i>Notifications<span class="sb-badge">3</span></a>
         <a class="sb-item"><i class="ti ti-calendar" aria-hidden="true"></i>Calendrier</a>
     </div>
@@ -55,7 +55,7 @@ require_once __DIR__.'/../includes/Session.php'
         <p class="sb-label">Projets</p>
         <a class="sb-item"><i class="ti ti-folder" aria-hidden="true"></i>Mes projets</a>
         <a class="sb-item"><i class="ti ti-users" aria-hidden="true"></i>Contributions</a>
-        <a class="sb-item" href="../project/create.php"><i class="ti ti-circle-plus" aria-hidden="true"></i>Nouveau projet</a>
+        <a class="sb-item" href="../project/project_create.php"><i class="ti ti-circle-plus" aria-hidden="true"></i>Nouveau projet</a>
     </div>
 
     <div class="sb-divider"></div>

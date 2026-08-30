@@ -99,12 +99,6 @@ function projet() {
             console.log('Éditer projet', proId);
         });
     });
-
-    document.querySelectorAll('.proj-item').forEach(item => {
-        item.addEventListener('click', () => {
-            window.location.href = `../project/app.php?key=${item.dataset.id}`;
-        });
-    });
 }
 
 function changerStatut(proId, newStatut, liElement) {
@@ -166,7 +160,7 @@ function supprimerProjet(proId, liElement) {
                             <i class="ti ti-folder-off"></i>
                             <p>Vous n'avez encore créé aucun projet.</p>
                             <div>
-                                <button class="proj-create-btn" onclick="window.location.href='home.php?tab=mesProjets&action=creer'">
+                                <button class="proj-create-btn" onclick="window.location.href='../../project/project_create.php'">
                                     <i class="ti ti-plus"></i>
                                     Créer mon premier projet
                                 </button>

@@ -13,6 +13,29 @@ function prioriteBadge(priorite) {
     return map[priorite] ?? 'badge-gray';
 }
 
+function prioriteIcon(priorite) {
+    const map = { 'critique': '<i class="ti ti-alert-triangle"></i>', 'haute': '<i class="ti ti-triangle"></i>', 'normale': '<i class="ti ti-circle"></i>', 'basse': '<i class="ti ti-triangle-inverted"></i>' };
+    return map[priorite] ?? '';
+}
+
+function statutIcon(priorite) {
+    const map = { 'à_faire': '<i class="ti ti-loader"></i>', 'en_cours': '<i class="ti ti-circle-dashed"></i>', 'review': '<i class="ti ti-telescope"></i>', 'termine': '<i class="ti ti-circle-check"></i>' };
+    return map[priorite] ?? '';
+}
+
+function formatDate(dateInput) {
+    if (!dateInput) return '';
+
+    const date = new Date(dateInput);
+    if (isNaN(date.getTime())) return ''; // Sécurité si la date est invalide
+
+    return date.toLocaleDateString('fr-FR', {
+        day: 'numeric',
+        month: 'short',
+        year: 'numeric'
+    });
+}
+
 function prioriteColor(priorite) {
     const map = { 'critique': '#e04030', 'haute': '#d4901a', 'normale': '#5c90e8', 'basse': '#28b870' };
     return map[priorite] ?? '#7a7168';
@@ -30,17 +53,17 @@ function renderProjectTasks(data) {
             <div class="tk-card">
                 <div class="tk-top">
                     <div class="tk-badges">
-                        <div class="tk-etiquettes">
+                        <span class="tk-titre">${t.titre}</span>
+                        <div class="zone-more"><i class="ti ti-dots-vertical"></i></div>
+                    </div>
+                    <div class="tk-info">
+                        <h4>${statutIcon(t.statut)} ${t.statut ? (t.statut.charAt(0).toUpperCase() + t.statut.slice(1)).replaceAll('_', ' ') : ''}</h4>
+                    </div>
+                    <div class="tk-etiquettes">
                             ${(t.etiquettes ?? []).map(e =>
-        `<span class="tk-info-badge" style="background:${e.couleur}30;color:${e.couleur};border:1px solid ${e.couleur}">${e.label}</span>`
+        `<span class="tk-info-badge" style="background:${e.couleur};color:white;">${e.label}</span>`
     ).join('')}
                         </div>
-                        <div class="zone-trash"><i class="ti ti-trash"></i></div>
-                    </div>
-                    <span class="tk-titre">${t.titre}</span>
-                    <div class="tk-info">
-                        <h4>Statut : ${t.statut ? (t.statut.charAt(0).toUpperCase() + t.statut.slice(1)).replaceAll('_', ' ') : ''}</h4>
-                    </div>
                 </div>
 
                 <div class="tk-bottom">
@@ -59,7 +82,7 @@ function renderProjectTasks(data) {
                             <span class="tk-meta-item">
                                 <div>
                                     <i class="ti ti-calendar" aria-hidden="true"></i>
-                                    <span class="tk-date">${t.date_fin ? t.date_fin.split(' ')[0].replaceAll('-', '/') : '—'}</span>
+                                    <span class="tk-date">${t.date_fin ? formatDate(t.date_debut.split(' ')[0]) : 'Non indiqué'}</span>
                                 </div>
                                 <div>
                                     <i class="ti ti-clock" aria-hidden="true"></i>
@@ -86,12 +109,11 @@ function renderProjectTasks(data) {
         const col = prioriteColor(t.priorite);
         return `
         <div id="modal-task-${t.id}" class="modal-overlay" style="display:none;" onclick="closeModalOverlay(event,'modal-task-${t.id}')">
-            <div class="modal-box">
+            <div class="modal-box tk-modal-${t.priorite}">
 
                 <div class="modal-header">
                     <div class="modal-header-meta">
-                        <span class="tk-info-badge" style="background:${col}20;color:${col};border:1px solid ${col}50">${t.priorite}</span>
-                        <span class="modal-statut">${t.statut ? t.statut.replaceAll('_', ' ') : ''}</span>
+                        <span class="modal-statut">${statutIcon(t.statut)} ${t.statut ? t.statut.replaceAll('_', ' ') : ''}</span>
                     </div>
                     <button class="modal-close-btn" onclick="closeModal('modal-task-${t.id}')">
                         <i class="ti ti-x"></i>
@@ -113,7 +135,7 @@ function renderProjectTasks(data) {
                                         <div class="tk-avatar">${initiales(a.nom)}</div>
                                         <span class="tk-person-label" style="color:var(--wh)">${a.nom}</span>
                                     </div>`).join('')
-            : `<span class="tk-unassigned"><i class="ti ti-user-off"></i> Non assigné</span>`
+            : `<span class="tk-unassigned unassigned-ink"><i class="ti ti-user-off"></i> Non assigné</span>`
         }
                         </div>
                     </div>
@@ -123,7 +145,7 @@ function renderProjectTasks(data) {
                         <div class="tk-etiquettes">
                             ${(t.etiquettes ?? []).length > 0
             ? t.etiquettes.map(e =>
-                `<span class="tk-info-badge" style="background:${e.couleur}30;color:${e.couleur};border:1px solid ${e.couleur}">${e.label}</span>`
+                `<span class="tk-info-badge" style="background:${e.couleur};color:white;">${e.label}</span>`
             ).join('')
             : `<span class="modal-empty">Aucune étiquette</span>`
         }
@@ -133,25 +155,19 @@ function renderProjectTasks(data) {
                     <div class="modal-section modal-dates">
                         <div class="modal-date-item">
                             <span class="modal-section-label"><i class="ti ti-calendar-event"></i> Début</span>
-                            <span class="tk-date-modal">${t.date_debut ? t.date_debut.split(' ')[0].replaceAll('-', '/') : '—'} à ${t.date_debut && t.date_debut.split(' ')[1] ? t.date_debut.split(' ')[1].slice(0, 5) : ''}</span>
+                            <span class="tk-date-modal">${t.date_debut ? formatDate(t.date_debut.split(' ')[0]) : 'Non indiqué'} à ${t.date_debut && t.date_debut.split(' ')[1] ? t.date_debut.split(' ')[1].slice(0, 5) : ''}</span>
                         </div>
                         <div class="modal-date-item">
                             <span class="modal-section-label"><i class="ti ti-calendar-due"></i> Fin</span>
-                            <span class="tk-date-modal">${t.date_fin ? t.date_fin.split(' ')[0].replaceAll('-', '/') : '—'} à ${t.date_fin && t.date_fin.split(' ')[1] ? t.date_fin.split(' ')[1].slice(0, 5) : ''}</span>
+                            <span class="tk-date-modal">${t.date_fin ? formatDate(t.date_debut.split(' ')[0]) : 'Non indiqué'} à ${t.date_fin && t.date_fin.split(' ')[1] ? t.date_fin.split(' ')[1].slice(0, 5) : ''}</span>
                         </div>
                         <div class="modal-date-item">
                             <span class="modal-section-label"><i class="ti ti-user-check"></i> Reporter</span>
                             <span>${t.reporter ?? '—'}</span>
                         </div>
                     </div>
-
                 </div>
-
-                <div class="modal-footer">
-                    <button class="modal-btn btn-cancel" onclick="closeModal('modal-task-${t.id}')">Fermer</button>
-                    <button class="modal-btn btn-confirm"><i class="ti ti-device-floppy"></i>Sauvegarder</button>
-                </div>
-
+                <div class="modal-footer"></div>
             </div>
         </div>`;
     }).join('');
@@ -196,9 +212,10 @@ function renderProjectInsights(data)  { document.getElementById('main-zone').inn
 
 function getActionLabel(statut) {
     switch (statut) {
-        case 'a_faire':  return '<i class="ti ti-player-play" aria-hidden="true"></i>Commencer';
+        case 'à_faire':  return '<i class="ti ti-player-play" aria-hidden="true"></i>Commencer';
         case 'en_cours': return '<i class="ti ti-pencil-check" aria-hidden="true"></i>Valider';
         case 'review':   return '<i class="ti ti-circle-check" aria-hidden="true"></i>Terminer';
         default:         return '<i class="ti ti-arrow-back-up" aria-hidden="true"></i>Annuler';
     }
 }
+
