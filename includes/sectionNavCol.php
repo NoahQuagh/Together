@@ -1,4 +1,4 @@
-<section class="header-disposition-bottom">
+<section class="header-disposition-bottom project-list">
 
     <div class="header-disposition-line">
 
@@ -14,20 +14,6 @@
                 <i class="ti ti-checkup-list" aria-hidden="true"></i>
             </div>
             <span class="tooltip-text navHelp">Tâches</span>
-        </a>
-
-        <a href="<?= $baseUrl ?>&tab=kanban" class="tooltip-container <?= $tab === 'kanban' ? 'nav-item active-nav' : 'nav-item' ?>">
-            <div class="item">
-                <i class="ti ti-drag-drop" aria-hidden="true"></i>
-            </div>
-            <span class="tooltip-text navHelp">Kanban</span>
-        </a>
-
-        <a href="<?= $baseUrl ?>&tab=calendar" class="tooltip-container <?= $tab === 'calendar' ? 'nav-item active-nav' : 'nav-item' ?>">
-            <div class="item">
-                <i class="ti ti-calendar-event" aria-hidden="true"></i>
-            </div>
-            <span class="tooltip-text navHelp">Calendrier</span>
         </a>
 
         <a href="<?= $baseUrl ?>&tab=sprints" class="tooltip-container <?= $tab === 'sprints' ? 'nav-item active-nav' : 'nav-item' ?>">

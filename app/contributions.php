@@ -25,5 +25,27 @@
 </article>
 
 <script>
-
+    document.addEventListener("DOMContentLoaded", function() {
+        fetch('../api/loader/loadMyContributions.php')
+            .then(res => res.json())
+            .then(res => {
+                if (!res.success) {
+                    console.error(res.message);
+                    return;
+                }
+                renderMyContributions(res.data);
+            })
+            .catch(error => {
+                console.error('Erreur:', error);
+                const container = document.getElementById('dashboard-container');
+                if (container) {
+                    container.innerHTML = `
+                        <div class="dash-error-msg">
+                            <i class="ti ti-face-id-error"></i>
+                            <p>Oups ! Une erreur est survenue lors du chargement de vos contributions.</p>
+                        </div>
+                    `;
+                }
+            });
+    });
 </script>

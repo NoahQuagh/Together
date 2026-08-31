@@ -1,10 +1,7 @@
 <div class="zone-top">
   <h1 class="zone-title">Tâches</h1>
-  <div>
-    <button class="btn-new-tas"><i class="ti ti-filter"></i>Filtrer par : tout</button>
-    <button class="btn-new-tas"><i class="ti ti-plus"></i>Nouvelle tâche</button>
-  </div>
 </div>
+<?php require_once __DIR__ . '/../includes/sectionMenuTasks.php'?>
 <div class="tk-grid" id="tasks-zone">
     <div class="demo-item">
         <div class="tog-spinner">
@@ -27,7 +24,8 @@
         </div>
         <span class="demo-caption" id="wait">Nous recherchons votre projet.</span>
     </div>
-<script>document.addEventListener("DOMContentLoaded", function() {
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
         const urlParams = new URLSearchParams(window.location.search);
         const projectUuid = urlParams.get('key');
         fetch(`../../../api/loader/loadProject.php?project=${encodeURIComponent(projectUuid)}`)
@@ -37,7 +35,11 @@
                     console.error(res.message);
                     return;
                 }
-                renderProjectTasks(res.data);
+                if(res.data.tasks.length === 0){
+                    noTasksExist();
+                }else{
+                    initProjectTasks(res.data)
+                }
             })
             .catch(error => {
                 console.error('Erreur:', error);
@@ -46,7 +48,7 @@
                     container.innerHTML = `
                         <div class="dash-error-msg">
                             <i class="ti ti-face-id-error"></i>
-                            <p>Oups ! Une erreur est survenue lors du chargement des données du tableau de bord.</p>
+                            <p>Oups ! Une erreur est survenue lors du chargement des données.</p>
                         </div>
                     `;
                 }

@@ -5,6 +5,8 @@
     --wh3: #7a7168;
     --wh4: #575350;
     --paper: #dfded6;
+    --paper-hover: #cccbc4;
+    --paper-border: #bdbdb6;
 
     --gray: #8b949e;
 
@@ -43,6 +45,7 @@
     --text-5xl: 5rem;
 
     /*marge de texte*/
+    --marge-3xs: 0.2rem;
     --marge-xxs: 0.5rem;
     --marge-xs: 0.75rem;
     --marge-sm: 0.875rem;

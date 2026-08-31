@@ -130,13 +130,13 @@ try {
             'priorite'   => $t['priorite'],
             'date_debut' => $t['date_debut'],
             'date_fin'   => $t['date_fin'],
-            'couleur'    => $t['couleur'],
         ];
     }, $tasks);
 
     echo json_encode([
         'success' => true,
         'data'    => [
+            'id'          => $proj['pro_id'],
             'titre'       => $proj['pro_nom'],
             'manager'     => $proj['manager'],
             'manager_id'  => $proj['manager_id'],
