@@ -508,7 +508,6 @@ function renderProjectTasks(data) {
 }
 function renderProjectOverview(data)  { document.getElementById('main-zone').innerHTML = `overview`; }
 function renderProjectKanban(data)    { document.getElementById('kanban-id').innerHTML = `kanban`; }
-function renderProjectCalendar(data)  { document.getElementById('calendar-id').innerHTML = `calendar`; }
 function renderProjectSprints(data)   { document.getElementById('main-zone').innerHTML = `sprints`; }
 function renderProjectMembers(data)   { document.getElementById('main-zone').innerHTML = `members`; }
 function renderProjectInsights(data)  { document.getElementById('main-zone').innerHTML = `insights`; }

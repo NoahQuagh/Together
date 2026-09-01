@@ -116,8 +116,11 @@
       <?php endif; ?>
 
       <?php if($tab === 'calendar'): ?>
-        <div class="nav-item">
-          <button class="item"><?= __tphp('vertical view') ?></button>
+        <div class="nav-item calendar-btn">
+          <button id="btn-toggle-view" class="item" data-view="vertical">
+            <i class="ti ti-layout-sidebar"></i>
+            <span id="view-label"><?= __tphp('horizontal view') ?></span>
+          </button>
         </div>
       <?php endif; ?>
 

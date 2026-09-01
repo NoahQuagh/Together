@@ -29,7 +29,10 @@ require_once __DIR__ . '/../api/loader/loadProjectTitle.php';
     <link rel="stylesheet" href="../assets/style/modal-dialog.css">
     <link rel="stylesheet" href="../assets/style/navSectionCol.css">
     <link rel="stylesheet" href="../assets/style/projectApp.css">
+    <link rel="stylesheet" href="../assets/style/projectTasksList.css">
+    <link rel="stylesheet" href="../assets/style/projectTasksCalendar.css">
     <link rel="icon" type="image/png" href="../assets/logo/logoheader.png">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/frappe-gantt/1.2.2/frappe-gantt.min.css">
     <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Syne:wght@700;800&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&display=swap"
           rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css">
@@ -63,8 +66,11 @@ require_once __DIR__ . '/../api/loader/loadProjectTitle.php';
 <script src="../assets/script/navbarProject.js"></script>
 <script src="../assets/script/toast-notification.js"></script>
 <script src="../assets/script/modal-dialog.js"></script>
+<script src="../assets/script/renderers/calendarProjectRenderer.js"></script>
 <script src="../assets/script/renderers/projectRenderer.js"></script>
 <script src="../config/lang_js.php"></script>
+<script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.15/index.global.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/frappe-gantt/1.2.2/frappe-gantt.umd.js"></script>
 <div id="toast-container" class="toast-container"></div><!--zone de notif-->
 </body>
 </html>

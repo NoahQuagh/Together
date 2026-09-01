@@ -167,6 +167,7 @@ return [
     'reset'                                                                 => 'Réinitialiser',
     'apply filters'                                                         => 'Appliquer les filtres',
     'vertical view'                                                         => 'Vue verticale',
+    'horizontal view'                                                       => 'Vue horizontale',
     'add task'                                                              => 'Ajouter tâche',
     'overview'                                                              => 'Aperçu',
     'tasks'                                                                 => 'Tâches',

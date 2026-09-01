@@ -1,0 +1,13 @@
+.calendar-btn{
+    button{
+        &:hover{
+            border-color: var(--ink2);
+        }
+    }
+}
+
+.calendar-container, .gantt-container {
+    width: 100%;
+    margin-top: 16px;
+    transition: opacity 0.2s ease-in-out;
+}

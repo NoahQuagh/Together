@@ -9,7 +9,7 @@
             <span class="tooltip-text navHelp"><?= __tphp('overview') ?></span>
         </a>
 
-        <a href="<?= $baseUrl ?>&tab=tasks" class="tooltip-container <?= $tab === 'tasks' ? 'nav-item active-nav' : 'nav-item' ?>">
+      <a href="<?= $baseUrl ?>&tab=tasks" class="tooltip-container <?= in_array($tab, ['tasks', 'calendar', 'kanban']) ? 'nav-item active-nav' : 'nav-item' ?>">
             <div class="item">
                 <i class="ti ti-checkup-list" aria-hidden="true"></i>
             </div>
