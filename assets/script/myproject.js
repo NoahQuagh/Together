@@ -15,9 +15,9 @@ function supprimerProjetconfirmer() {
     try{
         supprimerProjet(idProjetASupprimer, elementAAfficherAnimation);
         closeModal('supProjet');
-        showToast('Projet supprimer avec succès !', 'success');
+        showToast(__t('project successfully deleted')+' !', 'success');
     }catch{
-        showToast('Impossible de supprimer le projet', 'success');
+        showToast(__t('unable to delete the project'), 'success');
     }
 }
 
@@ -110,7 +110,7 @@ function changerStatut(proId, newStatut, liElement) {
         .then(r => r.json())
         .then(data => {
             if (!data.success) {
-                showToast('Impossible de modifier le statut du projet', 'error');
+                showToast(__t('unable to change the project status'), 'error');
                 return;
             }
 
@@ -126,9 +126,9 @@ function changerStatut(proId, newStatut, liElement) {
             if (activeFilter && activeFilter.dataset.filter !== 'tout') {
                 activeFilter.click();
             }
-            showToast('Statut du projet modifier', 'success')
+            showToast(__t('project status edit'), 'success')
         })
-        .catch(() => showToast('Impossible de modifier le statut du projet', 'error'));
+        .catch(() => showToast(__t('unable to change the project status'), 'error'));
 }
 
 function supprimerProjet(proId, liElement) {
@@ -140,7 +140,7 @@ function supprimerProjet(proId, liElement) {
         .then(r => r.json())
         .then(data => {
             if (!data.success) {
-                showToast('Impossible de supprimer le projet', 'error');
+                showToast(__t('unable to delete the project'), 'error');
                 return;
             }
 
@@ -158,11 +158,11 @@ function supprimerProjet(proId, liElement) {
                         page.insertAdjacentHTML('beforeend', `
                         <div class="dash-empty proj-empty-global">
                             <i class="ti ti-folder-off"></i>
-                            <p>Vous n'avez encore créé aucun projet.</p>
+                            <p>${__t("you haven't created any projects yet")}.</p>
                             <div>
                                 <button class="proj-create-btn" onclick="window.location.href='../../project/project_create.php'">
                                     <i class="ti ti-plus"></i>
-                                    Créer mon premier projet
+                                    ${__t('create my first project')}
                                 </button>
                             </div>
                         </div>
@@ -170,9 +170,9 @@ function supprimerProjet(proId, liElement) {
                     }
                 }
             }, 280);
-            showToast('Projet supprimer', 'success')
+            showToast(__t('delete project'), 'success')
         })
-        .catch(() => showToast('Impossible de supprimer le projet', 'error'));
+        .catch(() => showToast(__t('unable to delete the project'), 'error'));
 }
 
 function statutBadgeJS(statut) {

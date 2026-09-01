@@ -19,7 +19,7 @@
                 <div class="tog-dot"></div>
                 <div class="tog-dot"></div>
             </div>
-            <span class="demo-caption" id="wait">Nous chargeons vos préférences... parce que chacun a ses petites habitudes.</span>
+            <span class="demo-caption" id="wait"><?= __tphp('we’re loading your preferences... because everyone has their own little habits') ?>.</span>
         </div>
     </div>
 </article>
@@ -29,7 +29,7 @@
         fetch('../api/loadPreferences.php')
             .then(response => {
                 if (!response.ok) {
-                    throw new Error("Erreur serveur : " + response.status);
+                    throw new Error(response.status);
                 }
                 return response.text();
             })
@@ -40,13 +40,12 @@
                 }
             })
             .catch(error => {
-                console.error('Erreur:', error);
                 const container = document.getElementById('dashboard-container');
                 if (container) {
                     container.innerHTML = `
                         <div class="dash-error-msg">
                             <i class="ti ti-face-id-error"></i>
-                            <p>Oups ! Une erreur est survenue lors du chargement de vos préférences.</p>
+                            <p>${__t('an error occurred while loading your preferences')}.</p>
                         </div>
                     `;
                 }

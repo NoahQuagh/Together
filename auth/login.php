@@ -1,8 +1,10 @@
 <?php
 require_once __DIR__ . '/../includes/Session.php';
+require_once __DIR__ . '/../config/lang_php.php';
+
 
 if (Session::estConnecte()) {
-  header('Location: ../app/project.php');
+  header('Location: ../app/home.php');
   exit;
 }
 ?>
@@ -10,7 +12,7 @@ if (Session::estConnecte()) {
 <html lang="fr">
 <head>
   <meta charset="UTF-8">
-  <title>Together</title>
+  <title>Login - Together</title>
   <link rel="stylesheet" href="../assets/style/paletteStyle.css">
   <link rel="stylesheet" href="../assets/style/footer.css">
   <link rel="stylesheet" href="../assets/style/login.css">
@@ -22,7 +24,7 @@ if (Session::estConnecte()) {
 <body>
 
 <div class="back-button">
-  <button onclick="window.history.back()"><i class="ti ti-arrow-left"></i>Retour</button>
+  <button onclick="window.history.back()"><i class="ti ti-arrow-left"></i><?= __tphp('back') ?></button>
 </div>
 
 <div class="auth-grid-bg" aria-hidden="true">
@@ -57,8 +59,8 @@ if (Session::estConnecte()) {
             </div>
           </div>
           <div class="auth-side-copy">
-            <h2>Together</h2>
-            <p class="signature">Organisez, collaborez,<br>livrez — ensemble.</p>
+            <h2><?= __tphp('appName') ?></h2>
+            <p class="signature"><?= __tphp('slogan1') ?>.</p>
           </div>
         </div>
       </div>
@@ -67,20 +69,20 @@ if (Session::estConnecte()) {
       <ul class="auth-side-features">
         <li>
           <span class="feat-dot feat-dot--blue"></span>
-          Kanban, sprints &amp; roadmap
+          <?= __tphp('features1') ?>
         </li>
         <li>
           <span class="feat-dot feat-dot--green"></span>
-          Collaboration en temps réel
+          <?= __tphp('features2') ?>
         </li>
         <li>
           <span class="feat-dot feat-dot--yellow"></span>
-          Rapports &amp; statistiques
+          <?= __tphp('features3') ?>
         </li>
       </ul>
 
       <div class="auth-side-badge">
-        v1.0.0 — bêta
+        <?= __tphp('version') ?>
       </div>
 
     </div>
@@ -92,8 +94,8 @@ if (Session::estConnecte()) {
       <div class="auth-form-wrap" id="fLogin" data-form="login">
 
         <div class="auth-form-head">
-          <p class="auth-eyebrow">Connexion</p>
-          <h1>Bon retour</h1>
+          <p class="auth-eyebrow"><?= __tphp('login') ?></p>
+          <h1><?= __tphp('welcome back') ?></h1>
         </div>
 
         <?php if (Session::hasFlash('erreur')): ?>
@@ -112,7 +114,7 @@ if (Session::estConnecte()) {
         <form class="auth-form" method="POST" action="loginUser.php">
 
           <div class="auth-field">
-            <label for="login-email">E-mail</label>
+            <label for="login-email"><?= __tphp('e-mail') ?></label>
             <div class="auth-input-wrap">
               <i class="ti ti-mail" aria-hidden="true"></i>
               <input type="email" id="login-email" name="email"
@@ -123,8 +125,8 @@ if (Session::estConnecte()) {
 
           <div class="auth-field">
             <div class="auth-field-head">
-              <label for="login-mdp">Mot de passe</label>
-              <a href="reset.php" class="auth-link-xs">Oublié ?</a>
+              <label for="login-mdp"><?= __tphp('password') ?></label>
+              <a href="reset.php" class="auth-link-xs"><?= __tphp('forget') ?> ?</a>
             </div>
             <div class="auth-input-wrap">
               <i class="ti ti-lock" aria-hidden="true"></i>
@@ -133,7 +135,7 @@ if (Session::estConnecte()) {
                      autocomplete="current-password" required>
               <button type="button" class="auth-eye"
                       onclick="togglePwd('login-mdp',this)"
-                      aria-label="Afficher le mot de passe">
+                      aria-label=<?= __tphp('show password') ?>>
                 <i class="ti ti-eye"></i>
               </button>
             </div>
@@ -142,20 +144,20 @@ if (Session::estConnecte()) {
           <label class="auth-checkbox">
             <input type="checkbox" name="souvenir">
             <span class="check-box"></span>
-            Se souvenir de moi
+            <?= __tphp('remember me') ?>
           </label>
 
           <button type="submit" class="auth-btn-submit">
-            <span>Se connecter</span>
+            <span><?= __tphp('login') ?></span>
             <i class="ti ti-arrow-right" aria-hidden="true"></i>
           </button>
 
         </form>
 
         <div class="auth-switch-row">
-          <span>Pas de compte ?</span>
+          <span><?= __tphp('no account') ?> ?</span>
           <button class="auth-switch-btn" data-target="register">
-            Créer un compte
+            <?= __tphp('create an account') ?>
             <i class="ti ti-chevron-right" aria-hidden="true"></i>
           </button>
         </div>
@@ -166,8 +168,8 @@ if (Session::estConnecte()) {
       <div class="auth-form-wrap auth-form-wrap--off" id="fRegister" data-form="register">
 
         <div class="auth-form-head">
-          <p class="auth-eyebrow">Inscription</p>
-          <h1>Rejoindre Together</h1>
+          <p class="auth-eyebrow"><?= __tphp('registration') ?></p>
+          <h1><?= __tphp('join Together') ?></h1>
         </div>
 
         <?php if (Session::hasFlash('erreur_register')): ?>
@@ -181,7 +183,7 @@ if (Session::estConnecte()) {
 
           <div class="auth-row-2">
             <div class="auth-field">
-              <label for="reg-prenom">Prénom</label>
+              <label for="reg-prenom"><?= __tphp('first name') ?></label>
               <div class="auth-input-wrap">
                 <i class="ti ti-user" aria-hidden="true"></i>
                 <input type="text" id="reg-prenom" name="prenom"
@@ -190,7 +192,7 @@ if (Session::estConnecte()) {
               </div>
             </div>
             <div class="auth-field">
-              <label for="reg-nom">Nom</label>
+              <label for="reg-nom"><?= __tphp('name') ?></label>
               <div class="auth-input-wrap">
                 <input type="text" id="reg-nom" name="nom"
                        placeholder="Dupont"
@@ -200,17 +202,17 @@ if (Session::estConnecte()) {
           </div>
 
           <div class="auth-field">
-            <label for="reg-email">E-mail</label>
+            <label for="reg-email"><?= __tphp('e-mail') ?></label>
             <div class="auth-input-wrap">
               <i class="ti ti-mail" aria-hidden="true"></i>
               <input type="email" id="reg-email" name="email"
-                     placeholder="vous@example.com"
+                     placeholder="name@example.com"
                      autocomplete="email" required>
             </div>
           </div>
 
           <div class="auth-field">
-            <label for="reg-mdp">Mot de passe</label>
+            <label for="reg-mdp"><?= __tphp('password') ?></label>
             <div class="auth-input-wrap">
               <i class="ti ti-lock" aria-hidden="true"></i>
               <input type="password" id="reg-mdp" name="mot_de_passe"
@@ -219,7 +221,7 @@ if (Session::estConnecte()) {
                      oninput="updateStrength(this.value)">
               <button type="button" class="auth-eye"
                       onclick="togglePwd('reg-mdp',this)"
-                      aria-label="Afficher le mot de passe">
+                      aria-label=<?= __tphp('show password') ?>>
                 <i class="ti ti-eye"></i>
               </button>
             </div>
@@ -230,7 +232,7 @@ if (Session::estConnecte()) {
           </div>
 
           <div class="auth-field">
-            <label for="reg-mdp2">Confirmer</label>
+            <label for="reg-mdp2"><?= __tphp('confirm') ?></label>
             <div class="auth-input-wrap">
               <i class="ti ti-lock-check" aria-hidden="true"></i>
               <input type="password" id="reg-mdp2" name="mot_de_passe_confirm"
@@ -242,20 +244,20 @@ if (Session::estConnecte()) {
           <label class="auth-checkbox">
             <input type="checkbox" name="cgu" required>
             <span class="check-box"></span>
-            J'accepte les <a href="../legal/cgu.php" class="auth-link-inline">CGU</a>
+            <?= __tphp('i accept the') ?> <a href="../legal/cgu.php" class="auth-link-inline">CGU</a>
           </label>
 
           <button type="submit" class="auth-btn-submit">
-            <span>Créer mon compte</span>
+            <span><?= __tphp('create my account') ?></span>
             <i class="ti ti-arrow-right" aria-hidden="true"></i>
           </button>
 
         </form>
 
         <div class="auth-switch-row">
-          <span>Déjà inscrit ?</span>
+          <span><?= __tphp('already registered') ?> ?</span>
           <button class="auth-switch-btn" data-target="login">
-            Se connecter
+            <?= __tphp('login') ?>
             <i class="ti ti-chevron-right" aria-hidden="true"></i>
           </button>
         </div>
@@ -269,6 +271,7 @@ if (Session::estConnecte()) {
 </main>
 
 <script src="../assets/script/login.js"></script>
+<script src="../config/lang_js.php"></script>
 <script>
     window.__authInit = '<?= Session::hasFlash('erreur_register') ? 'register' : 'login' ?>';
 </script>

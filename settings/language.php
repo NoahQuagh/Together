@@ -19,7 +19,7 @@
                 <div class="tog-dot"></div>
                 <div class="tog-dot"></div>
             </div>
-            <span class="demo-caption" id="wait">Nous configurons votre langue et votre région... bonjour, hello, hola.</span>
+            <span class="demo-caption" id="wait"><?= __tphp('we are setting up your language... bonjour, hello, hola') ?>.</span>
         </div>
     </div>
 </article>

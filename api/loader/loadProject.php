@@ -10,7 +10,7 @@ try {
     $projectUuid = $_GET['project'] ?? null;
     if (!$projectUuid) {
         http_response_code(400);
-        echo json_encode(['success' => false, 'message' => 'Paramètre project manquant.']);
+        echo json_encode(['success' => false, 'message' => 'Paramètre pages manquant.']);
         exit;
     }
 

@@ -19,26 +19,26 @@
         <div class="tog-dot"></div>
         <div class="tog-dot"></div>
       </div>
-      <span class="demo-caption">Nous recherchons vos projets... même ceux que vous aviez oubliés.</span>
+      <span class="demo-caption"><?= __tphp('we are looking for your projects... even the ones you had forgotten about') ?>.</span>
     </div>
   </div>
   <div id="supProjet" class="modal-overlay" style="display: none;">
     <div class="modal-box">
 
       <div class="modal-header">
-        <h3>Suprimer le projet ?</h3>
+        <h3><?= __tphp('delete the project') ?> ?</h3>
         <button class="modal-close-btn" onclick="closeModal('supProjet')">
           <i class="ti ti-x"></i>
         </button>
       </div>
 
       <div class="modal-body">
-        <p>Êtes-vous sûr de vouloir suprimer ce projet ? Cette action est irréversible.</p>
+        <p><?= __tphp('are you sure you want to delete this project ? This action is irreversible') ?>.</p>
       </div>
 
       <div class="modal-footer">
-        <button class="modal-btn btn-cancel" onclick="closeModal('supProjet')">Annuler</button>
-        <button class="modal-btn btn-confirm risk" onclick="supprimerProjetconfirmer()">Confirmer</button>
+        <button class="modal-btn btn-cancel" onclick="closeModal('supProjet')"><?= __tphp('cancel') ?></button>
+        <button class="modal-btn btn-confirm risk" onclick="supprimerProjetconfirmer()"><?= __tphp('confirm') ?></button>
       </div>
 
     </div>
@@ -51,19 +51,17 @@
             .then(res => res.json())
             .then(res => {
                 if (!res.success) {
-                    console.error(res.message);
-                    return;
+                    throw new Error(res.message);
                 }
                 renderMyProject(res.data);
             })
             .catch(error => {
-                console.error('Erreur:', error);
                 const container = document.getElementById('dashboard-container');
                 if (container) {
                     container.innerHTML = `
                         <div class="dash-error-msg">
                             <i class="ti ti-face-id-error"></i>
-                            <p>Oups ! Une erreur est survenue lors du chargement de vos projets.</p>
+                            <p>${__t('an error occurred while loading your projects')}.</p>
                         </div>
                     `;
                 }

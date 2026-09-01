@@ -1,5 +1,6 @@
 <?php
 require_once __DIR__ . '/../includes/Session.php';
+require_once __DIR__  . '/../config/lang_php.php';
 Session::start();
 Session::requireLogin();
 $projectId = $_GET['key'] ?? null;
@@ -11,7 +12,7 @@ if (!$projectId) {
     exit;
 }
 
-require_once __DIR__ . '/../api/loader/loadProjectTitle.php'
+require_once __DIR__ . '/../api/loader/loadProjectTitle.php';
 
 ?>
 <!DOCTYPE html>
@@ -44,14 +45,14 @@ require_once __DIR__ . '/../api/loader/loadProjectTitle.php'
       require_once __DIR__ . '/../includes/nonConnecterSection.php';
     }else{
       switch($tab) {
-        case 'overview':     require '../project/overview.php'; break;
-        case 'tasks': require '../project/tasks.php'; break;
-        case 'kanban':      require '../project/kanban.php'; break;
-        case 'calendar':      require '../project/calendar.php'; break;
-        case 'sprints':      require '../project/sprints.php'; break;
-        case 'members':      require '../project/members.php'; break;
-        case 'insights':      require '../project/insights.php'; break;
-        default:            require '../project/overview.php'; break;
+        case 'overview':     require '../pages/overview.php'; break;
+        case 'tasks': require '../pages/tasks.php'; break;
+        case 'kanban':      require '../pages/kanban.php'; break;
+        case 'calendar':      require '../pages/calendar.php'; break;
+        case 'sprints':      require '../pages/sprints.php'; break;
+        case 'members':      require '../pages/members.php'; break;
+        case 'insights':      require '../pages/insights.php'; break;
+        default:            require '../pages/overview.php'; break;
       }
     } ?>
   </section>
@@ -63,6 +64,7 @@ require_once __DIR__ . '/../api/loader/loadProjectTitle.php'
 <script src="../assets/script/toast-notification.js"></script>
 <script src="../assets/script/modal-dialog.js"></script>
 <script src="../assets/script/renderers/projectRenderer.js"></script>
+<script src="../config/lang_js.php"></script>
 <div id="toast-container" class="toast-container"></div><!--zone de notif-->
 </body>
 </html>

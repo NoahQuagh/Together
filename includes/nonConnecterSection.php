@@ -5,12 +5,12 @@
             <i class="ti ti-lock" aria-hidden="true"></i>
         </div>
 
-        <h1>Vous n'êtes pas connecté</h1>
-        <p>Connectez-vous pour accéder à vos projets et collaborer avec votre équipe.</p>
+        <h1><?= __tphp('you are not logged in') ?></h1>
+        <p><?= __tphp('log in to access your projects and collaborate with your team') ?>.</p>
 
         <button class="btn-connexion" onclick="window.location.href='../auth/login.php'">
             <i class="ti ti-user" aria-hidden="true"></i>
-            Connexion / Inscription
+          <?= __tphp('login') ?> / <?= __tphp('registration') ?>
         </button>
 
     </div>

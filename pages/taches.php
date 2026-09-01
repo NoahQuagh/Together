@@ -19,7 +19,7 @@
         <div class="tog-dot"></div>
         <div class="tog-dot"></div>
       </div>
-      <span class="demo-caption">Nous recensons vos tâches... courage, elles ne peuvent pas être si nombreuses.</span>
+      <span class="demo-caption"><?= __tphp("we're listing your tasks... hang in there, there can't be that many of them") ?>.</span>
     </div>
   </div>
 </article>

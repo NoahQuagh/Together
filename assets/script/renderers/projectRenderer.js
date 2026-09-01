@@ -13,9 +13,9 @@ function formatDate(dateInput) {
     if (!dateInput) return '';
 
     const date = new Date(dateInput);
-    if (isNaN(date.getTime())) return ''; // Sécurité si la date est invalide
+    if (isNaN(date.getTime())) return '';
 
-    return date.toLocaleDateString('fr-FR', {
+    return date.toLocaleDateString('fr-FR', {//TODO lang date
         day: 'numeric',
         month: 'short',
         year: 'numeric'
@@ -60,10 +60,10 @@ function closeModal(id) {
 
 function getActionLabel(statut) {
     switch (statut) {
-        case 'en_attente':  return '<i class="ti ti-player-play" aria-hidden="true"></i>Commencer';
-        case 'en_cours': return '<i class="ti ti-pencil-check" aria-hidden="true"></i>Valider';
-        case 'en_review':   return '<i class="ti ti-circle-check" aria-hidden="true"></i>Terminer';
-        default:         return '<i class="ti ti-arrow-back-up" aria-hidden="true"></i>Annuler';
+        case 'en_attente':  return '<i class=\"ti ti-player-play\" aria-hidden=\"true\"></i>'+__t("start");
+        case 'en_cours': return '<i class=\"ti ti-pencil-check\" aria-hidden=\"true\"></i>'+__t("validate");
+        case 'en_review':   return '<i class="ti ti-circle-check" aria-hidden="true"></i>'+__t("complete");
+        default:         return '<i class="ti ti-arrow-back-up" aria-hidden="true"></i>'+__t("cancel");
     }
 }
 
@@ -84,8 +84,8 @@ function renderNoTasksFound() {
     container.innerHTML = `
         <div class="empty-state">
             <i class="ti ti-filter-off" style="font-size: 2.5rem; color: var(--wh3, #888);"></i>
-            <h3>Aucune tâche ne correspond au filtre choisi</h3>
-            <p>Essayez de modifier ou de réinitialiser vos critères de recherche.</p>
+            <h3>${__t('no tasks match the selected filter')}.</h3>
+            <p>${__t('try modifying or resetting your search criteria')}.</p>
         </div>
     `;
 }
@@ -97,8 +97,8 @@ function renderFilterError() {
     container.innerHTML = `
         <div class="dash-error-msg error-state">
             <i class="ti ti-face-id-error"></i>
-            <h3>Filtres indisponibles</h3>
-            <p>Oups ! Une erreur est survenue lors du chargement des données du tableau de bord.</p>
+            <h3>${__t('filters unavailable')}</h3>
+            <p>${__t('an error occurred while loading the tasks')}.</p>
         </div>
     `;
 }
@@ -111,11 +111,11 @@ function noTasksExist(){
     container.innerHTML = `
         <div class="dash-empty proj-empty-global">
             <i class="ti ti-coffee" aria-hidden="true"></i>
-            <h4>Vous n'avez encore créé aucune tâche.</h4>
+            <h4>${__t("you haven't created any tasks yet")}.</h4>
         <div>
         <button class="proj-create-btn" onclick="">
           <i class="ti ti-plus"></i>
-          Créer ma première tâche
+          ${__t('create my first task')}
         </button>
     `;
 }
@@ -192,8 +192,7 @@ function applyFilters() {
     if (projectKey) {
         params.append('project', projectKey);
     } else {
-        console.error('Erreur: Impossible d\'identifier le projet actuel.');
-        return;
+        return renderFilterError();
     }
 
     const sortTitle = document.getElementById('filter-sort-title')?.value;
@@ -221,7 +220,7 @@ function applyFilters() {
         .then(response => response.json())
         .then(data => {
             if (!data.success) {
-                throw new Error(data.message || 'Erreur lors du traitement backend.');
+                throw new Error(data.message);
             }
 
             currentTaskData = data.tasks || [];
@@ -304,14 +303,14 @@ function renderProjectTasks(data) {
                                         <div class="tk-avatar">${initiales(a.nom)}</div>
                                         <span class="tk-person-label">${a.nom}</span>
                                     </div>`).join('')
-        : `<span class="tk-unassigned"><i class="ti ti-user-off"></i> Non assigné</span>`
+        : `<span class="tk-unassigned"><i class="ti ti-user-off"></i>${__t('unassigned')}</span>`
     }
                         </div>
                         <div class="tk-meta">
                             <span class="tk-meta-item">
                                 <div>
                                     <i class="ti ti-calendar" aria-hidden="true"></i>
-                                    <span class="tk-date">${t.date_fin ? formatDate(t.date_debut.split(' ')[0]) : 'Non indiqué'}</span>
+                                    <span class="tk-date">${t.date_fin ? formatDate(t.date_debut.split(' ')[0]) : __t('not specified')}</span>
                                 </div>
                                 <div>
                                     <i class="ti ti-clock" aria-hidden="true"></i>
@@ -323,7 +322,7 @@ function renderProjectTasks(data) {
 
                     <div class="btn-option-tas">
                         <button class="tk-btn-wh" onclick="openModal('modal-task-${t.id}')">
-                            <i class="ti ti-info-circle" aria-hidden="true"></i>Voir Détails
+                            <i class="ti ti-info-circle" aria-hidden="true"></i>${__t('view details')}
                         </button>
                         <button class="tk-btn-ink">
                             ${getActionLabel(t.statut)}
@@ -352,10 +351,10 @@ function renderProjectTasks(data) {
 
                 <div class="modal-body">
 
-                    <p class="modal-desc">${t.desc ?? '<em>Aucune description.</em>'}</p>
+                    <p class="modal-desc">${t.desc ?? `<em>${__t("no description")}</em>`}</p>
 
                     <div class="modal-section">
-                        <span class="modal-section-label"><i class="ti ti-users"></i> Assignés</span>
+                        <span class="modal-section-label"><i class="ti ti-users"></i>${__t('assigned')}</span>
                         <div class="tk-people">
                             ${(t.assignes ?? []).length > 0
             ? t.assignes.map(a =>
@@ -363,34 +362,34 @@ function renderProjectTasks(data) {
                                         <div class="tk-avatar">${initiales(a.nom)}</div>
                                         <span class="tk-person-label" style="color:var(--wh)">${a.nom}</span>
                                     </div>`).join('')
-            : `<span class="tk-unassigned unassigned-ink"><i class="ti ti-user-off"></i> Non assigné</span>`
+            : `<span class="tk-unassigned unassigned-ink"><i class="ti ti-user-off"></i>${__t('unassigned')}</span>`
         }
                         </div>
                     </div>
 
                     <div class="modal-section">
-                        <span class="modal-section-label"><i class="ti ti-tag"></i> Étiquettes</span>
+                        <span class="modal-section-label"><i class="ti ti-tag"></i>${__t('labels')}</span>
                         <div class="tk-etiquettes">
                             ${(t.etiquettes ?? []).length > 0
             ? t.etiquettes.map(e =>
                 `<span class="tk-info-badge" style="background:${e.couleur};color:white;">${e.label}</span>`
             ).join('')
-            : `<span class="modal-empty">Aucune étiquette</span>`
+            : `<span class="modal-empty">${__t('no label')}</span>`
         }
                         </div>
                     </div>
 
                     <div class="modal-section modal-dates">
                         <div class="modal-date-item">
-                            <span class="modal-section-label"><i class="ti ti-calendar-event"></i> Début</span>
-                            <span class="tk-date-modal">${t.date_debut ? formatDate(t.date_debut.split(' ')[0]) : 'Non indiqué'} à ${t.date_debut && t.date_debut.split(' ')[1] ? t.date_debut.split(' ')[1].slice(0, 5) : ''}</span>
+                            <span class="modal-section-label"><i class="ti ti-calendar-event"></i>${__t('beginning')}</span>
+                            <span class="tk-date-modal">${t.date_debut ? formatDate(t.date_debut.split(' ')[0]) : __t("not specified")} à ${t.date_debut && t.date_debut.split(' ')[1] ? t.date_debut.split(' ')[1].slice(0, 5) : ''}</span>
                         </div>
                         <div class="modal-date-item">
                             <span class="modal-section-label"><i class="ti ti-calendar-due"></i> Fin</span>
-                            <span class="tk-date-modal">${t.date_fin ? formatDate(t.date_debut.split(' ')[0]) : 'Non indiqué'} à ${t.date_fin && t.date_fin.split(' ')[1] ? t.date_fin.split(' ')[1].slice(0, 5) : ''}</span>
+                            <span class="tk-date-modal">${t.date_fin ? formatDate(t.date_debut.split(' ')[0]) : __t("not specified")} à ${t.date_fin && t.date_fin.split(' ')[1] ? t.date_fin.split(' ')[1].slice(0, 5) : ''}</span>
                         </div>
                         <div class="modal-date-item">
-                            <span class="modal-section-label"><i class="ti ti-user-check"></i> Reporter</span>
+                            <span class="modal-section-label"><i class="ti ti-user-check"></i> ${__t("reporter")}</span>
                             <span>${t.reporter ?? '—'}</span>
                         </div>
                     </div>
@@ -410,7 +409,7 @@ function renderProjectTasks(data) {
                 
                 <div class="modal-header">
                     <div class="modal-header-meta">
-                        <h4>Modifier la tâche</h4>
+                        <h4>${__t('edit task')}</h4>
                     </div>
                     <button type="button" class="modal-close-btn" onclick="closeModal('modal-task-modify-${t.id}')">
                         <i class="ti ti-x"></i>
@@ -420,17 +419,17 @@ function renderProjectTasks(data) {
                 <div class="modal-body">
                     
                     <div class="modal-section modal-section-full">
-                        <label class="modal-section-label" for="titre-${t.id}">Titre de la tâche</label>
-                        <input type="text" id="titre-${t.id}" name="titre" class="tk-input tk-input-titre" value="${t.titre}" required />
+                        <label class="modal-section-label" for="titre-${t.id}">${__t('task title')}</label>
+                        <input type="text" id="titre-${t.id}" name="${__t('title')}" class="tk-input tk-input-titre" value="${t.titre}" required />
                     </div>
 
                     <div class="modal-section modal-section-full">
-                        <label class="modal-section-label" for="desc-${t.id}">Description</label>
-                        <textarea id="desc-${t.id}" name="desc" class="tk-input tk-textarea" placeholder="Ajouter une description...">${t.desc ?? ''}</textarea>
+                        <label class="modal-section-label" for="desc-${t.id}">${__t('description')}</label>
+                        <textarea id="desc-${t.id}" name="desc" class="tk-input tk-textarea" placeholder="${__t('add a description')}...">${t.desc ?? ''}</textarea>
                     </div>
 
                     <div class="modal-section">
-                        <span class="modal-section-label"><i class="ti ti-users"></i> Assignés</span>
+                        <span class="modal-section-label"><i class="ti ti-users"></i>${__t('assigned')}</span>
                         <div class="tk-people">
                             ${(t.assignes ?? []).length > 0
             ? t.assignes.map(a =>
@@ -439,14 +438,14 @@ function renderProjectTasks(data) {
                                     <span class="tk-person-label" style="color:var(--wh)">${a.nom}</span>
                                     <button type="button" class="tk-remove-btn" title="Retirer"><i class="ti ti-x"></i></button>
                                 </div>`).join('')
-            : `<span class="tk-unassigned unassigned-ink"><i class="ti ti-user-off"></i> Non assigné</span>`
+            : `<span class="tk-unassigned unassigned-ink"><i class="ti ti-user-off"></i>${__t('unassigned')}</span>`
         }
-                            <button type="button" class="tk-btn-add-badge"><i class="ti ti-plus"></i> Ajouter</button>
+                            <button type="button" class="tk-btn-add-badge"><i class="ti ti-plus"></i>${__t('add')}</button>
                         </div>
                     </div>
 
                     <div class="modal-section">
-                        <span class="modal-section-label"><i class="ti ti-tag"></i> Étiquettes</span>
+                        <span class="modal-section-label"><i class="ti ti-tag"></i>${__t('labels')}</span>
                         <div class="tk-etiquettes">
                             ${(t.etiquettes ?? []).length > 0
             ? t.etiquettes.map(e =>
@@ -455,41 +454,41 @@ function renderProjectTasks(data) {
                                     <button type="button" class="tk-remove-btn" title="Retirer"><i class="ti ti-x"></i></button>
                                 </span>`
             ).join('')
-            : `<span class="modal-empty">Aucune étiquette</span>`
+            : `<span class="modal-empty">${__t('no label')}</span>`
         }
-                            <button type="button" class="tk-btn-add-badge"><i class="ti ti-plus"></i> Ajouter</button>
+                            <button type="button" class="tk-btn-add-badge"><i class="ti ti-plus"></i>${__t('add')}</button>
                         </div>
                     </div>
 
                     <div class="modal-section modal-dates">
                         <div class="modal-date-item">
-                            <label class="modal-section-label" for="date_debut-${t.id}"><i class="ti ti-calendar-event"></i> Début</label>
+                            <label class="modal-section-label" for="date_debut-${t.id}"><i class="ti ti-calendar-event"></i>${__t('beginning')}</label>
                             <input type="datetime-local" id="date_debut-${t.id}" name="date_debut" class="tk-input" value="${formatForInput(t.date_debut)}">
                         </div>
                         
                         
                         <div class="modal-date-item">
-                            <label class="modal-section-label" for="priotity-${t.id}">Priorité</label>
+                            <label class="modal-section-label" for="priotity-${t.id}">${__t('priority')}</label>
                             <select id="priotity-${t.id}" name="priotity" class="tk-input tk-select">
-                                <option value="basse" ${t.priorite === 'basse' ? 'selected' : ''}>Basse</option>
-                                <option value="normale" ${t.priorite === 'normale' ? 'selected' : ''}>Normale</option>
-                                <option value="haute" ${t.priorite === 'haute' ? 'selected' : ''}>Haute</option>
-                                <option value="critique" ${t.priorite === 'critique' ? 'selected' : ''}>Critique</option>
+                                <option value="basse" ${t.priorite === 'basse' ? 'selected' : ''}>${__t('low')}</option>
+                                <option value="normale" ${t.priorite === 'normale' ? 'selected' : ''}>${__t('normal')}</option>
+                                <option value="haute" ${t.priorite === 'haute' ? 'selected' : ''}>${__t('high')}</option>
+                                <option value="critique" ${t.priorite === 'critique' ? 'selected' : ''}>${__t('critical')}</option>
                             </select>
                         </div>
 
                         <div class="modal-date-item">
-                            <label class="modal-section-label" for="statut-${t.id}">Statut</label>
+                            <label class="modal-section-label" for="statut-${t.id}">${__t('status')}</label>
                             <select id="statut-${t.id}" name="statut" class="tk-input tk-select">
-                                <option value="en_attente" ${t.statut === 'en_attente' ? 'selected' : ''}>En attente</option>
-                                <option value="en_cours" ${t.statut === 'en_cours' ? 'selected' : ''}>En cours</option>
-                                <option value="en_review" ${t.statut === 'en_review' ? 'selected' : ''}>En review</option>
-                                <option value="termine" ${t.statut === 'termine' ? 'selected' : ''}>Terminé</option>
+                                <option value="en_attente" ${t.statut === 'en_attente' ? 'selected' : ''}>${__t('waiting')}</option>
+                                <option value="en_cours" ${t.statut === 'en_cours' ? 'selected' : ''}>${__t('in progress')}</option>
+                                <option value="en_review" ${t.statut === 'en_review' ? 'selected' : ''}>${__t('in review')}</option>
+                                <option value="termine" ${t.statut === 'termine' ? 'selected' : ''}>${__t('finished')}</option>
                             </select>
                         </div>
                         
                         <div class="modal-date-item">
-                            <label class="modal-section-label" for="date_fin-${t.id}"><i class="ti ti-calendar-due"></i> Fin</label>
+                            <label class="modal-section-label" for="date_fin-${t.id}"><i class="ti ti-calendar-due"></i>${__t('end')}</label>
                             <input type="datetime-local" id="date_fin-${t.id}" name="date_fin" class="tk-input" value="${formatForInput(t.date_fin)}">
                         </div>
                         
@@ -497,8 +496,8 @@ function renderProjectTasks(data) {
                 </div>
                 
                 <div class="modal-footer tk-footer-actions">
-                    <button type="button" class="tk-btn-cancel" onclick="closeModal('modal-task-modify-${t.id}')">Annuler</button>
-                    <button type="submit" class="tk-btn-save"><i class="ti ti-device-floppy"></i>Sauvegarder</button>
+                    <button type="button" class="tk-btn-cancel" onclick="closeModal('modal-task-modify-${t.id}')">${__t('cancel')}</button>
+                    <button type="submit" class="tk-btn-save"><i class="ti ti-device-floppy"></i>${__t('save')}</button>
                 </div>
             </form>
         </div>

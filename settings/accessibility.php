@@ -19,7 +19,7 @@
                 <div class="tog-dot"></div>
                 <div class="tog-dot"></div>
             </div>
-            <span class="demo-caption" id="wait">Nous préparons vos paramètres d’accessibilité... pour une expérience adaptée à vos besoins.</span>
+            <span class="demo-caption" id="wait"><?= __tphp('we are preparing your accessibility settings... for an experience tailored to your needs') ?>.</span>
         </div>
     </div>
 </article>

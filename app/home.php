@@ -1,5 +1,6 @@
 <?php
 require_once __DIR__  . '/../includes/Session.php';
+require_once __DIR__  . '/../config/lang_php.php';
 Session::start();
 Session::requireLogin();
 $tab = $_GET['tab'] ?? 'dashboard';
@@ -34,10 +35,10 @@ $tab = $_GET['tab'] ?? 'dashboard';
      require_once __DIR__ . '/../includes/nonConnecterSection.php';
    }else{
     switch($tab) {
-        case 'myprojects':     require 'mesProjet.php'; break;
-        case 'contributions': require 'contributions.php'; break;
-        case 'mytasks':      require 'taches.php'; break;
-        default:            require 'dashboard.php'; break;
+        case 'myprojects':     require '../pages/mesProjet.php'; break;
+        case 'contributions': require '../pages/contributions.php'; break;
+        case 'mytasks':      require '../pages/taches.php'; break;
+        default:            require '../pages/dashboard.php'; break;
     }
   } ?>
 </main>
@@ -51,6 +52,7 @@ $tab = $_GET['tab'] ?? 'dashboard';
 <script src="../assets/script/renderers/dashboardRenderer.js"></script>
 <script src="../assets/script/renderers/myprojectRenderer.js"></script>
 <script src="../assets/script/renderers/contributionRenderer.js"></script>
+<script src="../config/lang_js.php"></script>
 <div id="toast-container" class="toast-container"></div><!--zone notif-->
 </body>
 </html>

@@ -19,7 +19,7 @@
                 <div class="tog-dot"></div>
                 <div class="tog-dot"></div>
             </div>
-            <span class="demo-caption" id="wait">Nous préparons les informations de l’application... les coulisses se dévoilent.</span>
+            <span class="demo-caption" id="wait"><?= __tphp('we are preparing the app information... a behind-the-scenes look is being revealed') ?>.</span>
         </div>
     </div>
 </article>

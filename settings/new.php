@@ -19,7 +19,7 @@
                 <div class="tog-dot"></div>
                 <div class="tog-dot"></div>
             </div>
-            <span class="demo-caption" id="wait">Nous rassemblons les nouveautés... spoilers imminents.</span>
+            <span class="demo-caption" id="wait"><?= __tphp("we're rounding up the latest news... spoilers ahead") ?>.</span>
         </div>
     </div>
 </article>

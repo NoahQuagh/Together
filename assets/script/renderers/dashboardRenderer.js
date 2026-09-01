@@ -11,7 +11,7 @@ function renderDashboard(data){
     
     <div class="dash-kpi-info">
     <span class="dash-kpi-value" id="kpi-tasks-today">${data.tasks_today.length}</span>
-    <span class="dash-kpi-label">Tâches à faire</span>
+    <span class="dash-kpi-label">${__t('tasks to do')}</span>
 </div>
 </div>
 
@@ -21,7 +21,7 @@ function renderDashboard(data){
     </div>
     <div class="dash-kpi-info">
         <span class="dash-kpi-value" id="kpi-tasks-late">${data.tasks_late.length}</span>
-        <span class="dash-kpi-label">Tâches en retard</span>
+        <span class="dash-kpi-label">${__t('overdue tasks')}</span>
     </div>
 </div>
 
@@ -31,7 +31,7 @@ function renderDashboard(data){
     </div>
     <div class="dash-kpi-info">
         <span class="dash-kpi-value" id="kpi-tasks-done">${data.nb_done_month}</span>
-        <span class="dash-kpi-label">Terminées ce mois</span>
+        <span class="dash-kpi-label">${__t('completed this month')}</span>
     </div>
 </div>
 
@@ -41,7 +41,7 @@ function renderDashboard(data){
     </div>
     <div class="dash-kpi-info">
         <span class="dash-kpi-value" id="kpi-projects-on">${data.project_on.length}</span>
-        <span class="dash-kpi-label">Projets actifs</span>
+        <span class="dash-kpi-label">${__t('active projects')}</span>
     </div>
 </div>
 
@@ -76,11 +76,11 @@ function formatDate(dateStr) {
 
 function renderTasksToday(tasks){
     if (tasks.length === 0) {
-        return `<p class="dash-empty"><i class="ti ti-coffee"></i>Aucune tâche attribuée. C'est officiellement l'heure de la pause café.</p>`;
+        return `<p class="dash-empty"><i class="ti ti-coffee"></i>${__t("no tasks assigned. It's officially coffee break time")}.</p>`;
     }
     return`
     <div class="dash-block-header bleu">
-            <h3><i class="ti ti-checklist" aria-hidden="true"></i> Mes tâches</h3>
+            <h3><i class="ti ti-checklist" aria-hidden="true"></i>${__t('my tasks')}</h3>
             <span class="dash-block-count">${tasks.length}</span>
         </div>
         
@@ -102,11 +102,11 @@ function renderTasksToday(tasks){
 
 function renderTasksLate(tasks){
     if (tasks.length === 0) {
-        return `<p class="dash-empty"><i class="ti ti-confetti"></i>Youpi ! Aucune tâche en retard.</p>`;
+        return `<p class="dash-empty"><i class="ti ti-confetti"></i>${__t('no overdue tasks')}.</p>`;
 
     }
     return`<div class="dash-block-header rouge">
-            <h3><i class="ti ti-alert-triangle" aria-hidden="true"></i> En retard</h3>
+            <h3><i class="ti ti-alert-triangle" aria-hidden="true"></i>${__t('late')}</h3>
             <span class="dash-block-count dash-block-count--red">${tasks.length}</span>
         </div>
         
@@ -128,10 +128,10 @@ function renderTasksLate(tasks){
 
 function renderSprints(sprints){
     if (sprints.length === 0) {
-        return `<p class="dash-empty">Aucun sprint actif en ce moment.</p>`;
+        return `<p class="dash-empty">${__t('no active sprint at the moment')}.</p>`;
     }
     return `<div class="dash-block-header gris">
-            <h3><i class="ti ti-run" aria-hidden="true"></i> Sprints en cours</h3>
+            <h3><i class="ti ti-run" aria-hidden="true"></i>${__t('sprints in progress')}</h3>
             <span class="dash-block-count">${sprints.length}</span>
         </div>
 
@@ -143,7 +143,7 @@ function renderSprints(sprints){
                     </div>
                     <div class="dash-task-meta">
                         <span><i class="ti ti-folder"></i> ${escapeHtml(s.projet)}</span>
-                        <span><i class="ti ti-calendar"></i> Fin : ${formatDate(s.deadline)}</span>
+                        <span><i class="ti ti-calendar"></i>${__t('end')} : ${formatDate(s.deadline)}</span>
                     </div>
                 </li>
             `).join('')}
@@ -152,10 +152,10 @@ function renderSprints(sprints){
 
 function renderProjects(projects){
     if (projects.length === 0) {
-        return `<p class="dash-empty">Vous ne participez à aucun projet actif.</p>`;
+        return `<p class="dash-empty">${__t('you are not participating in any active projects')}.</p>`;
     }
     return `<div class="dash-block-header jaune">
-            <h3><i class="ti ti-folder" aria-hidden="true"></i> Projets actifs</h3>
+            <h3><i class="ti ti-folder" aria-hidden="true"></i>${__t('active projects')}</h3>
             <span class="dash-block-count">${projects.length}</span>
         </div>
 
@@ -171,10 +171,10 @@ function renderProjects(projects){
 
 function renderActivities(activities){
     if (activities.length === 0) {
-        return `<p class="dash-empty">Aucune activité récente sur vos projets.</p>`;
+        return `<p class="dash-empty">${__t('no recent activity on your projects')}.</p>`;
     }
     return `<div class="dash-block-header vert">
-            <h3><i class="ti ti-activity" aria-hidden="true"></i> Activité récente</h3>
+            <h3><i class="ti ti-activity" aria-hidden="true"></i>${__t('recent activity')}</h3>
         </div>
 
         <ul class="dash-activity-list">

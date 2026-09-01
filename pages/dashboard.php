@@ -1,5 +1,6 @@
 <article class="dash-page">
   <div id="dashboard-container">
+
     <div class="demo-item">
       <div class="tog-spinner">
         <div class="tog-bg"></div>
@@ -19,30 +20,29 @@
         <div class="tog-dot"></div>
         <div class="tog-dot"></div>
       </div>
-      <span class="demo-caption">Nous compilons les projets auxquels vous contribuez... café compris, mais pas comptabilisé.</span>
+      <span class="demo-caption" id="wait"><?= __tphp('we’re looking for where you were most productive… coffee breaks don’t count, of course') ?>.</span>
     </div>
+
   </div>
 </article>
 
 <script>
     document.addEventListener("DOMContentLoaded", function() {
-        fetch('../api/loader/loadMyContributions.php')
+        fetch('../api/loader/loadDashBoardData.php')
             .then(res => res.json())
             .then(res => {
                 if (!res.success) {
-                    console.error(res.message);
-                    return;
+                    throw new Error(res.message);
                 }
-                renderMyContributions(res.data);
+                renderDashboard(res.data);
             })
             .catch(error => {
-                console.error('Erreur:', error);
                 const container = document.getElementById('dashboard-container');
                 if (container) {
                     container.innerHTML = `
                         <div class="dash-error-msg">
                             <i class="ti ti-face-id-error"></i>
-                            <p>Oups ! Une erreur est survenue lors du chargement de vos contributions.</p>
+                            <p>${__t('an error occurred while loading the dashboard data')}.</p>
                         </div>
                     `;
                 }

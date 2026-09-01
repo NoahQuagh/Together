@@ -17,10 +17,10 @@ function updateStrength(v) {
     if (/[^A-Za-z0-9]/.test(v))  s++;
     const cfg = [
         { w:'0%',   cls:'',        txt:'' },
-        { w:'25%',  cls:'str--1',  txt:'Faible' },
-        { w:'50%',  cls:'str--2',  txt:'Correct' },
-        { w:'75%',  cls:'str--3',  txt:'Bon' },
-        { w:'100%', cls:'str--4',  txt:'Excellent' },
+        { w:'25%',  cls:'str--1',  txt:__t('weak') },
+        { w:'50%',  cls:'str--2',  txt:__t('correct') },
+        { w:'75%',  cls:'str--3',  txt:__t('good') },
+        { w:'100%', cls:'str--4',  txt:__t('excellent') },
     ];
     bar.style.width  = cfg[s].w;
     bar.className    = 'str-bar ' + cfg[s].cls;

@@ -19,7 +19,7 @@
                 <div class="tog-dot"></div>
                 <div class="tog-dot"></div>
             </div>
-            <span class="demo-caption" id="wait">Nous préparons vos intégrations... connexion en cours avec vos outils préférés.</span>
+            <span class="demo-caption" id="wait"><?= __tphp('we are preparing your integrations... connecting to your favorite tools') ?>.</span>
         </div>
     </div>
 </article>

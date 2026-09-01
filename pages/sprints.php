@@ -17,28 +17,26 @@
         <div class="tog-dot"></div>
         <div class="tog-dot"></div>
     </div>
-    <span class="demo-caption" id="wait">Nous recherchons votre projet.</span>
+    <span class="demo-caption" id="wait"><?= __tphp('loading') ?>.</span>
 </div>
 <script>document.addEventListener("DOMContentLoaded", function() {
         const urlParams = new URLSearchParams(window.location.search);
         const projectUuid = urlParams.get('key');
-        fetch(`../../../api/loader/loadProject.php?project=${encodeURIComponent(projectUuid)}`)
+        fetch(`../api/loader/loadProject.php?project=${encodeURIComponent(projectUuid)}`)
             .then(res => res.json())
             .then(res => {
                 if (!res.success) {
-                    console.error(res.message);
-                    return;
+                    throw new Error(res.message);
                 }
                 renderProjectSprints(res.data);
             })
             .catch(error => {
-                console.error('Erreur:', error);
                 const container = document.getElementById('main-zone');
                 if (container) {
                     container.innerHTML = `
                         <div class="dash-error-msg">
                             <i class="ti ti-face-id-error"></i>
-                            <p>Oups ! Une erreur est survenue lors du chargement des données du tableau de bord.</p>
+                            <p>${__t('an error occurred while loading the data')}.</p>
                         </div>
                     `;
                 }

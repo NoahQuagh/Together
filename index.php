@@ -1,3 +1,6 @@
+<?php
+require_once __DIR__ . '/config/lang_php.php';
+?>
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -17,21 +20,19 @@
     <div class="landing-hero-content">
 
         <div class="landing-badge">
-            v1.0 — bêta
+          <?= __tphp('version') ?>
         </div>
 
-        <h1 class="landing-title">Together</h1>
+        <h1 class="landing-title"><?= __tphp('appName') ?></h1>
 
-        <p class="landing-slogan">Organisez, collaborez, livrez — ensemble.</p>
+        <p class="landing-slogan"><?= __tphp('slogan2') ?>.</p>
 
         <p class="landing-desc">
-            Together est l'application de gestion de projet pensée pour les équipes qui veulent
-            avancer vite sans perdre en clarté. Tâches, sprints, calendrier et statistiques,
-            tout au même endroit.
+          <?= __tphp('appDescription') ?>.
         </p>
 
         <button class="landing-cta" onclick="window.location.href='auth/login.php'">
-            Commencer maintenant
+          <?= __tphp('start now') ?>
             <i class="ti ti-arrow-right" aria-hidden="true"></i>
         </button>
 

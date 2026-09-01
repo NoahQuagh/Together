@@ -5,10 +5,10 @@ function renderMyProject(data){
     document.getElementById('dashboard-container').innerHTML = `<div class="proj-page">
 
   <div class="proj-filters">
-    <button class="proj-filter-btn active" data-filter="tout"><i class="ti ti-layout-grid"></i>Tout</button>
-    <button class="proj-filter-btn" data-filter="actif"><i class="ti ti-activity"></i>Actif</button>
-    <button class="proj-filter-btn" data-filter="pause"><i class="ti ti-player-pause"></i>Pause</button>
-    <button class="proj-filter-btn" data-filter="termine"><i class="ti ti-check"></i>Terminé</button>
+    <button class="proj-filter-btn active" data-filter="tout"><i class="ti ti-layout-grid"></i>${__t('all')}</button>
+    <button class="proj-filter-btn" data-filter="actif"><i class="ti ti-activity"></i>${__t('active')}</button>
+    <button class="proj-filter-btn" data-filter="pause"><i class="ti ti-player-pause"></i>${__t('paused')}</button>
+    <button class="proj-filter-btn" data-filter="termine"><i class="ti ti-check"></i>${__t('finished')}</button>
   </div>
 
   ${projectExist(data.length)}
@@ -21,7 +21,7 @@ function renderMyProject(data){
 
     <div class="dash-empty proj-empty-filtered" id="emptyFiltered" style="display:none;">
       <i class="ti ti-filter-off" aria-hidden="true"></i>
-      <p>Aucun projet ne correspond à ce filtre.</p>
+      <p>${__t('no projects match this filter')}.</p>
     </div>
 
 </div>`;
@@ -32,11 +32,11 @@ function projectExist(l){
     if(l===0){
         return `<div class="dash-empty proj-empty-global">
       <i class="ti ti-folder-off" aria-hidden="true"></i>
-      <p>Vous n'avez encore créé aucun projet.</p>
+      <p>${__t("You haven't created any projects yet")}.</p>
       <div>
-        <button class="proj-create-btn" onclick="window.location.href='../../../project/project_create.php'">
+        <button class="proj-create-btn" onclick="window.location.href='../../../pages/project_create.php'">
           <i class="ti ti-plus"></i>
-          Créer mon premier projet
+          ${__t('create my first project')}
         </button>
       </div>
     </div>`;
@@ -72,7 +72,7 @@ function projectRenderer(project){
             <!-- Éditer -->
             <button class="option-btn option-vert btn-edit"
                     data-id="${escapeHtml(project.project_id)}"
-                    title="Modifier le projet">
+                    title="${__t('modify the project')}">
               <i class="ti ti-pencil"></i>
             </button>
 
@@ -80,21 +80,21 @@ function projectRenderer(project){
             <div class="more-wrapper">
               <button class="option-btn option-blanc btn-more"
                       data-id="${escapeHtml(project.project_id)}"
-                      title="Changer le statut">
+                      title="${__t('change status')}">
                 <i class="ti ti-dots"></i>
               </button>
               
               <div class="more-dropdown">
                 <a href="#" class="more-dropdown-item" data-statut="actif">
-                  <i class="ti ti-activity"></i>Actif
+                  <i class="ti ti-activity"></i>${__t('active')}
                 </a>
                 
                 <a href="#" class="more-dropdown-item" data-statut="pause">
-                  <i class="ti ti-player-pause"></i>Pause
+                  <i class="ti ti-player-pause"></i>${__t('paused')}
                 </a>
                 
                 <a href="#" class="more-dropdown-item" data-statut="termine">
-                  <i class="ti ti-check"></i>Terminé
+                  <i class="ti ti-check"></i>${__t('finished')}
                 </a>
               </div>
             </div>
@@ -103,7 +103,7 @@ function projectRenderer(project){
             <button class="option-btn option-red btn-delete"
                     data-id="${escapeHtml(project.project_id)}"
                     data-nom="${escapeHtml(project.project_nom)}"
-                    title="Supprimer le projet"
+                    title="${__t('delete the project')}"
                     onclick="preparerSuppression(${escapeHtml(project.project_id)}, this)">
               <i class="ti ti-trash"></i>
             </button>

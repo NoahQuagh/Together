@@ -19,7 +19,7 @@
                 <div class="tog-dot"></div>
                 <div class="tog-dot"></div>
             </div>
-            <span class="demo-caption" id="wait">Nous préparons vos notifications... aucune alerte ne nous échappe.</span>
+            <span class="demo-caption" id="wait"><?= __tphp('we are preparing your notifications... nothing escapes our alerts') ?>.</span>
         </div>
     </div>
 </article>

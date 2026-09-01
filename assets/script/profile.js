@@ -6,10 +6,10 @@ function supCompte(){
         .then(r => r.json())
         .then(data => {
             if (!data.success) {
-                showToast("Action impossible", 'error');
+                showToast(__t('impossible action'), 'error');
                 return;
             }else{
                 window.location.href='../auth/login.php';
             }
-        }).catch(() => showToast("Action impossible", 'error'));
+        }).catch(() => showToast(__t('impossible action'), 'error'));
 }

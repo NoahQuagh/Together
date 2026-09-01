@@ -19,7 +19,7 @@
                 <div class="tog-dot"></div>
                 <div class="tog-dot"></div>
             </div>
-            <span class="demo-caption" id="wait">Nous chargeons l’aide et la documentation... nous avons toutes les réponses.</span>
+            <span class="demo-caption" id="wait"><?= __tphp('we are loading the help and documentation... we have all the answers') ?>.</span>
         </div>
     </div>
 </article>

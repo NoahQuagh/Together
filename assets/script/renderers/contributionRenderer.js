@@ -2,10 +2,10 @@ function renderMyContributions(data){
     document.getElementById('dashboard-container').innerHTML = `<div class="proj-page">
 
   <div class="proj-filters">
-    <button class="proj-filter-btn active" data-filter="tout"><i class="ti ti-layout-grid"></i>Tout</button>
-    <button class="proj-filter-btn" data-filter="actif"><i class="ti ti-activity"></i>Actif</button>
-    <button class="proj-filter-btn" data-filter="pause"><i class="ti ti-player-pause"></i>Pause</button>
-    <button class="proj-filter-btn" data-filter="termine"><i class="ti ti-check"></i>Terminé</button>
+    <button class="proj-filter-btn active" data-filter="tout"><i class="ti ti-layout-grid"></i>${__t('all')}</button>
+    <button class="proj-filter-btn" data-filter="actif"><i class="ti ti-activity"></i>${__t('active')}</button>
+    <button class="proj-filter-btn" data-filter="pause"><i class="ti ti-player-pause"></i>${__t('paused')}</button>
+    <button class="proj-filter-btn" data-filter="termine"><i class="ti ti-check"></i>${__t('finished')}</button>
   </div>
 
   ${projectExist(data.length)}
@@ -18,7 +18,7 @@ function renderMyContributions(data){
 
     <div class="dash-empty proj-empty-filtered" id="emptyFiltered" style="display:none;">
       <i class="ti ti-filter-off" aria-hidden="true"></i>
-      <p>Aucun projet ne correspond à ce filtre.</p>
+      <p>${__t('no projects match this filter')}.</p>
     </div>
 
 </div>`;
@@ -28,7 +28,7 @@ function projectExist(l){
     if(l===0){
         return `<div class="dash-empty proj-empty-global">
       <i class="ti ti-folder-off" aria-hidden="true"></i>
-      <p>Vous n'avez encore aucune contribution.</p>
+      <p>${__t("you don't have any contributions yet")}.</p>
     </div>`;
     }else{
         return '';
@@ -62,7 +62,7 @@ function contributionRenderer(project){
             <button class="option-btn option-red btn-delete"
                     data-id="${escapeHtml(project.project_id)}"
                     data-nom="${escapeHtml(project.project_nom)}"
-                    title="Quitter le projet"
+                    title="${__t('leave the project')}"
                     onclick="preparerSortie(${escapeHtml(project.project_id)}, this)">
               <i class="ti ti-door-exit"></i>
             </button>

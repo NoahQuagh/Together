@@ -19,6 +19,7 @@ class Session {
             'id'       => $user['id'],
             'nom'      => $user['nom'],
             'role'     => $user['role'],
+            'lang'     => $user['lang'],
         ];
         $_SESSION['connecte'] = true;
         $_SESSION['login_at'] = time();
@@ -47,7 +48,7 @@ class Session {
     public static function requireRole(string $role): void {
         self::requireLogin();
         if (self::get('role') !== $role) {
-            header('Location: /together/project.php?error=acces_refuse');
+            header('Location: /together/pages.php?error=acces_refuse');
             exit;
         }
     }
@@ -74,6 +75,10 @@ class Session {
 
     public static function role(): ?string {
         return self::get('role');
+    }
+
+    public static function lang(): ?string {
+        return self::get('lang');
     }
 
     // FLASH MESSAGES
