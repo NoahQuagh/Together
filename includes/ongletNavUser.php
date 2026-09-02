@@ -1,5 +1,4 @@
 <?php
-require_once __DIR__ . '/../api/loader/loadUserInfo.php';
 ?>
 <?php if(Session::estConnecte()): ?>
 

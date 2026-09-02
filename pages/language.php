@@ -19,11 +19,24 @@
                 <div class="tog-dot"></div>
                 <div class="tog-dot"></div>
             </div>
-            <span class="demo-caption" id="wait"><?= __tphp('we are preparing your notifications... nothing escapes our alerts') ?>.</span>
+            <span class="demo-caption" id="wait"><?= __tphp('we are setting up your language... bonjour, hello, hola') ?>.</span>
         </div>
     </div>
 </article>
 
 <script>
-
+    document.addEventListener("DOMContentLoaded", function() {
+        fetch('../api/loader/loadPreference.php')
+            .then(res => res.json())
+            .then(res => {
+                if (!res.success) {
+                    throw new Error(res.message);
+                }else{
+                    renderLanguage(res);
+                }
+            })
+            .catch(error => {
+                renderLanguage({});
+            });
+    });
 </script>

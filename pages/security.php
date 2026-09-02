@@ -1,30 +1,26 @@
-<?php
-//TODO a refaire
-?>
 <div class="profile-page">
-  <!-- ── Formulaire changement de mot de passe ── -->
   <div class="profile-block">
     <div class="profile-block-header">
-      <h3><i class="ti ti-lock" aria-hidden="true"></i> Changer le mot de passe</h3>
+      <h3><i class="ti ti-lock" aria-hidden="true"></i><?= __tphp('change password') ?></h3>
     </div>
 
-    <form class="profile-form" method="POST" action="../updater/updatePassword.php">
+    <form class="profile-form" method="POST" action="../api/updater/updatePassword.php">
 
       <div class="profile-field">
-        <label for="mdp-actuel">Mot de passe actuel</label>
+        <label for="mdp-actuel"><?= __tphp('current password') ?></label>
         <input type="password" id="mdp-actuel" name="mdp_actuel"
                placeholder="••••••••" autocomplete="current-password" required>
       </div>
 
       <div class="profile-row-2">
         <div class="profile-field">
-          <label for="mdp-nouveau">Nouveau mot de passe</label>
+          <label for="mdp-nouveau"><?= __tphp('new password') ?></label>
           <input type="password" id="mdp-nouveau" name="mdp_nouveau"
-                 placeholder="8 caractères minimum" autocomplete="new-password"
+                 placeholder=<?= __tphp('minimum of 8 characters') ?> autocomplete="new-password"
                  minlength="8" required>
         </div>
         <div class="profile-field">
-          <label for="mdp-confirm">Confirmer</label>
+          <label for="mdp-confirm"><?= __tphp('confirm') ?></label>
           <input type="password" id="mdp-confirm" name="mdp_confirm"
                  placeholder="••••••••" autocomplete="new-password" required>
         </div>
@@ -32,24 +28,23 @@
 
       <button type="submit" class="profile-btn-save">
         <i class="ti ti-key" aria-hidden="true"></i>
-        Mettre à jour le mot de passe
+        <?= __tphp('update password') ?>
       </button>
 
     </form>
   </div>
 
-  <!-- ── Zone danger ── -->
   <div class="profile-block profile-block--danger">
     <div class="profile-block-header deleteacnt">
-      <h3><i class="ti ti-alert-triangle" aria-hidden="true"></i> Zone sensible</h3>
+      <h3><i class="ti ti-alert-triangle" aria-hidden="true"></i><?= __tphp('sensitive area') ?></h3>
     </div>
     <div class="profile-danger-row">
       <div class="profile-danger-text">
-        <span class="profile-danger-title">Supprimer mon compte</span>
-        <span class="profile-danger-desc">Cette action est irréversible. Tous vos projets et données seront supprimés définitivement.</span>
+        <span class="profile-danger-title"><?= __tphp('delete my account') ?></span>
+        <span class="profile-danger-desc"><?= __tphp('this action is irreversible. all your projects and data will be permanently deleted') ?>.</span>
       </div>
       <button type="button" class="profile-btn-danger" id="deleteAccountBtn" onclick="openModal('supCompte')">
-        Supprimer mon compte
+        <?= __tphp('delete my account') ?>
       </button>
     </div>
   </div>

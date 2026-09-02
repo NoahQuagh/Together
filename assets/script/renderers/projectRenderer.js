@@ -272,14 +272,14 @@ function renderProjectTasks(data) {
                             </button>
                             <div id="dropdown-task-${t.id}" class="tk-dropdown-menu">
                                 <button type="button" onclick="openModal('modal-task-modify-${t.id}')">
-                                    <i class="ti ti-pencil"></i> Modifier
+                                    <i class="ti ti-pencil"></i> ${__t('edit')}
                                 </button>
                                 <button type="button" onclick="duplicateTask('${t.id}')">
-                                    <i class="ti ti-copy"></i> Dupliquer
+                                    <i class="ti ti-copy"></i> ${__t('duplicate')}
                                 </button>
                                 <div class="dropdown-divider"></div>
                                 <button type="button" class="danger" onclick="deleteTask('${t.id}')">
-                                    <i class="ti ti-trash"></i> Supprimer
+                                    <i class="ti ti-trash"></i> ${__t('delete')}
                                 </button>
                             </div>
                         </div>
@@ -385,7 +385,7 @@ function renderProjectTasks(data) {
                             <span class="tk-date-modal">${t.date_debut ? formatDate(t.date_debut.split(' ')[0]) : __t("not specified")} à ${t.date_debut && t.date_debut.split(' ')[1] ? t.date_debut.split(' ')[1].slice(0, 5) : ''}</span>
                         </div>
                         <div class="modal-date-item">
-                            <span class="modal-section-label"><i class="ti ti-calendar-due"></i> Fin</span>
+                            <span class="modal-section-label"><i class="ti ti-calendar-due"></i>${__t('end')}</span>
                             <span class="tk-date-modal">${t.date_fin ? formatDate(t.date_debut.split(' ')[0]) : __t("not specified")} à ${t.date_fin && t.date_fin.split(' ')[1] ? t.date_fin.split(' ')[1].slice(0, 5) : ''}</span>
                         </div>
                         <div class="modal-date-item">

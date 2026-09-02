@@ -1,8 +1,9 @@
 <?php
 require_once __DIR__ . '/../includes/Session.php';
-require_once __DIR__ . '/../config/lang_php.php';
+
 Session::start();
 Session::requireLogin();
+require_once __DIR__ . '/../config/lang_php.php';
 $tab = $_GET['tab'] ?? 'dashboard';
 ?>
 <!DOCTYPE html>
@@ -85,31 +86,45 @@ $tab = $_GET['tab'] ?? 'dashboard';
     </div>
 
   </div>
-  <?php if(!Session::estConnecte()){
-    require_once __DIR__ . '/../includes/nonConnecterSection.php';
-  }else{
-    switch($tab) {
-      case 'security':     require '../settings/security.php'; break;
-      case 'notifications':     require '../settings/notificationsAcnt.php'; break;
-      case 'preference':     require '../settings/appearance.php'; break;
-      case 'language':     require '../settings/language.php'; break;
-      case 'accessibility':     require '../settings/accessibility.php'; break;
-      case 'new':     require '../settings/new.php'; break;
-      case 'help':     require '../settings/help.php'; break;
-      case 'about':     require '../settings/about.php'; break;
-      case 'integrations':     require '../settings/integrations.php'; break;
-      default:            require '../settings/acnt.php'; break;
-    }
-  } ?>
+  <div id="setting-zone">
+    <?php if(!Session::estConnecte()){
+      require_once __DIR__ . '/../includes/nonConnecterSection.php';
+    }else{
+      switch($tab) {
+        case 'security':     require '../pages/security.php'; break;
+        case 'notifications':     require '../pages/notificationsAcnt.php'; break;
+        case 'preference':     require '../pages/appearance.php'; break;
+        case 'language':     require '../pages/language.php'; break;
+        case 'accessibility':     require '../pages/accessibility.php'; break;
+        case 'new':     require '../pages/new.php'; break;
+        case 'help':     require '../pages/help.php'; break;
+        case 'about':     require '../pages/about.php'; break;
+        case 'integrations':     require '../pages/integrations.php'; break;
+        default:            require '../pages/acnt.php'; break;
+      }
+    } ?>
+  </div>
 </main>
 
 <?php require_once __DIR__ . "/../includes/footer.php" ?>
 
+<script>
+    window.translations = <?= json_encode($translations ?? [], JSON_UNESCAPED_UNICODE); ?>;
+
+    window.__t = function(key) {
+        if (window.translations && window.translations[key]) {
+            return window.translations[key];
+        }
+        return key;
+    };
+</script>
 <script src="../assets/script/navbar+sidebar.js"></script>
 <script src="../assets/script/profile.js"></script>
 <script src="../assets/script/toast-notification.js"></script>
 <script src="../assets/script/modal-dialog.js"></script>
-<script src="../config/lang_js.php"></script>
+<script src="../assets/script/renderers/preferenceRenderer.js"></script>
+<script src="../assets/script/renderers/profileRenderer.js"></script>
+<script src="../assets/script/renderers/securityRenderer.js"></script>
 <div id="toast-container" class="toast-container"></div>
 </body>
 </html>

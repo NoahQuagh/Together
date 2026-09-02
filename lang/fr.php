@@ -216,14 +216,34 @@ return [
                                                                                                    avancer vite sans perdre en clarté. Tâches, sprints, calendrier et statistiques,
                                                                                                    tout au même endroit",
     'start now'                                                                                    => 'Commencer maintenant',
-
-
-
-
-
-
-
-
+    'email notifications'                                                                          => 'Notifications par e-mail',
+    'receive a summary by email'                                                                   => 'Recevoir un récapitulatif par e-mail',
+    'mentions'                                                                                     => 'Mentions',
+    'get notified when someone mentions you'                                                       => "Être notifié quand quelqu'un vous mentionne",
+    'assignments'                                                                                  => 'Assignations',
+    'get notified when a task is assigned to you'                                                  => 'Être notifié quand une tâche vous est assignée',
+    'comments'                                                                                     => 'Commentaires',
+    'get notified of new comments on your tasks'                                                   => 'Être notifié des nouveaux commentaires sur vos tâches',
+    'sombre'                                                                                       => 'Sombre',
+    'clair'                                                                                        => 'Clair',
+    'systeme'                                                                                      => 'Système',
+    'appearance'                                                                                   => 'Apparence',
+    'interface theme'                                                                              => "Thème de l'interface",
+    'interface language'                                                                           => "Langue de l'interface",
+    'admin'                                                                                        => 'Admin',
+    'membre'                                                                                       => 'Membre',
+    'archiver'                                                                                     => 'Archiver',
+    'member since'                                                                                 => 'Membre depuis le',
+    'personal information'                                                                         => 'Informations personnelles',
+    'change password'                                                                              => 'Changer le mot de passe',
+    'current password'                                                                             => 'Mot de passe actuel',
+    'new password'                                                                                 => 'Nouveau mot de passe',
+    'minimum of 8 characters'                                                                      => '8-caractères-minimum',
+    'update password'                                                                              => 'Mettre à jour le mot de passe',
+    'sensitive area'                                                                               => 'Zone sensible',
+    'delete my account'                                                                            => 'Supprimer mon compte',
+    'this action is irreversible. all your projects and data will be permanently deleted'          => 'Cette action est irréversible. Tous vos projets et données seront supprimés définitivement',
+    'duplicate'                                                                                    => 'Dupliquer',
 ];
 //${__t('')}
 //<?= __tphp('') ?>

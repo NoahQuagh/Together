@@ -1,8 +1,8 @@
 <?php
 require_once __DIR__  . '/../includes/Session.php';
-require_once __DIR__  . '/../config/lang_php.php';
 Session::start();
 Session::requireLogin();
+require_once __DIR__  . '/../config/lang_php.php';
 $tab = $_GET['tab'] ?? 'dashboard';
 ?>
 <!DOCTYPE html>
@@ -44,7 +44,16 @@ $tab = $_GET['tab'] ?? 'dashboard';
 </main>
 
 <?php require_once __DIR__."/../includes/footer.php" ?>
+<script>
+    window.translations = <?= json_encode($translations ?? [], JSON_UNESCAPED_UNICODE); ?>;
 
+    window.__t = function(key) {
+        if (window.translations && window.translations[key]) {
+            return window.translations[key];
+        }
+        return key;
+    };
+</script>
 <script src="../assets/script/navbar+sidebar.js"></script>
 <script src="../assets/script/myproject.js"></script>
 <script src="../assets/script/toast-notification.js"></script>
@@ -52,7 +61,6 @@ $tab = $_GET['tab'] ?? 'dashboard';
 <script src="../assets/script/renderers/dashboardRenderer.js"></script>
 <script src="../assets/script/renderers/myprojectRenderer.js"></script>
 <script src="../assets/script/renderers/contributionRenderer.js"></script>
-<script src="../config/lang_js.php"></script>
 <div id="toast-container" class="toast-container"></div><!--zone notif-->
 </body>
 </html>

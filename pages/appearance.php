@@ -19,36 +19,24 @@
                 <div class="tog-dot"></div>
                 <div class="tog-dot"></div>
             </div>
-            <span class="demo-caption" id="wait"><?= __tphp('loading your profile... we are verifying your identity') ?>.</span>
+            <span class="demo-caption" id="wait"><?= __tphp('we’re loading your preferences... because everyone has their own little habits') ?>.</span>
         </div>
     </div>
 </article>
 
 <script>
     document.addEventListener("DOMContentLoaded", function() {
-        fetch('../api/loadProfile.php')
-            .then(response => {
-                if (!response.ok) {
-                    throw new Error(response.status);
-                }
-                return response.text();
-            })
-            .then(html => {
-                const container = document.getElementById('dashboard-container');
-                if (container) {
-                    container.innerHTML = html;
+        fetch('../api/loader/loadPreference.php')
+            .then(res => res.json())
+            .then(res => {
+                if (!res.success) {
+                    throw new Error(res.message);
+                }else{
+                    renderAppearance(res);
                 }
             })
             .catch(error => {
-                const container = document.getElementById('dashboard-container');
-                if (container) {
-                    container.innerHTML = `
-                        <div class="dash-error-msg">
-                            <i class="ti ti-face-id-error"></i>
-                            <p>${__t('an error occurred while loading your profile')}.</p>
-                        </div>
-                    `;
-                }
+                renderAppearance({});
             });
     });
 </script>

@@ -77,8 +77,23 @@ class Session {
         return self::get('role');
     }
 
-    public static function lang(): ?string {
-        return self::get('lang');
+    public static function init(): void {
+        if (session_status() === PHP_SESSION_NONE) {
+            session_start();
+        }
+    }
+
+    public static function Setlang(string $lang): void {
+        self::init();
+        $clean = preg_replace('/[^a-z]/', '', strtolower($lang));
+        if (!empty($clean)) {
+            $_SESSION['lang'] = $clean;
+        }
+    }
+
+    public static function lang(): string {
+        self::init();
+        return $_SESSION['lang'] ?? 'fr';
     }
 
     // FLASH MESSAGES

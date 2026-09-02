@@ -1,23 +1,17 @@
 body {
-    background: var(--ink2);
-    width: 100%;
+    background: linear-gradient(var(--ink1),var(--ink2));
 }
 
 main{
     min-height: 90vh;
-    display: flex;
-    justify-content: center;
-    width: 100%;
-    background: linear-gradient(var(--ink1),var(--ink2));
+    display: grid;
+    grid-template-columns: 400px 1fr;
+    margin: 0 var(--marge-5xl);
 }
-
-
 
 .dash-page{
     width: 50%;
 }
-
-
 
 .profile-page {
     display: flex;
@@ -30,7 +24,7 @@ main{
     padding: var(--marge-lg);
 }
 
-/* ── En-tête ── */
+/* en-tete */
 .profile-header {
     display: flex;
     align-items: center;
@@ -71,7 +65,7 @@ main{
     font-size: var(--text-xs);
 }
 
-/* ── Stats ── */
+/*Stats */
 .profile-stats-row {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -103,7 +97,7 @@ main{
     text-align: center;
 }
 
-/* ── Alertes ── */
+/* Alertes*/
 .profile-alert {
     display: flex;
     align-items: center;
@@ -126,7 +120,7 @@ main{
     border: 0.5px solid var(--badge-bor-red);
 }
 
-/* ── Blocs ── */
+/*Blocs*/
 .profile-block {
     background: var(--ink);
     border: 0.5px solid var(--ink3);
@@ -158,7 +152,7 @@ main{
     color: var(--auth-error);
 }
 
-/* ── Formulaire ── */
+/* Formulaire*/
 .profile-form {
     display: flex;
     flex-direction: column;
@@ -223,7 +217,7 @@ main{
     opacity: 0.85;
 }
 
-/* ── Zone danger ── */
+/*Zone danger*/
 .profile-block--danger {
     border-color: var(--badge-bor-red);
 }
@@ -284,7 +278,7 @@ main{
     padding: var(--marge-lg);
 }
 
-/* ── Aside ── */
+/*Aside*/
 .profile-aside {
     background: var(--ink);
     border: 0.5px solid var(--ink3);
@@ -357,14 +351,12 @@ main{
     margin: 4px 8px;
 }
 
-/* ── Le contenu principal n'a plus besoin de centrer lui-même ── */
 .profile-layout .profile-page {
     margin: 0;
     max-width: none;
     padding: 0;
 }
 
-/* ── Responsive ── */
 @media (max-width: 900px) {
     .profile-layout {
         grid-template-columns: 1fr;
@@ -408,7 +400,6 @@ main{
     }
 }
 
-/* ── Responsive ── */
 @media (max-width: 600px) {
     .profile-page {
         padding: var(--marge-sm);

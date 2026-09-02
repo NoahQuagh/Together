@@ -1,5 +1,5 @@
 <?php
-
+header('Content-Type: application/json; charset=utf-8');
 try{
   require_once __DIR__ . '/../db.php';
   require_once __DIR__ . '/../../includes/Session.php';
@@ -16,94 +16,27 @@ try{
     WHERE u.use_id = ?
 ');
   $req->execute([Session::id()]);
-  $user = $req->fetch();
+  $user = $req->fetch(PDO::FETCH_ASSOC);
 
-  if (!$user) {
-    echo '<p class="dash-empty">Impossible de charger le profil.</p>';
-    return;
-  }
+  $userData = [
+          'user_id'   => $user['use_id'],
+          'nom'       => $user['use_nom'],
+          'prenom'    => $user['use_prenom'],
+          'email'     => $user['use_email'],
+          'date_crea' => $user['use_created_at'],
+          'role'      => $user['role']
+  ];
 
-  $initiales = strtoupper(loadProfile . phpmb_substr($user['use_prenom'], 0, 1) . mb_substr($user['use_nom'], 0, 1));
+  echo json_encode([
+          'success' => true,
+          'data'    => $userData
+  ]);
+
 }catch (\Throwable $e){
   error_log("[Profile Error] " . $e->getMessage());
-
   http_response_code(500);
-
-  echo "Erreur interne du serveur.";
+  echo json_encode(['success' => false, 'message' => 'Erreur lors de la récupération de votre profile.']);
   exit();
 }
-
 ?>
 
-<div class="profile-page">
-
-  <!-- ── En-tête profil ── -->
-  <div class="profile-header">
-    <div class="profile-avatar"><?= htmlspecialchars($initiales) ?></div>
-    <div class="profile-header-info">
-      <h2><?= htmlspecialchars($user['use_prenom'] . ' ' . $user['use_nom']) ?></h2>
-      <span class="profile-since"><?= htmlspecialchars($user['role']) ?></span>
-      <span class="profile-since">
-                Membre depuis le <?= htmlspecialchars(date('d/m/Y', strtotime($user['use_created_at']))) ?>
-            </span>
-    </div>
-  </div>
-
-  <?php if ($flash_succes): ?>
-    <div class="profile-alert profile-alert--success">
-      <i class="ti ti-circle-check" aria-hidden="true"></i>
-      <?= htmlspecialchars($flash_succes) ?>
-    </div>
-  <?php endif; ?>
-
-  <?php if ($flash_erreur): ?>
-    <div class="profile-alert profile-alert--error">
-      <i class="ti ti-alert-circle" aria-hidden="true"></i>
-      <?= htmlspecialchars($flash_erreur) ?>
-    </div>
-  <?php endif; ?>
-
-  <!-- ── Formulaire infos personnelles ── -->
-  <div class="profile-block">
-    <div class="profile-block-header">
-      <h3><i class="ti ti-user" aria-hidden="true"></i> Informations personnelles</h3>
-    </div>
-
-    <form class="profile-form" method="POST" action="../updater/updateProfile.php">
-
-      <div class="profile-row-2">
-        <div class="profile-field">
-          <label for="prenom">Prénom</label>
-          <input type="text" id="prenom" name="prenom"
-                 value="<?= htmlspecialchars($user['use_prenom']) ?>" required>
-        </div>
-        <div class="profile-field">
-          <label for="nom">Nom</label>
-          <input type="text" id="nom" name="nom"
-                 value="<?= htmlspecialchars($user['use_nom']) ?>" required>
-        </div>
-      </div>
-
-      <div class="profile-field">
-        <label for="email">Adresse e-mail</label>
-        <input type="email" id="email" name="email"
-               value="<?= htmlspecialchars($user['use_email']) ?>" required>
-      </div>
-
-      <button type="submit" class="profile-btn-save">
-        <i class="ti ti-device-floppy" aria-hidden="true"></i>
-        Enregistrer les modifications
-      </button>
-
-    </form>
-  </div>
-
-</div>
-
-<script>
-    document.getElementById('deleteAccountBtn').addEventListener('click', function() {
-        if (confirm('Êtes-vous certain de vouloir supprimer votre compte ? Cette action est irréversible.')) {
-            window.location.href = '../deleter/deleteAccount.php';
-        }
-    });
-</script>

@@ -1,8 +1,9 @@
 <?php
 require_once __DIR__ . '/../includes/Session.php';
-require_once __DIR__  . '/../config/lang_php.php';
+
 Session::start();
 Session::requireLogin();
+require_once __DIR__  . '/../config/lang_php.php';
 $projectId = $_GET['key'] ?? null;
 $tab = $_GET['tab'] ?? 'overview';
 $baseUrl = 'project.php?key=' . htmlspecialchars($projectId);
@@ -63,12 +64,21 @@ require_once __DIR__ . '/../api/loader/loadProjectTitle.php';
 
 <?php require_once __DIR__ . '/../includes/footer.php' ?>
 
+<script>
+    window.translations = <?= json_encode($translations ?? [], JSON_UNESCAPED_UNICODE); ?>;
+
+    window.__t = function(key) {
+        if (window.translations && window.translations[key]) {
+            return window.translations[key];
+        }
+        return key;
+    };
+</script>
 <script src="../assets/script/navbarProject.js"></script>
 <script src="../assets/script/toast-notification.js"></script>
 <script src="../assets/script/modal-dialog.js"></script>
 <script src="../assets/script/renderers/calendarProjectRenderer.js"></script>
 <script src="../assets/script/renderers/projectRenderer.js"></script>
-<script src="../config/lang_js.php"></script>
 <script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.15/index.global.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/frappe-gantt/1.2.2/frappe-gantt.umd.js"></script>
 <div id="toast-container" class="toast-container"></div><!--zone de notif-->
