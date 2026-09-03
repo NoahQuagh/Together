@@ -393,6 +393,9 @@ body{
                 font-weight: 600;
                 color: var(--wh);
                 line-height: 1.4;
+                i{
+                    margin-right: var(--marge-xs);
+                }
             }
         }
 

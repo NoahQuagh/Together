@@ -61,7 +61,7 @@ return [
     'high'                                                                  => 'High',
     'critical'                                                              => 'Critical',
     'status'                                                                => 'Status',
-    'waiting'                                                               => 'Pending',
+    'waiting'                                                               => 'Waiting',
     'in progress'                                                           => 'In progress',
     'in review'                                                             => 'In review',
     'save'                                                                  => 'Save',
