@@ -256,4 +256,9 @@ return [
     'critique'                                                              => 'Critical',
     'proprietaire'                                                              => 'Owner',
     'contributeur'                                                              => 'Contributor',
+    'dark'                                                              => 'Dark',
+    'light'                                                              => 'Light',
+    'system'                                                              => 'System',
+    'section under construction'                                                              => 'Section under construction',
+    'this section is being developed and will be available soon'                                                              => "This section is being developed and will be available soon",
 ];

@@ -27,10 +27,7 @@ if (Session::estConnecte()) {
   <button onclick="window.history.back()"><i class="ti ti-arrow-left"></i><?= __tphp('back') ?></button>
 </div>
 
-<div class="auth-grid-bg" aria-hidden="true">
-  <div class="grid-lines"></div>
-  <div class="grid-pulse" id="gridPulse"></div>
-</div>
+
 
 <main class="auth-page">
   <aside class="auth-side">
@@ -118,7 +115,7 @@ if (Session::estConnecte()) {
             <div class="auth-input-wrap">
               <i class="ti ti-mail" aria-hidden="true"></i>
               <input type="email" id="login-email" name="email"
-                     placeholder="vous@example.com"
+                     placeholder="together@example.com"
                      autocomplete="email" required>
             </div>
           </div>

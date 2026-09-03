@@ -78,17 +78,11 @@ function renderAppearance(res) {
         themeList = res.themeList;
     }
 
-    const currentThemeId = res.data?.theme_id ?? 2;
+    /* data est un objet direct (fetch PHP) — sécurité si tableau reçu */
+    const data = Array.isArray(res.data) ? res.data[0] : res.data;
+    const currentThemeId = data?.theme_id ?? null;
+    const currentTheme   = data?.theme    ?? '';
 
-    const themesHtml = themeList.map(t => `
-        <label class="pref-theme-card">
-            <input type="radio" name="theme_id" value="${t.theme_id}" ${Number(currentThemeId) === Number(t.theme_id) ? 'checked' : ''}>
-            <span class="pref-theme-preview pref-theme-preview--${t.theme}"></span>
-            <span class="pref-theme-name">${__t(t.theme)}</span>
-        </label>
-    `).join('');
-
-    // Injection du template
     container.innerHTML = `
     <div class="profile-page">
         <form id="form-appearance" method="POST" action="../../../api/updater/updatePreferences.php">
@@ -96,21 +90,81 @@ function renderAppearance(res) {
                 <div class="profile-block-header">
                     <h3><i class="ti ti-palette" aria-hidden="true"></i> ${__t('appearance')}</h3>
                 </div>
-
+ 
                 <div class="profile-form">
                     <div class="profile-field">
                         <label>${__t('interface theme')}</label>
                         <div class="pref-theme-options">
-                            ${themesHtml}
+                            <div class="theme-picker">
+                        
+                                <label class="theme-option">
+                                    <input type="radio" name="theme" value="1" ${currentTheme === 'clair' ? 'checked' : ''}>
+                                    <div class="theme-window win-light">
+                                        <div class="w-bar"><div class="w-dot"></div><div class="w-dot"></div><div class="w-dot"></div></div>
+                                        <div class="w-body">
+                                            <div class="w-side">
+                                                <div class="w-nav-item active"></div>
+                                                <div class="w-nav-item"></div>
+                                                <div class="w-nav-item"></div>
+                                            </div>
+                                            <div class="w-content">
+                                                <div class="w-card"><div class="w-line accent"></div><div class="w-line short"></div></div>
+                                                <div class="w-card"><div class="w-line"></div><div class="w-line short"></div></div>
+                                                <div class="w-card"><div class="w-line"></div><div class="w-line short"></div></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="theme-check"></div>
+                                    <span class="theme-label">${__t('light')}</span>
+                                </label>
+                        
+                                <label class="theme-option">
+                                    <input type="radio" name="theme" value="2" ${currentTheme === 'sombre' ? 'checked' : ''}>
+                                    <div class="theme-window win-dark">
+                                        <div class="w-bar"><div class="w-dot"></div><div class="w-dot"></div><div class="w-dot"></div></div>
+                                        <div class="w-body">
+                                            <div class="w-side">
+                                                <div class="w-nav-item active"></div>
+                                                <div class="w-nav-item"></div>
+                                                <div class="w-nav-item"></div>
+                                            </div>
+                                            <div class="w-content">
+                                                <div class="w-card"><div class="w-line accent"></div><div class="w-line short"></div></div>
+                                                <div class="w-card"><div class="w-line"></div><div class="w-line short"></div></div>
+                                                <div class="w-card"><div class="w-line"></div><div class="w-line short"></div></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="theme-check"></div>
+                                    <span class="theme-label">${__t('dark')}</span>
+                                </label>
+                        
+                                <label class="theme-option">
+                                    <input type="radio" name="theme" value="3" ${currentTheme === 'systeme' ? 'checked' : ''}>
+                                    <div class="theme-window win-system">
+                                        <div class="w-bar"><div class="w-dot"></div><div class="w-dot"></div><div class="w-dot"></div></div>
+                                        <div class="w-body">
+                                            <div class="w-side">
+                                                <div class="w-nav-item active"></div>
+                                                <div class="w-nav-item"></div>
+                                                <div class="w-nav-item"></div>
+                                            </div>
+                                            <div class="w-content">
+                                                <div class="w-card"><div class="w-line accent"></div><div class="w-line short"></div></div>
+                                                <div class="w-card"><div class="w-line"></div><div class="w-line short"></div></div>
+                                                <div class="w-card"><div class="w-line"></div><div class="w-line short"></div></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="theme-check"></div>
+                                    <span class="theme-label">${__t('system')}</span>
+                                </label>
+                        
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-
-            <button type="submit" class="profile-btn-save">
-                <i class="ti ti-device-floppy" aria-hidden="true"></i>
-                ${__t('save')}
-            </button>
         </form>
     </div>
     `;

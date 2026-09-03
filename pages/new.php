@@ -1,4 +1,6 @@
 <article class="dash-page">
+  <div id="dashboard-container">
+<!--<article class="dash-page">
     <div id="dashboard-container">
         <div class="demo-item">
             <div class="tog-spinner">
@@ -22,6 +24,9 @@
             <span class="demo-caption" id="wait"><?= __tphp("we're rounding up the latest news... spoilers ahead") ?>.</span>
         </div>
     </div>
+</article>-->
+<?php require_once __DIR__ . '/travaux.php'?>
+  </div>
 </article>
 
 <script>

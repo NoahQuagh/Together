@@ -1,3 +1,18 @@
+
+const travaux = `<div class="wip-block block-trav">
+    <div class="wip-icon-wrap">
+        <i class="ti ti-crane" aria-hidden="true"></i>
+        <span class="wip-badge">!</span>
+    </div>
+    <p class="wip-title">${__t('section under construction')}</p>
+    <p class="wip-desc">${__t('this section is being developed and will be available soon')}</p>
+    <div class="wip-dots">
+        <div class="wip-dot"></div>
+        <div class="wip-dot"></div>
+        <div class="wip-dot"></div>
+    </div>
+</div>`;
+
 /*fonction conver*/
 function prioriteIcon(priorite) {
     const map = { 'critique': '<i class="ti ti-alert-triangle"></i>', 'haute': '<i class="ti ti-triangle"></i>', 'normale': '<i class="ti ti-circle"></i>', 'basse': '<i class="ti ti-triangle-inverted"></i>' };
@@ -507,10 +522,10 @@ function renderProjectTasks(data) {
 
     document.getElementById('tasks-zone').innerHTML = `<div class="tk-grid">${cartes}</div>${modals}${modalsModify}`;
 }
-function renderProjectOverview(data)  { document.getElementById('main-zone').innerHTML = `overview`; }
-function renderProjectKanban(data)    { document.getElementById('kanban-id').innerHTML = `kanban`; }
-function renderProjectSprints(data)   { document.getElementById('main-zone').innerHTML = `sprints`; }
-function renderProjectMembers(data)   { document.getElementById('main-zone').innerHTML = `members`; }
-function renderProjectInsights(data)  { document.getElementById('main-zone').innerHTML = `insights`; }
+function renderProjectOverview(data)  { document.getElementById('main-zone').innerHTML = travaux; }
+function renderProjectKanban(data)    { document.getElementById('kanban-id').innerHTML = travaux; }
+function renderProjectSprints(data)   { document.getElementById('main-zone').innerHTML = travaux; }
+function renderProjectMembers(data)   { document.getElementById('main-zone').innerHTML = travaux; }
+function renderProjectInsights(data)  { document.getElementById('main-zone').innerHTML = travaux; }
 
 

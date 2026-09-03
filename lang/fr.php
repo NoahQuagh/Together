@@ -258,6 +258,11 @@ return [
     'critique'                                                              => 'Critique',
     'proprietaire'                                                              => 'Proprietaire',
     'contributeur'                                                              => 'Contributeur',
+    'dark'                                                              => 'Sombre',
+    'light'                                                              => 'Clair',
+    'system'                                                              => 'Système',
+    'section under construction'                                                              => 'Section en construction',
+    'this section is being developed and will be available soon'                                                              => "Cette partie de l'application est en cours de développement. Elle sera disponible très prochainement",
 
 
 ];

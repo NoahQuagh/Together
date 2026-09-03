@@ -1,6 +1,6 @@
 <article class="dash-page">
     <div id="dashboard-container">
-        <div class="demo-item">
+        <!--<div class="demo-item">
             <div class="tog-spinner">
                 <div class="tog-bg"></div>
                 <div class="tog-elements">
@@ -20,7 +20,8 @@
                 <div class="tog-dot"></div>
             </div>
             <span class="demo-caption" id="wait"><?= __tphp('we are preparing the app information... a behind-the-scenes look is being revealed') ?>.</span>
-        </div>
+        </div>-->
+        <?php require_once __DIR__ . '/travaux.php'?>
     </div>
 </article>
 
