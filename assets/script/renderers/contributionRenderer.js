@@ -45,7 +45,7 @@ function contributionRenderer(project){
                             <i class="ti ti-folder"></i>
                             ${escapeHtml(project.project_nom)}
                             <span class="badge ${statutBadge(project.project_statut_label)} proj-statut-badge">
-                                ${escapeHtml(project.project_statut_label)}
+                                ${__t(project.project_statut_label)}
                             </span>
                         </span>
 

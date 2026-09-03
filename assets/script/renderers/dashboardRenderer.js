@@ -71,7 +71,7 @@ function prioriteBadge(prio) {
 function formatDate(dateStr) {
     if (!dateStr) return '';
     const d = new Date(dateStr);
-    return d.toLocaleDateString('fr-FR');
+    return d.toLocaleDateString(__t('formatDate'));
 }
 
 function renderTasksToday(tasks){
@@ -89,7 +89,7 @@ function renderTasksToday(tasks){
             <li class="dash-task-item">
                 <div class="dash-task-top">
                     <span class="dash-task-titre">${escapeHtml(t.tache)}</span>
-                    <span class="badge ${prioriteBadge(t.priorite)}">${escapeHtml(t.priorite)}</span>
+                    <span class="badge ${prioriteBadge(t.priorite)}">${__t(t.priorite)}</span>
                 </div>
                 <div class="dash-task-meta">
                     <span><i class="ti ti-folder"></i> ${escapeHtml(t.projet)}</span>
@@ -115,7 +115,7 @@ function renderTasksLate(tasks){
                 <li class="dash-task-item dash-task-item--late">
                     <div class="dash-task-top">
                         <span class="dash-task-titre">${escapeHtml(t.tache)}</span>
-                        <span class="badge ${prioriteBadge(t.priorite)}">${escapeHtml(t.priorite)}</span>
+                        <span class="badge ${prioriteBadge(t.priorite)}">${__t(t.priorite)}</span>
                     </div>
                     <div class="dash-task-meta">
                         <span><i class="ti ti-folder"></i> ${escapeHtml(t.projet)}</span>
@@ -163,7 +163,7 @@ function renderProjects(projects){
             ${projects.map(p => `
                 <li class="dash-project-item">
                     <span class="dash-project-nom">${escapeHtml(p.nom)}</span>
-                    <span class="badge badge-blue">${escapeHtml(p.role)}</span>
+                    <span class="badge badge-blue">${__t(p.role)}</span>
                 </li>
             `).join('')}
         </ul>`;

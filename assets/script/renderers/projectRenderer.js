@@ -15,7 +15,8 @@ function formatDate(dateInput) {
     const date = new Date(dateInput);
     if (isNaN(date.getTime())) return '';
 
-    return date.toLocaleDateString('fr-FR', {//TODO lang date
+
+    return date.toLocaleDateString(__t('formatDate'), {
         day: 'numeric',
         month: 'short',
         year: 'numeric'
@@ -285,7 +286,7 @@ function renderProjectTasks(data) {
                         </div>
                     </div>
                     <div class="tk-info tk-info-${t.statut}">
-                        <h4>${statutIcon(t.statut)} ${t.statut ? (t.statut.charAt(0).toUpperCase() + t.statut.slice(1)).replaceAll('_', ' ') : ''}</h4>
+                        <h4>${statutIcon(t.statut)} ${__t(t.statut)}</h4>
                     </div>
                     <div class="tk-etiquettes">
                             ${(t.etiquettes ?? []).map(e =>
@@ -340,7 +341,7 @@ function renderProjectTasks(data) {
 
                 <div class="modal-header">
                     <div class="modal-header-meta">
-                        <span class="modal-statut">${statutIcon(t.statut)} ${t.statut ? t.statut.replaceAll('_', ' ') : ''}</span>
+                        <span class="modal-statut">${statutIcon(t.statut)} ${__t(t.statut)}</span>
                     </div>
                     <button class="modal-close-btn" onclick="closeModal('modal-task-${t.id}')">
                         <i class="ti ti-x"></i>
@@ -382,11 +383,11 @@ function renderProjectTasks(data) {
                     <div class="modal-section modal-dates">
                         <div class="modal-date-item">
                             <span class="modal-section-label"><i class="ti ti-calendar-event"></i>${__t('beginning')}</span>
-                            <span class="tk-date-modal">${t.date_debut ? formatDate(t.date_debut.split(' ')[0]) : __t("not specified")} à ${t.date_debut && t.date_debut.split(' ')[1] ? t.date_debut.split(' ')[1].slice(0, 5) : ''}</span>
+                            <span class="tk-date-modal">${t.date_debut ? formatDate(t.date_debut.split(' ')[0]) : __t("not specified")} ${__t('at')} ${t.date_debut && t.date_debut.split(' ')[1] ? t.date_debut.split(' ')[1].slice(0, 5) : ''}</span>
                         </div>
                         <div class="modal-date-item">
                             <span class="modal-section-label"><i class="ti ti-calendar-due"></i>${__t('end')}</span>
-                            <span class="tk-date-modal">${t.date_fin ? formatDate(t.date_debut.split(' ')[0]) : __t("not specified")} à ${t.date_fin && t.date_fin.split(' ')[1] ? t.date_fin.split(' ')[1].slice(0, 5) : ''}</span>
+                            <span class="tk-date-modal">${t.date_fin ? formatDate(t.date_debut.split(' ')[0]) : __t("not specified")} ${__t('at')} ${t.date_fin && t.date_fin.split(' ')[1] ? t.date_fin.split(' ')[1].slice(0, 5) : ''}</span>
                         </div>
                         <div class="modal-date-item">
                             <span class="modal-section-label"><i class="ti ti-user-check"></i> ${__t("reporter")}</span>

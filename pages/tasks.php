@@ -1,5 +1,5 @@
 <div class="zone-top">
-  <h1 class="zone-title">Tâches</h1>
+  <h1 class="zone-title"><?= __tphp('tasks') ?></h1>
 </div>
 <?php require_once __DIR__ . '/../includes/sectionMenuTasks.php'?>
 <div class="tk-grid" id="tasks-zone">

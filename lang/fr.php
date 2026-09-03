@@ -244,6 +244,22 @@ return [
     'delete my account'                                                                            => 'Supprimer mon compte',
     'this action is irreversible. all your projects and data will be permanently deleted'          => 'Cette action est irréversible. Tous vos projets et données seront supprimés définitivement',
     'duplicate'                                                                                    => 'Dupliquer',
+    'actif'                                                                                    => 'Actif',
+    'pause'                                                                                    => 'Pause',
+    'termine'                                                                                    => 'Terminé',
+    'formatDate'                                                                                    => 'fr-FR',
+    'en_attente'                                                                                    => 'En attente',
+    'en_cours'                                                                                    => 'En cours',
+    'en_review'                                                                                    => 'En revue',
+    'at'                                                                                    => 'à',
+    'basse'                                                                   => 'Basse',
+    'normale'                                                                => 'Normale',
+    'haute'                                                                  => 'Haute',
+    'critique'                                                              => 'Critique',
+    'proprietaire'                                                              => 'Proprietaire',
+    'contributeur'                                                              => 'Contributeur',
+
+
 ];
 //${__t('')}
 //<?= __tphp('') ?>
