@@ -4,6 +4,12 @@
     gap: var(--marge-3xl);
 }
 
+.tasks-filter-box{
+    display: flex;
+    flex-direction: column;
+    gap: var(--marge-lg);
+}
+
 .proj-filters{
     display: flex;
     flex-wrap: wrap;
@@ -16,9 +22,9 @@
     font-family: var(--font-text);
     font-size: var(--text-sm);
     font-weight: 500;
-    background: var(--ink);
-    color: var(--wh3);
-    border: 1px solid var(--wh4);
+    background: var(--color-main-primary);
+    color: var(--color-second-tertiary);
+    border: 1px solid var(--color-second-quaternary);
     border-radius: var(--radiusBox-xs);
     cursor: pointer;
 }
@@ -29,20 +35,20 @@
 }
 
 .proj-filter-btn:hover{
-    color: var(--wh2);
+    color: var(--color-second-secondary);
 }
 
 .proj-filter-btn:hover i{
-    color: var(--wh2);
+    color: var(--color-second-secondary);
 }
 
 .proj-filter-btn.active{
-    color: var(--wh2);
-    border: 1px solid var(--wh2);
+    color: var(--color-second-secondary);
+    border: 1px solid var(--color-second-secondary);
 }
 
 .proj-filter-btn.active i{
-    color: var(--wh2);
+    color: var(--color-second-secondary);
 }
 
 .proj-list{
@@ -65,7 +71,7 @@
     font-family: var(--font-text);
     font-size: var(--text-lg);
     font-weight: 500;
-    color: var(--wh2);
+    color: var(--color-second-secondary);
     display: flex;
     flex-direction: row;
     gap: var(--marge-xs);
@@ -73,7 +79,7 @@
 
 .dash-project-nom i{
     font-size: var(--text-2xl);
-    color: var(--wh2);
+    color: var(--color-second-secondary);
     margin-right: 5px;
 }
 
@@ -81,7 +87,7 @@
     font-family: var(--font-text);
     font-size: var(--text-sm);
     font-weight: 500;
-    color: var(--wh3);
+    color: var(--color-second-tertiary);
 }
 
 .proj-item-meta{
@@ -94,12 +100,12 @@
     font-family: var(--font-text);
     font-size: var(--text-sm);
     font-weight: 500;
-    color: var(--wh2);
+    color: var(--color-second-secondary);
 }
 
 .proj-date i{
     font-size: var(--text-sm);
-    color: var(--wh2);
+    color: var(--color-second-secondary);
     margin-right: 5px;
 }
 
@@ -122,8 +128,8 @@
     font-family: var(--font-text);
     font-size: var(--text-sm);
     font-weight: 500;
-    background: var(--color1);
-    color: var(--wh2);
+    background: var(--accent);
+    color: var(--color-second-secondary);
     border: 1px solid var(--auth-accent);
     border-radius: var(--radiusBox-xs);
     cursor: pointer;
@@ -137,7 +143,7 @@
 }
 
 .proj-create-btn:hover{
-    background: var(--color1-hover);
+    background: var(--accent-second);
     border: 1px solid var(--auth-accent-glow);
 }
 
@@ -149,9 +155,9 @@
 
 .option-btn{
     opacity: 0;
-    background: var(--ink);
-    color: var(--wh3);
-    border: 1px solid var(--wh4);
+    background: var(--color-main-primary);
+    color: var(--color-second-tertiary);
+    border: 1px solid var(--color-second-quaternary);
     border-radius: var(--radiusBox-xs);
     cursor: pointer;
     padding: 7px;
@@ -184,11 +190,11 @@
 }
 
 .option-blanc i{
-    color: var(--wh2);
+    color: var(--color-second-secondary);
 }
 
 .option-blanc:hover{
-    border: 1px solid var(--wh2);
+    border: 1px solid var(--color-second-secondary);
 }
 
 .more-wrapper {
@@ -201,7 +207,7 @@
     position: absolute;
     top: calc(100% + 5px);
     right: 0;
-    background: var(--ink3);
+    background: var(--color-main-quaternary);
     width: 180px;
     border: 1px solid var(--box-icon-color-hover);
     border-radius: var(--radiusBox-xs);
@@ -216,7 +222,7 @@
 }
 
 .more-dropdown-item {
-    color: var(--wh3);
+    color: var(--color-second-tertiary);
     text-decoration: none;
     font-family: var(--font-text);
     font-size: var(--text-sm);
@@ -236,5 +242,5 @@
 
 .more-dropdown-item:hover {
     background: var(--box-icon-color-hover);
-    color: var(--wh2);
+    color: var(--color-second-secondary);
 }

@@ -1,7 +1,7 @@
 <?php
 header('Content-Type: application/json; charset=utf-8');
 try{
-    require_once __DIR__ . '/../db.php';
+    require_once __DIR__ . '/../../db/connexion_together_db.php';
     require_once __DIR__ . '/../../includes/Session.php';
 
     $db = getDB();
@@ -10,7 +10,7 @@ try{
     $flash_erreur = Session::hasFlash('erreur_pref') ? Session::getFlash('erreur_pref') : null;
 
     $req = $db->prepare('
-    select tup_theme_id,rth_label,tup_langue,lang_code,lang_label,tup_notif_email,tup_notif_mention,tup_notif_assignation,tup_notif_commentaire
+    select tup_theme_id,rth_label,tup_langue,lang_code,lang_label,tup_notif_email,tup_notif_mention,tup_notif_assignation,tup_notif_commentaire,tup_tasks_alert
     from TOG_USER_PREFERENCES
     join TOG_REF_THEME on TOG_USER_PREFERENCES.tup_theme_id = TOG_REF_THEME.rth_id
     join TOG_LANGUE on TOG_USER_PREFERENCES.tup_langue = TOG_LANGUE.lang_id
@@ -20,7 +20,7 @@ try{
     $pref = $req->fetch();
 
     if (!$pref) {
-        $insertDefault = $db->prepare('INSERT INTO TOG_USER_PREFERENCES (tup_user_id,tup_theme_id,tup_notif_email,tup_notif_mention,tup_notif_assignation,tup_notif_commentaire,tup_langue) VALUES (?,2,1,1,1,1,1)');
+        $insertDefault = $db->prepare('INSERT INTO TOG_USER_PREFERENCES (tup_user_id,tup_theme_id,tup_notif_email,tup_notif_mention,tup_notif_assignation,tup_notif_commentaire,tup_langue,tup_tasks_alert) VALUES (?,2,1,1,1,1,1,1)');
         $insertDefault->execute([Session::id()]);
 
         $pref = [
@@ -33,6 +33,7 @@ try{
             'notif_mention' => 1,
             'notif_assignation' => 1,
             'notif_commentaire' => 1,
+            'tasks_alert' => 1,
         ];
 
         echo json_encode([
@@ -73,6 +74,7 @@ try{
             'notif_mention'     => $pref['tup_notif_mention'],
             'notif_assignation' => $pref['tup_notif_assignation'],
             'notif_commentaire' => $pref['tup_notif_commentaire'],
+            'tasks_alert' => $pref['tup_tasks_alert']
         ];
 
         echo json_encode([

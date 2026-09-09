@@ -1,0 +1,92 @@
+.mytasks-list{
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 450px), 1fr));
+    gap: var(--marge-lg);
+    background: transparent;
+    font-size: var(--text-sm);
+    font-family: var(--font-text);
+    color: var(--color-second-primary);
+    flex: 1;
+    overflow: hidden;
+
+    .tasks-card{
+        cursor: pointer;
+        display: flex;
+        justify-content: space-around;
+        flex-direction: column;
+        list-style-type: none;
+        border: 1px solid var(--box-icon-color-hover);
+        border-radius: var(--radiusBox-sm);
+        gap: var(--marge-xl);
+        padding: var(--marge-sm) var(--marge-base);
+        transition: background 0.15s ease;
+        background: var(--color-main-tertiary);
+        .tasks-header{
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            .header-item{
+                font-size: var(--text-xl);
+                display: flex;
+                flex-direction: column;
+                div:last-child{
+                    font-size: var(--text-base);
+                    color: var(--color-second-tertiary);
+                    i{
+                        color: var(--color-second-tertiary);
+                    }
+                }
+                i{
+                    color: var(--color-second-secondary);
+                    margin-right: 8px;
+                }
+            }
+            i{
+                color: var(--color-second-tertiary);
+                font-size: var(--text-xl);
+            }
+        }
+        .tasks-body{
+            color: var(--color-second-tertiary);
+        }
+        .tasks-footer{
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            .footer-item{
+                display: flex;
+                flex-direction: column;
+            }
+        }
+        &:hover{
+            background: var(--color-main-quaternary);
+            .tasks-header{
+                i{
+                    color: var(--color-second-secondary);
+                }
+            }
+        }
+    }
+}
+
+@keyframes pulse-red-border {
+    0% {
+        border-color: rgba(239, 68, 68, 0.3);
+        box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.4);
+    }
+    50% {
+        border-color: rgba(239, 68, 68, 1);
+        box-shadow: 0 0 10px 2px rgba(239, 68, 68, 0.5);
+    }
+    100% {
+        border-color: rgba(239, 68, 68, 0.3);
+        box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.4);
+    }
+}
+
+.tasks-card.is-late {
+    border: 1px solid #ef4444;
+    animation: pulse-red-border 1.5s infinite ease-in-out;
+}
+
+

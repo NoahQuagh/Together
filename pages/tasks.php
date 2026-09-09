@@ -2,8 +2,8 @@
   <h1 class="zone-title"><?= __tphp('tasks') ?></h1>
 </div>
 <?php require_once __DIR__ . '/../includes/sectionMenuTasks.php'?>
-<div class="tk-grid" id="tasks-zone">
-    <div class="demo-item">
+<ul class="tk-grid" id="tasks-zone">
+    <li class="demo-item">
         <div class="tog-spinner">
             <div class="tog-bg"></div>
             <div class="tog-elements">
@@ -23,7 +23,7 @@
             <div class="tog-dot"></div>
         </div>
         <span class="demo-caption" id="wait"><?= __tphp('loading') ?>.</span>
-    </div>
+    </li>
 <script>
     document.addEventListener("DOMContentLoaded", function() {
         const urlParams = new URLSearchParams(window.location.search);

@@ -28,27 +28,27 @@
     width: 18px; height: 18px;
     border-radius: 50%;
     background: var(--badge-col-yellow);
-    color: var(--ink);
+    color: var(--color-main-primary);
     font-size: 10px;
     font-weight: 700;
     display: flex;
     align-items: center;
     justify-content: center;
-    border: 2px solid var(--ink);
+    border: 2px solid var(--color-main-primary);
 }
 
 .wip-title {
     font-family: var(--font-text);
     font-size: var(--text-lg);
     font-weight: 500;
-    color: var(--wh);
+    color: var(--color-second-primary);
     margin: 0;
 }
 
 .wip-desc {
     font-family: var(--font-text);
     font-size: var(--text-sm);
-    color: var(--wh3);
+    color: var(--color-second-tertiary);
     max-width: 300px;
     line-height: 1.65;
     margin: 0;
@@ -72,6 +72,6 @@
 
 .block-trav{
     p{
-        color: var(--ink2);
+        color: var(--color-main-tertiary);
     }
 }

@@ -1,5 +1,5 @@
 <?php
-require_once __DIR__ . '/../api/db.php';
+require_once __DIR__ . '/../db/connexion_together_db.php';
 class Session {
 
     // DÉMARRAGE

@@ -4,7 +4,7 @@ error_reporting(E_ALL);
 header('Content-Type: application/json; charset=utf-8');
 
 try {
-    require_once __DIR__ . '/../db.php';
+    require_once __DIR__ . '/../../db/connexion_together_db.php';
     require_once __DIR__ . '/../../includes/Session.php';
     Session::start();
     Session::requireLogin();

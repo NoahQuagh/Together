@@ -1,6 +1,6 @@
 <?php
-require_once 'db.php';
-require_once '../includes/Session.php';
+require_once __DIR__ . '/../../db/connexion_together_db.php';//TODO revoir
+require_once __DIR__ . '/../../includes/Session.php';
 
 if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
     header('Location: ../settings/user.php?tab=profile');

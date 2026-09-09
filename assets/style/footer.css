@@ -2,9 +2,8 @@
 footer{
     display: flex;
     flex-direction: column;
-    background: var(--ink);
+    background: var(--color-main-primary);
     border-top: 1px solid var(--box-icon-color-hover);
-    box-shadow: -10px -40px 25px rgba(0, 0, 0, 0.15);
 }
 
 .footerSection div ul{
@@ -27,14 +26,14 @@ footer section > div:not(.footer-logo-wrap) {
 }
 
 footer section div h4{
-    color: var(--wh2);
+    color: var(--color-second-secondary);
     font-family: var(--font-text);
     font-weight: 500;
     font-size: var(--text-base);
 }
 
 footer section div ul,footer section div ul li a,footer section div ul li{
-    color: var(--wh3);
+    color: var(--color-second-tertiary);
     font-family: var(--font-text);
     font-weight: 400;
     font-size: var(--text-sm);
@@ -44,18 +43,18 @@ footer section div ul,footer section div ul li a,footer section div ul li{
 }
 
 footer section div li:hover{
-    color : var(--wh2);
+    color : var(--color-second-secondary);
 }
 
 footer section div li a:hover{
-    color : var(--wh2);
+    color : var(--color-second-secondary);
     cursor: pointer;
     text-decoration: underline;
 }
 
 .separator{
     height: 1px;
-    background: var(--ink3);
+    background: var(--color-main-quaternary);
     margin: 0 var(--marge-5xl);
 }
 
@@ -68,14 +67,14 @@ footer section div li a:hover{
 }
 
 .footerSection p,.footerSection p a{
-    color: var(--icon-color);
+    color: var(--color-icon);
     font-family: var(--font-text);
     font-weight: 400;
     font-size: var(--text-sm);
 }
 
 .footerSection p a:hover{
-    color: var(--wh2);
+    color: var(--color-second-secondary);
     cursor: pointer;
     text-decoration: underline;
 }
@@ -198,7 +197,7 @@ footer section div li a:hover{
 }
 
 .footer-logo-wrap .fl-text h2 {
-    color: var(--wh2);
+    color: var(--color-second-secondary);
     font-family: var(--font-text);
     font-size: var(--text-xl);
     font-weight: 500;
@@ -208,7 +207,7 @@ footer section div li a:hover{
 }
 
 .footer-logo-wrap .fl-text .fl-signature {
-    color: var(--wh3);
+    color: var(--color-second-tertiary);
     font-family: var(--font-text);
     font-size: var(--text-sm);
     margin: 0;
@@ -330,8 +329,8 @@ footer section div li a:hover{
 
 /* Texte s'illumine */
 .footer-logo-wrap:hover .fl-text h2 {
-    color: var(--wh2);
+    color: var(--color-second-secondary);
 }
 .footer-logo-wrap:hover .fl-text .fl-signature {
-    color: var(--wh);
+    color: var(--color-second-primary);
 }

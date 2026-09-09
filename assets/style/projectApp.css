@@ -1,9 +1,9 @@
 body{
-    background: linear-gradient(var(--ink2),var(--ink1));
+    background: linear-gradient(var(--color-main-tertiary),var(--color-main-secondary));
 }
 
 #main-bg{
-    background: linear-gradient(var(--ink1),var(--ink2));
+    background: linear-gradient(var(--color-main-secondary),var(--color-main-tertiary));
     padding: 1.5rem;
     gap: 1.5rem;
     display: flex;
@@ -54,7 +54,7 @@ body{
 
 .zone-title{
     font-family: var(--font-text);
-    color: var(--ink);
+    color: var(--color-main-primary);
     letter-spacing: 0.2rem;
 }
 
@@ -62,7 +62,7 @@ body{
     border: none;
 
     i:hover{
-        color: var(--wh);
+        color: var(--color-second-primary);
     }
 
     &:hover{
@@ -110,7 +110,7 @@ body{
 }
 
 .modal-box {
-    background: var(--ink2);
+    background: var(--color-main-tertiary);
     border: 1.5px solid rgba(14, 13, 12, 0.12);
     border-radius: 16px;
     width: 100%;
@@ -142,7 +142,7 @@ body{
 .modal-statut {
     font-family: var(--font-text);
     font-size: var(--text-lg);
-    color: var(--wh2);
+    color: var(--color-second-secondary);
     text-transform: capitalize;
 }
 
@@ -156,13 +156,13 @@ body{
     display: flex;
     align-items: center;
     justify-content: center;
-    color: var(--wh);
+    color: var(--color-second-primary);
     font-size: 15px;
     transition: background 0.15s, border-color 0.15s;
     flex-shrink: 0;
 
     &:hover i{
-        color: var(--wh3);
+        color: var(--color-second-tertiary);
     }
 }
 
@@ -170,7 +170,7 @@ body{
     font-family: var(--font-text);
     font-size: var(--text-xl);
     font-weight: 700;
-    color: var(--wh);
+    color: var(--color-second-primary);
     line-height: 1.4;
     padding: var(--marge-sm) 1.5rem;
 }
@@ -185,7 +185,7 @@ body{
 .modal-desc {
     font-family: var(--font-text);
     font-size: var(--text-sm);
-    color: var(--wh3);
+    color: var(--color-second-tertiary);
     line-height: 1.65;
 }
 
@@ -199,7 +199,7 @@ body{
     font-family: var(--font-text);
     font-size: var(--text-xs);
     font-weight: 600;
-    color: var(--wh);
+    color: var(--color-second-primary);
     text-transform: uppercase;
     letter-spacing: 0.07em;
     display: flex;
@@ -214,7 +214,7 @@ body{
 .modal-empty {
     font-family: var(--font-text);
     font-size: var(--text-xs);
-    color: var(--wh);
+    color: var(--color-second-primary);
     font-style: italic;
 }
 
@@ -227,7 +227,7 @@ body{
 }
 
 .tk-date-modal{
-    color: var(--wh3);
+    color: var(--color-second-tertiary);
 }
 
 .modal-date-item {
@@ -236,7 +236,7 @@ body{
     gap: 4px;
     font-family: var(--font-text);
     font-size: var(--text-sm);
-    color: var(--wh);
+    color: var(--color-second-primary);
 }
 
 .modal-footer {
@@ -260,7 +260,7 @@ body{
 
         .active-nav{
             .item h4,.item i{
-                color: var(--ink2);
+                color: var(--color-main-tertiary);
             }
         }
 
@@ -269,13 +269,13 @@ body{
                 &:hover{
                     background: var(--paper-hover);
                     h4,i{
-                        color: var(--ink2);
+                        color: var(--color-main-tertiary);
                     }
                 }
             }
             &:hover{
                 h4,i{
-                    color: var(--ink2);
+                    color: var(--color-main-tertiary);
                 }
             }
         }
@@ -295,20 +295,20 @@ body{
             font-family: var(--font-text);
             cursor: pointer;
             i{
-                color: var(--ink2);
+                color: var(--color-main-tertiary);
             }
         }
         .item.add-tasks{
-            background: var(--color1);
-            color: var(--wh2);
-            border-color: var(--color1);
+            background: var(--accent);
+            color: var(--color-second-secondary);
+            border-color: var(--accent);
             i{
-                color: var(--wh2);
+                color: var(--color-second-secondary);
             }
             &:hover{
-                background: var(--color1-hover);
+                background: var(--accent-second);
                 i{
-                    color: var(--wh2);
+                    color: var(--color-second-secondary);
                 }
             }
         }
@@ -330,7 +330,7 @@ body{
         transition: all 0.2s ease;
 
         i {
-            color: var(--wh3);
+            color: var(--color-second-tertiary);
             font-size: var(--text-lg, 18px);
             margin-right: 8px;
             flex-shrink: 0;
@@ -341,14 +341,14 @@ body{
             background: transparent;
             border: none;
             outline: none;
-            color: var(--ink);
+            color: var(--color-main-primary);
             font-family: var(--font-text);
             font-size: var(--text-sm, 14px);
             width: 160px;
             transition: width 0.25s ease;
 
             &::placeholder {
-                color: var(--ink2);
+                color: var(--color-main-tertiary);
                 opacity: 0.7;
             }
 
@@ -358,16 +358,16 @@ body{
         }
 
         &:hover {
-            border-color: var(--ink2);
+            border-color: var(--color-main-tertiary);
         }
 
 
         &:focus-within {
-            border-color: var(--ink3);
+            border-color: var(--color-main-quaternary);
             background: var(--paper);
 
             i {
-                color: var(--ink3);
+                color: var(--color-main-quaternary);
             }
         }
     }
@@ -391,7 +391,7 @@ body{
                 font-family: var(--font-text);
                 font-size: var(--text-xl);
                 font-weight: 600;
-                color: var(--wh);
+                color: var(--color-second-primary);
                 line-height: 1.4;
                 i{
                     margin-right: var(--marge-xs);
@@ -420,7 +420,7 @@ body{
         .tk-input {
             background: rgba(255, 255, 255, 0.05);
             border: 1px solid rgba(255, 255, 255, 0.12);
-            color: var(--wh);
+            color: var(--color-second-primary);
             padding: 0.55rem 0.75rem;
             border-radius: var(--radiusBox-sm);
             font-family: var(--font-text);
@@ -452,15 +452,15 @@ body{
         .tk-select {
             cursor: pointer;
             option {
-                background: var(--ink2);
-                color: var(--wh);
+                background: var(--color-main-tertiary);
+                color: var(--color-second-primary);
             }
         }
 
         .tk-btn-add-badge {
             background: transparent;
             border: 1px dashed rgba(255, 255, 255, 0.3);
-            color: var(--wh3);
+            color: var(--color-second-tertiary);
             padding: 4px 10px;
             border-radius: var(--radiusBox-sm);
             font-size: var(--text-xs);
@@ -472,8 +472,8 @@ body{
             font-family: var(--font-text);
 
             &:hover {
-                border-color: var(--wh);
-                color: var(--wh);
+                border-color: var(--color-second-primary);
+                color: var(--color-second-primary);
                 background: rgba(255, 255, 255, 0.05);
             }
         }
@@ -524,7 +524,7 @@ body{
             .tk-btn-cancel {
                 background: transparent;
                 border: 1px solid rgba(255, 255, 255, 0.2);
-                color: var(--wh);
+                color: var(--color-second-primary);
 
                 &:hover {
                     background: rgba(255, 255, 255, 0.1);
@@ -532,16 +532,16 @@ body{
             }
 
             .tk-btn-save {
-                background: var(--color1);
+                background: var(--accent);
                 border: none;
-                color: var(--wh);
+                color: var(--color-second-primary);
 
                 i{
                     margin-right: var(--marge-xxs);
                 }
 
                 &:hover {
-                    background: var(--color1-hover);
+                    background: var(--accent-second);
                 }
             }
         }
@@ -558,7 +558,7 @@ body{
         position: absolute;
         top: 100%;
         right: 0;
-        background: var(--ink2);
+        background: var(--color-main-tertiary);
         border: 1px solid rgba(255, 255, 255, 0.12);
         border-radius: var(--radiusBox-sm, 8px);
         box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
@@ -574,7 +574,7 @@ body{
         button {
             background: transparent;
             border: none;
-            color: var(--wh);
+            color: var(--color-second-primary);
             padding: 8px 14px;
             font-family: var(--font-text);
             font-size: var(--text-sm, 14px);
@@ -587,15 +587,15 @@ body{
 
             i {
                 font-size: 16px;
-                color: var(--wh3);
+                color: var(--color-second-tertiary);
             }
 
             &:hover {
                 background: rgba(255, 255, 255, 0.08);
-                color: var(--wh);
+                color: var(--color-second-primary);
 
                 i {
-                    color: var(--wh);
+                    color: var(--color-second-primary);
                 }
             }
 
@@ -626,15 +626,15 @@ body{
     border-radius: var(--radiusBox-sm, 8px);
     padding: 0 var(--marge-base, 12px);
     height: 36px;
-    color: var(--ink);
+    color: var(--color-main-primary);
     font-family: var(--font-text);
     font-size: var(--text-sm, 14px);
     cursor: pointer;
     transition: all 0.2s ease;
 
     &:hover {
-        border-color: var(--ink2);
-        background: var(--wh2);
+        border-color: var(--color-main-tertiary);
+        background: var(--color-second-secondary);
     }
 
     .filter-count-badge {
@@ -665,7 +665,7 @@ body{
         gap: 10px;
 
         span {
-            color: var(--wh3);
+            color: var(--color-second-tertiary);
             font-size: var(--text-xs);
             font-family: var(--font-text);
         }
@@ -694,13 +694,13 @@ body{
         font-size: var(--text-2xl);
         font-weight: 600;
         margin-bottom: 0.5rem;
-        color: var(--wh3);
+        color: var(--color-second-tertiary);
     }
 
     p{
         font-family: var(--font-text);
         font-size: var(--text-sm);
-        color: var(--wh3);
+        color: var(--color-second-tertiary);
         max-width: 400px;
         margin: 0;
     }
@@ -709,7 +709,7 @@ body{
 /*aucune tache existe*/
 .dash-empty {
     text-align: center;
-    color: var(--wh3);
+    color: var(--color-second-tertiary);
     font-family: var(--font-text);
     display: flex;
     flex-direction: column;
@@ -735,8 +735,8 @@ body{
     font-family: var(--font-text);
     font-size: var(--text-sm);
     font-weight: 500;
-    background: var(--color1);
-    color: var(--wh2);
+    background: var(--accent);
+    color: var(--color-second-secondary);
     border: 1px solid var(--auth-accent);
     border-radius: var(--radiusBox-xs);
     cursor: pointer;
@@ -749,7 +749,7 @@ body{
     }
 
     &:hover{
-        background: var(--color1-hover);
+        background: var(--accent-second);
         border: 1px solid var(--auth-accent-glow);
     }
 }

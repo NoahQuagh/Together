@@ -4,17 +4,19 @@ Session::start();
 Session::requireLogin();
 require_once __DIR__  . '/../config/lang_php.php';
 $tab = $_GET['tab'] ?? 'dashboard';
+require_once __DIR__  . '/../includes/defineTheme.php';
 ?>
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="fr" data-theme="<?= $themeAttr ?>">
 <head>
   <meta charset="UTF-8">
-  <title>Together</title>
+  <title>Home - Together</title>
   <link rel="stylesheet" href="../assets/style/paletteStyle.css">
   <link rel="stylesheet" href="../assets/style/home.css">
   <link rel="stylesheet" href="../assets/style/header+sidebar.css">
   <link rel="stylesheet" href="../assets/style/nonConnecterSection.css">
   <link rel="stylesheet" href="../assets/style/dashBoard.css">
+  <link rel="stylesheet" href="../assets/style/myTasks.css">
   <link rel="stylesheet" href="../assets/style/footer.css">
   <link rel="stylesheet" href="../assets/style/spinnerlogoScaled.css">
   <link rel="stylesheet" href="../assets/style/errorloading+iconTop.css">
@@ -38,7 +40,7 @@ $tab = $_GET['tab'] ?? 'dashboard';
     switch($tab) {
         case 'myprojects':     require '../pages/mesProjet.php'; break;
         case 'contributions': require '../pages/contributions.php'; break;
-        case 'mytasks':      require '../pages/taches.php'; break;
+        case 'mytasks':      require '../pages/mesTaches.php'; break;
         default:            require '../pages/dashboard.php'; break;
     }
   } ?>
@@ -59,9 +61,11 @@ $tab = $_GET['tab'] ?? 'dashboard';
 <script src="../assets/script/myproject.js"></script>
 <script src="../assets/script/toast-notification.js"></script>
 <script src="../assets/script/modal-dialog.js"></script>
+<script src="../assets/script/theme.js"></script>
 <script src="../assets/script/renderers/dashboardRenderer.js"></script>
 <script src="../assets/script/renderers/myprojectRenderer.js"></script>
 <script src="../assets/script/renderers/contributionRenderer.js"></script>
+<script src="../assets/script/renderers/myTasksRenderer.js"></script>
 <div id="toast-container" class="toast-container"></div><!--zone notif-->
 </body>
 </html>

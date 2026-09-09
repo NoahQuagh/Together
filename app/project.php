@@ -14,10 +14,10 @@ if (!$projectId) {
 }
 
 require_once __DIR__ . '/../api/loader/loadProjectTitle.php';
-
+require_once __DIR__  . '/../includes/defineTheme.php';
 ?>
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="fr" data-theme="<?= $themeAttr ?>">
 <head>
     <meta charset="UTF-8">
     <title><?= $title ?> - Together</title>
@@ -80,6 +80,7 @@ require_once __DIR__ . '/../api/loader/loadProjectTitle.php';
 <script src="../assets/script/modal-dialog.js"></script>
 <script src="../assets/script/renderers/calendarProjectRenderer.js"></script>
 <script src="../assets/script/renderers/projectRenderer.js"></script>
+<script src="../assets/script/theme.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.15/index.global.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/frappe-gantt/1.2.2/frappe-gantt.umd.js"></script>
 <div id="toast-container" class="toast-container"></div><!--zone de notif-->

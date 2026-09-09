@@ -34,7 +34,7 @@ function formatDate(dateInput) {
     return date.toLocaleDateString(__t('formatDate'), {
         day: 'numeric',
         month: 'short',
-        year: 'numeric'
+        year: 'numeric',
     });
 }
 
@@ -99,7 +99,7 @@ function renderNoTasksFound() {
 
     container.innerHTML = `
         <div class="empty-state">
-            <i class="ti ti-filter-off" style="font-size: 2.5rem; color: var(--wh3, #888);"></i>
+            <i class="ti ti-filter-off" style="font-size: 2.5rem; color: var(--color-second-tertiary, #888);"></i>
             <h3>${__t('no tasks match the selected filter')}.</h3>
             <p>${__t('try modifying or resetting your search criteria')}.</p>
         </div>
@@ -273,12 +273,11 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 
-
 /*renderer du projet*/
 function renderProjectTasks(data) {
 
     const cartes = data.tasks.map(t => `
-            <div class="tk-card ${t.statut}">
+            <li class="tk-card ${t.statut}">
                 <div class="tk-top">
                     <div class="tk-badges">
                         <span class="tk-titre">${t.titre}</span>
@@ -345,7 +344,7 @@ function renderProjectTasks(data) {
                         </button>
                     </div>
                 </div>
-            </div>
+            </li>
     `).join('');
 
     const modals = data.tasks.map(t => {
@@ -376,7 +375,7 @@ function renderProjectTasks(data) {
             ? t.assignes.map(a =>
                 `<div class="tk-person">
                                         <div class="tk-avatar">${initiales(a.nom)}</div>
-                                        <span class="tk-person-label" style="color:var(--wh)">${a.nom}</span>
+                                        <span class="tk-person-label" style="color:var(--color-second-primary)">${a.nom}</span>
                                     </div>`).join('')
             : `<span class="tk-unassigned unassigned-ink"><i class="ti ti-user-off"></i>${__t('unassigned')}</span>`
         }
@@ -451,7 +450,7 @@ function renderProjectTasks(data) {
             ? t.assignes.map(a =>
                 `<div class="tk-person tk-editable-badge">
                                     <div class="tk-avatar">${initiales(a.nom)}</div>
-                                    <span class="tk-person-label" style="color:var(--wh)">${a.nom}</span>
+                                    <span class="tk-person-label" style="color:var(--color-second-primary)">${a.nom}</span>
                                     <button type="button" class="tk-remove-btn" title="Retirer"><i class="ti ti-x"></i></button>
                                 </div>`).join('')
             : `<span class="tk-unassigned unassigned-ink"><i class="ti ti-user-off"></i>${__t('unassigned')}</span>`

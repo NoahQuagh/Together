@@ -5,7 +5,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    background: var(--ink);
+    background: var(--color-main-primary);
     overflow: hidden;
     padding: var(--marge-5xl) var(--marge-xl);
     box-sizing: border-box;
@@ -27,9 +27,9 @@
     display: inline-flex;
     align-items: center;
     gap: 8px;
-    background: var(--ink2);
-    border: 1px solid var(--ink3);
-    color: var(--wh);
+    background: var(--color-main-tertiary);
+    border: 1px solid var(--color-main-quaternary);
+    color: var(--color-second-primary);
     font-family: var(--font-text);
     font-size: var(--text-xs);
     font-weight: 500;
@@ -52,7 +52,7 @@
     font-family: var(--font-together);
     font-size: clamp(3.5rem, 8vw, 5.5rem);
     font-weight: 800;
-    color: var(--wh2);
+    color: var(--color-second-secondary);
     margin: 0;
     line-height: 1;
     letter-spacing: -0.03em;
@@ -62,7 +62,7 @@
     font-family: var(--font-subtitle);
     font-size: clamp(1.25rem, 4vw, 1.85rem);
     font-weight: 700;
-    color: var(--color1);
+    color: var(--accent);
     margin: 0;
     line-height: 1.2;
 }
@@ -70,7 +70,7 @@
 .landing-desc {
     font-family: var(--font-text);
     font-size: clamp(0.95rem, 2vw, 1.1rem);
-    color: var(--wh3);
+    color: var(--color-second-tertiary);
     line-height: 1.6;
     max-width: 580px;
     margin: 0 auto;
@@ -78,8 +78,8 @@
 
 .landing-cta {
     font-family: var(--font-text);
-    background: var(--color1);
-    color: var(--wh2);
+    background: var(--accent);
+    color: var(--color-second-secondary);
     border: none;
     padding: 16px 32px;
     font-size: var(--text-base);
@@ -96,7 +96,7 @@
 }
 
 .landing-cta:hover {
-    background: var(--color1-hover);
+    background: var(--accent-second);
     transform: translateY(-2px);
     box-shadow: 0 8px 25px rgba(34, 109, 184, 0.45);
 }
@@ -148,7 +148,7 @@
 
 .landing-icon-item {
     font-size: 2.8rem;
-    color: var(--wh2);
+    color: var(--color-second-secondary);
     display: flex;
     align-items: center;
     justify-content: center;

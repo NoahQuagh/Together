@@ -12,7 +12,7 @@
 .output/
 .idea
 .env
-api/db.php
+db/connexion_together_db.php
 #Extension App-file
 *.app
 #Rapid Application Development File

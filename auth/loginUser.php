@@ -3,7 +3,7 @@
 header('Content-Type: application/json; charset=utf-8');
 
 try{
-    require_once __DIR__ . '/../api/db.php';
+    require_once __DIR__ . '/../db/connexion_together_db.php';
     require_once __DIR__ . '/../includes/Session.php';
     require_once __DIR__ . '/../config/lang_php.php';
 
@@ -32,6 +32,10 @@ try{
     $req->execute([$email]);
     $user = $req->fetch();
 
+    $stmt = $db->prepare("SELECT tup_theme_id FROM TOG_USER_PREFERENCES WHERE tup_user_id = ?");
+    $stmt->execute([$user['use_id']]);
+    $pref = $stmt->fetch();
+
 
 
     if ($user && password_verify($mdp, $user['use_mot_de_passe'])) {
@@ -40,6 +44,7 @@ try{
             'nom'  => $user['use_nom'],
             'role' => $user['use_role_id'],
             'lang' => $user['use_lang'],
+            'theme' => $pref['tup_theme_id'] ?? '2'
         ]);
 
         header('Location: ../app/home.php');

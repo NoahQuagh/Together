@@ -23,7 +23,7 @@
     }
 
     .nav-item.active-nav .item{
-        background:var(--color1);
+        background:var(--accent);
     }
 
     .nav-item.active-nav {

@@ -5,9 +5,10 @@ Session::start();
 Session::requireLogin();
 require_once __DIR__ . '/../config/lang_php.php';
 $tab = $_GET['tab'] ?? 'dashboard';
+require_once __DIR__  . '/../includes/defineTheme.php';
 ?>
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="fr" data-theme="<?= $themeAttr ?>">
 <head>
   <meta charset="UTF-8">
   <title>Together</title>
@@ -126,6 +127,7 @@ $tab = $_GET['tab'] ?? 'dashboard';
 <script src="../assets/script/renderers/preferenceRenderer.js"></script>
 <script src="../assets/script/renderers/profileRenderer.js"></script>
 <script src="../assets/script/renderers/securityRenderer.js"></script>
+<script src="../assets/script/theme.js"></script>
 <div id="toast-container" class="toast-container"></div>
 </body>
 </html>

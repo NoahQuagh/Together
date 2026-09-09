@@ -1,5 +1,5 @@
 body {
-    background: linear-gradient(var(--ink1),var(--ink2));
+    background: linear-gradient(var(--color-main-secondary),var(--color-main-tertiary));
 }
 
 main{
@@ -35,13 +35,13 @@ main{
     width: 72px;
     height: 72px;
     border-radius: 50%;
-    background: var(--color1);
+    background: var(--accent);
     display: flex;
     align-items: center;
     justify-content: center;
     font-size: var(--text-xl);
     font-weight: 600;
-    color: var(--wh);
+    color: var(--color-second-primary);
     font-family: var(--font-text);
     flex-shrink: 0;
 }
@@ -53,14 +53,14 @@ main{
 }
 
 .profile-header-info h2 {
-    color: var(--wh);
+    color: var(--color-second-primary);
     font-family: var(--font-text);
     font-weight: 500;
     font-size: var(--text-xl);
 }
 
 .profile-since {
-    color: var(--wh3);
+    color: var(--color-second-tertiary);
     font-family: var(--font-text);
     font-size: var(--text-xs);
 }
@@ -73,8 +73,8 @@ main{
 }
 
 .profile-stat-card {
-    background: var(--ink);
-    border: 0.5px solid var(--ink3);
+    background: var(--color-main-primary);
+    border: 0.5px solid var(--color-main-quaternary);
     border-radius: var(--radiusBox-md);
     padding: var(--marge-base);
     display: flex;
@@ -86,13 +86,13 @@ main{
 .profile-stat-value {
     font-size: var(--text-2xl);
     font-weight: 600;
-    color: var(--wh);
+    color: var(--color-second-primary);
     font-family: var(--font-text);
 }
 
 .profile-stat-label {
     font-size: var(--text-xs);
-    color: var(--wh3);
+    color: var(--color-second-tertiary);
     font-family: var(--font-text);
     text-align: center;
 }
@@ -122,15 +122,15 @@ main{
 
 /*Blocs*/
 .profile-block {
-    background: var(--ink);
-    border: 0.5px solid var(--ink3);
+    background: var(--color-main-primary);
+    border: 0.5px solid var(--color-main-quaternary);
     border-radius: var(--radiusBox-md);
     overflow: hidden;
 }
 
 .profile-block-header {
     padding: var(--marge-sm) var(--marge-base);
-    border-bottom: 0.5px solid var(--ink3);
+    border-bottom: 0.5px solid var(--color-main-quaternary);
 }
 
 .profile-block-header h3 {
@@ -140,12 +140,12 @@ main{
     font-size: var(--text-base);
     font-weight: 500;
     font-family: var(--font-text);
-    color: var(--wh);
+    color: var(--color-second-primary);
 }
 
 .profile-block-header h3 i {
     font-size: var(--text-lg);
-    color: var(--wh3);
+    color: var(--color-second-tertiary);
 }
 
 .deleteacnt h3 i{
@@ -174,17 +174,17 @@ main{
 
 .profile-field label {
     font-size: var(--text-lg);
-    color: var(--wh3);
+    color: var(--color-second-tertiary);
     font-family: var(--font-text);
     font-weight: 500;
 }
 
 .profile-field input {
-    background: var(--ink2);
-    border: 1px solid var(--ink3);
+    background: var(--color-main-tertiary);
+    border: 1px solid var(--color-main-quaternary);
     border-radius: var(--radiusBox-sm);
     padding: 10px 12px;
-    color: var(--wh);
+    color: var(--color-second-primary);
     font-family: var(--font-text);
     font-size: var(--text-sm);
     transition: border-color 0.2s ease;
@@ -192,7 +192,7 @@ main{
 
 .profile-field input:focus {
     outline: none;
-    border-color: var(--color1);
+    border-color: var(--accent);
 }
 
 .profile-btn-save {
@@ -202,10 +202,10 @@ main{
     gap: 8px;
     align-self: flex-start;
     padding: 10px 20px;
-    background: var(--color1);
+    background: var(--accent);
     border: none;
     border-radius: var(--radiusBox-sm);
-    color: var(--wh);
+    color: var(--color-second-primary);
     font-family: var(--font-text);
     font-size: var(--text-sm);
     font-weight: 500;
@@ -238,14 +238,14 @@ main{
 }
 
 .profile-danger-title {
-    color: var(--wh);
+    color: var(--color-second-primary);
     font-family: var(--font-text);
     font-size: var(--text-sm);
     font-weight: 500;
 }
 
 .profile-danger-desc {
-    color: var(--wh3);
+    color: var(--color-second-tertiary);
     font-family: var(--font-text);
     font-size: var(--text-xs);
     max-width: 400px;
@@ -280,8 +280,8 @@ main{
 
 /*Aside*/
 .profile-aside {
-    background: var(--ink);
-    border: 0.5px solid var(--ink3);
+    background: var(--color-main-primary);
+    border: 0.5px solid var(--color-main-quaternary);
     border-radius: var(--radiusBox-md);
     padding: var(--marge-sm);
     margin: var(--marge-5xl);
@@ -314,7 +314,7 @@ main{
     gap: 10px;
     padding: 8px 10px;
     border-radius: var(--radiusBox-sm);
-    color: var(--wh3);
+    color: var(--color-second-tertiary);
     text-decoration: none;
     font-family: var(--font-text);
     font-size: var(--text-sm);
@@ -322,12 +322,12 @@ main{
 }
 
 .profile-aside-item:hover {
-    background: var(--ink2);
-    color: var(--wh);
+    background: var(--color-main-tertiary);
+    color: var(--color-second-primary);
 }
 
 .profile-aside-item.active {
-    color: var(--wh);
+    color: var(--color-second-primary);
 }
 
 .profile-aside-item i {
@@ -337,7 +337,7 @@ main{
 
 .profile-aside-badge {
     margin-left: auto;
-    background: var(--color1);
+    background: var(--accent);
     color: #a8c4e0;
     font-size: 10px;
     padding: 1px 7px;
@@ -347,7 +347,7 @@ main{
 
 .profile-aside-divider {
     height: 1px;
-    background: var(--ink3);
+    background: var(--color-main-quaternary);
     margin: 4px 8px;
 }
 
@@ -394,19 +394,19 @@ main{
     height: 76px;
     border-radius: var(--radiusBox-sm);
     overflow: hidden;
-    border: 2px solid var(--ink3);
+    border: 2px solid var(--color-main-quaternary);
     transition: border-color 0.18s ease, transform 0.15s ease;
     position: relative;
     flex-shrink: 0;
 }
 
 .theme-option:hover .theme-window {
-    border-color: var(--color1);
+    border-color: var(--accent);
     transform: translateY(-1px);
 }
 
 .theme-option input:checked ~ .theme-window {
-    border-color: var(--color1);
+    border-color: var(--accent);
 }
 
 .theme-option input:checked ~ .theme-window::after {
@@ -414,7 +414,7 @@ main{
     position: absolute;
     inset: -2px;
     border-radius: var(--radiusBox-sm);
-    box-shadow: 0 0 0 2px var(--color1), 0 0 12px rgba(34, 109, 184, 0.25);
+    box-shadow: 0 0 0 2px var(--accent), 0 0 12px rgba(34, 109, 184, 0.25);
     pointer-events: none;
 }
 
@@ -422,8 +422,8 @@ main{
     width: 16px;
     height: 16px;
     border-radius: 50%;
-    border: 1.5px solid var(--ink3);
-    background: var(--ink2);
+    border: 1.5px solid var(--color-main-quaternary);
+    background: var(--color-main-tertiary);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -432,8 +432,8 @@ main{
 }
 
 .theme-option input:checked ~ .theme-check {
-    background: var(--color1);
-    border-color: var(--color1);
+    background: var(--accent);
+    border-color: var(--accent);
 }
 
 .theme-option input:checked ~ .theme-check::after {
@@ -441,18 +441,18 @@ main{
     width: 5px;
     height: 5px;
     border-radius: 50%;
-    background: var(--wh2);
+    background: var(--color-second-secondary);
 }
 
 .theme-label {
     font-family: var(--font-text);
     font-size: var(--text-xs);
-    color: var(--wh3);
+    color: var(--color-second-tertiary);
     transition: color 0.15s;
 }
 
 .theme-option input:checked ~ .theme-label {
-    color: var(--wh);
+    color: var(--color-second-primary);
     font-weight: 500;
 }
 

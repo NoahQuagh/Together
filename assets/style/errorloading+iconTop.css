@@ -5,7 +5,7 @@
     justify-content: center;
     padding: 3rem;
     text-align: center;
-    color: var(--wh3); /* Adapte selon tes variables */
+    color: var(--color-second-tertiary); /* Adapte selon tes variables */
     gap: 15px;
     margin-top: 15rem;
 }

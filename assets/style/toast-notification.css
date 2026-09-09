@@ -25,8 +25,8 @@
     min-width: 250px;
     padding: 12px 16px;
     border-radius: var(--radiusBox-sm);
-    background: var(--ink2);
-    color: var(--wh2);
+    background: var(--color-main-tertiary);
+    color: var(--color-second-secondary);
     font-family: var(--font-text);
     font-size: 14px;
     box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);

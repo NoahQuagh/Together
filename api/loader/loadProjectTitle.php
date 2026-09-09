@@ -1,7 +1,7 @@
 <?php
 
 try{
-    require_once __DIR__ . '/../db.php';
+    require_once __DIR__ . '/../../db/connexion_together_db.php';
     require_once __DIR__ . '/../../includes/Session.php';
 
     Session::start();

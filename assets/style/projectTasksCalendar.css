@@ -1,7 +1,7 @@
 .calendar-btn{
     button{
         &:hover{
-            border-color: var(--ink2);
+            border-color: var(--color-main-tertiary);
         }
     }
 }

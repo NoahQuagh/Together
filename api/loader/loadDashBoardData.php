@@ -1,7 +1,7 @@
 <?php
 try {
     header('Content-Type: application/json; charset=utf-8');
-    require_once __DIR__ . '/../db.php';
+    require_once __DIR__ . '/../../db/connexion_together_db.php';
     require_once __DIR__ . '/../../includes/Session.php';
 
     $db = getDB();

@@ -70,22 +70,14 @@ function renderAppearance(res) {
     const container = document.getElementById('setting-zone');
     if (!container) return;
 
-    let themeList;
-
-    if (!res || !res.themeList) {
-        themeList = [{ theme_id: 2, theme: __t('sombre') }];
-    } else {
-        themeList = res.themeList;
-    }
-
-    /* data est un objet direct (fetch PHP) — sécurité si tableau reçu */
     const data = Array.isArray(res.data) ? res.data[0] : res.data;
-    const currentThemeId = data?.theme_id ?? null;
-    const currentTheme   = data?.theme    ?? '';
+    const currentTheme = data?.theme?.toLowerCase() ?? '';
+
+    console.log(currentTheme);
 
     container.innerHTML = `
     <div class="profile-page">
-        <form id="form-appearance" method="POST" action="../../../api/updater/updatePreferences.php">
+        <form id="form-appearance" method="POST">
             <div class="profile-block">
                 <div class="profile-block-header">
                     <h3><i class="ti ti-palette" aria-hidden="true"></i> ${__t('appearance')}</h3>
@@ -165,9 +157,54 @@ function renderAppearance(res) {
                     </div>
                 </div>
             </div>
+
+            <button type="submit" class="profile-btn-save">
+                <i class="ti ti-device-floppy" aria-hidden="true"></i>
+                ${__t('save')}
+            </button>
+        </form>
+        <form id="form-tasks-alert" method="POST" action="">
+            <div class="profile-block">
+                <div class="profile-block-header"><h3><i class="ti ti-alert-circle" aria-hidden="true"></i>Tâches en retard</h3></div>
+                <div class="profile-form">
+                    <label class="pref-toggle-title">Surbriance de vos tâches en retard</label>
+                    <input type="checkbox" name="checkbox-tasks-alert" ${Number(data.tasks_alert) === 1 ? 'checked' : ''}>
+                </div>
+            </div>
         </form>
     </div>
     `;
+
+    const form = document.getElementById('form-appearance');
+    if (form) {
+        form.addEventListener('submit', async function (e) {
+            e.preventDefault();
+
+            const selectedRadio = form.querySelector('input[name="theme"]:checked');
+            if (!selectedRadio) return;
+
+            const themeValue = selectedRadio.value;
+
+            if (window.setTogetherTheme) {
+                window.setTogetherTheme(themeValue, true);
+            }
+
+            try {
+                const response = await fetch('../../../api/updater/updatePreferences.php', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ theme: themeValue })
+                });
+
+                const json = await response.json();
+                if (!json.success) {
+                    console.error('Erreur lors de la sauvegarde du thème'+json.message);
+                }
+            } catch (err) {
+                console.error('Erreur réseau lors de la sauvegarde :', err);
+            }
+        });
+    }
 }
 function renderLanguage(res){
     const container = document.getElementById('setting-zone');

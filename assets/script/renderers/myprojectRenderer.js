@@ -1,6 +1,3 @@
-
-
-
 function renderMyProject(data){
     document.getElementById('dashboard-container').innerHTML = `<div class="proj-page">
 
@@ -13,11 +10,11 @@ function renderMyProject(data){
 
   ${projectExist(data.length)}
 
-    <div class="dash-project-list proj-list" id="projectList">
+    <ul class="dash-project-list proj-list" id="projectList">
       ${data.map(p => `
          ${projectRenderer(p)}
       `).join('')}
-    </div>
+    </ul>
 
     <div class="dash-empty proj-empty-filtered" id="emptyFiltered" style="display:none;">
       <i class="ti ti-filter-off" aria-hidden="true"></i>
@@ -27,7 +24,6 @@ function renderMyProject(data){
 </div>`;
     projet();
 }
-
 function projectExist(l){
     if(l===0){
         return `<div class="dash-empty proj-empty-global">
@@ -146,6 +142,5 @@ function escapeHtml(str) {
         .replace(/>/g, '&gt;')
         .replace(/"/g, '&quot;');
 }
-
 
 
