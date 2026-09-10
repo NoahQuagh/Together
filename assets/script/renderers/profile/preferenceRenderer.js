@@ -2,7 +2,7 @@ function renderNotification(data){
     document.getElementById('setting-zone').innerHTML = `
         <div class="profile-page">
 
-            <form id="form-notifications" method="POST" action="../../../api/updater/updatePreferences.php">
+            <form id="form-notifications" method="POST" action="../api/updater/updatePreferences.php">
 
                 <div class="profile-block">
                     <div class="profile-block-header">
@@ -190,7 +190,7 @@ function renderAppearance(res) {
             }
 
             try {
-                const response = await fetch('../../../api/updater/updatePreferences.php', {
+                const response = await fetch('../api/updater/updatePreferences.php', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({ theme: themeValue })
@@ -233,7 +233,7 @@ function renderLanguage(res){
 
     container.innerHTML = `
     <div class="profile-page">
-        <form id="form-language" method="POST" action="../../../api/updater/updatePreferences.php">
+        <form id="form-language" method="POST" action="../api/updater/updatePreferences.php">
             <div class="profile-block">
                 <div class="profile-block-header">
                     <h3><i class="ti ti-language" aria-hidden="true"></i> ${__t('language')}</h3>
@@ -267,7 +267,7 @@ function renderLanguage(res){
         const langCode = selectedOption.getAttribute('data-code') || 'fr';
 
         try {
-            const response = await fetch('../../../api/updater/updateLang.php', {
+            const response = await fetch('../api/updater/updateLang.php', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({

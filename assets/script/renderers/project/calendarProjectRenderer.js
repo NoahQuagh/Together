@@ -57,7 +57,6 @@ function fullCalendar(tasks = currentCalendarTasks) {
     const calendarEl = document.getElementById('view-vertical');
     if (!calendarEl) return;
 
-    // Transformation du JSON API -> Format FullCalendar
     const events = tasks.map(t => {
         const colorMap = {
             'critique': '#e04030',
@@ -80,9 +79,8 @@ function fullCalendar(tasks = currentCalendarTasks) {
                 desc: t.desc
             }
         };
-    }).filter(e => e.start); // Filtre les tâches sans date de début
+    }).filter(e => e.start);
 
-    // Nettoyage si un calendrier existait déjà
     calendarEl.innerHTML = '';
 
     const calendar = new FullCalendar.Calendar(calendarEl, {
@@ -95,7 +93,6 @@ function fullCalendar(tasks = currentCalendarTasks) {
         },
         events: events,
         eventClick: function(info) {
-            // Ouverture de la modale de détails si fonction globale disponible
             if (typeof openModal === 'function') {
                 openModal(`modal-task-${info.event.id}`);
             } else {
@@ -114,19 +111,15 @@ function granttCalendar(tasks = currentCalendarTasks) {
     const ganttEl = document.getElementById('gantt');
     if (!ganttEl) return;
 
-    // Transformation du JSON API -> Format Frappe Gantt
     const formattedTasks = tasks.map(t => {
-        // Date par défaut si absente
         const todayStr = new Date().toISOString().split('T')[0];
         let startDate = t.date_debut ? t.date_debut.split(' ')[0] : todayStr;
         let endDate = t.date_fin ? t.date_fin.split(' ')[0] : startDate;
 
-        // Sécurité : la date de fin doit être >= date de début
         if (new Date(endDate) < new Date(startDate)) {
             endDate = startDate;
         }
 
-        // Calcul du pourcentage d'avancement selon le statut
         let progress = 0;
         if (t.statut === 'termine') progress = 100;
         else if (t.statut === 'en_review') progress = 85;
@@ -146,11 +139,9 @@ function granttCalendar(tasks = currentCalendarTasks) {
         return;
     }
 
-    // Réinitialise le SVG pour éviter les superpositions au redessin
     ganttEl.innerHTML = '';
     ganttInstance = null;
 
-    // Création du Diagramme de Gantt
     ganttInstance = new Gantt("#gantt", formattedTasks, {
         header_height: 50,
         column_width: 30,

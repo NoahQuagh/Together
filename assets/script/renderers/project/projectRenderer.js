@@ -1,60 +1,3 @@
-
-const travaux = `<div class="wip-block block-trav">
-    <div class="wip-icon-wrap">
-        <i class="ti ti-crane" aria-hidden="true"></i>
-        <span class="wip-badge">!</span>
-    </div>
-    <p class="wip-title">${__t('section under construction')}</p>
-    <p class="wip-desc">${__t('this section is being developed and will be available soon')}</p>
-    <div class="wip-dots">
-        <div class="wip-dot"></div>
-        <div class="wip-dot"></div>
-        <div class="wip-dot"></div>
-    </div>
-</div>`;
-
-/*fonction conver*/
-function prioriteIcon(priorite) {
-    const map = { 'critique': '<i class="ti ti-alert-triangle"></i>', 'haute': '<i class="ti ti-triangle"></i>', 'normale': '<i class="ti ti-circle"></i>', 'basse': '<i class="ti ti-triangle-inverted"></i>' };
-    return map[priorite] ?? '';
-}
-
-function statutIcon(priorite) {
-    const map = { 'en_attente': '<i class="ti ti-loader"></i>', 'en_cours': '<i class="ti ti-circle-dashed"></i>', 'en_review': '<i class="ti ti-telescope"></i>', 'termine': '<i class="ti ti-circle-check"></i>' };
-    return map[priorite] ?? '';
-}
-
-function formatDate(dateInput) {
-    if (!dateInput) return '';
-
-    const date = new Date(dateInput);
-    if (isNaN(date.getTime())) return '';
-
-
-    return date.toLocaleDateString(__t('formatDate'), {
-        day: 'numeric',
-        month: 'short',
-        year: 'numeric',
-    });
-}
-
-function formatForInput(dateStr) {
-    if (!dateStr) return '';
-    return dateStr.slice(0, 16).replace(' ', 'T');
-}
-
-function prioriteColor(priorite) {
-    const map = { 'critique': '#e04030', 'haute': '#d4901a', 'normale': '#5c90e8', 'basse': '#28b870' };
-    return map[priorite] ?? '#7a7168';
-}
-
-
-/*initiale si pas de pp*/
-function initiales(nom) {
-    return nom.split(' ').map(p => p[0]).join('').toUpperCase().slice(0, 2);
-}
-
-/*modal*/
 function openModal(id) {
     const m = document.getElementById(id);
     if (!m) return;
@@ -72,7 +15,6 @@ function closeModal(id) {
         document.body.style.overflow = '';
     }, { once: true });
 }
-
 
 function getActionLabel(statut) {
     switch (statut) {
@@ -136,8 +78,6 @@ function noTasksExist(){
     `;
 }
 
-
-
 function toggleTaskMenu(event, taskId) {
     event.stopPropagation();
     const currentMenu = document.getElementById(`dropdown-task-${taskId}`);
@@ -160,8 +100,6 @@ let activeFilteredTasks = [];
 
 let currentSearchQuery = '';
 
-/*initialisation*/
-/*initialisation*/
 function initProjectTasks(data) {
     currentTaskData = data.tasks || [];
     activeFilteredTasks = [...currentTaskData];
@@ -246,7 +184,7 @@ function applyFilters() {
         countBadge.textContent = activeCount > 0 ? `(${activeCount})` : '';
     }
 
-    fetch(`/api/loader/loadProjectFilter.php?${params.toString()}`)
+    fetch(`../api/loader/loadProjectFilter.php?${params.toString()}`)
         .then(response => response.json())
         .then(data => {
             if (!data.success) {

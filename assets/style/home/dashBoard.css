@@ -421,7 +421,6 @@
     }
 }
 
-/* ── Mobile ── */
 @media (max-width: 768px) {
     .dash-page {
         padding: var(--marge-sm);
@@ -470,7 +469,6 @@
     }
 }
 
-/* ── Petit mobile : KPI en 1 colonne ── */
 @media (max-width: 480px) {
     .dash-kpi-grid {
         grid-template-columns: 1fr;

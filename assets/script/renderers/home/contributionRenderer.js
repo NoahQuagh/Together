@@ -1,17 +1,3 @@
-function formatDate(dateInput) {
-    if (!dateInput) return '';
-
-    const date = new Date(dateInput);
-    if (isNaN(date.getTime())) return '';
-
-
-    return date.toLocaleDateString(__t('formatDate'), {
-        day: 'numeric',
-        month: 'short',
-        year: 'numeric',
-    });
-}
-
 function renderMyContributions(data){
     document.getElementById('dashboard-container').innerHTML = `<div class="proj-page">
 
@@ -72,7 +58,6 @@ function contributionRenderer(project){
           </div>
 
           <div class="optionProject">
-            <!-- Supprimer -->
             <button class="option-btn option-red btn-delete"
                     data-id="${escapeHtml(project.project_id)}"
                     data-nom="${escapeHtml(project.project_nom)}"
@@ -103,19 +88,4 @@ function deadlineRenderer(date) {
         </span>
     `;
 }
-function statutBadge(statut) {
-    switch (statut) {
-        case 'actif':   return 'badge-green';
-        case 'pause':   return 'badge-yellow';
-        case 'termine': return 'badge-blue';
-        default:        return 'badge-blue';
-    }
-}
-function escapeHtml(str) {
-    if (!str) return '';
-    return String(str)
-        .replace(/&/g, '&amp;')
-        .replace(/</g, '&lt;')
-        .replace(/>/g, '&gt;')
-        .replace(/"/g, '&quot;');
-}
+

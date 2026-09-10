@@ -126,6 +126,7 @@
     cursor: pointer;
     flex-shrink: 0;
     align-self: flex-start;
+    background: transparent;
     border-radius: var(--radiusBox-circle);
     border: none;
 

@@ -1,18 +1,5 @@
-function formatDate(dateInput) {
-    if (!dateInput) return '';
-
-    const date = new Date(dateInput);
-    if (isNaN(date.getTime())) return '';
-
-
-    return date.toLocaleDateString(__t('formatDate'), {
-        day: 'numeric',
-        month: 'short',
-        year: 'numeric',
-    });
-}
-
 function renderMyProject(data){
+
     document.getElementById('dashboard-container').innerHTML = `<div class="proj-page">
 
   <div class="proj-filters">
@@ -44,7 +31,7 @@ function projectExist(l){
       <i class="ti ti-folder-off" aria-hidden="true"></i>
       <p>${__t("You haven't created any projects yet")}.</p>
       <div>
-        <button class="proj-create-btn" onclick="window.location.href='../../../pages/project_create.php'">
+        <button class="proj-create-btn" onclick="window.location.href='../pages/project_create.php'">
           <i class="ti ti-plus"></i>
           ${__t('create my first project')}
         </button>
@@ -79,14 +66,12 @@ function projectRenderer(project){
 
           <div class="optionProject">
           
-            <!-- Éditer -->
             <button class="option-btn option-vert btn-edit"
                     data-id="${escapeHtml(project.project_id)}"
                     title="${__t('modify the project')}">
               <i class="ti ti-pencil"></i>
             </button>
 
-            <!-- Changer le statut -->
             <div class="more-wrapper">
               <button class="option-btn option-blanc btn-more"
                       data-id="${escapeHtml(project.project_id)}"
@@ -109,7 +94,6 @@ function projectRenderer(project){
               </div>
             </div>
 
-            <!-- Supprimer -->
             <button class="option-btn option-red btn-delete"
                     data-id="${escapeHtml(project.project_id)}"
                     data-nom="${escapeHtml(project.project_nom)}"
@@ -140,21 +124,7 @@ function deadlineRenderer(date) {
         </span>
     `;
 }
-function statutBadge(statut) {
-    switch (statut) {
-        case 'actif':   return 'badge-green';
-        case 'pause':   return 'badge-yellow';
-        case 'termine': return 'badge-blue';
-        default:        return 'badge-blue';
-    }
-}
-function escapeHtml(str) {
-    if (!str) return '';
-    return String(str)
-        .replace(/&/g, '&amp;')
-        .replace(/</g, '&lt;')
-        .replace(/>/g, '&gt;')
-        .replace(/"/g, '&quot;');
-}
+
+
 
 

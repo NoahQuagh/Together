@@ -13,15 +13,15 @@ require_once __DIR__  . '/../includes/defineTheme.php';
   <meta charset="UTF-8">
   <title>Together</title>
   <link rel="stylesheet" href="../assets/style/paletteStyle.css">
-  <link rel="stylesheet" href="../assets/style/header+sidebar.css">
-  <link rel="stylesheet" href="../assets/style/nonConnecterSection.css">
-  <link rel="stylesheet" href="../assets/style/footer.css">
-  <link rel="stylesheet" href="../assets/style/profile.css">
-  <link rel="stylesheet" href="../assets/style/spinnerlogoScaled.css">
-  <link rel="stylesheet" href="../assets/style/modal-dialog.css">
-  <link rel="stylesheet" href="../assets/style/toast-notification.css">
-  <link rel="stylesheet" href="../assets/style/errorloading+iconTop.css">
-  <link rel="stylesheet" href="../assets/style/zone-travaux.css">
+  <link rel="stylesheet" href="../assets/style/navigation/header+sidebar.css">
+  <link rel="stylesheet" href="../assets/style/tools/nonConnecterSection.css">
+  <link rel="stylesheet" href="../assets/style/navigation/footer.css">
+  <link rel="stylesheet" href="../assets/style/profile/profile.css">
+  <link rel="stylesheet" href="../assets/style/tools/spinnerlogoScaled.css">
+  <link rel="stylesheet" href="../assets/style/tools/modal-dialog.css">
+  <link rel="stylesheet" href="../assets/style/tools/toast-notification.css">
+  <link rel="stylesheet" href="../assets/style/tools/errorloading+iconTop.css">
+  <link rel="stylesheet" href="../assets/style/tools/zone-travaux.css">
   <link rel="icon" type="image/png" href="../assets/logo/logoheader.png">
   <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Syne:wght@700;800&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&display=swap"
         rel="stylesheet">
@@ -120,14 +120,15 @@ require_once __DIR__  . '/../includes/defineTheme.php';
         return key;
     };
 </script>
-<script src="../assets/script/navbar+sidebar.js"></script>
+<script src="../assets/script/navigation/navbar+sidebar.js"></script>
 <script src="../assets/script/profile.js"></script>
-<script src="../assets/script/toast-notification.js"></script>
-<script src="../assets/script/modal-dialog.js"></script>
-<script src="../assets/script/renderers/preferenceRenderer.js"></script>
-<script src="../assets/script/renderers/profileRenderer.js"></script>
-<script src="../assets/script/renderers/securityRenderer.js"></script>
-<script src="../assets/script/theme.js"></script>
+<script src="../assets/script/tools/toast-notification.js"></script>
+<script src="../assets/script/tools/modal-dialog.js"></script>
+<script src="../assets/script/tools/toolbox.js"></script>
+<script src="../assets/script/renderers/profile/preferenceRenderer.js"></script>
+<script src="../assets/script/renderers/profile/profileRenderer.js"></script>
+<script src="../assets/script/renderers/profile/securityRenderer.js"></script>
+<script src="../assets/script/tools/theme.js"></script>
 <div id="toast-container" class="toast-container"></div>
 </body>
 </html>

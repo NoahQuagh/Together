@@ -4,11 +4,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
     const menu = document.getElementById('myTasksMenu');
 
-    if (menu) {
-
-        menu.classList.toggle('alert');
-    }
-
     if (trigger && dropdown) {
         trigger.addEventListener("click", function (event) {
             event.stopPropagation();
@@ -22,6 +17,10 @@ document.addEventListener("DOMContentLoaded", function () {
         document.addEventListener("click", function () {
             dropdown.classList.remove("active");
         });
+    }
+
+    if (menu) {
+        checkTacheRetard(menu);
     }
 });
 
@@ -51,3 +50,4 @@ document.querySelectorAll('.sb-item').forEach(item => {
         item.classList.add('active');
     });
 });
+

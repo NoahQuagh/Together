@@ -14,9 +14,9 @@ if (Session::estConnecte()) {
   <meta charset="UTF-8">
   <title>Login - Together</title>
   <link rel="stylesheet" href="../assets/style/paletteStyle.css">
-  <link rel="stylesheet" href="../assets/style/footer.css">
+  <link rel="stylesheet" href="../assets/style/navigation/footer.css">
   <link rel="stylesheet" href="../assets/style/login.css">
-  <link rel="stylesheet" href="../assets/style/logo.css">
+  <link rel="stylesheet" href="../assets/style/tools/logo.css">
   <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Syne:wght@700;800&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&display=swap"
         rel="stylesheet">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css">

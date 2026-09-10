@@ -119,7 +119,7 @@ function changerStatut(proId, newStatut, liElement) {
             const badge = liElement.querySelector('.proj-statut-badge');
             if (badge) {
                 badge.textContent = newStatut;
-                badge.className   = 'badge ' + statutBadgeJS(newStatut) + ' proj-statut-badge';
+                badge.className   = 'badge ' + statutBadge(newStatut) + ' proj-statut-badge';
             }
 
             const activeFilter = document.querySelector('.proj-filter-btn.active');
@@ -173,15 +173,6 @@ function supprimerProjet(proId, liElement) {
             showToast(__t('delete project'), 'success')
         })
         .catch(() => showToast(__t('unable to delete the project'), 'error'));
-}
-
-function statutBadgeJS(statut) {
-    const map = {
-        actif   : 'badge-green',
-        pause   : 'badge-yellow',
-        termine : 'badge-blue',
-    };
-    return map[statut] || 'badge-blue';
 }
 
 document.addEventListener('DOMContentLoaded', projet);

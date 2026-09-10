@@ -29,6 +29,13 @@
                 font-size: var(--text-xl);
                 display: flex;
                 flex-direction: column;
+                gap: var(--marge-xxs);
+                div{
+                    display: flex;
+                    justify-content: flex-start;
+                    align-content: flex-start;
+                    flex-direction: row;
+                }
                 div:last-child{
                     font-size: var(--text-base);
                     color: var(--color-second-tertiary);

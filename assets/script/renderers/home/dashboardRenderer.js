@@ -1,4 +1,3 @@
-
 function renderDashboard(data){
     document.getElementById('dashboard-container').innerHTML = `
         <div class="dash-layout">
@@ -62,16 +61,6 @@ function renderDashboard(data){
 </div>
 </div>
     `
-}
-
-function prioriteBadge(prio) {
-    const map = { critique: 'badge-red', haute: 'badge-yellow', normale: 'badge-blue' };
-    return map[prio] || 'badge-green';
-}
-function formatDate(dateStr) {
-    if (!dateStr) return '';
-    const d = new Date(dateStr);
-    return d.toLocaleDateString(__t('formatDate'));
 }
 
 function renderTasksToday(tasks){
@@ -155,7 +144,7 @@ function renderProjects(projects){
         return `<p class="dash-empty">${__t('you are not participating in any active projects')}.</p>`;
     }
     return `<div class="dash-block-header jaune">
-            <h3><i class="ti ti-folder" aria-hidden="true"></i>${__t('active projects')}</h3>
+            <h3><i class="ti ti-folders" aria-hidden="true"></i>${__t('active projects')}</h3>
             <span class="dash-block-count">${projects.length}</span>
         </div>
 
@@ -193,11 +182,3 @@ function renderActivities(activities){
         </ul>`;
 }
 
-function escapeHtml(str) {
-    if (!str) return '';
-    return String(str)
-        .replace(/&/g, '&amp;')
-        .replace(/</g, '&lt;')
-        .replace(/>/g, '&gt;')
-        .replace(/"/g, '&quot;');
-}

@@ -42,7 +42,7 @@
             btn.addEventListener('click', toggleTheme);
         }
 
-        fetch('api/loaders/loadPreferences.php')
+        fetch('../api/loaders/loadPreferences.php')
             .then(res => res.ok ? res.json() : null)
             .then(res => {
                 if (res && res.success && res.data && res.data.theme) {
