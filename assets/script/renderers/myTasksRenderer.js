@@ -71,7 +71,6 @@ function renderTasks(d){
         </div>
         <div class="tasks-footer">
           <div class="footer-item">
-              <div>${formatDateTime(d.date_debut)}</div>
               <div>${formatDateTime(d.date_fin)}</div>
           </div>
           <div>${d.reporter}</div>

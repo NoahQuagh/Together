@@ -24,7 +24,7 @@
         </a>
 
         <a href="home.php?tab=mytasks" class="<?= $tab === 'mytasks' ? 'nav-item active-nav' : 'nav-item' ?>">
-            <div class="item">
+            <div class="item" id="myTasksMenu">
                 <i class="ti ti-checklist" aria-hidden="true"></i>
                 <h4><?= __tphp('my tasks') ?></h4>
             </div>

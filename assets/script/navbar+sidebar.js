@@ -2,6 +2,13 @@ document.addEventListener("DOMContentLoaded", function () {
     const trigger = document.getElementById("account-menu-trigger");
     const dropdown = document.getElementById("account-dropdown");
 
+    const menu = document.getElementById('myTasksMenu');
+
+    if (menu) {
+
+        menu.classList.toggle('alert');
+    }
+
     if (trigger && dropdown) {
         trigger.addEventListener("click", function (event) {
             event.stopPropagation();
