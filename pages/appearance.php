@@ -26,7 +26,6 @@
 
 <script>
     //couleur de la pp en font
-    //couleur du systeme bleu together defaut
     document.addEventListener("DOMContentLoaded", function() {
         fetch('../api/loader/loadPreference.php')
             .then(res => res.json())

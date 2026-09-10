@@ -37,7 +37,7 @@ function renderMyTasks(data){
     `;
 }
 
-function formatDate(dateInput) {
+function formatDateTime(dateInput) {
     if (!dateInput) return '';
 
     const date = new Date(dateInput);
@@ -77,8 +77,8 @@ function renderTasks(d){
         </div>
         <div class="tasks-footer">
           <div class="footer-item">
-              <div>${formatDate(d.date_debut)}</div>
-              <div>${formatDate(d.date_fin)}</div>
+              <div>${formatDateTime(d.date_debut)}</div>
+              <div>${formatDateTime(d.date_fin)}</div>
           </div>
           <div>${d.reporter}</div>
         </div>

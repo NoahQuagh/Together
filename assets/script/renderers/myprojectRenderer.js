@@ -1,3 +1,17 @@
+function formatDate(dateInput) {
+    if (!dateInput) return '';
+
+    const date = new Date(dateInput);
+    if (isNaN(date.getTime())) return '';
+
+
+    return date.toLocaleDateString(__t('formatDate'), {
+        day: 'numeric',
+        month: 'short',
+        year: 'numeric',
+    });
+}
+
 function renderMyProject(data){
     document.getElementById('dashboard-container').innerHTML = `<div class="proj-page">
 
