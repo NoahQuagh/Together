@@ -312,6 +312,9 @@ function renderProjectTasks(data) {
                                 <button type="button" onclick="duplicateTask('${t.id}')">
                                     <i class="ti ti-copy"></i> ${__t('duplicate')}
                                 </button>
+                                <button type="button" onclick="BecomeCoWorker('${t.id}')">
+                                    <i class="ti ti-user-plus"></i> ${__t('become co worker')}
+                                </button>
                                 <div class="dropdown-divider"></div>
                                 <button type="button" class="danger" onclick="deleteTask('${t.id}')">
                                     <i class="ti ti-trash"></i> ${__t('delete')}
