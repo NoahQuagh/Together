@@ -64,7 +64,7 @@ function renderTasks(d){
     const isLate = endDate && endDate < today;
 
     return`
-    <li class="tasks-card ${isLate ? 'is-late' : ''}" data-statut="${escapeHtml(d.statut)}" data-prio="${escapeHtml(d.prio)}" data-id="${escapeHtml(d.projet_uuid)}" onclick="window.location.href='project.php?key=${escapeHtml(d.projet_uuid)}&tab=tasks'">
+    <li class="tasks-card ${isLate ? 'is-late' : ''}" data-statut="${escapeHtml(d.statut)}" data-prio="${escapeHtml(d.prio)}" data-id="${escapeHtml(d.projet_uuid)}" onclick="window.location.href='project.php?key=${escapeHtml(d.projet_uuid)}&tab=tasks&search=${escapeHtml(d.titre_tache)}'">
         <div class="tasks-header">
           <div class="header-item">
             <div><i class="ti ti-clipboard-list"></i>${d.titre_tache}</div>

@@ -161,10 +161,24 @@ let activeFilteredTasks = [];
 let currentSearchQuery = '';
 
 /*initialisation*/
+/*initialisation*/
 function initProjectTasks(data) {
     currentTaskData = data.tasks || [];
     activeFilteredTasks = [...currentTaskData];
-    renderProjectTasks({ tasks: currentTaskData });
+
+    const urlParams = new URLSearchParams(window.location.search);
+    const searchQuery = urlParams.get('search');
+    const searchInput = document.getElementById('task-search-input') || document.querySelector('.nav-item input[type="text"]');
+
+    if (searchQuery) {
+        currentSearchQuery = searchQuery;
+        if (searchInput) {
+            searchInput.value = searchQuery;
+        }
+    }
+
+    const finalTasks = getFilteredTasksBySearch(activeFilteredTasks);
+    renderProjectTasks({ tasks: finalTasks });
 }
 
 /*filtre*/
@@ -265,6 +279,7 @@ function handleSearchInput(event) {
     const finalTasks = getFilteredTasksBySearch(activeFilteredTasks);
     renderProjectTasks({ tasks: finalTasks });
 }
+
 document.addEventListener('DOMContentLoaded', () => {
     const searchInput = document.querySelector('.nav-item input[type="text"]');
     if (searchInput) {

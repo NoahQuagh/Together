@@ -29,7 +29,7 @@
       <?php if($tab === 'tasks'): ?>
       <div class="nav-item tk-search">
         <i class="ti ti-search" aria-hidden="true"></i>
-        <input type="text" placeholder=<?= __tphp('search a task') ?>...>
+        <input type="text" id="task-search-input" placeholder=<?= __tphp('search a task') ?>...>
       </div>
 
         <div class="nav-item tk-filter-container">
