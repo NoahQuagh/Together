@@ -37,7 +37,13 @@
                 if(res.data.tasks.length === 0){
                     noTasksExist();
                 }else{
-                    initProjectTasks(res.data)
+                    try{
+                        initProjectTasks(res.data)
+
+                    }catch (err){
+                        console.log(err)
+                        throw new Error(err)
+                    }
                 }
             })
             .catch(error => {

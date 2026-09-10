@@ -287,12 +287,17 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 });
 
+function myTasks(task) {
+    if (!task || !task.assignes || !Array.isArray(task.assignes)) return false;
+
+    return task.assignes.some(assignee => Number(assignee.myTask) === 1);
+}
 
 /*renderer du projet*/
 function renderProjectTasks(data) {
-
-    const cartes = data.tasks.map(t => `
-            <li class="tk-card ${t.statut}">
+    const cartes = data.tasks.map(t =>
+        `
+            <li class="tk-card ${t.statut} ${t.isLate && myTasks(t)  ? 'is-late' : ''}">
                 <div class="tk-top">
                     <div class="tk-badges">
                         <span class="tk-titre">${t.titre}</span>

@@ -1,6 +1,3 @@
-const today = new Date();
-today.setHours(0, 0, 0, 0);
-
 function renderMyTasks(data){
     document.getElementById('dashboard-container').innerHTML = `
     <div class="proj-page">
@@ -60,11 +57,8 @@ function tasksExist(l){
 
 
 function renderTasks(d){
-    const endDate = d.date_fin ? new Date(d.date_fin) : null;
-    const isLate = endDate && endDate < today;
-
     return`
-    <li class="tasks-card ${isLate ? 'is-late' : ''}" data-statut="${escapeHtml(d.statut)}" data-prio="${escapeHtml(d.prio)}" data-id="${escapeHtml(d.projet_uuid)}" onclick="window.location.href='project.php?key=${escapeHtml(d.projet_uuid)}&tab=tasks&search=${escapeHtml(d.titre_tache)}'">
+    <li class="tasks-card ${d.isLate ? 'is-late' : ''}" data-statut="${escapeHtml(d.statut)}" data-prio="${escapeHtml(d.prio)}" data-id="${escapeHtml(d.projet_uuid)}" onclick="window.location.href='project.php?key=${escapeHtml(d.projet_uuid)}&tab=tasks&search=${escapeHtml(d.titre_tache)}'">
         <div class="tasks-header">
           <div class="header-item">
             <div><i class="ti ti-clipboard-list"></i>${d.titre_tache}</div>

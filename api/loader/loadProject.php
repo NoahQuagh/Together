@@ -37,24 +37,25 @@ try {
 
     $projectId = (int) $proj['pro_id'];
 
-    $stmtTasks = $db->prepare('
-        SELECT t.tas_id,
-               t.tas_sprint_id,
-               CONCAT(r.use_prenom, " ", r.use_nom) AS reporter,
-               t.tas_titre,
-               t.tas_description,
-               rst.rst_label                         AS statut,
-               rpr.rpr_label                         AS priorite,
-               t.tas_date_debut                      AS date_debut,
-               t.tas_date_fin                        AS date_fin,
-               t.tas_color                           AS couleur
-        FROM TOG_TASKS t
-        JOIN TOG_USERS r              ON t.tas_reporter_id  = r.use_id
-        JOIN TOG_REF_STATUT_TACHE rst ON t.tas_statut_id    = rst.rst_id
-        JOIN TOG_REF_PRIORITE rpr     ON t.tas_priorite_id  = rpr.rpr_id
-        WHERE t.tas_project_id = ?
-        ORDER BY t.tas_priorite_id DESC, t.tas_date_fin ASC
-    ');
+    $stmtTasks = $db->prepare('SELECT t.tas_id,
+       t.tas_sprint_id,
+       CONCAT(r.use_prenom, " ", r.use_nom) AS reporter,
+       t.tas_titre,
+       t.tas_description,
+       rst.rst_label                         AS statut,
+       rpr.rpr_label                         AS priorite,
+       t.tas_date_debut                      AS date_debut,
+       t.tas_date_fin                        AS date_fin,
+       CASE
+           WHEN t.tas_date_fin < NOW() and t.tas_statut_id!=4 then 1
+           ELSE 0
+           END as late
+FROM TOG_TASKS t
+         JOIN TOG_USERS r              ON t.tas_reporter_id  = r.use_id
+         JOIN TOG_REF_STATUT_TACHE rst ON t.tas_statut_id    = rst.rst_id
+         JOIN TOG_REF_PRIORITE rpr     ON t.tas_priorite_id  = rpr.rpr_id
+WHERE t.tas_project_id = ?
+ORDER BY t.tas_priorite_id DESC, t.tas_date_fin ASC');
     $stmtTasks->execute([$projectId]);
     $tasks = $stmtTasks->fetchAll();
 
@@ -78,19 +79,26 @@ try {
     $stmtAssignees = $db->prepare("
         SELECT tta.tta_task_id                         AS task_id,
                u.use_id                               AS id,
-               CONCAT(u.use_prenom, ' ', u.use_nom)   AS nom
+               CONCAT(u.use_prenom, ' ', u.use_nom)   AS nom,
+               CASE 
+                    WHEN u.use_id = ? THEN 1
+                    ELSE 0
+                END as myTasks
         FROM TOG_TASK_ASSIGNEES tta
         JOIN TOG_USERS u ON tta.tta_user_id = u.use_id
         WHERE tta.tta_task_id IN ($inParams)
     ");
-    $stmtAssignees->execute($taskIds);
+    $params = array_merge([Session::id()], $taskIds);
+    $stmtAssignees->execute($params);
+
     $assigneesRaw = $stmtAssignees->fetchAll();
 
     $assigneesByTask = [];
     foreach ($assigneesRaw as $row) {
         $assigneesByTask[$row['task_id']][] = [
-            'id'  => $row['id'],
-            'nom' => $row['nom'],
+            'id'      => (int)$row['id'],
+            'nom'     => $row['nom'],
+            'myTask' => (int)$row['myTasks']
         ];
     }
 
@@ -106,7 +114,6 @@ try {
     $stmtEti->execute($taskIds);
     $etiquettesRaw = $stmtEti->fetchAll();
 
-    /* Indexer par task_id → tableau d'étiquettes */
     $etiquettesByTask = [];
     foreach ($etiquettesRaw as $row) {
         $etiquettesByTask[$row['tte_task_id']][] = [
@@ -130,12 +137,14 @@ try {
             'priorite'   => $t['priorite'],
             'date_debut' => $t['date_debut'],
             'date_fin'   => $t['date_fin'],
+            'isLate'   => $t['late'],
         ];
     }, $tasks);
 
     echo json_encode([
         'success' => true,
         'data'    => [
+            'session_id'=> Session::id(),
             'id'          => $proj['pro_id'],
             'titre'       => $proj['pro_nom'],
             'manager'     => $proj['manager'],

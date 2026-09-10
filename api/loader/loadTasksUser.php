@@ -6,7 +6,20 @@ try {
 
     $db = getDB();
 
-    $req = $db->prepare("select pro_nom,pro_uuid,COALESCE(spr_nom,'Aucun sprint rataché à la tâche') as sprint,concat(use_prenom,' ',use_nom) as reporter,tas_titre,tas_description,rst_label as statut,rpr_label as priorite,tas_date_debut,tas_date_fin
+    $req = $db->prepare("select pro_nom,
+       pro_uuid,
+       COALESCE(spr_nom,'Aucun sprint rataché à la tâche') as sprint,
+       concat(use_prenom,' ',use_nom) as reporter,
+       tas_titre,
+       tas_description,
+       rst_label as statut,
+       rpr_label as priorite,
+       tas_date_debut,
+       tas_date_fin,
+       CASE
+           WHEN TOG_TASKS.tas_date_fin < NOW() then 1
+           WHEN TOG_TASKS.tas_date_fin > NOW() then 0
+       END as late
 from TOG_TASKS
          left join TOG_TASK_ASSIGNEES
                    on TOG_TASKS.tas_id = TOG_TASK_ASSIGNEES.tta_task_id
@@ -39,6 +52,7 @@ where tta_user_id=? and rst_id != 4
             'prio'           => $p['priorite'],
             'date_debut'           => $p['tas_date_debut'],
             'date_fin'           => $p['tas_date_fin'],
+            'isLate'           => $p['late'],
         ];
     }, $projects);
 
