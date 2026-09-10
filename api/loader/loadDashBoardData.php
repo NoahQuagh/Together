@@ -7,17 +7,17 @@ try {
     $db = getDB();
 
     $req1 = $db->prepare('
-    SELECT t.tas_titre AS tache, rpr.rpr_label AS priorite, t.tas_date_fin AS deadline, p.pro_nom AS projet
-    FROM TOG_TASK_ASSIGNEES tta
-    JOIN TOG_TASKS t        ON tta.tta_task_id      = t.tas_id
-    JOIN TOG_PROJECTS p     ON t.tas_project_id     = p.pro_id
-    JOIN TOG_REF_PRIORITE rpr ON t.tas_priorite_id  = rpr.rpr_id
-    WHERE tta.tta_user_id = ? AND t.tas_statut_id = 1
-    ORDER BY t.tas_priorite_id DESC
+    SELECT t.tas_titre AS tache, rpr.rpr_label AS priorite, t.tas_date_fin AS deadline, p.pro_nom as projet,p.pro_uuid AS projet_uuid
+FROM TOG_TASK_ASSIGNEES tta
+         JOIN TOG_TASKS t        ON tta.tta_task_id      = t.tas_id
+         JOIN TOG_PROJECTS p     ON t.tas_project_id     = p.pro_id
+         JOIN TOG_REF_PRIORITE rpr ON t.tas_priorite_id  = rpr.rpr_id
+WHERE tta.tta_user_id = ? AND t.tas_statut_id = 1
+ORDER BY t.tas_priorite_id DESC
 ');
 
     $req2 = $db->prepare('
-    SELECT t.tas_titre AS tache, rpr.rpr_label AS priorite, t.tas_date_fin AS deadline, p.pro_nom AS projet
+    SELECT t.tas_titre AS tache, rpr.rpr_label AS priorite, t.tas_date_fin AS deadline, p.pro_nom as projet,p.pro_uuid AS projet_uuid
     FROM TOG_TASK_ASSIGNEES tta
     JOIN TOG_TASKS t        ON tta.tta_task_id      = t.tas_id
     JOIN TOG_PROJECTS p     ON t.tas_project_id     = p.pro_id
@@ -27,7 +27,7 @@ try {
 ');
 
     $req3 = $db->prepare('
-    SELECT pro_nom AS nom, rrp_label AS role
+    SELECT pro_nom AS nom, rrp_label AS role,pro_uuid as projet_uuid
     FROM TOG_PROJECT_MEMBERS pm
     JOIN TOG_PROJECTS p ON pm.tpm_project_id = p.pro_id
     JOIN TOG_REF_ROLE_PROJET rp ON pm.tpm_role_id = rp.rrp_id

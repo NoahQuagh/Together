@@ -2,18 +2,18 @@
 function renderDashboard(data){
     document.getElementById('dashboard-container').innerHTML = `
         <div class="dash-layout">
-    <div class="dash-kpi-grid">
-
-    <div class="dash-kpi-card">
-    <div class="dash-kpi-icon dash-kpi-icon--blue">
-    <i class="ti ti-checklist" aria-hidden="true"></i>
-    </div>
-    
-    <div class="dash-kpi-info">
-    <span class="dash-kpi-value" id="kpi-tasks-today">${data.tasks_today.length}</span>
-    <span class="dash-kpi-label">${__t('tasks to do')}</span>
-</div>
-</div>
+            <div class="dash-kpi-grid">
+            
+                <div class="dash-kpi-card">
+                <div class="dash-kpi-icon dash-kpi-icon--blue">
+                <i class="ti ti-checklist" aria-hidden="true"></i>
+                </div>
+                
+                <div class="dash-kpi-info">
+                <span class="dash-kpi-value" id="kpi-tasks-today">${data.tasks_today.length}</span>
+                <span class="dash-kpi-label">${__t('tasks to do')}</span>
+            </div>
+        </div>
 
 <div class="dash-kpi-card">
     <div class="dash-kpi-icon dash-kpi-icon--red">
@@ -86,7 +86,7 @@ function renderTasksToday(tasks){
         
         <ul class="dash-task-list">
             ${tasks.map(t => `
-            <li class="dash-task-item">
+            <li class="dash-task-item" onclick="window.location.href='project.php?key=${escapeHtml(t.projet_uuid)}&tab=tasks&search=${escapeHtml(t.tache)}'">
                 <div class="dash-task-top">
                     <span class="dash-task-titre">${escapeHtml(t.tache)}</span>
                     <span class="badge ${prioriteBadge(t.priorite)}">${__t(t.priorite)}</span>
@@ -112,7 +112,7 @@ function renderTasksLate(tasks){
         
         <ul class="dash-task-list">
             ${tasks.map(t => `
-                <li class="dash-task-item dash-task-item--late">
+                <li class="dash-task-item dash-task-item--late" onclick="window.location.href='project.php?key=${escapeHtml(t.projet_uuid)}&tab=tasks&search=${escapeHtml(t.tache)}'">
                     <div class="dash-task-top">
                         <span class="dash-task-titre">${escapeHtml(t.tache)}</span>
                         <span class="badge ${prioriteBadge(t.priorite)}">${__t(t.priorite)}</span>
@@ -161,7 +161,7 @@ function renderProjects(projects){
 
         <ul class="dash-project-list">
             ${projects.map(p => `
-                <li class="dash-project-item">
+                <li class="dash-project-item" onclick="window.location.href='project.php?key=${escapeHtml(p.projet_uuid)}'">
                     <span class="dash-project-nom">${escapeHtml(p.nom)}</span>
                     <span class="badge badge-blue">${__t(p.role)}</span>
                 </li>
