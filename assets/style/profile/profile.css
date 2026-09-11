@@ -156,7 +156,7 @@ main{
 .profile-form {
     display: flex;
     flex-direction: column;
-    gap: var(--space-base);
+    gap: var(--space-xl);
     padding: var(--space-base);
 }
 
@@ -213,7 +213,15 @@ main{
     transition: opacity 0.2s ease;
 }
 
-.profile-btn-save:hover {
+.profile-btn-save[disabled]{
+    background: var(--accent-disable);
+    &:hover{
+        background: var(--gray);
+        cursor: not-allowed;
+    }
+}
+
+.profile-btn-save[enable]:hover {
     opacity: 0.85;
 }
 

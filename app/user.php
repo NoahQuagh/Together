@@ -122,10 +122,11 @@ require_once __DIR__  . '/../includes/defineTheme.php';
     };
 </script>
 <script src="../assets/script/navigation/navbar+sidebar.js"></script>
-<script src="../assets/script/profile.js"></script>
+<script src="../assets/script/profile/profile.js"></script>
 <script src="../assets/script/tools/toast-notification.js"></script>
 <script src="../assets/script/tools/modal-dialog.js"></script>
 <script src="../assets/script/tools/toolbox.js"></script>
+<script src="../assets/script/profile/securityAcnt.js"></script>
 <script src="../assets/script/renderers/profile/preferenceRenderer.js"></script>
 <script src="../assets/script/renderers/profile/profileRenderer.js"></script>
 <script src="../assets/script/renderers/profile/securityRenderer.js"></script>

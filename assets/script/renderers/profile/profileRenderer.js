@@ -17,19 +17,19 @@ function renderProfile(data){
             <div class="profile-header">
                 <div class="profile-avatar">${initiales}</div>
                 <div class="profile-header-info">
-                    <h2>${prenom} ${nom}</h2>
+                    <h2 id="profileDisplayName">${prenom} ${nom}</h2>
                     <span class="profile-since">${__t(data.role)}</span>
                     ${dateCreaFormatted ? `<span class="profile-since">${__t('member since')} ${dateCreaFormatted}</span>` : ''}
                 </div>
             </div>
 
             <div class="profile-block">
+            
                 <div class="profile-block-header">
                     <h3><i class="ti ti-user" aria-hidden="true"></i> ${__t('personal information')}</h3>
                 </div>
 
-                <form class="profile-form" method="POST" action="../updater/updateProfile.php">
-
+                <form class="profile-form" id="profileForm">
                     <div class="profile-row-2">
                         <div class="profile-field">
                             <label for="prenom">${__t('first name')}</label>
@@ -46,14 +46,19 @@ function renderProfile(data){
                         <input type="email" id="email" name="email" value="${data.email || ''}" required>
                     </div>
 
-                    <button type="submit" class="profile-btn-save">
+                    <button type="submit" class="profile-btn-save" disabled>
                         <i class="ti ti-device-floppy" aria-hidden="true"></i>
                         ${__t('save')}
                     </button>
-
                 </form>
+                
             </div>
 
         </div>
     `;
+
+    bindProfileForm();
 }
+
+
+

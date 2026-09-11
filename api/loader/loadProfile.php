@@ -18,13 +18,18 @@ try{
   $req->execute([Session::id()]);
   $user = $req->fetch(PDO::FETCH_ASSOC);
 
+  $flashError   = Session::getFlash('erreur_profil');
+  $flashSuccess = Session::getFlash('succes_profil');
+
   $userData = [
           'user_id'   => $user['use_id'],
           'nom'       => $user['use_nom'],
           'prenom'    => $user['use_prenom'],
           'email'     => $user['use_email'],
           'date_crea' => $user['use_created_at'],
-          'role'      => $user['role']
+          'role'      => $user['role'],
+          'flashError'   => $flashError,
+          'flashSuccess' => $flashSuccess
   ];
 
   echo json_encode([

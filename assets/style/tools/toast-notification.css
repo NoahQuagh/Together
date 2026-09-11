@@ -54,14 +54,14 @@
         .toast-desc {
             font-size: 13px;
             font-weight: 400;
-            color: #64748b;
+            color: #3c3d3e;
         }
     }
 
     .toast-close {
         background: transparent;
         border: none;
-        color: #94a3b8;
+        color: #323435;
         cursor: pointer;
         padding: 4px;
         display: flex;

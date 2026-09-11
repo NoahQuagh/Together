@@ -1,15 +1,19 @@
 <?php
-require_once __DIR__ . '/../../db/connexion_together_db.php';//TODO revoir
+require_once __DIR__ . '/../../db/connexion_together_db.php';
 require_once __DIR__ . '/../../includes/Session.php';
 
+header('Content-Type: application/json; charset=utf-8');
+
 if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
-    header('Location: ../settings/user.php?tab=profile');
+    http_response_code(405);
+    echo json_encode(['success' => false, 'message' => 'Méthode non autorisée.']);
     exit;
 }
 
-$prenom = trim($_POST['prenom'] ?? '');
-$nom    = trim($_POST['nom'] ?? '');
-$email  = trim($_POST['email'] ?? '');
+$input  = json_decode(file_get_contents('php://input'), true) ?? $_POST;
+$prenom = trim($input['prenom'] ?? '');
+$nom    =trim($input['nom'] ?? '');
+$email  = trim($input['email'] ?? '');
 
 $erreurs = [];
 
@@ -25,28 +29,38 @@ $reqCheck = $db->prepare('SELECT use_id FROM TOG_USERS WHERE use_email = ? AND u
 $reqCheck->execute([$email, Session::id()]);
 
 if ($reqCheck->fetch()) {
-    $erreurs[] = 'Cette adresse e-mail est déjà utilisée par un autre compte.';
+    $erreurs[] = 'Adresse e-mail invalide, réessayer';
 }
 
 if (!empty($erreurs)) {
-    Session::setFlash('erreur_profil', implode(' ', $erreurs));
-    header('Location: ../settings/user.php?tab=profile');
+    echo json_encode([
+        'success' => false,
+        'message' => implode(' ', $erreurs)
+    ]);
     exit;
 }
 
-$update = $db->prepare('
-    UPDATE TOG_USERS
-    SET use_prenom = ?, use_nom = ?, use_email = ?
-    WHERE use_id = ?
-');
-$update->execute([$prenom, $nom, $email, Session::id()]);
+try {
+    $update = $db->prepare('
+        UPDATE TOG_USERS
+        SET use_prenom = ?, use_nom = ?, use_email = ?
+        WHERE use_id = ?
+    ');
+    $update->execute([$prenom, $nom, $email, Session::id()]);
 
-Session::login([
-    'id'    => Session::id(),
-    'nom'   => $nom,
-    'role'  => Session::role(),
-]);
+    Session::login([
+        'id'   => Session::id(),
+        'nom'  => $nom,
+        'role' => Session::role(),
+        'lang' => Session::lang()
+    ]);
 
-Session::setFlash('succes_profil', 'Vos informations ont été mises à jour avec succès.');
-header('Location: ../settings/user.php?tab=profile');
-exit;
+    echo json_encode([
+        'success' => true,
+        'message' => 'Vos informations ont été mises à jour avec succès.'
+    ]);
+} catch (\Throwable $e) {
+    error_log('[Update Profile Error] ' . $e->getMessage());
+    http_response_code(500);
+    echo json_encode(['success' => false, 'message' => 'Erreur serveur lors de la mise à jour.']);
+}
