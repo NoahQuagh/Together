@@ -123,20 +123,27 @@
     --text-5xl: 5rem;
 
     /*marge de texte*/
-    --marge-3xs: 0.2rem;
-    --marge-xxs: 0.5rem;
-    --marge-xs: 0.75rem;
-    --marge-sm: 0.875rem;
-    --marge-base: 1rem;
-    --marge-lg: 1.5rem;
-    --marge-xl: 2rem;
-    --marge-2xl: 2.5rem;
-    --marge-3xl: 3rem;
-    --marge-4xl: 3.5rem;
-    --marge-5xl: 4rem;
+    --space-3xs: 0.2rem;
+    --space-xxs: 0.5rem;
+    --space-xs: 0.75rem;
+    --space-sm: 0.875rem;
+    --space-base: 1rem;
+    --space-lg: 1.5rem;
+    --space-xl: 2rem;
+    --space-2xl: 2.5rem;
+    --space-3xl: 3rem;
+    --space-4xl: 3.5rem;
+    --space-5xl: 4rem;
 
-    --boxshadow-white-s:rgba(255, 255, 255, 0.05) 0px 1px 0px 0px inset, /* Léger reflet brillant en haut */
-    rgba(0, 0, 0, 0.12) 0px 1px 3px 0px,             /* Ombre de contact très proche */ rgb(28 26 26 / 0.08) 0px 4px 12px 0px;
+    --radiusBox-xs: 6px;
+    --radiusBox-sm: 7px;
+    --radiusBox-xxs: 4px;
+    --radiusBox-md: 14px;
+    --radiusBox-circle: 25px;
+    --radiusBox-full: 100%;
+
+    --boxshadow-white-s:rgba(255, 255, 255, 0.05) 0px 1px 0px 0px inset,
+    rgba(0, 0, 0, 0.12) 0px 1px 3px 0px,rgb(28 26 26 / 0.08) 0px 4px 12px 0px;
 }
 
 /*  POLICE  */
@@ -170,17 +177,6 @@
     --badge-col-green: #28b870;
     --badge-bor-green: rgba(30, 160, 90, 0.35);
 }
-
-
-:root {
-    --radiusBox-xs: 6px;
-    --radiusBox-sm: 7px;
-    --radiusBox-xxs: 4px;
-    --radiusBox-md: 14px;
-    --radiusBox-circle: 25px;
-    --radiusBox-full: 100%;
-}
-
 
 *, *::before, *::after {
     box-sizing: border-box;

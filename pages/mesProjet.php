@@ -1,27 +1,19 @@
 <article class="dash-page">
   <div id="dashboard-container">
-    <div class="demo-item">
-      <div class="tog-spinner">
-        <div class="tog-bg"></div>
-        <div class="tog-elements">
-          <div class="tog-top">
-            <div class="tog-bar-long"></div>
-            <div class="tog-bar-short"></div>
-          </div>
-          <div class="tog-bottom">
-            <div class="tog-block"></div>
-            <div class="tog-block"></div>
+    <article class="section-loading">
+      <div class="sp-wrap">
+
+        <div style="display:flex;flex-direction:column;align-items:center;gap:10px;">
+          <div class="sp-stage lg">
+            <div class="sp-card sp-card-1"><div class="sp-card-line"></div><div class="sp-card-line short"></div></div>
+            <div class="sp-card sp-card-2"><div class="sp-card-line"></div><div class="sp-card-line short"></div></div>
+            <div class="sp-card sp-card-3"><div class="sp-card-line"></div><div class="sp-card-line short"></div></div>
           </div>
         </div>
-      </div>
-      <div class="tog-dots">
-        <div class="tog-dot"></div>
-        <div class="tog-dot"></div>
-        <div class="tog-dot"></div>
+
       </div>
       <span class="demo-caption"><?= __tphp('we are looking for your projects... even the ones you had forgotten about') ?>.</span>
-    </div>
-  </div>
+    </article>
   <div id="supProjet" class="modal-overlay" style="display: none;">
     <div class="modal-box">
 

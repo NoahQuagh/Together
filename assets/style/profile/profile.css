@@ -6,7 +6,7 @@ main{
     min-height: 90vh;
     display: grid;
     grid-template-columns: 400px 1fr;
-    margin: 0 var(--marge-5xl);
+    margin: 0 var(--space-5xl);
 }
 
 .dash-page{
@@ -17,18 +17,18 @@ main{
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
-    gap: var(--marge-lg);
+    gap: var(--space-lg);
     max-width: 720px;
     width: 100%;
-    margin: var(--marge-2xl) var(--marge-5xl) var(--marge-5xl) 0;
-    padding: var(--marge-lg);
+    margin: var(--space-2xl) var(--space-5xl) var(--space-5xl) 0;
+    padding: var(--space-lg);
 }
 
 /* en-tete */
 .profile-header {
     display: flex;
     align-items: center;
-    gap: var(--marge-lg);
+    gap: var(--space-lg);
 }
 
 .profile-avatar {
@@ -69,14 +69,14 @@ main{
 .profile-stats-row {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: var(--marge-sm);
+    gap: var(--space-sm);
 }
 
 .profile-stat-card {
     background: var(--color-main-primary);
     border: 0.5px solid var(--color-main-quaternary);
     border-radius: var(--radiusBox-md);
-    padding: var(--marge-base);
+    padding: var(--space-base);
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -102,7 +102,7 @@ main{
     display: flex;
     align-items: center;
     gap: 10px;
-    padding: var(--marge-sm) var(--marge-base);
+    padding: var(--space-sm) var(--space-base);
     border-radius: var(--radiusBox-sm);
     font-family: var(--font-text);
     font-size: var(--text-sm);
@@ -129,7 +129,7 @@ main{
 }
 
 .profile-block-header {
-    padding: var(--marge-sm) var(--marge-base);
+    padding: var(--space-sm) var(--space-base);
     border-bottom: 0.5px solid var(--color-main-quaternary);
 }
 
@@ -156,14 +156,14 @@ main{
 .profile-form {
     display: flex;
     flex-direction: column;
-    gap: var(--marge-base);
-    padding: var(--marge-base);
+    gap: var(--space-base);
+    padding: var(--space-base);
 }
 
 .profile-row-2 {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: var(--marge-base);
+    gap: var(--space-base);
 }
 
 .profile-field {
@@ -226,8 +226,8 @@ main{
     display: flex;
     align-items: center;
     justify-content: space-between;
-    gap: var(--marge-base);
-    padding: var(--marge-base);
+    gap: var(--space-base);
+    padding: var(--space-base);
     flex-wrap: wrap;
 }
 
@@ -272,10 +272,10 @@ main{
 .profile-layout {
     display: grid;
     grid-template-columns: 240px 1fr;
-    gap: var(--marge-lg);
+    gap: var(--space-lg);
     align-items: start;
     width: 100%;
-    padding: var(--marge-lg);
+    padding: var(--space-lg);
 }
 
 /*Aside*/
@@ -283,12 +283,12 @@ main{
     background: var(--color-main-primary);
     border: 0.5px solid var(--color-main-quaternary);
     border-radius: var(--radiusBox-md);
-    padding: var(--marge-sm);
-    margin: var(--marge-5xl);
+    padding: var(--space-sm);
+    margin: var(--space-5xl);
     display: flex;
     flex-direction: column;
     position: sticky;
-    top: var(--marge-lg);
+    top: var(--space-lg);
 }
 
 .profile-aside-section {
@@ -364,15 +364,15 @@ main{
     justify-content: center;
     flex-direction: row;
     flex-wrap: wrap;
-    gap: var(--marge-5xl);
+    gap: var(--space-5xl);
 }
 
 .theme-picker {
     display: flex;
     justify-content: space-evenly;
-    gap: var(--marge-lg);
+    gap: var(--space-lg);
     flex-wrap: wrap;
-    padding: var(--marge-xs) 0;
+    padding: var(--space-xs) 0;
     width: 100%;
 }
 
@@ -728,15 +728,15 @@ main{
 @media (max-width: 900px) {
     .profile-layout {
         grid-template-columns: 1fr;
-        padding: var(--marge-sm);
+        padding: var(--space-sm);
     }
 
     .profile-aside {
         position: static;
         flex-direction: row;
         overflow-x: auto;
-        gap: var(--marge-base);
-        padding: var(--marge-sm);
+        gap: var(--space-base);
+        padding: var(--space-sm);
         -webkit-overflow-scrolling: touch;
         scrollbar-width: none;
     }
@@ -770,7 +770,7 @@ main{
 
 @media (max-width: 600px) {
     .profile-page {
-        padding: var(--marge-sm);
+        padding: var(--space-sm);
     }
 
     .profile-row-2 {
@@ -779,11 +779,11 @@ main{
 
     .profile-stats-row {
         grid-template-columns: repeat(3, 1fr);
-        gap: var(--marge-xs);
+        gap: var(--space-xs);
     }
 
     .profile-header {
-        gap: var(--marge-sm);
+        gap: var(--space-sm);
     }
 
     .profile-danger-row {

@@ -1,7 +1,7 @@
 .mytasks-list{
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(min(100%, 400px), 1fr));
-    gap: var(--marge-lg);
+    gap: var(--space-lg);
     background: transparent;
     font-size: var(--text-sm);
     font-family: var(--font-text);
@@ -17,8 +17,8 @@
         list-style-type: none;
         border: 1px solid var(--box-icon-color-hover);
         border-radius: var(--radiusBox-sm);
-        gap: var(--marge-xl);
-        padding: var(--marge-sm) var(--marge-base);
+        gap: var(--space-xl);
+        padding: var(--space-sm) var(--space-base);
         transition: background 0.15s ease;
         background: var(--color-main-tertiary);
         .tasks-header{
@@ -29,7 +29,7 @@
                 font-size: var(--text-xl);
                 display: flex;
                 flex-direction: column;
-                gap: var(--marge-xxs);
+                gap: var(--space-xxs);
                 div{
                     display: flex;
                     justify-content: flex-start;
@@ -63,7 +63,7 @@
             .footer-item{
                 display: flex;
                 flex-direction: row;
-                gap: var(--marge-xl);
+                gap: var(--space-xl);
             }
         }
         &:hover{

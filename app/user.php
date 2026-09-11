@@ -19,6 +19,7 @@ require_once __DIR__  . '/../includes/defineTheme.php';
   <link rel="stylesheet" href="../assets/style/profile/profile.css">
   <link rel="stylesheet" href="../assets/style/tools/spinnerlogoScaled.css">
   <link rel="stylesheet" href="../assets/style/tools/modal-dialog.css">
+  <link rel="stylesheet" href="../assets/style/tools/loader.css">
   <link rel="stylesheet" href="../assets/style/tools/toast-notification.css">
   <link rel="stylesheet" href="../assets/style/tools/errorloading+iconTop.css">
   <link rel="stylesheet" href="../assets/style/tools/zone-travaux.css">

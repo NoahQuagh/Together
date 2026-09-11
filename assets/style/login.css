@@ -66,13 +66,13 @@ body {
 .line{
     display: flex;
     flex-direction: row;
-    gap: var(--marge-base);
+    gap: var(--space-base);
 }
 
 .logo-complete{
     display: flex;
     flex-direction: column;
-    gap: var(--marge-xs);
+    gap: var(--space-xs);
 }
 
 .signature {

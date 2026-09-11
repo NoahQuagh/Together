@@ -1,19 +1,19 @@
 .proj-page{
     display: flex;
     flex-direction: column;
-    gap: var(--marge-3xl);
+    gap: var(--space-3xl);
 }
 
 .tasks-filter-box{
     display: flex;
     flex-direction: column;
-    gap: var(--marge-lg);
+    gap: var(--space-lg);
 }
 
 .proj-filters{
     display: flex;
     flex-wrap: wrap;
-    gap: var(--marge-base);
+    gap: var(--space-base);
 }
 
 .proj-filter-btn{
@@ -54,7 +54,7 @@
 .proj-list{
     display: flex;
     flex-direction: column;
-    gap: var(--marge-lg);
+    gap: var(--space-lg);
 }
 
 .proj-item{
@@ -64,7 +64,7 @@
 .proj-item-main{
     display: flex;
     flex-direction: column;
-    gap: var(--marge-xs);
+    gap: var(--space-xs);
 }
 
 .dash-project-nom{
@@ -74,7 +74,7 @@
     color: var(--color-second-secondary);
     display: flex;
     flex-direction: row;
-    gap: var(--marge-xs);
+    gap: var(--space-xs);
 }
 
 .dash-project-nom i{
@@ -93,7 +93,7 @@
 .proj-item-meta{
     display: flex;
     flex-direction: row;
-    gap: var(--marge-base);
+    gap: var(--space-base);
 }
 
 .proj-date{
@@ -113,14 +113,14 @@
     margin-top: 20vh;
     display: flex;
     flex-direction: column;
-    gap: var(--marge-lg);
+    gap: var(--space-lg);
 }
 
 .proj-empty-global{
     margin-top: 20vh;
     display: flex;
     flex-direction: column;
-    gap: var(--marge-lg);
+    gap: var(--space-lg);
     align-content: center;
 }
 
@@ -133,7 +133,7 @@
     border: 1px solid var(--auth-accent);
     border-radius: var(--radiusBox-xs);
     cursor: pointer;
-    padding: var(--marge-xs) var(--marge-sm) var(--marge-xs) var(--marge-sm);
+    padding: var(--space-xs) var(--space-sm) var(--space-xs) var(--space-sm);
     transition: all 0.5s ease;
 }
 
@@ -214,7 +214,7 @@
     box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5);
     z-index: 1000;
     flex-direction: column;
-    padding: var(--marge-xs);
+    padding: var(--space-xs);
 }
 
 .more-dropdown.active {

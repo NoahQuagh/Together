@@ -24,6 +24,7 @@ require_once __DIR__  . '/../includes/defineTheme.php';
     <link rel="stylesheet" href="../assets/style/paletteStyle.css">
     <link rel="stylesheet" href="../assets/style/navigation/header+sidebar.css">
     <link rel="stylesheet" href="../assets/style/navigation/footer.css">
+  <link rel="stylesheet" href="../assets/style/tools/loader.css">
     <link rel="stylesheet" href="../assets/style/tools/spinnerlogoScaled.css">
     <link rel="stylesheet" href="../assets/style/tools/errorloading+iconTop.css">
     <link rel="stylesheet" href="../assets/style/tools/toast-notification.css">

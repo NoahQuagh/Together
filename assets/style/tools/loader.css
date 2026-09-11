@@ -1,0 +1,143 @@
+.sp-wrap {
+    display: flex;
+    gap: 48px;
+    align-items: center;
+    justify-content: center;
+    padding: 3rem 0;
+}
+
+.sp-stage {
+    width: 72px;
+    height: 72px;
+    position: relative;
+}
+
+.sp-stage.lg {
+    width: 96px;
+    height: 96px;
+}
+
+.sp-card {
+    position: absolute;
+    width: 28px;
+    height: 20px;
+    border-radius: 4px;
+    border: 1.5px solid;
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+    padding: 3px 4px;
+    /* centrage : on part du centre de la scène */
+    top: 50%;
+    left: 50%;
+    /* on ramène le coin de la carte au centre puis on orbite */
+    margin-top: -10px;
+    margin-left: -14px;
+}
+
+.sp-stage.lg .sp-card {
+    width: 36px;
+    height: 26px;
+    border-radius: 5px;
+    margin-top: -13px;
+    margin-left: -18px;
+}
+
+.sp-card-line {
+    height: 2px;
+    border-radius: 1px;
+    width: 100%;
+}
+.sp-card-line.short { width: 60%; }
+
+/* Carte 1 — bleue */
+.sp-card-1 {
+    background: rgba(60,100,180,0.14);
+    border-color: rgba(60,100,180,0.5);
+    animation: orbit1 2.4s cubic-bezier(0.4,0,0.6,1) infinite;
+}
+.sp-card-1 .sp-card-line { background: rgba(60,100,180,0.55); }
+
+/* Carte 2 — jaune */
+.sp-card-2 {
+    background: rgba(200,130,20,0.14);
+    border-color: rgba(200,130,20,0.5);
+    animation: orbit2 2.4s cubic-bezier(0.4,0,0.6,1) infinite;
+}
+.sp-card-2 .sp-card-line { background: rgba(200,130,20,0.55); }
+
+/* Carte 3 — verte */
+.sp-card-3 {
+    background: rgba(30,160,90,0.14);
+    border-color: rgba(30,160,90,0.5);
+    animation: orbit3 2.4s cubic-bezier(0.4,0,0.6,1) infinite;
+}
+.sp-card-3 .sp-card-line { background: rgba(30,160,90,0.55); }
+
+/* Grande taille */
+.sp-stage.lg .sp-card-1 { animation: orbit1-lg 2.4s cubic-bezier(0.4,0,0.6,1) infinite; }
+.sp-stage.lg .sp-card-2 { animation: orbit2-lg 2.4s cubic-bezier(0.4,0,0.6,1) infinite; }
+.sp-stage.lg .sp-card-3 { animation: orbit3-lg 2.4s cubic-bezier(0.4,0,0.6,1) infinite; }
+
+/* ── Keyframes taille normale (rayon 24px) ── */
+@keyframes orbit1 {
+    0%   { transform: rotate(0deg)   translate(24px, 0) rotate(0deg);    opacity:0.6; }
+    15%  { opacity:1; }
+    85%  { opacity:1; }
+    100% { transform: rotate(360deg) translate(24px, 0) rotate(-360deg); opacity:0.6; }
+}
+@keyframes orbit2 {
+    0%   { transform: rotate(120deg) translate(24px, 0) rotate(-120deg); opacity:0.6; }
+    15%  { opacity:1; }
+    85%  { opacity:1; }
+    100% { transform: rotate(480deg) translate(24px, 0) rotate(-480deg); opacity:0.6; }
+}
+@keyframes orbit3 {
+    0%   { transform: rotate(240deg) translate(24px, 0) rotate(-240deg); opacity:0.6; }
+    15%  { opacity:1; }
+    85%  { opacity:1; }
+    100% { transform: rotate(600deg) translate(24px, 0) rotate(-600deg); opacity:0.6; }
+}
+
+/* ── Keyframes grande taille (rayon 32px) ── */
+@keyframes orbit1-lg {
+    0%   { transform: rotate(0deg)   translate(32px, 0) rotate(0deg);    opacity:0.6; }
+    15%  { opacity:1; }
+    85%  { opacity:1; }
+    100% { transform: rotate(360deg) translate(32px, 0) rotate(-360deg); opacity:0.6; }
+}
+@keyframes orbit2-lg {
+    0%   { transform: rotate(120deg) translate(32px, 0) rotate(-120deg); opacity:0.6; }
+    15%  { opacity:1; }
+    85%  { opacity:1; }
+    100% { transform: rotate(480deg) translate(32px, 0) rotate(-480deg); opacity:0.6; }
+}
+@keyframes orbit3-lg {
+    0%   { transform: rotate(240deg) translate(32px, 0) rotate(-240deg); opacity:0.6; }
+    15%  { opacity:1; }
+    85%  { opacity:1; }
+    100% { transform: rotate(600deg) translate(32px, 0) rotate(-600deg); opacity:0.6; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .sp-card-1 { transform: rotate(0deg)   translate(24px,0) rotate(0deg);    opacity:1; animation:none; }
+    .sp-card-2 { transform: rotate(120deg) translate(24px,0) rotate(-120deg); opacity:1; animation:none; }
+    .sp-card-3 { transform: rotate(240deg) translate(24px,0) rotate(-240deg); opacity:1; animation:none; }
+}
+
+
+
+
+
+.section-loading{
+    height: 100%;
+    width: 60%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: var(--space-3xl);
+}
+
+#setting-zone{
+}

@@ -7,7 +7,7 @@
     justify-content: center;
     background: var(--color-main-primary);
     overflow: hidden;
-    padding: var(--marge-5xl) var(--marge-xl);
+    padding: var(--space-5xl) var(--space-xl);
     box-sizing: border-box;
     z-index: 1;
 }

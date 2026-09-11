@@ -15,7 +15,7 @@ body{
     min-height: 100vh;
     display: flex;
     flex-direction: column;
-    gap: var(--marge-lg);
+    gap: var(--space-lg);
     width: 100%;
     max-height: 90vh;
     box-sizing: border-box;
@@ -32,13 +32,13 @@ body{
     display: flex;
     justify-content: space-between;
     flex-direction: column;
-    gap: var(--marge-xl);
-    padding: var(--marge-xl) var(--marge-4xl) 0  var(--marge-4xl);
+    gap: var(--space-xl);
+    padding: var(--space-xl) var(--space-4xl) 0  var(--space-4xl);
 
     div{
         display: flex;
         flex-direction: row;
-        gap: var(--marge-base);
+        gap: var(--space-base);
         align-items: center;
     }
 }
@@ -46,7 +46,7 @@ body{
 .tk-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(min(100%, 450px), 1fr));
-    gap: var(--marge-xl);
+    gap: var(--space-xl);
 
 }
 
@@ -56,7 +56,7 @@ body{
 }
 
 #tasks-zone,#kanban-id,#calendar-id{
-    padding: var(--marge-xl) var(--marge-xl) var(--marge-xl)  var(--marge-xl);
+    padding: var(--space-xl) var(--space-xl) var(--space-xl)  var(--space-xl);
 }
 
 .zone-title{
@@ -179,14 +179,14 @@ body{
     font-weight: 700;
     color: var(--color-second-primary);
     line-height: 1.4;
-    padding: var(--marge-sm) 1.5rem;
+    padding: var(--space-sm) 1.5rem;
 }
 
 .modal-body {
     padding: 0.5rem 1.5rem 1rem;
     display: flex;
     flex-direction: column;
-    gap: var(--marge-3xl);
+    gap: var(--space-3xl);
 }
 
 .modal-desc {
@@ -260,10 +260,10 @@ body{
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    padding-right: var(--marge-5xl);
+    padding-right: var(--space-5xl);
 
     .header-disposition-line{
-        margin-left: var(--marge-4xl);
+        margin-left: var(--space-4xl);
 
         .active-nav{
             .item h4,.item i{
@@ -295,7 +295,7 @@ body{
     gap: var(--text-lg);
     .nav-item{
         button{
-            padding: var(--marge-xxs);
+            padding: var(--space-xxs);
             background: transparent;
             border: 1px solid var(--paper-border);
             border-radius: var(--radiusBox-sm);
@@ -332,7 +332,7 @@ body{
         background: var(--paper);
         border: 1px solid var(--paper-border, rgba(0, 0, 0, 0.1));
         border-radius: var(--radiusBox-sm, 8px);
-        padding: 0 var(--marge-xs, 10px);
+        padding: 0 var(--space-xs, 10px);
         height: 36px;
         transition: all 0.2s ease;
 
@@ -401,7 +401,7 @@ body{
                 color: var(--color-second-primary);
                 line-height: 1.4;
                 i{
-                    margin-right: var(--marge-xs);
+                    margin-right: var(--space-xs);
                 }
             }
         }
@@ -544,7 +544,7 @@ body{
                 color: var(--color-second-primary);
 
                 i{
-                    margin-right: var(--marge-xxs);
+                    margin-right: var(--space-xxs);
                 }
 
                 &:hover {
@@ -631,7 +631,7 @@ body{
     background: var(--paper);
     border: 1px solid var(--paper-border, rgba(0, 0, 0, 0.1));
     border-radius: var(--radiusBox-sm, 8px);
-    padding: 0 var(--marge-base, 12px);
+    padding: 0 var(--space-base, 12px);
     height: 36px;
     color: var(--color-main-primary);
     font-family: var(--font-text);
@@ -734,7 +734,7 @@ body{
     margin-top: 10vh;
     display: flex;
     flex-direction: column;
-    gap: var(--marge-lg);
+    gap: var(--space-lg);
     align-content: center;
 }
 
@@ -747,7 +747,7 @@ body{
     border: 1px solid var(--auth-accent);
     border-radius: var(--radiusBox-xs);
     cursor: pointer;
-    padding: var(--marge-xs) var(--marge-sm) var(--marge-xs) var(--marge-sm);
+    padding: var(--space-xs) var(--space-sm) var(--space-xs) var(--space-sm);
     transition: all 0.5s ease;
 
     i{

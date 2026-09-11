@@ -1,11 +1,11 @@
 .dash-page {
     display: flex;
     flex-direction: column;
-    gap: var(--marge-lg) 0 var(--marge-lg) 0;
+    gap: var(--space-lg) 0 var(--space-lg) 0;
     width: 100%;
     min-height: 100%;
     box-sizing: border-box;
-    margin: var(--marge-5xl);
+    margin: var(--space-5xl);
 }
 
 .dash-page #dashboard-container .demo-item,.dash-page #dashboard-container .dash-error-msg{
@@ -17,25 +17,25 @@
     display: grid;
     width: 100%;
     grid-template-columns: 220px 3fr;
-    gap: var(--marge-5xl);
-    padding: 0 var(--marge-5xl) 0 var(--marge-5xl);
+    gap: var(--space-5xl);
+    padding: 0 var(--space-5xl) 0 var(--space-5xl);
     align-items: start;
 }
 
 .dash-kpi-grid {
-    margin-top: var(--marge-4xl);
+    margin-top: var(--space-4xl);
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: var(--marge-sm);
+    gap: var(--space-sm);
 }
 
 .dash-kpi-card {
     background: var(--color-main-primary);
     border-radius: var(--radiusBox-md);
-    padding: var(--marge-base) var(--marge-lg);
+    padding: var(--space-base) var(--space-lg);
     display: flex;
     align-items: center;
-    gap: var(--marge-base);
+    gap: var(--space-base);
     transition: border-color 0.2s ease;
 }
 
@@ -82,7 +82,7 @@
 .dash-grid {
     display: grid;
     grid-template-columns: 1.5fr 1.5fr;
-    gap: var(--marge-sm);
+    gap: var(--space-sm);
 }
 .dash-block {
     display: flex;
@@ -101,7 +101,7 @@
 }
 
 #tab{
-    gap: var(--marge-4xl);
+    gap: var(--space-4xl);
 }
 
 .dash-block--full .dash-block-header{
@@ -112,8 +112,8 @@
     display: flex;
     align-items: center;
     justify-content: start;
-    gap:var(--marge-base);
-    padding: var(--marge-sm) var(--marge-base);
+    gap:var(--space-base);
+    padding: var(--space-sm) var(--space-base);
 }
 
 .dash-block-header h3 {
@@ -169,7 +169,7 @@
 }
 
 .dash-empty {
-    padding: var(--marge-lg);
+    padding: var(--space-lg);
     text-align: center;
     font-size: var(--text-sm);
     color: var(--color-second-tertiary);
@@ -205,7 +205,7 @@
     list-style: none;
     display: flex;
     flex-direction: column;
-    gap: var(--marge-base);
+    gap: var(--space-base);
 }
 
 .dash-task-item {
@@ -214,7 +214,7 @@
     gap: 6px;
     border: 1px solid var(--box-icon-color-hover);
     border-radius: var(--radiusBox-sm);
-    padding: var(--marge-sm) var(--marge-base);
+    padding: var(--space-sm) var(--space-base);
     transition: background 0.15s ease;
     background: var(--color-main-tertiary);
 }
@@ -228,7 +228,7 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    gap: var(--marge-sm);
+    gap: var(--space-sm);
 }
 
 .dash-task-titre {
@@ -245,7 +245,7 @@
 .dash-task-meta {
     display: flex;
     align-items: center;
-    gap: var(--marge-sm);
+    gap: var(--space-sm);
     flex-wrap: wrap;
 }
 
@@ -270,7 +270,7 @@
     list-style: none;
     display: flex;
     flex-direction: column;
-    gap: var(--marge-base);
+    gap: var(--space-base);
 }
 
 .dash-sprint-item {
@@ -279,7 +279,7 @@
     gap: 6px;
     border: 1px solid var(--box-icon-color-hover);
     border-radius: var(--radiusBox-sm);
-    padding: var(--marge-sm) var(--marge-base);
+    padding: var(--space-sm) var(--space-base);
     transition: background 0.15s ease;
     background: var(--color-main-tertiary);
 }
@@ -300,7 +300,7 @@
     list-style: none;
     display: flex;
     flex-direction: column;
-    gap: var(--marge-base);
+    gap: var(--space-base);
 }
 
 .dash-project-item {
@@ -309,8 +309,8 @@
     justify-content: space-between;
     border: 1px solid var(--box-icon-color-hover);
     border-radius: var(--radiusBox-sm);
-    gap: var(--marge-sm);
-    padding: var(--marge-sm) var(--marge-base);
+    gap: var(--space-sm);
+    padding: var(--space-sm) var(--space-base);
     transition: background 0.15s ease;
     background: var(--color-main-tertiary);
 }
@@ -340,8 +340,8 @@
 .dash-activity-item {
     display: flex;
     align-items: flex-start;
-    gap: var(--marge-base);
-    padding: var(--marge-sm) var(--marge-base);
+    gap: var(--space-base);
+    padding: var(--space-sm) var(--space-base);
     transition: background 0.15s ease;
     background: var(--color-main-tertiary);
 }
@@ -377,8 +377,8 @@
 
 @media (max-width: 768px) {
     .dash-page {
-        padding: var(--marge-sm);
-        gap: var(--marge-sm);
+        padding: var(--space-sm);
+        gap: var(--space-sm);
     }
 
     .dash-kpi-grid {
@@ -403,12 +403,12 @@
 @media (max-width: 1024px) {
     .dash-layout {
         grid-template-columns: 1fr;
-        padding: 0 var(--marge-lg);
-        gap: var(--marge-lg);
+        padding: 0 var(--space-lg);
+        gap: var(--space-lg);
     }
 
     .dash-kpi-grid {
-        margin-top: var(--marge-lg);
+        margin-top: var(--space-lg);
         grid-template-columns: repeat(4, 1fr);
     }
 
@@ -423,23 +423,23 @@
 
 @media (max-width: 768px) {
     .dash-page {
-        padding: var(--marge-sm);
-        margin: var(--marge-xl);
-        gap: var(--marge-sm);
+        padding: var(--space-sm);
+        margin: var(--space-xl);
+        gap: var(--space-sm);
     }
 
     .dash-layout {
-        padding: 0 var(--marge-sm);
-        gap: var(--marge-base);
+        padding: 0 var(--space-sm);
+        gap: var(--space-base);
     }
 
     .dash-kpi-grid {
         grid-template-columns: repeat(1, 1fr);
-        gap: var(--marge-xs);
+        gap: var(--space-xs);
     }
 
     .dash-kpi-card {
-        padding: var(--marge-sm) var(--marge-base);
+        padding: var(--space-sm) var(--space-base);
     }
 
     .dash-kpi-value {
@@ -448,7 +448,7 @@
 
     .dash-grid {
         grid-template-columns: 1fr;
-        gap: var(--marge-sm);
+        gap: var(--space-sm);
     }
 
     .dash-block--full {
@@ -475,6 +475,6 @@
     }
 
     .dash-kpi-card {
-        gap: var(--marge-sm);
+        gap: var(--space-sm);
     }
 }

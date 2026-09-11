@@ -1,6 +1,6 @@
 .tk-header{
     border-radius: var(--radiusBox-circle);
-    margin: var(--marge-sm) 0;
+    margin: var(--space-sm) 0;
     transition: all 0.15s ease;
 
     h3{
@@ -36,7 +36,7 @@
     height: 20rem;
     background: var(--color-second-primary);
     border-radius: var(--radiusBox-circle);
-    padding: var(--marge-lg);
+    padding: var(--space-lg);
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -71,7 +71,7 @@
     flex-direction: column;
     align-items: flex-start;
     justify-content: space-between;
-    gap: var(--marge-base);
+    gap: var(--space-base);
 }
 
 .tk-titre {
@@ -89,7 +89,7 @@
     border-radius: var(--radiusBox-sm);
     font-family: var(--font-text);
     font-weight: 500;
-    padding:  8px var(--marge-xs);
+    padding:  8px var(--space-xs);
     font-size: var(--text-xs);
 }
 
@@ -110,7 +110,7 @@
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
-    gap: var(--marge-xxs);
+    gap: var(--space-xxs);
     flex: 1;
     min-width: 0
 }
@@ -148,7 +148,7 @@
     align-items: center;
     display: inline-flex;
     gap: 8px;
-    padding: var(--marge-xs) var(--marge-base);
+    padding: var(--space-xs) var(--space-base);
     font-family: var(--font-text);
     font-size: var(--text-base);
     width: 100%;
@@ -170,7 +170,7 @@
 .tk-info {
     border-radius: var(--radiusBox-sm);
     align-content: center;
-    padding: var(--marge-3xs) var(--marge-xs);
+    padding: var(--space-3xs) var(--space-xs);
 
     i {
         padding-right: 3px;
@@ -215,7 +215,7 @@
 .tk-bottom{
     display: flex;
     flex-direction: column;
-    gap: var(--marge-base);
+    gap: var(--space-base);
     justify-content: space-between;
     position: relative;
 
@@ -235,7 +235,7 @@
 .btn-option-tas {
     display: flex;
     flex-direction: row;
-    gap: var(--marge-lg);
+    gap: var(--space-lg);
     justify-content: space-between;
     position: absolute;
     top: 0;
@@ -253,7 +253,7 @@
         justify-content: center;
         gap: 8px;
         border-radius: var(--radiusBox-md);
-        padding: var(--marge-xs) var(--marge-base);
+        padding: var(--space-xs) var(--space-base);
         font-family: var(--font-text);
         font-size: var(--text-base);
         width: 100%;
