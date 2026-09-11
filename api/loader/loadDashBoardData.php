@@ -44,9 +44,9 @@ ORDER BY t.tas_priorite_id DESC
 ');
 
     $req5 = $db->prepare('
-    SELECT p.pro_nom AS projet, l.act_description AS description_log, l.act_created_at AS cree_le
+    SELECT p.pro_uuid as uuid,p.pro_nom AS projet, l.act_description AS description_log, l.act_created_at AS cree_le
     FROM TOG_PROJECTS p
-    JOIN TOG_ACTIVITY_LOG l ON p.pro_id = l.act_project_id
+             JOIN TOG_ACTIVITY_LOG l ON p.pro_id = l.act_project_id
     WHERE p.pro_owner_id = ?
     ORDER BY l.act_created_at DESC
     LIMIT 10

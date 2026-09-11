@@ -166,9 +166,9 @@ function renderActivities(activities){
             <h3><i class="ti ti-activity" aria-hidden="true"></i>${__t('recent activity')}</h3>
         </div>
 
-        <ul class="dash-activity-list">
+        <ul class="dash-activity-list" >
             ${activities.map(a => `
-                <li class="dash-activity-item">
+                <li class="dash-activity-item" onclick="window.location.href='project.php?key=${escapeHtml(a.uuid)}'">
                     <span class="dash-activity-dot"></span>
                     <div class="dash-activity-content">
                         <span class="dash-activity-desc">${escapeHtml(a.description_log)}</span>

@@ -1,24 +1,7 @@
-let idProjetASupprimer = null;
 let elementAAfficherAnimation = null;
 
-function preparerSuppression(id, bouton) {
-    idProjetASupprimer = id;
-
+function saveBtn(bouton) {
     elementAAfficherAnimation = bouton.closest('.proj-item');
-
-    openModal('supProjet');
-}
-
-function supprimerProjetconfirmer() {
-    if (idProjetASupprimer === null || elementAAfficherAnimation === null) return;
-
-    try{
-        supprimerProjet(idProjetASupprimer, elementAAfficherAnimation);
-        closeModal('supProjet');
-        showToast(__t('project successfully deleted')+' !', 'success');
-    }catch{
-        showToast(__t('unable to delete the project'), 'success');
-    }
 }
 
 function projet() {
@@ -131,11 +114,12 @@ function changerStatut(proId, newStatut, liElement) {
         .catch(() => showToast(__t('unable to change the project status'), 'error'));
 }
 
-function supprimerProjet(proId, liElement) {
-    fetch('../api/deleteProject.php', {
+function supprimerProjet(proUuid) {
+    closeModal('supProjet_'+proUuid)
+    fetch('../api/deleter/deleteProject.php', {
         method : 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body   : JSON.stringify({ pro_id: proId })
+        body   : JSON.stringify({ pro_uuid: proUuid })
     })
         .then(r => r.json())
         .then(data => {
@@ -144,11 +128,11 @@ function supprimerProjet(proId, liElement) {
                 return;
             }
 
-            liElement.style.transition = 'opacity 0.25s ease, transform 0.25s ease';
-            liElement.style.opacity    = '0';
-            liElement.style.transform  = 'translateX(-12px)';
+            elementAAfficherAnimation.style.transition = 'opacity 0.25s ease, transform 0.25s ease';
+            elementAAfficherAnimation.style.opacity    = '0';
+            elementAAfficherAnimation.style.transform  = 'translateX(-12px)';
             setTimeout(() => {
-                liElement.remove();
+                elementAAfficherAnimation.remove();
 
                 const remaining = document.querySelectorAll('#projectList .proj-item');
                 if (remaining.length === 0) {

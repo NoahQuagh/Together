@@ -98,12 +98,33 @@ function projectRenderer(project){
                     data-id="${escapeHtml(project.project_id)}"
                     data-nom="${escapeHtml(project.project_nom)}"
                     title="${__t('delete the project')}"
-                    onclick="preparerSuppression(${escapeHtml(project.project_id)}, this)">
+                    onclick="event.stopPropagation(); openModal('supProjet_${project.project_uuid}'); saveBtn(this)">
               <i class="ti ti-trash"></i>
             </button>
 
           </div>
         </li>
+        <div id="supProjet_${project.project_uuid}" class="modal-overlay" style="display: none;">
+            <div class="modal-box">
+        
+              <div class="modal-header">
+                <h3>${__t('delete the project')} ?</h3>
+                <button class="modal-close-btn" onclick="closeModal('supProjet_${project.project_uuid}')">
+                  <i class="ti ti-x"></i>
+                </button>
+              </div>
+        
+              <div class="modal-body">
+                <p>${__t('are you sure you want to delete this project ? This action is irreversible')} ?</p>
+              </div>
+        
+              <div class="modal-footer">
+                <button class="modal-btn btn-cancel" onclick="closeModal('supProjet_${project.project_uuid}')">${__t('cancel')}</button>
+                <button class="modal-btn btn-confirm risk" onclick="supprimerProjet('${project.project_uuid}')">${__t('confirm')}</button>
+              </div>
+        
+            </div>
+          </div>
     `;
 }
 function descriptionRenderer(desc){

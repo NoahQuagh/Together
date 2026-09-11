@@ -10,16 +10,16 @@ if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
 }
 
 $data  = json_decode(file_get_contents('php://input'), true);
-$proId = isset($data['pro_id']) ? (int)$data['pro_id'] : 0;
+$proId = isset($data['pro_uuid']) ? trim($data['pro_uuid']) : '';
 
-if (!$proId) {
-    echo json_encode(['success' => false, 'message' => 'ID invalide.']);
+if (empty($proId)) {
+    echo json_encode(['success' => false, 'message' => 'UUID invalide.']);
     exit;
 }
 try{
     $db = getDB();
 
-    $check = $db->prepare('SELECT pro_id FROM TOG_PROJECTS WHERE pro_id = ? AND pro_owner_id = ?');
+    $check = $db->prepare('SELECT pro_id FROM TOG_PROJECTS WHERE pro_uuid = ? AND pro_owner_id = ?');
     $check->execute([$proId, Session::id()]);
 
     if (!$check->fetch()) {
@@ -29,7 +29,7 @@ try{
     }
 
 
-    $delete = $db->prepare('UPDATE TOG_PROJECTS SET pro_statut_id = 4 WHERE pro_id = ?');
+    $delete = $db->prepare('UPDATE TOG_PROJECTS SET pro_statut_id = 4 WHERE pro_uuid = ?');
     $delete->execute([$proId]);
 
     echo json_encode(['success' => true, 'message' => 'Projet supprimé avec succès.']);
