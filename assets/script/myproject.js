@@ -77,9 +77,7 @@ function projet() {
     document.querySelectorAll('.btn-edit').forEach(btn => {
         btn.addEventListener('click', e => {
             e.stopPropagation();
-            const proId = btn.dataset.id;
-            // TODO : ouvrir la modale d'édition avec proId
-            console.log('Éditer projet', proId);
+            window.location.href='../pages/settings.php'
         });
     });
 }

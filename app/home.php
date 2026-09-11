@@ -60,6 +60,7 @@ require_once __DIR__  . '/../includes/defineTheme.php';
 </script>
 <script src="../assets/script/navigation/navbar+sidebar.js"></script>
 <script src="../assets/script/myproject.js"></script>
+<script src="../assets/script/myContribution.js"></script>
 <script src="../assets/script/tools/toast-notification.js"></script>
 <script src="../assets/script/tools/modal-dialog.js"></script>
 <script src="../assets/script/tools/theme.js"></script>
