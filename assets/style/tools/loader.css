@@ -139,5 +139,15 @@
     gap: var(--space-3xl);
 }
 
+.section-loading-center{
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: var(--space-3xl);
+}
+
 #setting-zone{
 }

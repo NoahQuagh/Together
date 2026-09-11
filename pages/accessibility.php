@@ -10,7 +10,6 @@
     </div>
 
   </div>
-
   <span class="demo-caption" id="wait"><?= __tphp('we are preparing your accessibility settings... for an experience tailored to your needs') ?>.</span>
 </article>
 

@@ -3,7 +3,7 @@
 </div>
 <?php require_once __DIR__ . '/../includes/sectionMenuTasks.php'?>
 <ul class="tk-grid" id="tasks-zone">
-  <article class="section-loading">
+  <article class="section-loading-center">
     <div class="sp-wrap">
 
       <div style="display:flex;flex-direction:column;align-items:center;gap:10px;">
