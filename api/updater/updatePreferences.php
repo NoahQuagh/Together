@@ -13,6 +13,8 @@ if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
 
 $inputData = json_decode(file_get_contents('php://input'), true);
 $theme = trim($inputData['theme'] ?? $_POST['theme'] ?? '');
+$accent = trim($inputData['accent_color'] ?? $_POST['accent_color'] ?? '');
+$tkAlert = trim($inputData['tasks_alert'] ?? $_POST['tasks_alert'] ?? '');
 
 if (empty($theme)) {
     echo json_encode(['success' => false, 'message' => 'Theme manquant']);
@@ -22,8 +24,8 @@ if (empty($theme)) {
 try {
     $pdo = getDB();
 
-    $stmt = $pdo->prepare("UPDATE TOG_USER_PREFERENCES SET tup_theme_id = ? WHERE tup_user_id = ?");
-    $stmt->execute([$theme, Session::id()]);
+    $stmt = $pdo->prepare("UPDATE TOG_USER_PREFERENCES SET tup_theme_id = ?,tup_accent_color =?,tup_tasks_alert=? WHERE tup_user_id = ?");
+    $stmt->execute([$theme,$accent,$tkAlert, Session::id()]);
 
     echo json_encode(['success' => true, 'message' => 'Mise à jour du thème réussie']);
     exit;

@@ -263,8 +263,8 @@ return [
     'system'                                                              => 'Système',
     'section under construction'                                                              => 'Section en construction',
     'this section is being developed and will be available soon'                                                              => "Cette partie de l'application est en cours de développement. Elle sera disponible très prochainement",
-
-
+    'apply'                                                              => 'Appliquer',
+    'accent color'                                                              => "Couleur d'accentuation",
 ];
 //${__t('')}
 //<?= __tphp('') ?>

@@ -54,13 +54,10 @@ require_once __DIR__  . '/../includes/defineTheme.php';
     <div class="profile-aside-section">
       <p class="profile-aside-label"><?= __tphp('preferences') ?></p>
       <a href="user.php?tab=preference" class="<?= $tab === 'preference' ? 'profile-aside-item active' : 'profile-aside-item' ?>" data-tab="apparence">
-        <i class="ti ti-adjustments" aria-hidden="true"></i><?= __tphp('preferences') ?>
+        <i class="ti ti-palette" aria-hidden="true"></i><?= __tphp('appearance') ?>
       </a>
       <a href="user.php?tab=language" class="<?= $tab === 'language' ? 'profile-aside-item active' : 'profile-aside-item' ?>" data-tab="langue">
         <i class="ti ti-language" aria-hidden="true"></i><?= __tphp('language') ?>
-      </a>
-      <a href="user.php?tab=accessibility" class="<?= $tab === 'accessibility' ? 'profile-aside-item active' : 'profile-aside-item' ?>" data-tab="accessibilite">
-        <i class="ti ti-accessible" aria-hidden="true"></i><?= __tphp('accessibility') ?>
       </a>
     </div>
 
@@ -98,7 +95,6 @@ require_once __DIR__  . '/../includes/defineTheme.php';
         case 'notifications':     require '../pages/notificationsAcnt.php'; break;
         case 'preference':     require '../pages/appearance.php'; break;
         case 'language':     require '../pages/language.php'; break;
-        case 'accessibility':     require '../pages/accessibility.php'; break;
         case 'new':     require '../pages/new.php'; break;
         case 'help':     require '../pages/help.php'; break;
         case 'about':     require '../pages/about.php'; break;
@@ -127,6 +123,9 @@ require_once __DIR__  . '/../includes/defineTheme.php';
 <script src="../assets/script/tools/modal-dialog.js"></script>
 <script src="../assets/script/tools/toolbox.js"></script>
 <script src="../assets/script/profile/securityAcnt.js"></script>
+<script src="../assets/script/profile/notifAcnt.js"></script>
+<script src="../assets/script/profile/preferenceAcnt.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
 <script src="../assets/script/renderers/profile/preferenceRenderer.js"></script>
 <script src="../assets/script/renderers/profile/profileRenderer.js"></script>
 <script src="../assets/script/renderers/profile/securityRenderer.js"></script>

@@ -6,12 +6,15 @@ function supCompte(){
         .then(r => r.json())
         .then(data => {
             if (!data.success) {
-                showToast(__t('impossible action'), 'error');
+                showToast(__t('impossible action'), 'error',data.message);
                 return;
             }else{
-                window.location.href='../../../auth/login.php';
+                window.location.href='../auth/login.php';
             }
-        }).catch(() => showToast(__t('impossible action'), 'error'));
+        }).catch(err => {
+            console.log(err);
+            showToast(__t('impossible action'), 'error');
+        });
 }
 
 function modifyPW(){
@@ -66,8 +69,7 @@ function modifyPW(){
             .then(res => {
 
                 if (!res.success) {
-                    console.log(res.message);
-                    showToast('Modification impossible', 'error',res.message);
+                    showToast('Modification impossible', 'warning',res.message);
                     return;
                 }
 
@@ -83,7 +85,6 @@ function modifyPW(){
 
             })
             .catch(err => {
-                console.log(err)
                 showToast(__t('unable to update password'), 'error');
             });
     });

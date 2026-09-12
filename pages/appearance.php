@@ -28,7 +28,15 @@
                 }
             })
             .catch(error => {
-                renderAppearance({});
+                const container = document.getElementById('setting-zone');
+                if (container) {
+                    container.innerHTML = `
+                        <div class="dash-error-msg">
+                            <i class="ti ti-face-id-error"></i>
+                            <p>${__t('an error occurred while loading your preferences')}.</p>
+                        </div>
+                    `;
+                }
             });
     });
 </script>

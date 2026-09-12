@@ -1,4 +1,11 @@
 /* COULEURS  */
+:root[data-theme="dark"]{
+    --accent: #226db8;/*226db8*/
+    --accent-second: #123f6a;
+    --accent-disable: #8b949e;
+}
+
+
 :root[data-theme="dark"] {
     --color-second-primary: #f2ede6;
     --color-second-secondary: #ffffff;
@@ -15,11 +22,6 @@
     --color-main-secondary: #131313;
     --color-main-tertiary: #1a1917;
     --color-main-quaternary: #252320;
-
-    --accent: #226db8;
-    --accent-second: #123f6a;
-    --accent-disable: #8b949e;
-
 
     --color-icon: #676666;
     --box-icon-color-hover: #33312d;

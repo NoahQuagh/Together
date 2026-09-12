@@ -48,4 +48,21 @@
             </button>
         </div>
     </div>
+
+    <div id="supCompte" class="modal-overlay" style="display: none;">
+      <div class="modal-box modal-del-acnt">
+
+        <div class="modal-body">
+          <i class="ti ti-alert-triangle"></i>
+          <h3><?= __tphp('delete account')?></h3>
+          <p><?= __tphp("you're going to delete your account")?></p>
+        </div>
+
+        <div class="modal-footer">
+          <button class="modal-btn btn-cancel" onclick="closeModal('supCompte')"><?= __tphp('no, keep it')?></button>
+          <button class="modal-btn btn-confirm risk" onclick="supCompte()"><?= __tphp('yes delete')?></button>
+        </div>
+
+      </div>
+    </div>
 </div>

@@ -10,17 +10,18 @@ try{
     $flash_erreur = Session::hasFlash('erreur_pref') ? Session::getFlash('erreur_pref') : null;
 
     $req = $db->prepare('
-    select tup_theme_id,rth_label,tup_langue,lang_code,lang_label,tup_notif_email,tup_notif_mention,tup_notif_assignation,tup_notif_commentaire,tup_tasks_alert
+    select tup_theme_id,rth_label,tup_langue,lang_code,lang_label,tup_notif_email,tup_notif_mention,tup_notif_assignation,tup_notif_commentaire,tup_tasks_alert,rac_id
     from TOG_USER_PREFERENCES
-    join TOG_REF_THEME on TOG_USER_PREFERENCES.tup_theme_id = TOG_REF_THEME.rth_id
-    join TOG_LANGUE on TOG_USER_PREFERENCES.tup_langue = TOG_LANGUE.lang_id
+             join TOG_REF_THEME on TOG_USER_PREFERENCES.tup_theme_id = TOG_REF_THEME.rth_id
+             join TOG_LANGUE on TOG_USER_PREFERENCES.tup_langue = TOG_LANGUE.lang_id
+            join TOG_REF_ACCENT_COLOR on TOG_USER_PREFERENCES.tup_accent_color = TOG_REF_ACCENT_COLOR.rac_id
     where tup_user_id=?
 ');
     $req->execute([Session::id()]);
     $pref = $req->fetch();
 
     if (!$pref) {
-        $insertDefault = $db->prepare('INSERT INTO TOG_USER_PREFERENCES (tup_user_id,tup_theme_id,tup_notif_email,tup_notif_mention,tup_notif_assignation,tup_notif_commentaire,tup_langue,tup_tasks_alert) VALUES (?,2,1,1,1,1,1,1)');
+        $insertDefault = $db->prepare('INSERT INTO TOG_USER_PREFERENCES (tup_user_id,tup_theme_id) VALUES (?,2)');
         $insertDefault->execute([Session::id()]);
 
         $pref = [
@@ -34,6 +35,7 @@ try{
             'notif_assignation' => 1,
             'notif_commentaire' => 1,
             'tasks_alert' => 1,
+            'accent_color' => 1
         ];
 
         echo json_encode([
@@ -64,6 +66,18 @@ try{
             ];
         }, $lang);
 
+        $req = $db->prepare('select rac_id,rac_color,rac_label from TOG_REF_ACCENT_COLOR');
+        $req->execute();
+        $accent = $req->fetchAll();
+
+        $formattedAccent = array_map(function($p) {
+            return [
+                'accent_color_id'           => $p['rac_id'],
+                'accent_color'         => $p['rac_color'],
+                'accent_color_label'         => $p['rac_label'],
+            ];
+        }, $accent);
+
         $formattedPref = [
             'theme_id'          => $pref['tup_theme_id'],
             'theme'             => $pref['rth_label'],
@@ -74,14 +88,16 @@ try{
             'notif_mention'     => $pref['tup_notif_mention'],
             'notif_assignation' => $pref['tup_notif_assignation'],
             'notif_commentaire' => $pref['tup_notif_commentaire'],
-            'tasks_alert' => $pref['tup_tasks_alert']
+            'tasks_alert' => $pref['tup_tasks_alert'],
+            'accent_color' => $pref['rac_id']
         ];
 
         echo json_encode([
             'success' => true,
             'data'    => $formattedPref,
             'themeList' => $formattedTheme,
-            'langList' => $formattedLang
+            'langList' => $formattedLang,
+            'accentList' => $formattedAccent
         ]);
     }
 }catch (\Throwable $e) {

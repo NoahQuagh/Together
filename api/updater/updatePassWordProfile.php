@@ -42,7 +42,7 @@ try {
         exit;
     }
 
-    if ($currentPW && !password_verify($currentPW, $user['use_password'])) {
+    if ($currentPW && !password_verify($currentPW, $user['use_mot_de_passe'])) {
         $erreurs[] = 'Le mot de passe actuel est incorrect.';
     }
 
