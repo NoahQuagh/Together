@@ -31,7 +31,7 @@ function projectExist(l){
       <i class="ti ti-folder-off" aria-hidden="true"></i>
       <p>${__t("You haven't created any projects yet")}.</p>
       <div>
-        <button class="proj-create-btn" onclick="window.location.href='../pages/project_create.php'">
+        <button class="proj-create-btn" onclick="window.location.href='../../../../pages/project/project_create.php'">
           <i class="ti ti-plus"></i>
           ${__t('create my first project')}
         </button>

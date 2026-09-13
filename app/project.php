@@ -51,14 +51,14 @@ require_once __DIR__  . '/../includes/defineTheme.php';
       require_once __DIR__ . '/../includes/nonConnecterSection.php';
     }else{
       switch($tab) {
-        case 'overview':     require '../pages/overview.php'; break;
-        case 'tasks': require '../pages/tasks.php'; break;
-        case 'kanban':      require '../pages/kanban.php'; break;
-        case 'calendar':      require '../pages/calendar.php'; break;
-        case 'sprints':      require '../pages/sprints.php'; break;
-        case 'members':      require '../pages/members.php'; break;
-        case 'insights':      require '../pages/insights.php'; break;
-        default:            require '../pages/overview.php'; break;
+        case 'overview':     require '../pages/project/overview.php'; break;
+        case 'tasks': require '../pages/project/tasks.php'; break;
+        case 'kanban':      require '../pages/project/kanban.php'; break;
+        case 'calendar':      require '../pages/project/calendar.php'; break;
+        case 'sprints':      require '../pages/project/sprints.php'; break;
+        case 'members':      require '../pages/project/members.php'; break;
+        case 'insights':      require '../pages/project/insights.php'; break;
+        default:            require '../pages/project/overview.php'; break;
       }
     } ?>
   </section>

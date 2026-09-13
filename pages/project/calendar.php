@@ -1,8 +1,8 @@
 <div class="zone-top">
-  <h1 class="zone-title">Tâches</h1>
+  <h1 class="zone-title"><?= __tphp('tasks') ?></h1>
 </div>
-<?php require_once __DIR__ . '/../includes/sectionMenuTasks.php'?>
-<div id="kanban-id">
+<?php require_once __DIR__ . '/../includes/sectionMenuTasks.php' ?>
+<div id="calendar-id">
     <article class="section-loading-center">
         <div class="sp-wrap">
 
@@ -17,27 +17,29 @@
         </div>
         <span class="demo-caption" id="wait"><?= __tphp('loading') ?>.</span>
     </article>
-<script>document.addEventListener("DOMContentLoaded", function() {
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
         const urlParams = new URLSearchParams(window.location.search);
         const projectUuid = urlParams.get('key');
         fetch(`../api/loader/loadProject.php?project=${encodeURIComponent(projectUuid)}`)
             .then(res => res.json())
             .then(res => {
                 if (!res.success) {
-                    throw new Error(res.message);
+                    throw new Error(res.message)
                 }
-                renderProjectKanban(res.data);
+                renderProjectCalendar(res.data);
             })
             .catch(error => {
-                const container = document.getElementById('kanban-id');
+                const container = document.getElementById('calendar-id');
                 if (container) {
                     container.innerHTML = `
                         <div class="dash-error-msg">
                             <i class="ti ti-face-id-error"></i>
-                            <p>${__t('an error occurred while loading the data')}.</p>
+                            <p>${__t('an error occurred while loading your calendar')}.</p>
                         </div>
                     `;
                 }
             });
-    });</script>
+    });
+</script>
 

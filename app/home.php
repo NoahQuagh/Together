@@ -39,10 +39,10 @@ require_once __DIR__  . '/../includes/defineTheme.php';
      require_once __DIR__ . '/../includes/nonConnecterSection.php';
    }else{
     switch($tab) {
-        case 'myprojects':     require '../pages/mesProjet.php'; break;
-        case 'contributions': require '../pages/contributions.php'; break;
-        case 'mytasks':      require '../pages/mesTaches.php'; break;
-        default:            require '../pages/dashboard.php'; break;
+        case 'myprojects':     require '../pages/home/mesProjet.php'; break;
+        case 'contributions': require '../pages/home/contributions.php'; break;
+        case 'mytasks':      require '../pages/home/mesTaches.php'; break;
+        default:            require '../pages/home/dashboard.php'; break;
     }
   } ?>
 </main>

@@ -286,6 +286,12 @@ main{
     padding: var(--space-lg);
 }
 
+header{
+    top: 0;
+    position: sticky;
+    z-index: 20;
+}
+
 /*Aside*/
 .profile-aside {
     background: var(--color-main-primary);
@@ -296,7 +302,9 @@ main{
     display: flex;
     flex-direction: column;
     position: sticky;
-    top: var(--space-lg);
+    height: 70vh;
+    top: 14vh;
+    z-index: 10;
 }
 
 .profile-aside-section {

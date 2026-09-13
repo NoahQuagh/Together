@@ -1,7 +1,7 @@
 <div class="zone-top">
   <h1 class="zone-title"><?= __tphp('tasks') ?></h1>
 </div>
-<?php require_once __DIR__ . '/../includes/sectionMenuTasks.php'?>
+<?php require_once __DIR__ . '/../../includes/sectionMenuTasks.php' ?>
 <ul class="tk-grid" id="tasks-zone">
   <article class="section-loading-center">
     <div class="sp-wrap">

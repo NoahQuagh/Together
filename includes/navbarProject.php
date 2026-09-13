@@ -7,7 +7,7 @@
             </div>
             <h3><?= $title ?></h3>
             <?php if(Session::isProjectOwner($projectId)): ?>
-            <div class="menu account-menu tooltip-container editZone" onclick="window.location.href='../pages/settings.php'">
+            <div class="menu account-menu tooltip-container editZone" onclick="window.location.href='../pages/project/settings.php'">
                 <i class="ti ti-pencil" aria-hidden="true"></i>
             </div>
             <?php endif; ?>

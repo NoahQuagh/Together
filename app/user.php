@@ -91,15 +91,15 @@ require_once __DIR__  . '/../includes/defineTheme.php';
       require_once __DIR__ . '/../includes/nonConnecterSection.php';
     }else{
       switch($tab) {
-        case 'security':     require '../pages/security.php'; break;
-        case 'notifications':     require '../pages/notificationsAcnt.php'; break;
-        case 'preference':     require '../pages/appearance.php'; break;
-        case 'language':     require '../pages/language.php'; break;
-        case 'new':     require '../pages/new.php'; break;
-        case 'help':     require '../pages/help.php'; break;
-        case 'about':     require '../pages/about.php'; break;
-        case 'integrations':     require '../pages/integrations.php'; break;
-        default:            require '../pages/acnt.php'; break;
+        case 'security':     require '../pages/profile/security.php'; break;
+        case 'notifications':     require '../pages/profile/notificationsAcnt.php'; break;
+        case 'preference':     require '../pages/profile/appearance.php'; break;
+        case 'language':     require '../pages/profile/language.php'; break;
+        case 'new':     require '../pages/profile/new.php'; break;
+        case 'help':     require '../pages/profile/help.php'; break;
+        case 'about':     require '../pages/profile/about.php'; break;
+        case 'integrations':     require '../pages/profile/integrations.php'; break;
+        default:            require '../pages/profile/acnt.php'; break;
       }
     } ?>
   </div>

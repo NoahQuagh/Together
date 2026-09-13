@@ -8,9 +8,9 @@
                 <div class="sp-card sp-card-3"><div class="sp-card-line"></div><div class="sp-card-line short"></div></div>
             </div>
         </div>
-        <span class="demo-caption" id="wait"><?= __tphp('we are preparing the app information... a behind-the-scenes look is being revealed') ?>.</span>
+        <span class="demo-caption" id="wait"><?= __tphp('we are loading the help and documentation... we have all the answers') ?>.</span>
     </div>-->
-    <?php require_once __DIR__ . '/travaux.php'?>
+    <?php require_once __DIR__ . '/travaux.php' ?>
 </article>
 <script>
 

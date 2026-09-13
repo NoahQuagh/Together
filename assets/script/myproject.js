@@ -77,7 +77,7 @@ function projet() {
     document.querySelectorAll('.btn-edit').forEach(btn => {
         btn.addEventListener('click', e => {
             e.stopPropagation();
-            window.location.href='../pages/settings.php'
+            window.location.href='../pages/project/settings.php'
         });
     });
 }

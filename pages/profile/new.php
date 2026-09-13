@@ -1,4 +1,5 @@
-<section id="news-zone">
+<div class="profile-page">
+<div id="news-zone">
   <article class="section-loading">
     <div class="sp-wrap">
 
@@ -12,7 +13,8 @@
     </div>
     <span class="demo-caption" id="wait"><?= __tphp("we're rounding up the latest news... spoilers ahead") ?>.</span>
   </article>
-</section>
+</div>
+</div>
 <script>
     document.addEventListener("DOMContentLoaded", function() {
         fetch('../assets/docs/new.md')
