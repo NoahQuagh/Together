@@ -10,7 +10,7 @@
         </div>
         <span class="demo-caption" id="wait"><?= __tphp('we are loading the help and documentation... we have all the answers') ?>.</span>
     </div>-->
-    <?php require_once __DIR__ . '/travaux.php' ?>
+    <?php require_once __DIR__ . '/../travaux.php' ?>
 </article>
 <script>
 

@@ -33,9 +33,7 @@
                 }else{
                     try{
                         initProjectTasks(res.data)
-
                     }catch (err){
-                        console.log(err)
                         throw new Error(err)
                     }
                 }

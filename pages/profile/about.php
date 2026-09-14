@@ -10,7 +10,7 @@
         </div>
         <span class="demo-caption" id="wait"><?= __tphp('we are preparing the app information... a behind-the-scenes look is being revealed') ?>.</span>
     </div>-->
-    <?php require_once __DIR__ . '/travaux.php' ?>
+    <?php require_once __DIR__ . '/../travaux.php' ?>
 </article>
 <script>
 

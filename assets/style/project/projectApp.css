@@ -550,10 +550,19 @@ body{
                 &:hover {
                     background: var(--accent-second);
                 }
+                &[disabled]{
+                    background: var(--accent-disable);
+                    &:hover{
+                        background: var(--gray);
+                        cursor: not-allowed;
+                    }
+                }
             }
         }
     }
 }
+
+
 
 
 /* Conteneur ddm Tache */

@@ -81,6 +81,7 @@ require_once __DIR__  . '/../includes/defineTheme.php';
 <script src="../assets/script/tools/modal-dialog.js"></script>
 <script src="../assets/script/renderers/project/calendarProjectRenderer.js"></script>
 <script src="../assets/script/renderers/project/projectRenderer.js"></script>
+<script src="../assets/script/project/tasksList.js"></script>
 <script src="../assets/script/tools/theme.js"></script>
 <script src="../assets/script/tools/toolbox.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.15/index.global.min.js"></script>

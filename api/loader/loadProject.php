@@ -59,15 +59,48 @@ ORDER BY t.tas_priorite_id DESC, t.tas_date_fin ASC');
     $stmtTasks->execute([$projectId]);
     $tasks = $stmtTasks->fetchAll();
 
+    $stmtEtiList = $db->prepare('SELECT eti_id, eti_label, eti_couleur FROM TOG_ETIQUETTES WHERE eti_project_id = ?');
+    $stmtEtiList->execute([$projectId]);
+    $etiList = $stmtEtiList->fetchAll();
+
+    $formattedEtiquettes = array_map(function ($e) {
+        return [
+            'eti_label'   => $e['eti_label'],
+            'eti_couleur' => $e['eti_couleur'],
+            'eti_id'      => $e['eti_id']
+        ];
+    }, $etiList);
+
+    $stmtMembers = $db->prepare('
+        SELECT use_id, concat(use_prenom," ",use_nom) as nom, rrp_label
+FROM TOG_PROJECT_MEMBERS
+         JOIN TOG_USERS ON TOG_PROJECT_MEMBERS.tpm_user_id = TOG_USERS.use_id
+         JOIN TOG_REF_ROLE_PROJET ON TOG_REF_ROLE_PROJET.rrp_id = TOG_PROJECT_MEMBERS.tpm_role_id
+WHERE tpm_project_id = ?');
+    $stmtMembers->execute([$projectId]);
+    $memberList = $stmtMembers->fetchAll();
+
+    $formattedMembers = array_map(function ($e) {
+        return [
+            'member_id'     => $e['use_id'],
+            'member_nom'    => $e['nom'],
+            'member_role'   => $e['rrp_label']
+        ];
+    }, $memberList);
+
     if (empty($tasks)) {
         echo json_encode([
             'success' => true,
             'data'    => [
+                'session_id'  => Session::id(),
+                'id'          => $proj['pro_id'],
                 'titre'       => $proj['pro_nom'],
                 'manager'     => $proj['manager'],
                 'manager_id'  => $proj['manager_id'],
                 'description' => $proj['pro_description'],
-                'tasks'       => []
+                'tasks'       => [],
+                'membersList' => $formattedMembers,
+                'labelsList'  => $formattedEtiquettes
             ]
         ]);
         exit;
@@ -101,6 +134,7 @@ ORDER BY t.tas_priorite_id DESC, t.tas_date_fin ASC');
             'myTask' => (int)$row['myTasks']
         ];
     }
+
 
     $stmtEti = $db->prepare("
         SELECT tte.tte_task_id,
@@ -150,7 +184,9 @@ ORDER BY t.tas_priorite_id DESC, t.tas_date_fin ASC');
             'manager'     => $proj['manager'],
             'manager_id'  => $proj['manager_id'],
             'description' => $proj['pro_description'],
-            'tasks'       => $formattedTasks
+            'tasks'       => $formattedTasks,
+            'membersList'       => $formattedMembers,
+            'labelsList'     => $formattedEtiquettes
         ]
     ]);
 
