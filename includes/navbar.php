@@ -19,7 +19,7 @@ require_once __DIR__.'/../includes/Session.php'
             <input type="text" placeholder=<?= __tphp('search') ?>...>
             <span class="tooltip-text normalHelp"><?= __tphp('search') ?></span>
           </div>
-            <div class="menu account-menu tooltip-container" onclick="window.location.href='../pages/project/project_create.php'">
+            <div class="menu account-menu tooltip-container" onclick="openModal('modalNewProject')">
                 <i class="ti ti-plus"></i>
                 <span class="tooltip-text normalHelp"><?= __tphp('new project') ?></span>
             </div>
@@ -83,3 +83,5 @@ require_once __DIR__.'/../includes/Session.php'
         <a class="sb-item"><i class="ti ti-help" aria-hidden="true"></i><?= __tphp('help') ?></a>
     </div>
 </aside>
+
+<?php require_once __DIR__.'/../includes/modalNewPro.php';?>

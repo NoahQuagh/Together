@@ -26,6 +26,7 @@ require_once __DIR__  . '/../includes/defineTheme.php';
   <link rel="stylesheet" href="../assets/style/tools/modal-dialog.css">
   <link rel="stylesheet" href="../assets/style/tools/zone-travaux.css">
   <link rel="icon" type="image/png" href="../assets/logo/logoheader.png">
+  <link rel="stylesheet" href="../assets/style/project/newProjectModal.css">
   <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Syne:wght@700;800&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&display=swap"
         rel="stylesheet">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css">
@@ -64,6 +65,8 @@ require_once __DIR__  . '/../includes/defineTheme.php';
 <script src="../assets/script/tools/toast-notification.js"></script>
 <script src="../assets/script/tools/modal-dialog.js"></script>
 <script src="../assets/script/tools/theme.js"></script>
+<script src="../assets/script/project/newProject.js"></script>
+<script src="../assets/script/renderers/project/modalNewProjectRenderer.js"></script>
 <script src="../assets/script/renderers/home/dashboardRenderer.js"></script>
 <script src="../assets/script/renderers/home/myprojectRenderer.js"></script>
 <script src="../assets/script/renderers/home/contributionRenderer.js"></script>

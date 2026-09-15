@@ -203,3 +203,28 @@ html {
 a{
     text-decoration: none;
 }
+
+html {
+    scrollbar-width: thin;
+    scrollbar-color: var(--color-second-quaternary) transparent;
+}
+
+::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: var(--color-second-quaternary);
+    border-radius: var(--radiusBox-xs, 6px);
+    border: 2px solid transparent;
+    background-clip: padding-box;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background-color: var(--color-second-tertiary);
+}
