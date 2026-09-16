@@ -9,6 +9,7 @@ function toggleMembersZone(checkbox) {
     }
 }
 
+
 document.addEventListener('DOMContentLoaded', () => {
     const toggleInput = document.getElementById('project-highlight-toggle');
     if (toggleInput) {
@@ -79,12 +80,6 @@ function addMember() {
     inputElement.value = '';
 
     checkMemberEmail(value, chip, statusSpan);
-}
-
-function escapeHtml(str) {
-    const div = document.createElement('div');
-    div.textContent = str;
-    return div.innerHTML;
 }
 
 function buildStatusIcon(iconClass, tooltipText) {

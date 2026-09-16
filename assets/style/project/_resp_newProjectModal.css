@@ -1,0 +1,141 @@
+
+@media (max-width: 1024px) {
+    .modalNewProject {
+        max-width: 92vw;
+        height: 90%;
+    }
+}
+
+@media (max-width: 780px) {
+
+    .modalNewProject {
+        max-width: 100vw;
+        width: 100%;
+        height: 100%;
+        border-radius: 0;
+        margin: 0;
+    }
+
+    .form-new-pro {
+        grid-template-columns: 1fr;
+        grid-template-rows: 1fr;
+        grid-template-areas:
+            "form"
+            "param";
+        overflow-y: auto;
+        height: 100%;
+        gap: var(--space-xl);
+        padding-bottom: var(--space-xl);
+    }
+
+    .modalNewProject .modal-body .project-form .form-col {
+        flex-direction: column;
+        gap: var(--space-lg);
+    }
+
+    .modalNewProject .modal-body .project-form {
+        gap: var(--space-xl);
+    }
+
+    .modalNewProject .modal-body .project-form .form-group label {
+        font-size: var(--text-base);
+    }
+
+    .invite-zone {
+        border-top: 1px solid rgba(255, 255, 255, 0.08);
+        padding-top: var(--space-xl);
+        gap: var(--space-lg) !important;
+    }
+
+    .layout-select-type {
+        grid-template-columns: 1fr;
+        grid-template-areas:
+            "titre"
+            "card1"
+            "card2";
+        margin: 0 var(--space-base);
+        gap: var(--space-base);
+    }
+
+    .layout-select-type .card-type-project {
+        padding: var(--space-xl) var(--space-lg);
+        gap: var(--space-lg);
+        flex-direction: row;
+        align-items: flex-start;
+    }
+
+    .layout-select-type .card-type-project .icon-type {
+        width: 48px;
+        height: 48px;
+        flex-shrink: 0;
+    }
+
+    .layout-select-type .card-type-project .icon-type i {
+        font-size: var(--text-2xl);
+    }
+
+    .modalNewProject .modal-footer {
+        flex-direction: column-reverse;
+        gap: var(--space-xs);
+        padding: var(--space-base);
+    }
+
+    .modalNewProject .modal-footer .modal-btn {
+        width: 100%;
+        justify-content: center;
+        text-align: center;
+    }
+
+    .member-search-wrapper {
+        flex-direction: column;
+        gap: var(--space-sm);
+    }
+
+    .member-search-wrapper .btn-invite {
+        width: 100%;
+        justify-content: center;
+    }
+}
+
+@media (max-width: 480px) {
+
+    .modalNewProject .modal-body {
+        padding: var(--space-base) var(--space-sm);
+    }
+
+    .layout-select-type {
+        margin: 0;
+    }
+
+    .layout-select-type .card-type-project {
+        padding: var(--space-lg) var(--space-base);
+    }
+
+    .layout-select-type .card-type-project .icon-type {
+        width: 40px;
+        height: 40px;
+    }
+
+    .layout-select-type .card-type-project .icon-type i {
+        font-size: var(--text-xl);
+    }
+
+    .comingSoon {
+        display: block;
+        margin-left: 0;
+        margin-top: 4px;
+        font-size: var(--text-xs);
+    }
+
+    .link-pro {
+        font-size: var(--text-xs);
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        max-width: 180px;
+    }
+
+    .selected-members-list .member-chip {
+        width: 100%;
+    }
+}

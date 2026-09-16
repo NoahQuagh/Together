@@ -6,7 +6,7 @@
         <i class="ti ti-arrow-left"></i>
       </button>
       <h3><i class="ti ti-folder-plus" aria-hidden="true"></i>Créer un nouveau projet</h3>
-      <button class="modal-close-btn" onclick="closeModal('modalNewProject')">
+      <button class="modal-close-btn" onclick="closeModal('modalNewProject');resetToTypeSelection()">
         <i class="ti ti-x"></i>
       </button>
     </div>
@@ -42,7 +42,7 @@
     </div>
 
     <div class="modal-footer">
-      <button class="modal-btn btn-cancel" onclick="closeModal('modalNewProject')">Annuler</button>
+      <button class="modal-btn btn-cancel" onclick="closeModal('modalNewProject');resetToTypeSelection()">Annuler</button>
       <button class="modal-btn btn-confirm" onclick="createProject()" disabled >Créer</button>
     </div>
 

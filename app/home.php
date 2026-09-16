@@ -23,6 +23,7 @@ require_once __DIR__  . '/../includes/defineTheme.php';
   <link rel="stylesheet" href="../assets/style/tools/errorloading+iconTop.css">
   <link rel="stylesheet" href="../assets/style/home/myproject.css">
   <link rel="stylesheet" href="../assets/style/tools/toast-notification.css">
+    <link rel="stylesheet" href="../assets/style/project/_resp_newProjectModal.css">
   <link rel="stylesheet" href="../assets/style/tools/modal-dialog.css">
   <link rel="stylesheet" href="../assets/style/tools/zone-travaux.css">
   <link rel="icon" type="image/png" href="../assets/logo/logoheader.png">

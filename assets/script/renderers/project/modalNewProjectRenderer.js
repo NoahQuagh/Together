@@ -32,6 +32,12 @@ function resetToTypeSelection() {
 
 }
 
+window.addEventListener('click', function(event) {
+    if (event.target.classList.contains('modal-overlay')) {
+        resetToTypeSelection()
+    }
+});
+
 const originalCloseModal = window.closeModal;
 window.closeModal = function(modalId) {
     if (modalId === 'modalNewProject') {
@@ -55,12 +61,6 @@ async function renderModalNewPro() {
     const body = document.getElementById('step-form-content');
     if (!body) return;
 
-    // État de chargement le temps de récupérer l'UUID / le lien du projet
-    body.innerHTML = `
-        <div class="form-new-pro-loading">
-            <span class="loader"></span>
-        </div>
-    `;
 
     let projectUuid = '';
     let projectLink = 'Lien indisponible';
