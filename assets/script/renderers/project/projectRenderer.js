@@ -24,80 +24,78 @@ function renderProjectTasks(data,resData) {
         return;
     }
 
-    const cartes = data.tasks.map(t =>
-        `
-        <li class="tk-card ${t.statut} ${t.isLate && myTasks(t) ? 'is-late' : ''}">
-            <div class="tk-top">
-                <div class="tk-badges">
-                    <span class="tk-titre">${t.titre}</span>
-                    <div class="tk-dropdown" onmouseleave="this.querySelector('.tk-dropdown-menu')?.classList.remove('show')">
-                        <button type="button" class="zone-more" onclick="toggleTaskMenu(event, '${t.id}')">
-                            <i class="ti ti-dots-vertical"></i>
-                        </button>
-                        <div id="dropdown-task-${t.id}" class="tk-dropdown-menu">
-                            <button type="button" onclick="openModal('modal-task-modify-${t.id}')">
-                                <i class="ti ti-pencil"></i> ${__t('edit')}
-                            </button>
-                            <button type="button" onclick="duplicateTask('${t.id}')">
-                                <i class="ti ti-copy"></i> ${__t('duplicate')}
-                            </button>
-                            <button type="button" onclick="BecomeCoWorker('${t.id}')">
-                                <i class="ti ti-user-plus"></i> ${__t('become co worker')}
-                            </button>
-                            <div class="dropdown-divider"></div>
-                            <button type="button" class="danger" onclick="deleteTask('${t.id}')">
-                                <i class="ti ti-trash"></i> ${__t('delete')}
-                            </button>
-                        </div>
-                    </div>
-                </div>
-                <div class="tk-info tk-info-${t.statut}">
-                    <h4>${statutIcon(t.statut)} ${__t(t.statut)}</h4>
-                </div>
-                <div class="tk-etiquettes">
-                    ${(t.etiquettes ?? []).map(e =>
-            `<span class="tk-info-badge" style="background:${e.couleur};color:white;">${e.label}</span>`
-        ).join('')}
-                </div>
-            </div>
 
-            <div class="tk-bottom">
-                <div class="tk-line">
-                    <div class="tk-people">
-                        ${(t.assignes ?? []).length > 0
-            ? t.assignes.map(a =>
-                `<div class="tk-person">
-                                    <div class="tk-avatar">${initiales(a.nom)}</div>
-                                    <span class="tk-person-label">${a.nom}</span>
-                                </div>`).join('')
-            : `<span class="tk-unassigned"><i class="ti ti-user-off"></i>${__t('unassigned')}</span>`
-        }
-                    </div>
-                    <div class="tk-meta">
-                        <span class="tk-meta-item">
-                            <div>
-                                <i class="ti ti-calendar" aria-hidden="true"></i>
-                                <span class="tk-date">${t.date_fin ? formatDate(t.date_debut.split(' ')[0]) : __t('not specified')}</span>
-                            </div>
-                            <div>
-                                <i class="ti ti-clock" aria-hidden="true"></i>
-                                <span class="tk-time">${t.date_fin && t.date_fin.split(' ')[1] ? t.date_fin.split(' ')[1].slice(0, 5) : ''}</span>
-                            </div>
-                        </span>
-                    </div>
-                </div>
-
-                <div class="btn-option-tas">
-                    <button class="tk-btn-wh" onclick="openModal('modal-task-${t.id}')">
-                        <i class="ti ti-info-circle" aria-hidden="true"></i>${__t('view details')}
+    const cartes = data.tasks.map(t => `
+    <li class="tk-card ${t.statut} ${t.isLate && myTasks(t) ? 'is-late' : ''}" onclick="openModal('modal-task-${t.id}')">
+ 
+        <div class="tk-card-head">
+            <h3 class="tk-titre">${t.titre}</h3>
+            <div class="tk-dropdown" onmouseleave="this.querySelector('.tk-dropdown-menu')?.classList.remove('show')">
+                <button type="button" class="zone-more" onclick="toggleTaskMenu(event, '${t.id}')">
+                    <i class="ti ti-dots-vertical"></i>
+                </button>
+                <div id="dropdown-task-${t.id}" class="tk-dropdown-menu">
+                    <button type="button" onclick="openModal('modal-task-modify-${t.id}')">
+                        <i class="ti ti-pencil"></i> ${__t('edit')}
                     </button>
-                    <button class="tk-btn-ink">
-                        ${getActionLabel(t.statut)}
+                    <button type="button" onclick="duplicateTask('${t.id}')">
+                        <i class="ti ti-copy"></i> ${__t('duplicate')}
+                    </button>
+                    <button type="button" onclick="BecomeCoWorker('${t.id}')">
+                        <i class="ti ti-user-plus"></i> ${__t('become co worker')}
+                    </button>
+                    <div class="dropdown-divider"></div>
+                    <button type="button" class="danger" onclick="deleteTask('${t.id}')">
+                        <i class="ti ti-trash"></i> ${__t('delete')}
                     </button>
                 </div>
             </div>
-        </li>
-    `).join('');
+        </div>
+ 
+        <p class="tk-card-desc">
+            ${t.desc ? t.desc : `<span class="tk-desc-empty">${__t('no description')}</span>`}
+        </p>
+ 
+ 
+        <div class="tk-card-meta">
+            <div class="tk-meta-col">
+                <span class="tk-meta-label">${__t('assigned')}</span>
+                <div class="tk-avatars">
+                    ${(t.assignes ?? []).length > 0
+        ? t.assignes.slice(0, 4).map(a =>
+            `<div class="tk-avatar" title="${a.nom}">${initiales(a.nom)}</div>`
+        ).join('') +
+        ((t.assignes.length > 4)
+            ? `<div class="tk-avatar tk-avatar-more">+${t.assignes.length - 4}</div>`
+            : '')
+        : `<span class="tk-unassigned"><i class="ti ti-user-off"></i>${__t('unassigned')}</span>`
+    }
+                </div>
+            </div>
+ 
+            <div class="tk-meta-col">
+                <span class="tk-meta-label">${__t('deadline')}</span>
+                <span class="tk-deadline ${t.isLate ? 'is-late-text' : ''}">
+                    <i class="ti ti-calendar-event" aria-hidden="true"></i>
+                    ${t.date_fin ? formatDate(t.date_fin.split(' ')[0]) : __t('not specified')}
+                </span>
+            </div>
+        </div>
+ 
+        <div class="tk-card-foot">
+            <span class="tk-badge tk-badge-statut tk-badge-${t.statut}">
+                ${statutIcon(t.statut)} ${__t(t.statut)}
+            </span>
+            <span class="tk-badge tk-badge-prio tk-badge-prio-${t.priorite}">
+                ${__t(t.priorite)}
+            </span>
+            <button class="tk-quick-action" onclick="event.stopPropagation()" title="${__t('quick action')}">
+                ${getActionLabel(t.statut)}
+            </button>
+        </div>
+ 
+    </li>
+`).join('');
 
     const modals = data.tasks.map(t => `
         <div id="modal-task-${t.id}" class="modal-overlay" style="display:none;" onclick="closeModalOverlay(event,'modal-task-${t.id}')">

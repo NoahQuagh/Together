@@ -1,7 +1,7 @@
 /* COULEURS  */
 :root[data-theme="dark"]{
     --accent: #226db8;/*226db8*/
-    --accent-second: #123f6a;
+    --accent-second: #195c9e;
     --accent-disable: #8b949e;
 }
 
@@ -57,7 +57,7 @@
     --color-main-quaternary: #252320;
 
     --accent: #226db8;
-    --accent-second: #123f6a;
+    --accent-second: #195c9e;
     --accent-disable: #8b949e;
 
 
