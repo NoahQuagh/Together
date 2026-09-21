@@ -1,7 +1,7 @@
 <div class="zone-top">
     <h1 class="zone-title"><?= __tphp('overview') ?></h1>
 </div>
-<section id="overview-zone">
+<div id="overview-zone">
     <article class="section-loading-center">
       <div class="sp-wrap">
 
@@ -16,17 +16,17 @@
       </div>
       <span class="demo-caption" id="wait"><?= __tphp('loading') ?>.</span>
     </article>
-</section>
+</div>
 <script>document.addEventListener("DOMContentLoaded", function() {
         const urlParams = new URLSearchParams(window.location.search);
         const projectUuid = urlParams.get('key');
-        fetch(`../api/loader/loadProject.php?project=${encodeURIComponent(projectUuid)}`)
+        fetch(`../api/loader/loadOverviewProjectData.php?project=${encodeURIComponent(projectUuid)}`)
             .then(res => res.json())
             .then(res => {
                 if (!res.success) {
                     throw new Error(res.message);
                 }
-                renderProjectOverview(res.data);
+                renderProjectOverview(res);
             })
             .catch(error => {
                 const container = document.getElementById('main-zone');
