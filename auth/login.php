@@ -103,7 +103,7 @@ if (Session::estConnecte()) {
           </div>
         <?php endif; ?>
 
-        <form class="auth-form" method="POST" action="../api/auth/loginUser.php"<!--TODO edit here-->
+        <form class="auth-form" method="POST" action="../api/auth/loginUser.php">
 
           <div class="auth-field">
             <label for="login-email"><?= __tphp('e-mail') ?></label>

@@ -133,6 +133,19 @@
 }
 .risk:hover { background: var(--badge-bor-red); }
 
+.modal-box.is-closing {
+    animation: modalPopOut 0.2s ease-in forwards;
+}
+
+.modal-overlay.is-closing {
+    opacity: 0;
+}
+
+@keyframes modalPopOut {
+    0% { transform: scale(1); opacity: 1; }
+    100% { transform: scale(0.95); opacity: 0; }
+}
+
 @keyframes modalPopIn {
     0% { transform: scale(0.95); opacity: 0; }
     100% { transform: scale(1); opacity: 1; }

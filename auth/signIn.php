@@ -97,7 +97,7 @@ if (Session::estConnecte()) {
                     </div>
                 <?php endif; ?>
 
-                <form class="auth-form" method="POST" action="../api/auth/SignIn.php" novalidate><!--TODO edit here-->
+                <form class="auth-form" method="POST" action="../api/auth/SignIn.php" novalidate>
 
                     <div class="auth-row-2">
                         <div class="auth-field">

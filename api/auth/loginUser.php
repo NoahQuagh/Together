@@ -3,15 +3,15 @@
 header('Content-Type: application/json; charset=utf-8');
 
 try{
-    require_once __DIR__ . '/../db/connexion_together_db.php';
-    require_once __DIR__ . '/../includes/Session.php';
-    require_once __DIR__ . '/../config/lang_php.php';
+    require_once __DIR__ . '/../../db/connexion_together_db.php';
+    require_once __DIR__ . '/../../includes/Session.php';
+    require_once __DIR__ . '/../../config/lang_php.php';
 
     $db=getDB();
     $array="";
 
     if($_SERVER["REQUEST_METHOD"] !== "POST"){
-        header('Location: login.php');//TODO edit here
+        header('Location: ../../auth/login.php');
         exit;
     }
 
@@ -20,7 +20,7 @@ try{
 
     if (!$email || !$mdp) {
         Session::setFlash('erreur', __tphp('please fill in all fields') . 'auth');
-        header('Location: login.php');//TODO edit here
+        header('Location: ../../auth/login.php');
         exit;
     }
 
@@ -47,16 +47,16 @@ try{
             'theme' => $pref['tup_theme_id'] ?? '2'
         ]);
 
-        header('Location: ../app/home.php');//TODO edit here
+        header('Location: ../../app/home.php');
         exit;
     }
 
     Session::setFlash('erreur', __tphp('incorrect email or password') . 'auth');
-    header('Location: login.php');//TODO edit here
+    header('Location: ../../auth/login.php');
     exit;
 }catch (Exception $e){
     Session::setFlash('erreur', __tphp('an error occurred. Please try again later') . 'auth');
-    header('Location: login.php');//TODO edit here
+    header('Location: ../../auth/login.php');
     exit;
 }
 

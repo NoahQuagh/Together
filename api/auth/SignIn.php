@@ -4,7 +4,7 @@ require_once __DIR__ . '/../includes/Session.php';
 require_once __DIR__ . '/../config/lang_php.php';
 
 if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
-    header('Location: login.php');//TODO edit here
+    header('Location: ../../auth/login.php');
     exit;
 }
 
@@ -27,7 +27,7 @@ if (!$cgu) $erreurs[] = __tphp('you must accept the Terms of Use') . 'auth';
 
 if (!empty($erreurs)) {
     Session::setFlash('erreur_register', implode(' ', $erreurs));
-    header('Location: login.php');//TODO edit here
+    header('Location: ../../auth/login.php');
     exit;
 }
 
@@ -37,7 +37,7 @@ $req->execute([$email]);
 
 if ($req->fetch()) {
     Session::setFlash('erreur_register', __tphp('this email address is already in use') . 'auth');
-    header('Location: login.php');//TODO edit here
+    header('Location: ../../auth/login.php');
     exit;
 }
 
@@ -59,5 +59,5 @@ Session::login([
 ]);
 
 Session::setFlash('succes', __tphp('welcome') . ' SignIn.php' . htmlspecialchars($prenom) . ' ! '.__tphp('your account has been created').'.');
-header('Location: ../app/pages.php');//TODO edit here
+header('Location: ../../app/home.php');
 exit;
