@@ -49,11 +49,6 @@ if (Session::estConnecte()) {
                 </div>
               </div>
             </div>
-            <div class="tog-dots">
-              <div class="tog-dot"></div>
-              <div class="tog-dot"></div>
-              <div class="tog-dot"></div>
-            </div>
           </div>
           <div class="auth-side-copy">
             <h2><?= __tphp('appName') ?></h2>
@@ -108,7 +103,7 @@ if (Session::estConnecte()) {
           </div>
         <?php endif; ?>
 
-        <form class="auth-form" method="POST" action="loginUser.php">
+        <form class="auth-form" method="POST" action="../api/auth/loginUser.php"<!--TODO edit here-->
 
           <div class="auth-field">
             <label for="login-email"><?= __tphp('e-mail') ?></label>
@@ -138,7 +133,7 @@ if (Session::estConnecte()) {
             </div>
           </div>
 
-          <label class="auth-checkbox">
+          <label class="auth-checkbox"><!--TODO revoir pour souvenir du mdp-->
             <input type="checkbox" name="souvenir">
             <span class="check-box"></span>
             <?= __tphp('remember me') ?>
@@ -153,108 +148,8 @@ if (Session::estConnecte()) {
 
         <div class="auth-switch-row">
           <span><?= __tphp('no account') ?> ?</span>
-          <button class="auth-switch-btn" data-target="register">
+          <button class="auth-switch-btn" data-target="register" onclick="window.location.href='signIn.php'">
             <?= __tphp('create an account') ?>
-            <i class="ti ti-chevron-right" aria-hidden="true"></i>
-          </button>
-        </div>
-
-      </div>
-
-
-      <div class="auth-form-wrap auth-form-wrap--off" id="fRegister" data-form="register">
-
-        <div class="auth-form-head">
-          <p class="auth-eyebrow"><?= __tphp('registration') ?></p>
-          <h1><?= __tphp('join Together') ?></h1>
-        </div>
-
-        <?php if (Session::hasFlash('erreur_register')): ?>
-          <div class="auth-alert auth-alert--error">
-            <i class="ti ti-alert-circle" aria-hidden="true"></i>
-            <?= htmlspecialchars(Session::getFlash('erreur_register')) ?>
-          </div>
-        <?php endif; ?>
-
-        <form class="auth-form" method="POST" action="SignIn.php" novalidate>
-
-          <div class="auth-row-2">
-            <div class="auth-field">
-              <label for="reg-prenom"><?= __tphp('first name') ?></label>
-              <div class="auth-input-wrap">
-                <i class="ti ti-user" aria-hidden="true"></i>
-                <input type="text" id="reg-prenom" name="prenom"
-                       placeholder="Jean"
-                       autocomplete="given-name" required>
-              </div>
-            </div>
-            <div class="auth-field">
-              <label for="reg-nom"><?= __tphp('name') ?></label>
-              <div class="auth-input-wrap">
-                <input type="text" id="reg-nom" name="nom"
-                       placeholder="Dupont"
-                       autocomplete="family-name" required>
-              </div>
-            </div>
-          </div>
-
-          <div class="auth-field">
-            <label for="reg-email"><?= __tphp('e-mail') ?></label>
-            <div class="auth-input-wrap">
-              <i class="ti ti-mail" aria-hidden="true"></i>
-              <input type="email" id="reg-email" name="email"
-                     placeholder="name@example.com"
-                     autocomplete="email" required>
-            </div>
-          </div>
-
-          <div class="auth-field">
-            <label for="reg-mdp"><?= __tphp('password') ?></label>
-            <div class="auth-input-wrap">
-              <i class="ti ti-lock" aria-hidden="true"></i>
-              <input type="password" id="reg-mdp" name="mot_de_passe"
-                     placeholder="8 caractères minimum"
-                     autocomplete="new-password" required minlength="8"
-                     oninput="updateStrength(this.value)">
-              <button type="button" class="auth-eye"
-                      onclick="togglePwd('reg-mdp',this)"
-                      aria-label=<?= __tphp('show password') ?>>
-                <i class="ti ti-eye"></i>
-              </button>
-            </div>
-            <div class="str-track">
-              <div class="str-bar" id="strBar"></div>
-            </div>
-            <span class="str-label" id="strLabel"></span>
-          </div>
-
-          <div class="auth-field">
-            <label for="reg-mdp2"><?= __tphp('confirm') ?></label>
-            <div class="auth-input-wrap">
-              <i class="ti ti-lock-check" aria-hidden="true"></i>
-              <input type="password" id="reg-mdp2" name="mot_de_passe_confirm"
-                     placeholder="••••••••"
-                     autocomplete="new-password" required>
-            </div>
-          </div>
-
-          <label class="auth-checkbox">
-            <input type="checkbox" name="cgu" required>
-            <span class="check-box"></span>
-            <?= __tphp('i accept the') ?> <a href="../legal/cgu.php" class="auth-link-inline">CGU</a>
-          </label>
-
-          <button type="submit" class="auth-btn-submit">
-            <span><?= __tphp('create my account') ?></span>
-            <i class="ti ti-arrow-right" aria-hidden="true"></i>
-          </button>
-
-        </form>
-
-        <div class="auth-switch-row">
-          <span><?= __tphp('already registered') ?> ?</span>
-          <button class="auth-switch-btn" data-target="login">
-            <?= __tphp('login') ?>
             <i class="ti ti-chevron-right" aria-hidden="true"></i>
           </button>
         </div>

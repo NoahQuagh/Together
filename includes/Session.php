@@ -122,13 +122,40 @@ class Session {
         $userId = self::id();
         $db = getDB();
 
-        if (!$userId) {
+        if (!$db) {
+            self::handleDbError();
             return false;
         }
 
-        $stmt = $db->prepare("SELECT pro_owner_id FROM TOG_PROJECTS WHERE pro_uuid = ?");
-        $stmt->execute([$projectIdentifier]);
+        if (!$userId) {
+            return false;
+        }
+        try{
+            $stmt = $db->prepare("SELECT pro_owner_id FROM TOG_PROJECTS WHERE pro_uuid = ?");
+            $stmt->execute([$projectIdentifier]);
 
-        return (bool) $stmt->fetchColumn();
+            return (bool) $stmt->fetchColumn();
+        }catch (PDOException $e){
+            return false;
+        }
+
+
+    }
+
+    private static function handleDbError()
+    {
+        // Redirige vers une page d'erreur dédiée s'il n'y a pas déjà eu de rendu
+        if (!headers_sent()) {
+            header('Location: ../includes/error_db.php');
+            exit;
+        }
+
+        // Sinon, affiche un message d'erreur
+        die('
+        <div style="font-family: sans-serif; text-align: center; padding: 50px; background: #131313; color: #fff;">
+            <h2>Service indisponible</h2>
+            <p>Impossible de se connecter à la base de données pour le moment. Veuillez réessayer plus tard.</p>
+        </div>
+    ');
     }
 }

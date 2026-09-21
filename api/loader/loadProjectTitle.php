@@ -17,6 +17,6 @@ try{
     $title = $proj['pro_nom'];
 
 } catch (\Throwable $e) {
-    echo 'Inconnu';
+    $title='Project';
 }
 ?>

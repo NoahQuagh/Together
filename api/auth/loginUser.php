@@ -11,7 +11,7 @@ try{
     $array="";
 
     if($_SERVER["REQUEST_METHOD"] !== "POST"){
-        header('Location: login.php');
+        header('Location: login.php');//TODO edit here
         exit;
     }
 
@@ -19,8 +19,8 @@ try{
     $mdp   = $_POST['mot_de_passe'] ?? '';
 
     if (!$email || !$mdp) {
-        Session::setFlash('erreur', __tphp('please fill in all fields').'.');
-        header('Location: login.php');
+        Session::setFlash('erreur', __tphp('please fill in all fields') . 'auth');
+        header('Location: login.php');//TODO edit here
         exit;
     }
 
@@ -47,16 +47,16 @@ try{
             'theme' => $pref['tup_theme_id'] ?? '2'
         ]);
 
-        header('Location: ../app/home.php');
+        header('Location: ../app/home.php');//TODO edit here
         exit;
     }
 
-    Session::setFlash('erreur', __tphp('incorrect email or password').'.');
-    header('Location: login.php');
+    Session::setFlash('erreur', __tphp('incorrect email or password') . 'auth');
+    header('Location: login.php');//TODO edit here
     exit;
 }catch (Exception $e){
-    Session::setFlash('erreur', __tphp('an error occurred. Please try again later').'.');
-    header('Location: login.php');
+    Session::setFlash('erreur', __tphp('an error occurred. Please try again later') . 'auth');
+    header('Location: login.php');//TODO edit here
     exit;
 }
 

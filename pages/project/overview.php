@@ -1,17 +1,22 @@
-<article class="section-loading-center">
-  <div class="sp-wrap">
+<div class="zone-top">
+    <h1 class="zone-title"><?= __tphp('overview') ?></h1>
+</div>
+<section id="overview-zone">
+    <article class="section-loading-center">
+      <div class="sp-wrap">
 
-    <div style="display:flex;flex-direction:column;align-items:center;gap:10px;">
-      <div class="sp-stage lg">
-        <div class="sp-card sp-card-1"><div class="sp-card-line"></div><div class="sp-card-line short"></div></div>
-        <div class="sp-card sp-card-2"><div class="sp-card-line"></div><div class="sp-card-line short"></div></div>
-        <div class="sp-card sp-card-3"><div class="sp-card-line"></div><div class="sp-card-line short"></div></div>
+        <div style="display:flex;flex-direction:column;align-items:center;gap:10px;">
+          <div class="sp-stage lg">
+            <div class="sp-card sp-card-1"><div class="sp-card-line"></div><div class="sp-card-line short"></div></div>
+            <div class="sp-card sp-card-2"><div class="sp-card-line"></div><div class="sp-card-line short"></div></div>
+            <div class="sp-card sp-card-3"><div class="sp-card-line"></div><div class="sp-card-line short"></div></div>
+          </div>
+        </div>
+
       </div>
-    </div>
-
-  </div>
-  <span class="demo-caption" id="wait"><?= __tphp('loading') ?>.</span>
-</article>
+      <span class="demo-caption" id="wait"><?= __tphp('loading') ?>.</span>
+    </article>
+</section>
 <script>document.addEventListener("DOMContentLoaded", function() {
         const urlParams = new URLSearchParams(window.location.search);
         const projectUuid = urlParams.get('key');

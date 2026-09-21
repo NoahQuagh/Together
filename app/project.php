@@ -84,6 +84,8 @@ require_once __DIR__  . '/../includes/defineTheme.php';
 <script src="../assets/script/project/tasksList.js"></script>
 <script src="../assets/script/tools/theme.js"></script>
 <script src="../assets/script/tools/toolbox.js"></script>
+<script src="../assets/script/renderers/project/projectTasksListRenderer.js"></script>
+<script src="../assets/script/renderers/project/projectOverviewRenderer.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.15/index.global.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/frappe-gantt/1.2.2/frappe-gantt.umd.js"></script>
 <div id="toast-container" class="toast-container"></div><!--zone de notif-->

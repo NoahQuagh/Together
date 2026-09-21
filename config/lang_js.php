@@ -4,7 +4,7 @@ header('Cache-Control: no-store, no-cache, must-revalidate, max-age=0');
 
 require_once __DIR__ . '/../includes/Session.php';
 
-$current_lang = Session::getLang();
+$current_lang = Session::lang();
 
 $allowed_langs = ['fr', 'en'];
 if (!in_array($current_lang, $allowed_langs)) {

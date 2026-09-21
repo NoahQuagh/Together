@@ -15,7 +15,7 @@ body{
     min-height: 100vh;
     display: flex;
     flex-direction: column;
-    gap: var(--space-lg);
+    gap: var(--space-2xl);
     width: 100%;
     box-sizing: border-box;
     border-radius: var(--radiusBox-md);
@@ -29,10 +29,8 @@ body{
 
 #tasks-zone,#kanban-id,#calendar-id{
     padding: var(--space-base);
-    margin: var(--space-xl) var(--space-xl) var(--space-xl)  var(--space-xl);
-    overflow: hidden;
-    overflow-y: auto;
-    max-height: 120vh;
+    margin: 0 var(--space-xl) var(--space-xl)  var(--space-xl);
+
 }
 
 .zone-top{
