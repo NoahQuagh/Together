@@ -139,8 +139,15 @@ async function renderModalNewPro() {
         </div>
         
         <div class="form-group">
-              <label class="form-label">Ressource du projet</label>
+              <label class="form-label res-label">
+                <span>Ressources du projet</span>
+                <span class="info-label">
+                    <i class="ti ti-info-circle" aria-hidden="true"></i>
+                    <span>Lien externe utile au projet (GitHub, Figma, Notion, Drive, etc.)</span>
+                </span>
+            </label>
               
+              <label class="form-label-sm">Nom de la ressource</label>
               <div class="resource-input-group">
                 <input 
                   type="text" 
@@ -170,6 +177,7 @@ async function renderModalNewPro() {
                   </div>
                 </div></div>
                 
+              <label class="form-label-sm">Lien de la ressource</label>  
               <div class="resource-input-group">
                     <input 
                       type="text" 
@@ -179,11 +187,13 @@ async function renderModalNewPro() {
                       placeholder="Ex: https://github.com/myName/myProject"
                     />  
                     
-                  <button class="btn-invite" type="button" onclick="">
+                  <button class="btn-invite" type="button" onclick="addRessource()">
                       <i class="ti ti-plus"></i>
                       <span>Ajouter</span>
                   </button> 
               </div>  
+              
+              <div class="selected-members-list" id="selected-ressource-list"></div>
         </div>
       </form>
 

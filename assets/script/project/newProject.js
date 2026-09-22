@@ -9,7 +9,6 @@ function toggleMembersZone(checkbox) {
     }
 }
 
-
 document.addEventListener('DOMContentLoaded', () => {
     const toggleInput = document.getElementById('project-highlight-toggle');
     if (toggleInput) {
@@ -36,6 +35,43 @@ function copyProjectLink() {
 }
 function createProject(){}
 
+function addRessource() {
+    const inputNameRes = document.getElementById('project-resource-name');
+    const inputLinkRes = document.getElementById('project-resource-link');
+    const inputTypeRes = document.getElementById('project-resource-type');
+    const ressourceList = document.getElementById('selected-ressource-list');
+
+    const valueName = inputNameRes.value.trim();
+    const valueLink = inputLinkRes.value.trim();
+    const valueTypeId = inputTypeRes ? inputTypeRes.value : '';
+
+    if (valueName === '') return;
+
+    const chip = document.createElement('div');
+    chip.className = 'member-chip';
+    chip.dataset.linkRes = valueLink;
+    chip.dataset.iconId = valueTypeId;
+
+    const nameSpan = document.createElement('span');
+    nameSpan.textContent = valueName;
+
+    const removeBtn = document.createElement('button');
+    removeBtn.type = 'button';
+    removeBtn.className = 'remove-chip';
+    removeBtn.title = 'Retirer';
+    removeBtn.setAttribute('aria-label', 'Retirer cette ressource');
+    removeBtn.innerHTML = '<i class="ti ti-x" aria-hidden="true"></i>';
+
+    removeBtn.addEventListener('click', () => chip.remove());
+
+    chip.appendChild(nameSpan);
+    chip.appendChild(removeBtn);
+    ressourceList.appendChild(chip);
+
+    inputNameRes.value = '';
+    inputLinkRes.value = '';
+}
+
 function addMember() {
     const inputElement = document.getElementById('member-search-input');
     const memberList = document.getElementById('selected-members-list');
@@ -44,7 +80,6 @@ function addMember() {
 
     if (value === '') return;
 
-    // Évite d'ajouter deux fois le même email
     const alreadyAdded = Array.from(memberList.children).some(
         (chip) => chip.dataset.email === value
     );

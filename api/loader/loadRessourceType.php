@@ -5,7 +5,14 @@ try {
 
     $db = getDB();
 
-    $req = $db->prepare("select ttr_id,ttr_nom,ttr_icon from TOG_TYPE_RESSOURCE");
+    $req = $db->prepare("
+        select ttr_id,(
+            case
+                when ttr_nom='link' then concat(ttr_nom,' (default)')
+                else ttr_nom end
+            ) as nom
+        ,ttr_icon from TOG_TYPE_RESSOURCE
+    ");
 
     $req->execute();
 
@@ -14,7 +21,7 @@ try {
     $formattedRessource = array_map(function($p) {
         return [
             'typeResId'           => $p['ttr_id'],
-            'typeResNom'           => $p['ttr_nom'],
+            'typeResNom'           => $p['nom'],
             'typeResIcon'           => $p['ttr_icon']
         ];
     }, $ressourceType);
