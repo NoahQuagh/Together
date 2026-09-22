@@ -86,11 +86,57 @@ function renderProjectOverview(data) {
 
         function ressourceHtml(r) {
             const icon = r.icon_ressource ? r.icon_ressource.replace(/^ti\s+/, '') : 'ti-link';
-            return `<li><a href="${r.link ?? '#'}" class="res-item" target="_blank" rel="noopener">
-                <i class="ti ${icon}" aria-hidden="true"></i>
-                <span class="res-name">${r.nom_ressource}</span>
-                <i class="ti ti-external-link res-ext" aria-hidden="true"></i>
-            </a></li>`;
+            return `<li>
+                        <a href="${r.link ?? '#'}" class="res-item" target="_blank" rel="noopener">
+                            <i class="ti ti-${icon}" aria-hidden="true"></i>
+                            <span class="res-name">${r.nom_ressource}</span>
+                            <i class="ti ti-external-link res-ext" aria-hidden="true"></i>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="${r.link ?? '#'}" class="res-item" target="_blank" rel="noopener">
+                            <i class="ti ti-database" aria-hidden="true"></i>
+                            <span class="res-name">${r.nom_ressource}</span>
+                            <i class="ti ti-external-link res-ext" aria-hidden="true"></i>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="${r.link ?? '#'}" class="res-item" target="_blank" rel="noopener">
+                            <i class="ti ti-file-description" aria-hidden="true"></i>
+                            <span class="res-name">${r.nom_ressource}</span>
+                            <i class="ti ti-external-link res-ext" aria-hidden="true"></i>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="${r.link ?? '#'}" class="res-item" target="_blank" rel="noopener">
+                            <i class="ti ti-database" aria-hidden="true"></i>
+                            <span class="res-name">${r.nom_ressource}</span>
+                            <i class="ti ti-external-link res-ext" aria-hidden="true"></i>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="${r.link ?? '#'}" class="res-item" target="_blank" rel="noopener">
+                            <i class="ti ti-file-description" aria-hidden="true"></i>
+                            <span class="res-name">${r.nom_ressource}</span>
+                            <i class="ti ti-external-link res-ext" aria-hidden="true"></i>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="${r.link ?? '#'}" class="res-item" target="_blank" rel="noopener">
+                            <i class="ti ti-database" aria-hidden="true"></i>
+                            <span class="res-name">${r.nom_ressource}</span>
+                            <i class="ti ti-external-link res-ext" aria-hidden="true"></i>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="${r.link ?? '#'}" class="res-item" target="_blank" rel="noopener">
+                            <i class="ti ti-file-description" aria-hidden="true"></i>
+                            <span class="res-name">${r.nom_ressource}</span>
+                            <i class="ti ti-external-link res-ext" aria-hidden="true"></i>
+                        </a>
+                    </li>
+
+`;
         }
 
         content.innerHTML = `
@@ -125,7 +171,7 @@ function renderProjectOverview(data) {
             <!-- KPI tâches -->
             <div id="totTache-layout">
                 <div class="ov-card">
-                    <div class="ov-label"><i class="ti ti-checklist" aria-hidden="true"></i> Tâches</div>
+                    <div class="ov-label"><i class="ti ti-checklist" aria-hidden="true"></i> Statut des tâches</div>
                     
                     <div class="kpi-donut-container" style="position: relative; height: 160px; margin: 10px 0;">
                         <canvas id="kpi-statut-donut"></canvas>
@@ -166,7 +212,9 @@ function renderProjectOverview(data) {
             <div id="ressource-layout">
                 <div class="ov-card">
                     <div class="ov-label"><i class="ti ti-paperclip" aria-hidden="true"></i> Ressources</div>
-                    <ul class="res-list">${ressources.length ? ressources.map(ressourceHtml).join('') : '<li class="res-empty">Aucune ressource ajoutée.</li>'}</ul>
+                    <ul class="res-list">${ressources.length ? ressources.map(ressourceHtml).join('') : '' +
+                        '<li class="res-empty">Aucune ressource ajoutée.</li>'
+                    }</ul>
                 </div>
             </div>
     
@@ -264,7 +312,7 @@ function renderProjectOverview(data) {
                     maintainAspectRatio: false,
                     cutout: '70%',
                     plugins: {
-                        legend: { display: false } // La légende est déjà gérée par ton HTML (kpi-row)
+                        legend: { display: false }
                     }
                 }
             });
