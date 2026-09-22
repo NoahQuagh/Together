@@ -233,3 +233,7 @@ body.no-scroll {
     overflow: hidden !important;
     height: 100vh;
 }
+
+body{
+    overflow-x: hidden;
+}

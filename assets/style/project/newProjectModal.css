@@ -325,8 +325,6 @@
     gap: var(--space-xxs);
     margin-top: var(--space-xxs);
     padding-right: 4px;
-    max-height: 140px;
-    overflow-y: auto;
 
     &::-webkit-scrollbar {
         width: 6px;

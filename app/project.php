@@ -36,7 +36,6 @@ require_once __DIR__  . '/../includes/defineTheme.php';
     <link rel="stylesheet" href="../assets/style/project/projectTasksCalendar.css">
   <link rel="stylesheet" href="../assets/style/tools/zone-travaux.css">
     <link rel="icon" type="image/png" href="../assets/logo/logoheader.png">
-  <link rel="stylesheet" href="../assets/style/tools/tooltip.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/frappe-gantt/1.2.2/frappe-gantt.min.css">
     <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Syne:wght@700;800&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&display=swap"
           rel="stylesheet">
