@@ -1,5 +1,5 @@
 .modalNewProject {
-    max-width: 70vw;
+    max-width: 80vw;
     width: 100%;
     height: 90vh;
     display: flex;
@@ -36,7 +36,6 @@
         .project-form {
             grid-area: form;
             width: auto;
-            max-width: 600px;
             display: flex;
             flex-direction: column;
             gap: var(--space-lg);
@@ -230,7 +229,7 @@
 
 .form-new-pro{
     display: grid;
-    gap: var(--space-sm);
+    gap: var(--space-xl);
     grid-template-columns: 1fr 1fr;
     grid-template-areas: "form param";
     overflow-y: hidden;
@@ -312,59 +311,7 @@
                     .form-input{
                         width: 60%;
                     }
-                    .btn-invite {
-                        width: auto;
-                        min-width: 130px;
-                        padding: 0.75rem 1.25rem;
 
-
-                        display: inline-flex;
-                        align-items: center;
-                        justify-content: center;
-                        gap: var(--space-xs, 0.5rem);
-
-
-                        background-color: #0d0d0d;
-                        color: var(--color-second-secondary);
-                        border: 1px solid rgba(255, 255, 255, 0.1);
-                        border-radius: var(--radiusBox-sm);
-
-                        font-family: var(--font-text);
-                        font-weight: 600;
-                        font-size: var(--text-sm, 0.9rem);
-                        letter-spacing: 0.3px;
-
-                        cursor: pointer;
-                        transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
-                        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
-
-                        i {
-                            font-size: 1.15em;
-                            color: var(--color-second-secondary);
-                            transition: transform 0.25s ease;
-                        }
-
-                        span {
-                            line-height: 1;
-                        }
-
-                        &:hover {
-                            background-color: #1a1a1a;
-                            border-color: rgba(255, 255, 255, 0.25);
-                            box-shadow: 0 6px 16px rgba(0, 0, 0, 0.35);
-
-                        }
-
-                        &:active {
-                            transform: translateY(0);
-                            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
-                        }
-
-                        &:focus-visible {
-                            outline: 2px solid var(--accent, #3b82f6);
-                            outline-offset: 2px;
-                        }
-                    }
                 }
 
                 .selected-members-list {
@@ -659,6 +606,170 @@
     padding: 0.6rem 0;
     color: var(--color-second-tertiary);
     font-size: var(--text-sm);
+}
+
+
+
+/* ===Custom Select Container=== */
+.custom-select-wrapper {
+    position: relative;
+    width: 100%;
+    z-index: 50;
+}
+
+.custom-select-trigger {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 14px;
+    background-color: var(--color-main-primary, #1a1a1a);
+    border: 1px solid var(#333);
+    border-radius: var(--radiusBox-sm, 8px);
+    color: #fff;
+    cursor: pointer;
+    transition: border-color 0.2s ease;
+}
+
+.custom-select-trigger:hover {
+    border-color: var(--accent, #226db8);
+}
+
+.selected-option {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.selected-option i, .custom-option i {
+    font-size: 1.2rem;
+    color: var(--accent, #226db8);
+}
+
+.custom-select-options {
+    position: absolute;
+    top: calc(100% + 4px);
+    left: 0;
+    right: 0;
+    background-color: var(--color-main-primary, #1a1a1a);
+    border: 1px solid var( #333);
+    border-radius: 8px;
+    max-height: 180px;
+    overflow-y: auto;
+    z-index: 999999;
+    display: none;
+}
+
+.custom-select-wrapper.is-open .custom-select-options {
+    display: block !important;
+}
+
+.custom-select-wrapper.is-open .arrow-icon {
+    transform: rotate(180deg);
+}
+
+.custom-option {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 14px;
+    color: #ccc;
+    cursor: pointer;
+    transition: background-color 0.15s ease, color 0.15s ease;
+}
+
+.custom-option:hover {
+    background-color: rgba(34, 109, 184, 0.15);
+    color: #fff;
+}
+
+#step-form-content,
+.form-new-pro,
+.project-form {
+    overflow: visible !important;
+}
+
+.resource-input-group {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    position: relative;
+    overflow: visible !important;
+}
+
+.resource-input-group #project-resource-name {
+    flex: 1;
+}
+
+.resource-input-group .custom-select-wrapper {
+    width: 70px;
+    flex-shrink: 0;
+    position: relative;
+}
+
+.resource-input-group .custom-select-trigger {
+    padding: 8px 10px;
+    justify-content: space-between;
+}
+
+.resource-input-group .custom-select-options {
+    width: 180px;
+    right: 0;
+    left: auto;
+    z-index: 99999;
+}
+
+.btn-invite {
+    width: auto;
+    min-width: 130px;
+    padding: 0.75rem 1.25rem;
+
+
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-xs, 0.5rem);
+
+
+    background-color: #0d0d0d;
+    color: var(--color-second-secondary);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: var(--radiusBox-sm);
+
+    font-family: var(--font-text);
+    font-weight: 600;
+    font-size: var(--text-sm, 0.9rem);
+    letter-spacing: 0.3px;
+
+    cursor: pointer;
+    transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+
+    i {
+        font-size: 1.15em;
+        color: var(--color-second-secondary);
+        transition: transform 0.25s ease;
+    }
+
+    span {
+        line-height: 1;
+    }
+
+    &:hover {
+        background-color: #1a1a1a;
+        border-color: rgba(255, 255, 255, 0.25);
+        box-shadow: 0 6px 16px rgba(0, 0, 0, 0.35);
+
+    }
+
+    &:active {
+        transform: translateY(0);
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+    }
+
+    &:focus-visible {
+        outline: 2px solid var(--accent, #3b82f6);
+        outline-offset: 2px;
+    }
 }
 
 @keyframes member-loader-spin {

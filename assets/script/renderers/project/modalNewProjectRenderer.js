@@ -1,3 +1,9 @@
+let typeRessourceList = [];
+
+function assignTypeRessource(data){
+    typeRessourceList = data || [];
+}
+
 function selectClassicProject() {
     renderModalNewPro();
 
@@ -131,6 +137,54 @@ async function renderModalNewPro() {
             />
           </div>
         </div>
+        
+        <div class="form-group">
+              <label class="form-label">Ressource du projet</label>
+              
+              <div class="resource-input-group">
+                <input 
+                  type="text" 
+                  id="project-resource-name" 
+                  name="resource_nom" 
+                  class="form-input" 
+                  placeholder="Ex: Documentation API"
+                />
+            
+                <div class="custom-select-wrapper" id="custom-res-select">
+                  <input type="hidden" id="project-resource-type" name="resource_type_id" value="${typeRessourceList[0]?.typeResId || ''}">
+            
+                  <div class="custom-select-trigger" onclick="toggleCustomSelect(event, 'custom-res-select')">
+                    <span class="selected-option">
+                      ${typeRessourceList.length ? `<i class="ti ti-${typeRessourceList[0].typeResIcon}"></i>` : ''}
+                    </span>
+                    <i class="ti ti-chevron-down arrow-icon"></i>
+                  </div>
+            
+                  <div class="custom-select-options">
+                    ${typeRessourceList.map(r => `
+                      <div class="custom-option" onclick="selectCustomOption(event, 'custom-res-select', '${r.typeResId}', '${r.typeResNom}', '${r.typeResIcon}')">
+                        <i class="ti ti-${r.typeResIcon}"></i>
+                        <span>${r.typeResNom}</span>
+                      </div>
+                    `).join('')}
+                  </div>
+                </div></div>
+                
+              <div class="resource-input-group">
+                    <input 
+                      type="text" 
+                      id="project-resource-link" 
+                      name="resource_link" 
+                      class="form-input" 
+                      placeholder="Ex: https://github.com/myName/myProject"
+                    />  
+                    
+                  <button class="btn-invite" type="button" onclick="">
+                      <i class="ti ti-plus"></i>
+                      <span>Ajouter</span>
+                  </button> 
+              </div>  
+        </div>
       </form>
 
       <div class="invite-zone">
@@ -187,3 +241,60 @@ async function renderModalNewPro() {
         toggleMembersZone(toggleInput);
     }
 }
+
+document.addEventListener("DOMContentLoaded", function() {
+    fetch('../api/loader/loadRessourceType.php')
+        .then(res => res.json())
+        .then(res => {
+            if (!res.success) {
+                throw new Error(res.message);
+            }
+            assignTypeRessource(res.data);
+        })
+        .catch(error => {
+
+        });
+});
+
+function toggleCustomSelect(event, wrapperId) {
+    if (event) {
+        event.stopPropagation();
+        event.preventDefault();
+    }
+
+    const wrapper = document.getElementById(wrapperId);
+    if (!wrapper) return;
+
+    const isOpen = wrapper.classList.contains('is-open');
+
+    document.querySelectorAll('.custom-select-wrapper').forEach(el => {
+        el.classList.remove('is-open');
+    });
+
+    if (!isOpen) {
+        wrapper.classList.add('is-open');
+    }
+}
+
+function selectCustomOption(event, wrapperId, value, name, icon) {
+    if (event) event.stopPropagation();
+
+    const wrapper = document.getElementById(wrapperId);
+    if (!wrapper) return;
+
+    const hiddenInput = wrapper.querySelector('input[type="hidden"]');
+    if (hiddenInput) hiddenInput.value = value;
+
+    const trigger = wrapper.querySelector('.selected-option');
+    if (trigger) {
+        trigger.innerHTML = `<i class="ti ti-${icon}"></i>`;
+    }
+
+    wrapper.classList.remove('is-open');
+}
+
+window.addEventListener('click', function(e) {
+    if (!e.target.closest('.custom-select-wrapper')) {
+        document.querySelectorAll('.custom-select-wrapper').forEach(el => el.classList.remove('is-open'));
+    }
+});
