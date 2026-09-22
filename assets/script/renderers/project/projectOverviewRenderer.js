@@ -75,13 +75,14 @@ function renderProjectOverview(data) {
                 + Number(m.nb_en_revue ?? 0) + Number(m.nb_terminer ?? 0);
 
             return `<li class="mb-item">
-            <div class="mb-avatar">${initiales}</div>
-            <div class="mb-info">
-                <div class="mb-name">${nomMembre}</div>
-                <div class="mb-role">${totalMembre} tâche${totalMembre > 1 ? 's' : ''}</div>
-            </div>
-            <span class="mb-badge">${m.nb_terminer ?? 0} terminées</span>
-        </li>`;
+                        <div class="mb-avatar">${initiales}</div>
+                        <div class="mb-info">
+                            <div class="mb-name">${nomMembre}</div>
+                            <div class="mb-role">${totalMembre} tâche${totalMembre > 1 ? 's' : ''}</div>
+                        </div>
+                        <span class="mb-badge">${m.nb_terminer ?? 0} terminées</span>
+                    </li>
+            `;
         }
 
         function ressourceHtml(r) {
@@ -92,51 +93,7 @@ function renderProjectOverview(data) {
                             <span class="res-name">${r.nom_ressource}</span>
                             <i class="ti ti-external-link res-ext" aria-hidden="true"></i>
                         </a>
-                    </li>
-                    <li>
-                        <a href="${r.link ?? '#'}" class="res-item" target="_blank" rel="noopener">
-                            <i class="ti ti-database" aria-hidden="true"></i>
-                            <span class="res-name">${r.nom_ressource}</span>
-                            <i class="ti ti-external-link res-ext" aria-hidden="true"></i>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="${r.link ?? '#'}" class="res-item" target="_blank" rel="noopener">
-                            <i class="ti ti-file-description" aria-hidden="true"></i>
-                            <span class="res-name">${r.nom_ressource}</span>
-                            <i class="ti ti-external-link res-ext" aria-hidden="true"></i>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="${r.link ?? '#'}" class="res-item" target="_blank" rel="noopener">
-                            <i class="ti ti-database" aria-hidden="true"></i>
-                            <span class="res-name">${r.nom_ressource}</span>
-                            <i class="ti ti-external-link res-ext" aria-hidden="true"></i>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="${r.link ?? '#'}" class="res-item" target="_blank" rel="noopener">
-                            <i class="ti ti-file-description" aria-hidden="true"></i>
-                            <span class="res-name">${r.nom_ressource}</span>
-                            <i class="ti ti-external-link res-ext" aria-hidden="true"></i>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="${r.link ?? '#'}" class="res-item" target="_blank" rel="noopener">
-                            <i class="ti ti-database" aria-hidden="true"></i>
-                            <span class="res-name">${r.nom_ressource}</span>
-                            <i class="ti ti-external-link res-ext" aria-hidden="true"></i>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="${r.link ?? '#'}" class="res-item" target="_blank" rel="noopener">
-                            <i class="ti ti-file-description" aria-hidden="true"></i>
-                            <span class="res-name">${r.nom_ressource}</span>
-                            <i class="ti ti-external-link res-ext" aria-hidden="true"></i>
-                        </a>
-                    </li>
-
-`;
+                    </li>`;
         }
 
         content.innerHTML = `
