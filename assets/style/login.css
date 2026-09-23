@@ -193,7 +193,15 @@ body {
 }
 
 .auth-form-head {
-    margin-bottom: 1.75rem;
+    display: flex;
+    flex-direction: row;
+    .titleForm{
+        padding-top: 15%;
+        gap: var(--space-xxs);
+        display: flex;
+        flex-direction: column;
+        align-content: center;
+    }
 }
 
 .auth-eyebrow {
@@ -202,7 +210,6 @@ body {
     color: var(--accent);
     letter-spacing: 0.12em;
     text-transform: uppercase;
-    margin-bottom: 0.4rem;
 }
 
 .auth-form-head h1 {

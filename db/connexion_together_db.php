@@ -1,5 +1,6 @@
 <?php
 $isLocal = ($_SERVER['SERVER_NAME'] ?? '') === 'localhost';
+//ssh -L 3307:127.0.0.1:3306 noah@servdell.noahquagh.com -N
 
 define('DB_HOST', '127.0.0.1');
 define('DB_PORT', $isLocal ? '3306' : '3307');
