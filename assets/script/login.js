@@ -1,3 +1,39 @@
+import { blobatar } from "https://cdn.jsdelivr.net/npm/blobatar@2.7.0/+esm";
+import { gaze } from "https://cdn.jsdelivr.net/npm/blobatar@2.7.0/gaze/+esm";
+
+document.addEventListener('DOMContentLoaded', () => {
+    const container = document.getElementById('blobatar-wrapper');
+
+    if (container) {
+        // 1. Générer l'avatar
+        container.innerHTML = blobatar("together-user", {
+            animate: "always"
+        });
+
+        // 2. Initialiser le regard (gaze) après rendu
+        requestAnimationFrame(() => {
+            const svg = container.querySelector('svg');
+            if (svg) {
+                gaze(svg, { travel: 5, lookAt: "pointer" });
+            }
+        });
+
+        // 3. Réagir au changement d'email
+        const emailInput = document.getElementById('login-email');
+        if (emailInput) {
+            emailInput.addEventListener('input', (e) => {
+                const val = e.target.value.trim() || "together-user";
+                container.innerHTML = blobatar(val, { animate: "always" });
+
+                const newSvg = container.querySelector('svg');
+                if (newSvg) {
+                    gaze(newSvg, { travel: 5, lookAt: "pointer" });
+                }
+            });
+        }
+    }
+});
+
 /**
  * Affiche le mot de passe
  * @param id

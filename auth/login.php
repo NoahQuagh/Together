@@ -20,6 +20,9 @@ if (Session::estConnecte()) {
   <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Syne:wght@700;800&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&display=swap"
         rel="stylesheet">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css">
+  <link rel="stylesheet" href="../assets/dist/login-avatar.css">
+
+
 </head>
 <body>
 
@@ -28,10 +31,11 @@ if (Session::estConnecte()) {
 </div>
 
 
-
 <main class="auth-page">
   <aside class="auth-side">
     <div class="auth-side-inner">
+
+      <div id="blobatar-root"></div>
 
       <div class="logo-complete">
         <div class="line">
@@ -162,6 +166,7 @@ if (Session::estConnecte()) {
 
 </main>
 
+<script type="module" src="../assets/dist/login-avatar.js"></script>
 <script src="../assets/script/login.js"></script>
 <script src="../config/lang_js.php"></script>
 <script>
