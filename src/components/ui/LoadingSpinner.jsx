@@ -3,6 +3,7 @@ import { Blobatar } from "@blobatar/react";
 import {idle, thinking} from "blobatar/expression";
 import "blobatar/motion.css";
 import "blobatar/gaze.css";
+import './../../../assets/style/tools/loader.css';
 
 export function LoadingSpinner({ caption = "Chargement en cours..." }) {
 

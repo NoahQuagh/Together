@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Sidebar } from './Sidebar';
+import './../../../assets/style/navigation/header.css'
 
 export function Header({
                            title = "Together",

@@ -4,12 +4,15 @@ import { KpiCard } from "../../components/ui/KpiCard";
 import { DashBlock } from "../../components/ui/DashBlock";
 import {ErrorMessage} from "../../components/ui/ErrorMessage.jsx";
 import {LoadingSpinner} from "../../components/ui/LoadingSpinner.jsx";
+import './../../../assets/style/home/dashBoard.css';
+import {useToolbox} from "../../hooks/useToolbox.js";
 
 export function DashboardPage() {
     const [data, setData] = useState(null);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
     const navigate = useNavigate();
+    const { formatDate, prioriteBadge, prioriteIcon } = useToolbox();
 
     useEffect(() => {
         fetch("/api/loader/loadDashBoardData.php", { credentials: "include" })
@@ -24,23 +27,6 @@ export function DashboardPage() {
             .catch((err) => setError(err.message || "Une erreur est survenue lors du chargement des données."))
             .finally(() => setLoading(false));
     }, []);
-
-    // Utilitaire pour formater la date
-    const formatDate = (dateStr) => {
-        if (!dateStr) return "";
-        const date = new Date(dateStr);
-        return date.toLocaleDateString("fr-FR", { day: "2-digit", month: "2-digit", year: "numeric" });
-    };
-
-    // Helper pour la classe de badge de priorité
-    const prioriteBadge = (priorite) => {
-        switch (priorite?.toLowerCase()) {
-            case "haute": return "badge-red";
-            case "moyenne": return "badge-orange";
-            default: return "badge-blue";
-        }
-    };
-
 
 
     if (loading) {
@@ -114,7 +100,7 @@ export function DashboardPage() {
                                         </div>
                                         <div className="dash-task-meta">
                                             <span><i className="ti ti-folder" /> {t.projet}</span>
-                                            <span><i className="ti ti-calendar" /> {formatDate(t.deadline)}</span>
+                                            <span><i className="ti ti-calendar" /> {formatDate(t.deadline,t)}</span>
                                         </div>
                                     </li>
                                 ))}

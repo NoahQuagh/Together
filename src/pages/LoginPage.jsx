@@ -6,6 +6,7 @@ import { useNavigate } from "react-router-dom";
 import "blobatar/motion.css";
 import "blobatar/gaze.css";
 import { useAuth } from "../context/AuthContext";
+import './../../assets/style/login.css';
 
 export function LoginPage() {
     //state

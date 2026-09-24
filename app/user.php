@@ -13,7 +13,7 @@ require_once __DIR__  . '/../includes/defineTheme.php';
   <meta charset="UTF-8">
   <title>Together</title>
   <link rel="stylesheet" href="../assets/style/paletteStyle.css">
-  <link rel="stylesheet" href="../assets/style/navigation/header+sidebar.css">
+  <link rel="stylesheet" href="../assets/style/navigation/header.css">
   <link rel="stylesheet" href="../assets/style/tools/nonConnecterSection.css">
   <link rel="stylesheet" href="../assets/style/navigation/footer.css">
   <link rel="stylesheet" href="../assets/style/profile/profile.css">
