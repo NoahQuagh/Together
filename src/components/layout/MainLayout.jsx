@@ -103,7 +103,6 @@ export function MainLayout() {
 
     return (
         <div className="app-container">
-            {/* APPEL DU HEADER GENERIQUE */}
             <Header
                 title="Together"
                 titleLink="/dashboard"
@@ -118,7 +117,6 @@ export function MainLayout() {
                 <Outlet />
             </main>
 
-            {/* APPEL DU FOOTER GENERIQUE */}
             <Footer
                 brandName="Together"
                 slogan="Votre plateforme collaborative."
@@ -126,7 +124,6 @@ export function MainLayout() {
                 columns={footerColumns}
             />
 
-            {/* MODAL DE NOUVEAU PROJET */}
             <NewProjectModal
                 isOpen={isModalOpen}
                 onClose={handleCloseModal}

@@ -236,4 +236,5 @@ body.no-scroll {
 
 body{
     overflow-x: hidden;
+    overflow-y:scroll;
 }

@@ -1,11 +1,14 @@
 body {
     width: 100%;
+    min-height: 100vh;
+    overflow-y: auto;
 }
 
-main{
-    min-height: 90vh;
+main {
+    min-height: 100vh;
     display: flex;
     justify-content: center;
     width: 100%;
     background: var(--bg-body);
+    box-sizing: border-box;
 }

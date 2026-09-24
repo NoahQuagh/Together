@@ -1,11 +1,13 @@
 .dash-page {
     display: flex;
     flex-direction: column;
-    gap: var(--space-lg) 0 var(--space-lg) 0;
+    gap: var(--space-lg);
     width: 100%;
+    max-width: 1400px;
     min-height: 100%;
     box-sizing: border-box;
-    margin: var(--space-5xl);
+    margin: 0 auto;
+    padding: var(--space-xl) var(--space-base);
 }
 
 .dash-page #dashboard-container .demo-item,.dash-page #dashboard-container .dash-error-msg{
@@ -16,16 +18,16 @@
 .dash-layout {
     display: grid;
     width: 100%;
-    grid-template-columns: 220px 3fr;
-    gap: var(--space-5xl);
-    padding: 0 var(--space-5xl) 0 var(--space-5xl);
+    grid-template-columns: 240px 1fr;
+    gap: var(--space-xl);
+    padding: 0;
     align-items: start;
 }
 
 .dash-kpi-grid {
-    margin-top: var(--space-4xl);
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    margin-top: 0;
+    display: flex;
+    flex-direction: column;
     gap: var(--space-sm);
 }
 
@@ -82,12 +84,16 @@
 .dash-grid {
     display: grid;
     grid-template-columns: 1.5fr 1.5fr;
-    gap: var(--space-sm);
+    gap: var(--space-lg);
 }
 .dash-block {
     display: flex;
     flex-direction: column;
     overflow: hidden;
+}
+
+#tab {
+    gap: var(--space-lg);
 }
 
 .dash-block{
