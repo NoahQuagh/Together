@@ -2,8 +2,10 @@ import React, { useState } from "react";
 import { Blobatar } from "@blobatar/react";
 import { useGaze } from "@blobatar/react/gaze";
 import { sleepy, mad, idle } from "blobatar/expression";
+import { useNavigate } from "react-router-dom";
 import "blobatar/motion.css";
 import "blobatar/gaze.css";
+import { useAuth } from "../context/AuthContext";
 
 export function LoginPage() {
     //state
@@ -14,6 +16,8 @@ export function LoginPage() {
     const [loading, setLoading] = useState(false);
 
     const [currentExpression, setCurrentExpression] = useState(idle);
+    const navigate = useNavigate();
+    const { login } = useAuth();
 
     const { ref } = useGaze({
         travel: 5,
@@ -45,6 +49,7 @@ export function LoginPage() {
             const appBaseUrl = import.meta.env.VITE_APP_BASE_URL || "";
 
             if (data.success) {
+                login(data.user);
                 navigate("/dashboard");
             }else {
                 setError(data.message || "Identifiants incorrects.");
