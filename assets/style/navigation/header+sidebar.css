@@ -1,4 +1,4 @@
-/*=====header=====*/
+
 
 header {
     background: var(--color-main-primary);
@@ -188,8 +188,6 @@ header {
 .nav-item:hover .item i,.nav-item:hover h4 {
     color: var(--color-second-primary);
 }
-
-/*=====sidebar=====*/
 
 .sidebar {
     position: fixed;

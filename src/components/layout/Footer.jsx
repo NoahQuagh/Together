@@ -1,42 +1,31 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-export function Footer() {
+export function Footer({
+                           columns = [],
+                           brandName = "Together",
+                           slogan = "Votre plateforme collaborative.",
+                           version = "1.0.0"
+                       }) {
     return (
         <footer>
             <section className="footerSection">
-                <div>
-                    <h4>Raccourcis rapides</h4>
-                    <ul>
-                        <li><Link to="/dashboard">Accueil</Link></li>
-                        <li><Link to="/notifications">Notifications</Link></li>
-                        <li><Link to="/calendar">Calendrier</Link></li>
-                        <li><Link to="/stats">Statistiques</Link></li>
-                        <li><Link to="/reports">Rapports</Link></li>
-                        <li><Link to="/settings">Paramètres</Link></li>
-                    </ul>
-                </div>
-
-                <div>
-                    <h4>Liens utiles</h4>
-                    <ul>
-                        <li><Link to="/help">Aide</Link></li>
-                        <li><Link to="/documentation">Documentation</Link></li>
-                        <li><Link to="/report-bug">Signaler un bug</Link></li>
-                        <li><Link to="/submit-idea">Proposer une idée</Link></li>
-                    </ul>
-                </div>
-
-                <div>
-                    <h4>Réseau</h4>
-                    <ul>
-                        <li><Link to="/about">À propos</Link></li>
-                        <li><Link to="/faq">FAQ</Link></li>
-                        <li><Link to="/changelog">Changelog</Link></li>
-                        <li><a href="https://github.com/NoahQuagh/Together" target="_blank" rel="noreferrer">GitHub</a></li>
-                        <li><Link to="/status">Statut</Link></li>
-                    </ul>
-                </div>
+                {columns.map((col, idx) => (
+                    <div key={idx}>
+                        <h4>{col.title}</h4>
+                        <ul>
+                            {col.links.map((link, linkIdx) => (
+                                <li key={linkIdx}>
+                                    {link.external ? (
+                                        <a href={link.to} target="_blank" rel="noreferrer">{link.label}</a>
+                                    ) : (
+                                        <Link to={link.to}>{link.label}</Link>
+                                    )}
+                                </li>
+                            ))}
+                        </ul>
+                    </div>
+                ))}
 
                 <div className="footer-logo-wrap">
                     <div className="fl-spinner">
@@ -61,8 +50,8 @@ export function Footer() {
                     </div>
 
                     <div className="fl-text">
-                        <h2>Together</h2>
-                        <p className="fl-signature">Votre plateforme collaborative.</p>
+                        <h2>{brandName}</h2>
+                        <p className="fl-signature">{slogan}</p>
                     </div>
                 </div>
             </section>
@@ -71,7 +60,7 @@ export function Footer() {
 
             <section className="footerSection footerSection2">
                 <p>
-                    Copyright © 2026 Together | <Link to="/privacy">Politique de confidentialité</Link> | Version 1.0.0
+                    Copyright © {new Date().getFullYear()} {brandName} | <Link to="/privacy">Politique de confidentialité</Link> | Version {version}
                 </p>
             </section>
         </footer>

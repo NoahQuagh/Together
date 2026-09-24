@@ -29,7 +29,7 @@ export function LoginPage() {
         setCurrentExpression(mad);
         setTimeout(() => {
             setCurrentExpression(idle);
-        }, 500);
+        }, 1000);
     };
 
     const handleSubmit = async (e) => {
