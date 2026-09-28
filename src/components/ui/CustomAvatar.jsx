@@ -16,11 +16,11 @@ const SIZES = {
 };
 
 export function CustomAvatar({
-                                 src,
-                                 name = "",
                                  size = "md",
                                  variant = "blue",
-                                 className = ""
+                                 className,
+                                 src,
+                                 name
                              }) {
 
     const getInitials = (str) => {
@@ -31,6 +31,8 @@ export function CustomAvatar({
         }
         return str.slice(0, 2).toUpperCase();
     };
+
+    const user = sessionStorage.getItem("together_user");
 
 
     const sizeClass = SIZES[size] || SIZES.md;

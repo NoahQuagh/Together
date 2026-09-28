@@ -43,6 +43,7 @@ export function AuthProvider({ children }) {
             console.error(err);//TODO TMP
         } finally {
             setUser(null);
+            sessionStorage.removeItem("together_user");
         }
     };
 

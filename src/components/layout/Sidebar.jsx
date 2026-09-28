@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React from "react";
 import { NavLink } from "react-router-dom";
 import { CustomAvatar } from "../ui/CustomAvatar";
 import {
@@ -10,16 +10,15 @@ import {
     AnimatedSidebarGroupContent,
     AnimatedSidebarMenu,
     AnimatedSidebarMenuItem,
-    AnimatedSidebarMenuButton,
     AnimatedSidebarFooter,
     AnimatedSidebarRail,
     useSidebar,
 } from "../motion/animated-sidebar";
 import './../../../assets/style/navigation/sidebar.css';
 
-const DEFAULT_USER = { id: 0, name: 'Invité Utilisateur', email: 'guest@together.com',avatarUrl: '' };
+const DEFAULT_USER = { id: 0, name: 'Invité Utilisateur', email: 'guest@together.com', avatarUrl: '' };
 
-export function Sidebar({title = "Together",sections = [],user:userProp}) {
+export function Sidebar({ title = "Together", sections = [], user: userProp }) {
 
     const currentUser = userProp || DEFAULT_USER;
 
@@ -71,18 +70,19 @@ export function Sidebar({title = "Together",sections = [],user:userProp}) {
 
             <AnimatedSidebarFooter className="sb-footer">
                 <a className="sb-user-card group-data-[state=collapsed]/sidebar:justify-center flex items-center gap-3 p-2.5 hover:bg-[#212121] rounded-xl cursor-pointer transition-colors w-full" href={"/profile"}>
+                    {/* On utilise currentUser ici au lieu de "user" */}
                     <CustomAvatar
+                        size="md"
+                        variant="blue"
                         src={currentUser.avatarUrl}
                         name={currentUser.name}
-                        variant="blue"
-                        size="md"
                     />
 
                     <div className="sb-user-info group-data-[state=collapsed]/sidebar:hidden truncate flex-1 min-w-0" >
                         <span className="sb-user-name truncate block font-bold text-white text-sm">
                             {currentUser.name}
                         </span>
-                                    <span className="sb-user-email truncate block text-xs text-neutral-400">
+                        <span className="sb-user-email truncate block text-xs text-neutral-400">
                             {currentUser.email}
                         </span>
                     </div>

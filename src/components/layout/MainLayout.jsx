@@ -12,11 +12,15 @@ import './../../../assets/style/home/home.css'
 
 export function MainLayout() {
     const [isModalOpen, setIsModalOpen] = useState(false);
-    const [data, setData] = useState(null);
     const { t } = useTranslation();
 
     const handleOpenModal = () => setIsModalOpen(true);
     const handleCloseModal = () => setIsModalOpen(false);
+
+    const [data, setData] = useState(() => {
+        const cachedUser = sessionStorage.getItem("together_user");
+        return cachedUser ? JSON.parse(cachedUser) : null;
+    });
 
     useEffect(() => {
         fetch("/api/loader/loadProfile.php", { credentials: "include" })
@@ -27,11 +31,15 @@ export function MainLayout() {
             .then((res) => {
                 if (!res.success) throw new Error(res.message);
 
-                setData({
+                const fetchedUser = {
                     name: `${res.data.prenom} ${res.data.nom}`,
                     email: res.data.email,
-                    avatarUrl: `/assets/uploads/avatars/${res.data.avatar}`
-                });
+                    avatarUrl: res.data.avatar ? `/assets/uploads/avatars/${res.data.avatar}` : ""
+                };
+
+                setData(fetchedUser);
+
+                sessionStorage.setItem("together_user", JSON.stringify(fetchedUser));
             })
     }, []);
 
@@ -134,8 +142,8 @@ export function MainLayout() {
                         searchPlaceholder="Rechercher..."
                         onSearch={(query) => console.log("Recherche :", query)}
                         actions={headerActions}
-                        tabs
                         user={data}
+                        tabs
                     />
 
                     <main className={"flex-1 w-full text-left p-0 m-0 bg-[var(--bg-body)]"} style={{ backgroundColor: 'var(--bg-body)' }}>

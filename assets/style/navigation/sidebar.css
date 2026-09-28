@@ -19,8 +19,8 @@
 }
 
 .sb-close {
-    width: 26px;
-    height: 26px;
+    width: 30px;
+    height: 30px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -28,7 +28,7 @@
     background: transparent;
     color: var(--color-second-tertiary);
     cursor: pointer;
-    border-radius: var(--radiusBox-xxs);
+    border-radius: var(--radiusBox-sm);
     font-size: 15px;
     transition: background 0.2s, color 0.15s;
     i{
@@ -39,6 +39,9 @@
 .sb-close:hover {
     background: var(--box-icon-color-hover);
     color: var(--color-second-primary);
+    i{
+        color: var(--color-second-primary);
+    }
 }
 
 .sb-section {
