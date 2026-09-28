@@ -36,13 +36,13 @@ header {
 .menu,
 .account-menu {
     width: 36px;
-    height: 36px;
+    height: 33px;
     display: flex;
     align-items: center;
     justify-content: center;
     background: transparent;
     border: 1px solid var(--color-icon);
-    border-radius: var(--radiusBox-sm);
+    border-radius: var(--radiusBox-circle);
     position: relative;
     cursor: pointer;
     color: var(--color-second-tertiary);
@@ -146,7 +146,6 @@ header {
     position: relative;
 }
 
-/* On applique le ::after sur la div .item.alert */
 .item.alert::after {
     content: '';
     position: absolute;
@@ -227,16 +226,29 @@ header {
 }
 
 .newProjectBtn{
-    width: 36px;
-    height: 36px;
+    height: 33px;
+    padding: 0 var(--space-xs);
     display: flex;
+    gap: var(--space-xxs);
     align-items: center;
     justify-content: center;
     background: transparent;
     border: 1px solid var(--color-icon);
-    border-radius: var(--radiusBox-sm);
+    border-radius: var(--radiusBox-circle);
     position: relative;
     cursor: pointer;
     color: var(--color-second-tertiary);
     transition: background 0.2s ease, color 0.15s ease;
+    &:hover{
+        color: var(--color-second-secondary);
+        background: var(--color-main-tertiary);
+    }
+    &.accent{
+        background: var(--accent-shy);
+        border-color: var(--accent-second);
+        color: var(--color-second-secondary);
+        &:hover{
+            background: var(--accent-second);
+        }
+    }
 }

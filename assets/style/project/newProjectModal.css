@@ -819,9 +819,17 @@
     color: var(--color-second-tertiary);
 }
 
+/*btn de creation*/
+.optionCreate:hover{
+    i,span{
+        color:var(--color-second-secondary);
+    }
+}
+
 @keyframes member-loader-spin {
     to {
         transform: rotate(360deg);
     }
 }
+
 

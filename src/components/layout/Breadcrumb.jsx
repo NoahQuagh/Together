@@ -11,15 +11,17 @@ const ROUTE_LABELS = {
     notifications: "Notifications",
 };
 
-export function Breadcrumb({user}) {
+export function Breadcrumb({ user }) {
     const location = useLocation();
 
     const pathnames = location.pathname.split('/').filter((x) => x);
 
+    const rootLabel = user?.name || "User";
+
     return (
         <nav aria-label="breadcrumb" className="flex items-center gap-2 text-sm">
             <Link to="/dashboard" className="text-[color:var(--color-second-five)] hover:text-white transition-colors font-medium">
-                {user.name}
+                {rootLabel}
             </Link>
 
             {pathnames.map((value, index) => {
@@ -30,7 +32,9 @@ export function Breadcrumb({user}) {
 
                 return (
                     <React.Fragment key={to}>
-                        <span className="text-[color:var(--color-second-five)] text-base"><i className="ti ti-chevron-right"></i></span>
+                        <span className="text-[color:var(--color-second-five)] text-base">
+                            <i className="ti ti-chevron-right"></i>
+                        </span>
 
                         {isLast ? (
                             <span className="text-white font-semibold">{label}</span>

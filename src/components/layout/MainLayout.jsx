@@ -9,6 +9,8 @@ import { AnimatedSidebarProvider, AnimatedSidebarInset } from "../motion/animate
 import './../../../assets/style/project/newProjectModal.css';
 import './../../../assets/style/tools/modal-dialog.css';
 import './../../../assets/style/home/home.css'
+import {BloomMenu} from "@/components/motion/bloom-menu.jsx";
+import {Bell, FileText, Folder, FolderClosed, LayoutGrid, Link, RobotArm, Table} from "lucide-react";
 
 export function MainLayout() {
     const [isModalOpen, setIsModalOpen] = useState(false);
@@ -43,6 +45,11 @@ export function MainLayout() {
             })
     }, []);
 
+    const ITEMS = [
+        { label: "Projet", icon: "ti ti-folder" },
+        { label: "Affaire", icon: "ti ti-building-factory-2" },
+        { label: "Rapport", icon: "ti ti-report" },
+    ];
 
     const sidebarSections = [
         {
@@ -86,10 +93,38 @@ export function MainLayout() {
 
     const headerActions = [
         {
-            icon: "ti ti-plus",
-            tooltip: "Nouveau projet",
-            text:"Nouveau Projet",
-            onClick: handleOpenModal
+            component: <BloomMenu key="bloom" items={ITEMS} />
+        },
+    ];
+
+    const searchItems = [
+        {
+            id: "dashboard",
+            title: "Tableau de bord",
+            description: "Vue d'ensemble de vos activités",
+            keywords: ["accueil", "home", "stats"],
+            icon: () => <i className="ti ti-layout-dashboard text-xl text-[var(--color-second-tertiary)]" />
+        },
+        {
+            id: "projects",
+            title: "Mes projets",
+            description: "Accéder à tous vos projets",
+            keywords: ["dossiers", "fichiers", "travail"],
+            icon: () => <i className="ti ti-folder text-xl text-[var(--color-second-tertiary)]" />
+        },
+        {
+            id: "tasks",
+            title: "Mes tâches",
+            description: "Voir les tâches assignées",
+            keywords: ["todo", "checklist", "retard"],
+            icon: () => <i className="ti ti-checklist text-xl text-[var(--color-second-tertiary)]" />
+        },
+        {
+            id: "settings",
+            title: "Paramètres",
+            description: "Gérer votre compte et vos préférences",
+            keywords: ["profil", "configuration", "options"],
+            icon: () => <i className="ti ti-settings-2 text-xl text-[var(--color-second-tertiary)]" />
         }
     ];
 
@@ -126,6 +161,8 @@ export function MainLayout() {
         },
     ];
 
+
+
     return (
         <AnimatedSidebarProvider defaultOpen={false}>
             <div className="flex min-h-screen w-full">
@@ -136,7 +173,7 @@ export function MainLayout() {
                         title="Together"
                         titleLink="/dashboard"
                         searchPlaceholder="Rechercher..."
-                        onSearch={(query) => console.log("Recherche :", query)}
+                        searchItems={searchItems}
                         actions={headerActions}
                         user={data}
                         tabs
