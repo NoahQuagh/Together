@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { useSidebar } from '../motion/animated-sidebar';
 import './../../../assets/style/navigation/header.css';
+import {Breadcrumb} from "./Breadcrumb.jsx";
 
 export function Header({
                            title = "Together",
@@ -9,9 +10,12 @@ export function Header({
                            searchPlaceholder = "Rechercher...",
                            onSearch,
                            actions = [],
-                           tabs
+                           tabs,
+                           user:userProp
                        }) {
     const { toggleSidebar } = useSidebar();
+
+    const rootLabel = userProp?.name || 'Guest';
 
     return (
         <header className="w-full border-[var(--color-main-quaternary)]">
@@ -21,9 +25,7 @@ export function Header({
                     <button className="sb-close" onClick={toggleSidebar} type="button">
                         <i className="ti ti-layout-sidebar" aria-hidden={true}></i>
                     </button>
-                    <Link to={titleLink} style={{textDecoration: 'none', color: 'inherit'}}>
-                        <h3>{title}</h3>
-                    </Link>
+                    <Breadcrumb rootLabel={rootLabel} />
                 </div>
 
                 <div className="header-disposition-left">

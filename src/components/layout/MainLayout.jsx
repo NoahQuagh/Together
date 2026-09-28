@@ -35,7 +35,6 @@ export function MainLayout() {
             })
     }, []);
 
-    console.log(data)
 
     const sidebarSections = [
         {
@@ -135,6 +134,8 @@ export function MainLayout() {
                         searchPlaceholder="Rechercher..."
                         onSearch={(query) => console.log("Recherche :", query)}
                         actions={headerActions}
+                        tabs
+                        user={data}
                     />
 
                     <main className={"flex-1 w-full text-left p-0 m-0 bg-[var(--bg-body)]"} style={{ backgroundColor: 'var(--bg-body)' }}>
