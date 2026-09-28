@@ -24,6 +24,18 @@
 
 
    */
+
+.modal-box {
+    background: var(--color-main-tertiary);
+    border: 1px solid var(--color-second-quaternary);
+    border-radius: 12px;
+    width: 100%;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
 .modal-overlay {
     position: fixed;
     inset: 0;
@@ -36,45 +48,34 @@
     backdrop-filter: blur(4px);
 }
 
-.modal-box {
-    background: var(--color-main-tertiary);
-    border: 1px solid var(--color-second-quaternary);
-    border-radius: 12px;
-    width: 100%;
-    max-width: 450px;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
-    animation: modalPopIn 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-    display: flex;
-    flex-direction: column;
-}
-
 .modal-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 16px 20px;
     border-bottom: 1px solid #333;
-    h3 {
-        margin: 0;
-        font-family: var(--font-text);
-        font-weight: 500;
-        color: var(--color-second-secondary);
-        font-size: var(--text-lg);
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        gap: var(--space-xs);
-        i{
-            font-size: var(--text-2xl);
-        }
-    }
-    button{
-        &:hover i{
-            color: var(--color-second-tertiary);
-        }
-    }
+
 }
 
+h3 {
+    margin: 0;
+    font-family: var(--font-text);
+    font-weight: 500;
+    color: var(--color-second-secondary);
+    font-size: var(--text-lg);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: var(--space-xs);
+    i{
+        font-size: var(--text-2xl);
+    }
+}
+button{
+    &:hover i{
+        color: var(--color-second-tertiary);
+    }
+}
 
 .modal-close-btn {
     background: transparent;

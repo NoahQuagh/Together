@@ -1,57 +1,97 @@
-import React from 'react';
-import { NavLink } from 'react-router-dom';
-import './../../../assets/style/navigation/sidebar.css'
+import React, {useState} from "react";
+import { NavLink } from "react-router-dom";
+import { CustomAvatar } from "../ui/CustomAvatar";
+import {
+    AnimatedSidebar,
+    AnimatedSidebarHeader,
+    AnimatedSidebarContent,
+    AnimatedSidebarGroup,
+    AnimatedSidebarGroupLabel,
+    AnimatedSidebarGroupContent,
+    AnimatedSidebarMenu,
+    AnimatedSidebarMenuItem,
+    AnimatedSidebarMenuButton,
+    AnimatedSidebarFooter,
+    AnimatedSidebarRail,
+    useSidebar,
+} from "../motion/animated-sidebar";
+import './../../../assets/style/navigation/sidebar.css';
 
-export function Sidebar({
-                            isOpen,
-                            onClose,
-                            title = "Together",
-                            sections = [],
-                            children
-                        }) {
+const DEFAULT_USER = { id: 0, name: 'Invité Utilisateur', email: 'guest@together.com',avatarUrl: '' };
+
+export function Sidebar({title = "Together",sections = [],user:userProp}) {
+
+    const currentUser = userProp || DEFAULT_USER;
+
     return (
-        <>
-            <div
-                className={`sidebar-overlay ${isOpen ? 'active' : ''}`}
-                onClick={onClose}
-            />
-            <aside className={`sidebar ${isOpen ? 'open' : ''}`}>
-                <div className="sb-header">
-                    <span className="sb-title">{title}</span>
-                    <button className="sb-close" onClick={onClose} aria-label="Fermer">
-                        <i className="ti ti-x" aria-hidden="true" />
-                    </button>
+        <AnimatedSidebar
+            ariaLabel={title}
+            collapsible="icon"
+            className="sidebar-custom-wrapper"
+            panelClassName="sidebar"
+        >
+            <AnimatedSidebarHeader className="sb-header">
+                <div className="flex items-left gap-2 overflow-hidden">
+                    <span className="sb-title truncate group-data-[state=collapsed]/sidebar:hidden">{title}</span>
                 </div>
+            </AnimatedSidebarHeader>
 
-                {children}
-
+            <AnimatedSidebarContent className="sb-content">
                 {sections.map((section, idx) => (
                     <React.Fragment key={section.label || idx}>
                         {idx > 0 && <div className="sb-divider" />}
-                        <div className="sb-section">
-                            {section.label && <p className="sb-label">{section.label}</p>}
-                            {section.items.map((item, itemIdx) => (
-                                <NavLink
-                                    key={itemIdx}
-                                    to={item.to || "#"}
-                                    className="sb-item"
-                                    onClick={(e) => {
-                                        if (item.onClick) {
-                                            e.preventDefault();
-                                            item.onClick();
-                                        }
-                                        onClose();
-                                    }}
-                                >
-                                    <i className={item.icon} aria-hidden="true" />
-                                    {item.label}
-                                    {item.badge && <span className="sb-badge">{item.badge}</span>}
-                                </NavLink>
-                            ))}
-                        </div>
+                        <AnimatedSidebarGroup className="sb-section">
+                            {section.label && (
+                                <AnimatedSidebarGroupLabel className="sb-label">
+                                    <span className="group-data-[state=collapsed]/sidebar:opacity-0 transition-opacity duration-200">
+                                        {section.label}
+                                    </span>
+                                </AnimatedSidebarGroupLabel>
+                            )}
+                            <AnimatedSidebarGroupContent>
+                                <AnimatedSidebarMenu>
+                                    {section.items.map((item, itemIdx) => (
+                                        <AnimatedSidebarMenuItem key={itemIdx}>
+                                            <NavLink
+                                                to={item.to || "#"}
+                                                className={({ isActive }) => `sb-item ${isActive ? 'active' : ''}`}
+                                            >
+                                                <i className={item.icon} aria-hidden="true" />
+                                                <span className="sb-item-text group-data-[state=collapsed]/sidebar:hidden">{item.label}</span>
+                                                {item.badge && <span className="sb-badge group-data-[state=collapsed]/sidebar:hidden">{item.badge}</span>}
+                                            </NavLink>
+                                        </AnimatedSidebarMenuItem>
+                                    ))}
+                                </AnimatedSidebarMenu>
+                            </AnimatedSidebarGroupContent>
+                        </AnimatedSidebarGroup>
                     </React.Fragment>
                 ))}
-            </aside>
-        </>
+            </AnimatedSidebarContent>
+
+            <AnimatedSidebarFooter className="sb-footer">
+                <a className="sb-user-card group-data-[state=collapsed]/sidebar:justify-center flex items-center gap-3 p-2.5 hover:bg-[#212121] rounded-xl cursor-pointer transition-colors w-full" href={"/profile"}>
+                    <CustomAvatar
+                        src={currentUser.avatarUrl}
+                        name={currentUser.name}
+                        variant="blue"
+                        size="md"
+                    />
+
+                    <div className="sb-user-info group-data-[state=collapsed]/sidebar:hidden truncate flex-1 min-w-0" >
+                        <span className="sb-user-name truncate block font-bold text-white text-sm">
+                            {currentUser.name}
+                        </span>
+                                    <span className="sb-user-email truncate block text-xs text-neutral-400">
+                            {currentUser.email}
+                        </span>
+                    </div>
+
+                    <i className="ti ti-chevron-right text-neutral-400 group-data-[state=collapsed]/sidebar:hidden shrink-0 text-xs" aria-hidden="true" />
+                </a>
+            </AnimatedSidebarFooter>
+
+            <AnimatedSidebarRail />
+        </AnimatedSidebar>
     );
 }

@@ -16,7 +16,7 @@ export function NavigationTabs() {
                 </NavLink>
 
                 <NavLink
-                    to="/projects"
+                    to="/myprojects"
                     className={({ isActive }) => `nav-item ${isActive ? 'active-nav' : ''}`}
                 >
                     <div className="item">

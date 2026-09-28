@@ -7,7 +7,7 @@
     min-height: 100%;
     box-sizing: border-box;
     margin: 0 auto;
-    padding: var(--space-xl) var(--space-base);
+    padding: var(--space-xl) var(--space-xs);
 }
 
 .dash-page #dashboard-container .demo-item,.dash-page #dashboard-container .dash-error-msg{

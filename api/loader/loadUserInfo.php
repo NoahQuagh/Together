@@ -24,7 +24,6 @@ WHERE tta_user_id = ?
 
     $req->execute([Session::id()]);
 
-    // fetch() au lieu de fetchAll()
     $result = $req->fetch();
 
     echo json_encode([

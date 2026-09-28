@@ -7,8 +7,12 @@ body {
 main {
     min-height: 100vh;
     display: flex;
-    justify-content: center;
+    justify-content: flex-start;
     width: 100%;
     background: var(--bg-body);
     box-sizing: border-box;
+}
+
+#root{
+    background: var(--bg-body);
 }

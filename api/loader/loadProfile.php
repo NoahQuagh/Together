@@ -4,13 +4,15 @@ try{
   require_once __DIR__ . '/../../db/connexion_together_db.php';
   require_once __DIR__ . '/../../includes/Session.php';
 
+  Session::start();
+
   $db = getDB();
 
   $flash_succes = Session::hasFlash('succes_profil') ? Session::getFlash('succes_profil') : null;
   $flash_erreur = Session::hasFlash('erreur_profil') ? Session::getFlash('erreur_profil') : null;
 
   $req = $db->prepare('
-    SELECT u.use_id, u.use_nom, u.use_prenom, u.use_email, u.use_created_at, r.rru_label AS role
+    SELECT u.use_id, u.use_nom, u.use_prenom, u.use_email, u.use_created_at, r.rru_label AS role,avatar_url
     FROM TOG_USERS u
     JOIN TOG_REF_ROLE_USER r ON u.use_role_id = r.rru_id
     WHERE u.use_id = ?
@@ -28,6 +30,7 @@ try{
           'email'     => $user['use_email'],
           'date_crea' => $user['use_created_at'],
           'role'      => $user['role'],
+          'avatar'      => $user['avatar_url'],
           'flashError'   => $flashError,
           'flashSuccess' => $flashSuccess
   ];

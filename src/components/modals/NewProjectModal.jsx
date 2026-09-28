@@ -1,17 +1,61 @@
 import React, { useState } from 'react';
+import './../../../assets/style/project/newProjectModal.css'
+import './../../../assets/style/tools/modal-dialog.css'
+import './../../../assets/script/tools/modal-dialog.js'
+import {Modal} from "./Modal.jsx";
+import {useTranslation} from "../../context/LanguageContext.jsx";
+
 
 export function NewProjectModal({ isOpen, onClose }) {
     const [selectedType, setSelectedType] = useState(null);
 
     if (!isOpen) return null;
 
+    const { t } = useTranslation();
     const handleClose = () => {
         setSelectedType(null);
         onClose();
     };
 
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        // Soumission du formulaire
+        onClose();
+    };
+
     return (
-        <div className="modal-overlay">
+        <Modal
+            isOpen={isOpen}
+            onClose={onClose}
+            title={t('new project')}
+            footer={
+                <>
+                    <button
+                        type="button"
+                        onClick={onClose}
+                        className="px-4 py-2 text-xs font-medium text-zinc-300 bg-zinc-800 rounded-lg hover:bg-zinc-700 transition-colors"
+                    >
+                        {t('cancel')}
+                    </button>
+                    <button
+                        type="submit"
+                        form="new-project-form"
+                        className="px-4 py-2 text-xs font-medium text-white bg-blue-600 rounded-lg hover:bg-blue-500 transition-colors"
+                    >
+                        {t('create')}
+                    </button>
+                </>
+            }
+        >
+            <form id="new-project-form" onSubmit={handleSubmit} className="space-y-4">
+                {/* Vos champs de formulaire ici */}
+            </form>
+        </Modal>
+    );
+}
+
+
+/*<div className="modal-overlay">
             <div className="modal-box modalNewProject">
                 <div className="modal-header">
                     {selectedType && (
@@ -60,6 +104,4 @@ export function NewProjectModal({ isOpen, onClose }) {
                     <button className="modal-btn btn-confirm" disabled={!selectedType}>Créer</button>
                 </div>
             </div>
-        </div>
-    );
-}
+        </div>*/

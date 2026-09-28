@@ -37,33 +37,6 @@ body {
     justify-content: center;
     padding: 3rem 2rem;
     position: relative;
-
-    &::before,
-    &::after {
-        content: '';
-        position: absolute;
-        border-radius: 50%;
-        filter: blur(80px);
-        pointer-events: none;
-    }
-
-    &::before {
-        top: -20%;
-        left: -10%;
-        width: 600px;
-        height: 300px;
-        background: var(--accent, #226db8);
-        opacity: 0.5;
-    }
-
-    &::after {
-        bottom: -10%;
-        right: -5%;
-        width: 350px;
-        height: 350px;
-        background: var(--accent-second, #123f6a);
-        opacity: 0.7;
-    }
 }
 
 .auth-side-inner {
@@ -110,7 +83,7 @@ body {
 .signature {
     font-family: var(--font-text);
     font-size: var(--text-sm);
-    color: var(--color-second-tertiary);
+    color: var(--color-second-secondary);
     line-height: 1.7;
 }
 
@@ -125,7 +98,7 @@ body {
         gap: 10px;
         font-family: var(--font-text);
         font-size: var(--text-sm);
-        color: var(--color-second-tertiary);
+        color: var(--color-second-secondary);
     }
 }
 
@@ -151,9 +124,9 @@ body {
     gap: 7px;
     padding: 5px 12px;
     border-radius: var(--radiusBox-xs);
-    background: var(--badge-bg-blue);
-    border: 1px solid var(--badge-bor-blue);
-    color: var(--badge-col-blue);
+    background: rgb(1 77 195 / 0.75);
+    border: 1px solid #1b6ed3;
+    color: var(--color-second-secondary);
     font-family: var(--font-text);
     font-size: var(--text-xs);
     align-self: flex-start;
@@ -578,6 +551,51 @@ body {
     }
 }
 
+.login-wrapper {
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+}
+
+.shader-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 0;
+    pointer-events: none;
+}
+
+.shader-canvas {
+    width: 100% !important;
+    height: 100% !important;
+}
+
+
+.auth-page {
+    position: relative;
+    z-index: 1;
+    display: grid;
+    grid-template-columns: 1fr 40vw;
+    width: 100vw;
+    height: 100vh;
+    background: transparent;
+}
+
+.auth-side {
+    position: relative;
+    background-color: transparent;
+    backdrop-filter: blur(150px);
+    -webkit-backdrop-filter: blur(50px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 3rem 2rem;
+}
+
+
 @media (max-width: 760px) {
     .auth-page {
         grid-template-columns: 1fr;
@@ -617,6 +635,7 @@ body {
         overflow: auto;
     }
 }
+
 
 @media (prefers-reduced-motion: reduce) {
     .gdot {

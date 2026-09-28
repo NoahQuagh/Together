@@ -21,8 +21,8 @@ export default function App() {
                         <Route element={<MainLayout />}>
                             <Route path="/" element={<Navigate to="/dashboard" replace />} />
                             <Route path="/dashboard" element={<DashboardPage />} />
-                            <Route path="/projects" element={<ProjectsPage />} />
-                            <Route path="/contributions" element={<ContributionsPage />} />
+                            <Route path="/myprojects" element={<ProjectsPage />} />
+                            <Route path="/mycontributions" element={<ContributionsPage />} />
                             <Route path="/tasks" element={<TasksPage />} />
                         </Route>
                     </Route>

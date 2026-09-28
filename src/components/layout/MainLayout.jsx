@@ -1,21 +1,47 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Outlet } from "react-router-dom";
 import { Header } from "./Header";
 import { Footer } from "./Footer";
-import { NavigationTabs } from "./NavigationTabs";
-import { NewProjectModal } from "../modals/NewProjectModal";
+import { Sidebar } from "./Sidebar";
+import { Modal } from "../modals/Modal.jsx";
+import { useTranslation } from '../../context/LanguageContext';
+import { AnimatedSidebarProvider, AnimatedSidebarInset } from "../motion/animated-sidebar";
+import './../../../assets/style/project/newProjectModal.css';
+import './../../../assets/style/tools/modal-dialog.css';
+import './../../../assets/style/home/home.css'
 
 export function MainLayout() {
     const [isModalOpen, setIsModalOpen] = useState(false);
+    const [data, setData] = useState(null);
+    const { t } = useTranslation();
 
     const handleOpenModal = () => setIsModalOpen(true);
     const handleCloseModal = () => setIsModalOpen(false);
+
+    useEffect(() => {
+        fetch("/api/loader/loadProfile.php", { credentials: "include" })
+            .then((res) => {
+                if (!res.ok) throw new Error(`Erreur réseau: ${res.status}`);
+                return res.json();
+            })
+            .then((res) => {
+                if (!res.success) throw new Error(res.message);
+
+                setData({
+                    name: `${res.data.prenom} ${res.data.nom}`,
+                    email: res.data.email,
+                    avatarUrl: `/assets/uploads/avatars/${res.data.avatar}`
+                });
+            })
+    }, []);
+
+    console.log(data)
 
     const sidebarSections = [
         {
             label: "GÉNÉRAL",
             items: [
-                { to: "/dashboard", label: "Accueil", icon: "ti ti-smart-home" },
+                { to: "/dashboard", label: "Tableau de bord", icon: "ti ti-layout-dashboard" },
                 { to: "/notifications", label: "Notifications", icon: "ti ti-bell", badge: "3" },
                 { to: "/calendar", label: "Calendrier", icon: "ti ti-calendar" },
             ],
@@ -23,20 +49,15 @@ export function MainLayout() {
         {
             label: "PROJETS",
             items: [
-                { to: "/projects", label: "Mes projets", icon: "ti ti-folder" },
-                { to: "/contributions", label: "Contributions", icon: "ti ti-users" },
-                {
-                    to: "#",
-                    label: "Nouveau projet",
-                    icon: "ti ti-circle-plus",
-                    onClick: handleOpenModal
-                },
+                { to: "/myprojects", label: "Mes projets", icon: "ti ti-folder" },
+                { to: "/mycontributions", label: "Mes Contributions", icon: "ti ti-users" },
             ],
         },
         {
             label: "TRAVAIL",
             items: [
                 { to: "/tasks", label: "Mes tâches", icon: "ti ti-checklist" },
+                { to: "/recent", label: "Récent", icon: "ti ti-clock" },
             ],
         },
         {
@@ -49,7 +70,8 @@ export function MainLayout() {
         {
             label: "COMPTE",
             items: [
-                { to: "/settings", label: "Paramètres", icon: "ti ti-settings-2" },
+                { to: "/profile/settings", label: "Paramètres", icon: "ti ti-settings-2" },
+                { to: "/quicklinks/help", label: "Aide", icon: "ti ti-help" },
                 { to: "/api/auth/logout.php", label: "Déconnexion", icon: "ti ti-logout" },
             ],
         },
@@ -102,32 +124,76 @@ export function MainLayout() {
     ];
 
     return (
-        <div className="app-container">
-            <Header
-                title="Together"
-                titleLink="/dashboard"
-                searchPlaceholder="Rechercher..."
-                onSearch={(query) => console.log("Recherche :", query)}
-                actions={headerActions}
-                tabs={<NavigationTabs />}
-                sidebarSections={sidebarSections}
-            />
+        <AnimatedSidebarProvider defaultOpen={false}>
+            <div className="flex min-h-screen w-full">
+                <Sidebar sections={sidebarSections} user={data} />
 
-            <main>
-                <Outlet />
-            </main>
+                <AnimatedSidebarInset className="flex flex-col flex-1 min-w-0">
+                    <Header
+                        title="Together"
+                        titleLink="/dashboard"
+                        searchPlaceholder="Rechercher..."
+                        onSearch={(query) => console.log("Recherche :", query)}
+                        actions={headerActions}
+                    />
 
-            <Footer
-                brandName="Together"
-                slogan="Votre plateforme collaborative."
-                version="1.0.0"
-                columns={footerColumns}
-            />
+                    <main className={"flex-1 w-full text-left p-0 m-0 bg-[var(--bg-body)]"} style={{ backgroundColor: 'var(--bg-body)' }}>
+                        <Outlet context={{ user: data }} />
+                    </main>
 
-            <NewProjectModal
-                isOpen={isModalOpen}
-                onClose={handleCloseModal}
-            />
-        </div>
+                    <Footer
+                        brandName="Together"
+                        slogan="Votre plateforme collaborative."
+                        version="1.0.0"
+                        columns={footerColumns}
+                    />
+                </AnimatedSidebarInset>
+
+                <Modal
+                    isOpen={isModalOpen}
+                    onClose={handleCloseModal}
+                    size="7xl"
+                    isNewProject={true}
+                    header={
+                        <h3>
+                            <i className="ti ti-folder-plus" aria-hidden="true" />
+                            Créer un nouveau projet
+                        </h3>
+                    }
+                    footer={
+                        <>
+                            <button className="modal-btn btn-cancel" onClick={handleCloseModal}>
+                                {t('cancel')}
+                            </button>
+                            <button className="modal-btn btn-confirm" onClick={handleCloseModal}>
+                                {t('confirm')}
+                            </button>
+                        </>
+                    }
+                >
+                    <div className="step-select-type">
+                        <div className="layout-select-type">
+                            <h2>Type de projet</h2>
+
+                            <div className="card-type-project">
+                                <div className="icon-type"><i className="ti ti-folders" /></div>
+                                <div className="text-zone">
+                                    <h3>Classique</h3>
+                                    <p>Organisation complète de vos projets : listes détaillées, gestion Kanban, vue Calendrier et pilotage de Sprints.</p>
+                                </div>
+                            </div>
+
+                            <div className="card-type-project disable">
+                                <div className="icon-type"><i className="ti ti-building-factory-2" /></div>
+                                <div className="text-zone">
+                                    <h3>Projet d'Affaire <span className="comingSoon">BIENTÔT DISPONIBLE</span></h3>
+                                    <p>Gamme d'usinage, dépendance entre étapes et décalage automatique.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </Modal>
+            </div>
+        </AnimatedSidebarProvider>
     );
 }

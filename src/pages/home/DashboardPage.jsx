@@ -6,6 +6,7 @@ import {ErrorMessage} from "../../components/ui/ErrorMessage.jsx";
 import {LoadingSpinner} from "../../components/ui/LoadingSpinner.jsx";
 import './../../../assets/style/home/dashBoard.css';
 import {useToolbox} from "../../hooks/useToolbox.js";
+import { useTranslation } from '../../context/LanguageContext';
 
 export function DashboardPage() {
     const [data, setData] = useState(null);
@@ -13,6 +14,7 @@ export function DashboardPage() {
     const [error, setError] = useState(null);
     const navigate = useNavigate();
     const { formatDate, prioriteBadge, prioriteIcon } = useToolbox();
+    const { t } = useTranslation();
 
     useEffect(() => {
         fetch("/api/loader/loadDashBoardData.php", { credentials: "include" })
@@ -56,35 +58,35 @@ export function DashboardPage() {
                             icon="ti ti-checklist"
                             colorClass="dash-kpi-icon--blue"
                             value={data.tasks_today?.length || 0}
-                            label="Tâches à faire"
+                            label={t('tasks to do')}
                         />
                         <KpiCard
                             icon="ti ti-alert-triangle"
                             colorClass="dash-kpi-icon--red"
                             value={data.tasks_late?.length || 0}
-                            label="Tâches en retard"
+                            label={t('overdue tasks')}
                         />
                         <KpiCard
                             icon="ti ti-circle-check"
                             colorClass="dash-kpi-icon--green"
                             value={data.nb_done_month || 0}
-                            label="Terminées ce mois"
+                            label={t('completed this month')}
                         />
                         <KpiCard
                             icon="ti ti-folder"
                             colorClass="dash-kpi-icon--yellow"
                             value={data.project_on?.length || 0}
-                            label="Projets actifs"
+                            label={t('active projects')}
                         />
                     </div>
 
                     <div className="dash-grid" id="tab">
                         <DashBlock
-                            title="Mes tâches"
+                            title={t('my tasks')}
                             icon="ti ti-checklist"
                             colorClass="bleu"
                             count={data.tasks_today?.length}
-                            emptyMessage="Aucune tâche assignée. C'est officiellement l'heure de la pause café."
+                            emptyMessage={t('no tasks assigned. It\'s officially coffee break time')}
                             emptyIcon="ti ti-coffee"
                         >
                             <ul className="dash-task-list">

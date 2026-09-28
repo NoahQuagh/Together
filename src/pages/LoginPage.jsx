@@ -1,12 +1,15 @@
 import React, { useState } from "react";
 import { Blobatar } from "@blobatar/react";
 import { useGaze } from "@blobatar/react/gaze";
-import { sleepy, mad, idle } from "blobatar/expression";
+import {sleepy, mad, idle, surprised, happy, thinking, wink, smug, sick, scared} from "blobatar/expression";
 import { useNavigate } from "react-router-dom";
 import "blobatar/motion.css";
 import "blobatar/gaze.css";
 import { useAuth } from "../context/AuthContext";
 import './../../assets/style/login.css';
+import { ShaderBackground } from "../components/motion/shader-background";
+import {useTranslation} from "../context/LanguageContext.jsx";
+
 
 export function LoginPage() {
     //state
@@ -15,10 +18,12 @@ export function LoginPage() {
     const [showPassword, setShowPassword] = useState(false);
     const [error, setError] = useState("");
     const [loading, setLoading] = useState(false);
+    const { t } = useTranslation();
 
     const [currentExpression, setCurrentExpression] = useState(idle);
     const navigate = useNavigate();
     const { login } = useAuth();
+    const expressions = [idle,thinking];
 
     const { ref } = useGaze({
         travel: 5,
@@ -32,6 +37,19 @@ export function LoginPage() {
             setCurrentExpression(idle);
         }, 1000);
     };
+
+    const randomExpression = () => {
+        if (currentExpression !== sleepy) {
+            const randomIndex = Math.floor(Math.random() * expressions.length);
+            const nextExpression = expressions[randomIndex];
+
+            setCurrentExpression(nextExpression);
+        }
+    };
+
+    setInterval(()=>{
+        randomExpression();
+    },10000);
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -68,7 +86,7 @@ export function LoginPage() {
 
     //render
     return (
-        <div>
+        <div id={"loginMain"}>
             <div className="back-button">
                 <button onClick={() => window.history.back()}>
                     <i className="ti ti-arrow-left"></i> Retour
@@ -76,6 +94,16 @@ export function LoginPage() {
             </div>
 
             <main className="auth-page">
+                <div className="shader-container">
+                    <ShaderBackground
+                        variant="mesh-gradient"
+                        colors={["#098360", "#226db8", "#6a02a6", "#001a2c"]}
+                        distortion={0.6}
+                        swirl={0.5}
+                        speed={0.3}
+                        className="shader-canvas"
+                    />
+                </div>
                 <aside className="auth-side">
                     <div className="auth-side-inner">
 
@@ -98,7 +126,7 @@ export function LoginPage() {
                                 </div>
                                 <div className="auth-side-copy">
                                     <h2>Together</h2>
-                                    <p className="signature">Votre plateforme collaborative.</p>
+                                    <p className="signature">{t('slogan1')}</p>
                                 </div>
                             </div>
                         </div>
@@ -106,19 +134,19 @@ export function LoginPage() {
                         <ul className="auth-side-features">
                             <li>
                                 <span className="feat-dot feat-dot--blue"></span>
-                                Partage en temps réel
+                                {t('features1')}
                             </li>
                             <li>
                                 <span className="feat-dot feat-dot--green"></span>
-                                Sécurité renforcée
+                                {t('features2')}
                             </li>
                             <li>
                                 <span className="feat-dot feat-dot--yellow"></span>
-                                Interface intuitive
+                                {t('features3')}
                             </li>
                         </ul>
 
-                        <div className="auth-side-badge">v1.0.0</div>
+                        <div className="auth-side-badge">{t('version')}</div>
                     </div>
                 </aside>
 
