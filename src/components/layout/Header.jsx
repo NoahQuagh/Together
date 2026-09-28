@@ -47,8 +47,9 @@ export function Header({
                                 {action.tooltip && <span className="tooltip-text normalHelp">{action.tooltip}</span>}
                             </Link>
                         ) : (
-                            <div key={idx} className="menu account-menu tooltip-container" onClick={action.onClick}>
+                            <div key={idx} className="menu newProjectBtn tooltip-container" onClick={action.onClick}>
                                 <i className={action.icon} aria-hidden="true"/>
+                                <p>{action.text}</p>
                                 {action.tooltip && <span className="tooltip-text normalHelp">{action.tooltip}</span>}
                             </div>
                         )

@@ -88,13 +88,9 @@ export function MainLayout() {
         {
             icon: "ti ti-plus",
             tooltip: "Nouveau projet",
+            text:"Nouveau Projet",
             onClick: handleOpenModal
-        },
-        {
-            icon: "ti ti-user",
-            tooltip: "Profil",
-            to: "/profile"
-        },
+        }
     ];
 
     const footerColumns = [

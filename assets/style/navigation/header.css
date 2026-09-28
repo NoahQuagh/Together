@@ -225,3 +225,18 @@ header {
     color: #999;
     opacity: 1;
 }
+
+.newProjectBtn{
+    width: 36px;
+    height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: transparent;
+    border: 1px solid var(--color-icon);
+    border-radius: var(--radiusBox-sm);
+    position: relative;
+    cursor: pointer;
+    color: var(--color-second-tertiary);
+    transition: background 0.2s ease, color 0.15s ease;
+}
