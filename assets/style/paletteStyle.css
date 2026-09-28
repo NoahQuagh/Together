@@ -15,6 +15,44 @@ main[class] {
     --accent-disable: #8b949e;
 }
 
+:root {
+    --color-second-primary: #ffffff;
+    --color-second-secondary: #f2ede6;
+    --color-second-tertiary: #7a7168;
+    --color-second-five:rgb(163 163 163/0.7);
+    --color-second-six: #43403b;
+    --color-second-quaternary: #575350;
+    --paper: #dfded6;
+    --paper-hover: #cccbc4;
+    --paper-border: #bdbdb6;
+
+    --gray: #8b949e;
+
+    --color-main-primary: #0e0d0c;
+    --color-main-secondary: #131313;
+    --color-main-tertiary: #1a1917;
+    --color-main-quaternary: #252320;
+
+    --accent: #226db8;/*226db8*/
+    --accent-shy: rgba(34,109,184,0.5);
+    --accent-second: #195c9e;
+    --accent-disable: #8b949e;
+
+
+    --color-icon: #676666;
+    --box-icon-color-hover: #33312d;
+
+    --d: red;
+
+    --auth-accent: #5a8dee;
+    --auth-accent-hover: #4278d6;
+    --auth-accent-glow: rgba(90, 141, 238, 0.15);
+    --auth-success: #3ecf8e;
+    --auth-error: #e05c5c;
+    --auth-warning: #f0a429;
+
+    --color-c: #26b3b3;
+}
 
 :root[data-theme="dark"] {
     --color-second-primary: #f2ede6;
@@ -49,44 +87,6 @@ main[class] {
     --color-c: #26b3b3;
 
     --bg-body:linear-gradient(#131313,#1a1917);
-}
-
-:root {
-    --color-second-primary: #ffffff;
-    --color-second-secondary: #f2ede6;
-    --color-second-tertiary: #7a7168;
-    --color-second-five:rgb(163 163 163/0.7);
-    --color-second-six: #43403b;
-    --color-second-quaternary: #575350;
-    --paper: #dfded6;
-    --paper-hover: #cccbc4;
-    --paper-border: #bdbdb6;
-
-    --gray: #8b949e;
-
-    --color-main-primary: #0e0d0c;
-    --color-main-secondary: #131313;
-    --color-main-tertiary: #1a1917;
-    --color-main-quaternary: #252320;
-
-    --accent: #226db8;
-    --accent-second: #195c9e;
-    --accent-disable: #8b949e;
-
-
-    --color-icon: #676666;
-    --box-icon-color-hover: #33312d;
-
-    --d: red;
-
-    --auth-accent: #5a8dee;
-    --auth-accent-hover: #4278d6;
-    --auth-accent-glow: rgba(90, 141, 238, 0.15);
-    --auth-success: #3ecf8e;
-    --auth-error: #e05c5c;
-    --auth-warning: #f0a429;
-
-    --color-c: #26b3b3;
 }
 
 :root[data-theme="light"] {

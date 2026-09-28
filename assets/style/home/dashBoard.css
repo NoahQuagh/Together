@@ -3,11 +3,10 @@
     flex-direction: column;
     gap: var(--space-lg);
     width: 100%;
-    max-width: 1400px;
     min-height: 100%;
     box-sizing: border-box;
-    margin: 0 auto;
-    padding: var(--space-xl) var(--space-xs);
+    margin: 0;
+    padding: var(--space-xl) var(--space-2xl);
 }
 
 .dash-page #dashboard-container .demo-item,.dash-page #dashboard-container .dash-error-msg{
@@ -25,7 +24,7 @@
 }
 
 .dash-kpi-grid {
-    margin-top: 0;
+    margin-top: 4rem;
     display: flex;
     flex-direction: column;
     gap: var(--space-sm);
