@@ -31,7 +31,8 @@
     border-radius: var(--radiusBox-sm);
     font-size: 15px;
     transition: background 0.2s, color 0.15s;
-    i{
+
+    i {
         font-size: 17px;
     }
 }
@@ -39,7 +40,8 @@
 .sb-close:hover {
     background: var(--box-icon-color-hover);
     color: var(--color-second-primary);
-    i{
+
+    i {
         color: var(--color-second-primary);
     }
 }
@@ -125,7 +127,6 @@ button.sb-item {
     color: #4a4843;
 }
 
-/* Adaptation des conteneurs BeUI à ton design system */
 .sidebar {
     background: var(--color-main-primary) !important;
     border-right: 1px solid var(--color-main-quaternary) !important;
@@ -135,7 +136,6 @@ button.sb-item {
     z-index: 100;
 }
 
-/* Fixation pour masquer le texte correctement en mode replié/icône */
 .sidebar[data-state="collapsed"] .sb-label,
 .sidebar[data-state="collapsed"] .sb-item-text,
 .sidebar[data-state="collapsed"] .sb-badge,
@@ -143,13 +143,11 @@ button.sb-item {
     display: none !important;
 }
 
-/* Alignement centré des icônes en mode replié */
 .sidebar[data-state="collapsed"] .sb-item {
     justify-content: center;
     padding: 8px 0;
 }
 
-/* Préservation de tes éléments d'origine */
 .sb-header {
     padding: 16px 14px 12px;
     display: flex;
@@ -179,7 +177,6 @@ button.sb-item {
     color: var(--color-second-primary);
 }
 
-/* Définition du conteneur fixe */
 .sidebar-custom-wrapper {
     position: sticky;
     top: 0;
@@ -187,12 +184,10 @@ button.sb-item {
     z-index: 40;
 }
 
-/* La sidebar fermée reste affichée en mode icône */
 .sidebar[data-state="collapsed"] {
     width: 4rem !important;
 }
 
-/* Style des éléments icônes en mode replié */
 .sidebar[data-state="collapsed"] .sb-item {
     justify-content: center;
     padding: 10px 0;
@@ -206,7 +201,7 @@ button.sb-item {
     display: flex;
     align-items: center;
     gap: 12px;
-    padding: 10px 12px;
+    padding: 10px 5px;
     background-color: var(--color-main-primary);
     border-radius: 12px;
     cursor: pointer;

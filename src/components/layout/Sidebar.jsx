@@ -1,5 +1,5 @@
 import React from "react";
-import { NavLink } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import { CustomAvatar } from "../ui/CustomAvatar";
 import {
     AnimatedSidebar,
@@ -12,14 +12,12 @@ import {
     AnimatedSidebarMenuItem,
     AnimatedSidebarFooter,
     AnimatedSidebarRail,
-    useSidebar,
 } from "../motion/animated-sidebar";
 import './../../../assets/style/navigation/sidebar.css';
 
 const DEFAULT_USER = { id: 0, name: 'Invité Utilisateur', email: 'guest@together.com', avatarUrl: '' };
 
 export function Sidebar({ title = "Together", sections = [], user: userProp }) {
-
     const currentUser = userProp || DEFAULT_USER;
 
     return (
@@ -30,8 +28,10 @@ export function Sidebar({ title = "Together", sections = [], user: userProp }) {
             panelClassName="sidebar"
         >
             <AnimatedSidebarHeader className="sb-header">
-                <div className="flex items-left gap-2 overflow-hidden">
-                    <span className="sb-title truncate group-data-[state=collapsed]/sidebar:hidden">{title}</span>
+                <div className="flex items-center gap-2 overflow-hidden">
+                    <span className="sb-title truncate group-data-[state=collapsed]/sidebar:hidden">
+                        {title}
+                    </span>
                 </div>
             </AnimatedSidebarHeader>
 
@@ -42,23 +42,42 @@ export function Sidebar({ title = "Together", sections = [], user: userProp }) {
                         <AnimatedSidebarGroup className="sb-section">
                             {section.label && (
                                 <AnimatedSidebarGroupLabel className="sb-label">
-                                    <span className="group-data-[state=collapsed]/sidebar:opacity-0 transition-opacity duration-200">
+                                    <span className="group-data-[state=collapsed]/sidebar:hidden">
                                         {section.label}
                                     </span>
                                 </AnimatedSidebarGroupLabel>
                             )}
                             <AnimatedSidebarGroupContent>
                                 <AnimatedSidebarMenu>
-                                    {section.items.map((item, itemIdx) => (
-                                        <AnimatedSidebarMenuItem key={itemIdx}>
-                                            <NavLink
-                                                to={item.to || "#"}
-                                                className={({ isActive }) => `sb-item ${isActive ? 'active' : ''}`}
-                                            >
-                                                <i className={item.icon} aria-hidden="true" />
-                                                <span className="sb-item-text group-data-[state=collapsed]/sidebar:hidden">{item.label}</span>
-                                                {item.badge && <span className="sb-badge group-data-[state=collapsed]/sidebar:hidden">{item.badge}</span>}
-                                            </NavLink>
+                                    {section.items && section.items.map((item, itemIdx) => (
+                                        <AnimatedSidebarMenuItem key={item.label || itemIdx}>
+                                            {item.onClick ? (
+                                                <button
+                                                    type="button"
+                                                    onClick={item.onClick}
+                                                    className="sb-item w-full text-left"
+                                                >
+                                                    <i className={item.icon} aria-hidden="true" />
+                                                    <span className="sb-item-text truncate group-data-[state=collapsed]/sidebar:hidden">
+                                                        {item.label}
+                                                    </span>
+                                                </button>
+                                            ) : (
+                                                <NavLink
+                                                    to={item.to || "#"}
+                                                    className={({ isActive }) => `sb-item ${isActive ? 'active' : ''}`}
+                                                >
+                                                    <i className={item.icon} aria-hidden="true" />
+                                                    <span className="sb-item-text truncate group-data-[state=collapsed]/sidebar:hidden">
+                                                        {item.label}
+                                                    </span>
+                                                    {item.badge && (
+                                                        <span className="sb-badge group-data-[state=collapsed]/sidebar:hidden">
+                                                            {item.badge}
+                                                        </span>
+                                                    )}
+                                                </NavLink>
+                                            )}
                                         </AnimatedSidebarMenuItem>
                                     ))}
                                 </AnimatedSidebarMenu>
@@ -69,8 +88,7 @@ export function Sidebar({ title = "Together", sections = [], user: userProp }) {
             </AnimatedSidebarContent>
 
             <AnimatedSidebarFooter className="sb-footer">
-                <a className="sb-user-card group-data-[state=collapsed]/sidebar:justify-center flex items-center gap-3 p-2.5 hover:bg-[#212121] rounded-xl cursor-pointer transition-colors w-full" href={"/profile"}>
-                    {/* On utilise currentUser ici au lieu de "user" */}
+                <Link className="sb-user-card group-data-[state=collapsed]/sidebar:justify-center" to="/profile">
                     <CustomAvatar
                         size="md"
                         variant="blue"
@@ -78,17 +96,19 @@ export function Sidebar({ title = "Together", sections = [], user: userProp }) {
                         name={currentUser.name}
                     />
 
-                    <div className="sb-user-info group-data-[state=collapsed]/sidebar:hidden truncate flex-1 min-w-0" >
-                        <span className="sb-user-name truncate block font-bold text-white text-sm">
+                    <div className="sb-user-info group-data-[state=collapsed]/sidebar:hidden flex-1 min-w-0">
+                        <span className="sb-user-name truncate">
                             {currentUser.name}
                         </span>
-                        <span className="sb-user-email truncate block text-xs text-neutral-400">
+                        <span className="sb-user-email truncate">
                             {currentUser.email}
                         </span>
                     </div>
 
-                    <i className="ti ti-chevron-right text-neutral-400 group-data-[state=collapsed]/sidebar:hidden shrink-0 text-xs" aria-hidden="true" />
-                </a>
+                    <div className="sb-user-row group-data-[state=collapsed]/sidebar:hidden">
+                        <i className="ti ti-chevron-right" aria-hidden="true" />
+                    </div>
+                </Link>
             </AnimatedSidebarFooter>
 
             <AnimatedSidebarRail />

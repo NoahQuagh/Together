@@ -12,11 +12,13 @@ import './../../../assets/style/home/home.css'
 import {BloomMenu} from "@/components/motion/bloom-menu.jsx";
 import {Bell, FileText, Folder, FolderClosed, LayoutGrid, Link, RobotArm, Table} from "lucide-react";
 import {NewProjectModal} from "@/components/modals/NewProjectModal.jsx";
+import {useAuth} from "@/context/AuthContext.jsx";
 
 export function MainLayout() {
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [step, setStep] = useState(1);
     const { t } = useTranslation();
+    const { logout } = useAuth();
 
     const handleOpenModal = (initialStep = 1) => {
         setStep(initialStep)
@@ -93,7 +95,7 @@ export function MainLayout() {
             items: [
                 { to: "/profile/settings", label: "Paramètres", icon: "ti ti-settings-2" },
                 { to: "/quicklinks/help", label: "Aide", icon: "ti ti-help" },
-                { to: "/api/auth/logout.php", label: "Déconnexion", icon: "ti ti-logout" },
+                { onClick: logout, label: "Déconnexion", icon: "ti ti-logout" },
             ],
         },
     ];

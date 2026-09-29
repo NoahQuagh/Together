@@ -306,7 +306,7 @@ export function MorphingSearch({
 		? createPortal(
 			<div
 				aria-hidden={!open}
-				inert={!open}
+				inert={!open ? "" : undefined}
 				className="pointer-events-none fixed left-0 top-0 z-50 size-0"
 			>
 				<AnimatePresence
