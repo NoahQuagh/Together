@@ -7,6 +7,7 @@ import "blobatar/motion.css";
 import "blobatar/gaze.css";
 import { useAuth } from "../context/AuthContext";
 import './../../assets/style/login.css';
+import './../../assets/style/tools/logo.css';
 import { ShaderBackground } from "../components/motion/shader-background";
 import {useTranslation} from "../context/LanguageContext.jsx";
 

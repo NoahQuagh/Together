@@ -11,12 +11,19 @@ import './../../../assets/style/tools/modal-dialog.css';
 import './../../../assets/style/home/home.css'
 import {BloomMenu} from "@/components/motion/bloom-menu.jsx";
 import {Bell, FileText, Folder, FolderClosed, LayoutGrid, Link, RobotArm, Table} from "lucide-react";
+import {NewProjectModal} from "@/components/modals/NewProjectModal.jsx";
 
 export function MainLayout() {
     const [isModalOpen, setIsModalOpen] = useState(false);
+    const [step, setStep] = useState(1);
     const { t } = useTranslation();
 
-    const handleOpenModal = () => setIsModalOpen(true);
+    const handleOpenModal = (initialStep = 1) => {
+        setStep(initialStep)
+        setIsModalOpen(true);
+    };
+
+
     const handleCloseModal = () => setIsModalOpen(false);
 
     const [data, setData] = useState(() => {
@@ -93,7 +100,19 @@ export function MainLayout() {
 
     const headerActions = [
         {
-            component: <BloomMenu key="bloom" items={ITEMS} />
+            component: (
+                <BloomMenu
+                    key="bloom"
+                    items={ITEMS}
+                    onSelect={(label) => {
+                        if (label === "Projet") {
+                            handleOpenModal(1);
+                        } else if (label === "Affaire") {
+                            handleOpenModal(2);
+                        }
+                    }}
+                />
+            )
         },
     ];
 
@@ -191,50 +210,11 @@ export function MainLayout() {
                     />
                 </AnimatedSidebarInset>
 
-                <Modal
+                <NewProjectModal
                     isOpen={isModalOpen}
                     onClose={handleCloseModal}
-                    size="7xl"
-                    isNewProject={true}
-                    header={
-                        <h3>
-                            <i className="ti ti-folder-plus" aria-hidden="true" />
-                            Créer un nouveau projet
-                        </h3>
-                    }
-                    footer={
-                        <>
-                            <button className="modal-btn btn-cancel" onClick={handleCloseModal}>
-                                {t('cancel')}
-                            </button>
-                            <button className="modal-btn btn-confirm" onClick={handleCloseModal}>
-                                {t('confirm')}
-                            </button>
-                        </>
-                    }
-                >
-                    <div className="step-select-type">
-                        <div className="layout-select-type">
-                            <h2>Type de projet</h2>
-
-                            <div className="card-type-project">
-                                <div className="icon-type"><i className="ti ti-folders" /></div>
-                                <div className="text-zone">
-                                    <h3>Classique</h3>
-                                    <p>Organisation complète de vos projets : listes détaillées, gestion Kanban, vue Calendrier et pilotage de Sprints.</p>
-                                </div>
-                            </div>
-
-                            <div className="card-type-project disable">
-                                <div className="icon-type"><i className="ti ti-building-factory-2" /></div>
-                                <div className="text-zone">
-                                    <h3>Projet d'Affaire <span className="comingSoon">BIENTÔT DISPONIBLE</span></h3>
-                                    <p>Gamme d'usinage, dépendance entre étapes et décalage automatique.</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </Modal>
+                    step={step}
+                />
             </div>
         </AnimatedSidebarProvider>
     );
