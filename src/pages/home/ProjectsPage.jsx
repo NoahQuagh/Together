@@ -4,9 +4,11 @@ import { LoadingSpinner } from '../../components/ui/LoadingSpinner';
 import { ErrorMessage } from '../../components/ui/ErrorMessage';
 import { FolderProjectItem } from '../../components/ui/FolderProjectItem.jsx';
 import './../../../assets/style/home/myproject.css';
+import {useToast} from "@/components/ui/ToastNotification.jsx";
 
 export function ProjectsPage() {
     const { t } = useTranslation();
+    const { notify, showToast, updateToast } = useToast();
     const [projects, setProjects] = useState([]);
     const [filter, setFilter] = useState('tout');
     const [loading, setLoading] = useState(true);
@@ -27,6 +29,7 @@ export function ProjectsPage() {
         setProjects(prev => prev.map(p =>
             p.project_uuid === uuid ? { ...p, project_statut_label: newStatus } : p
         ));
+        notify("Projet modifier", "Tous les changements sont enregistrés.", "success");
         //TODO actionDB
     };
 

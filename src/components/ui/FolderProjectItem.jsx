@@ -68,19 +68,11 @@ export function FolderProjectItem({ project, onEdit, onChangeStatus, onDelete })
                         animate="visible"
                         exit="exit"
                         variants={menuVariants}
-                        className="min-w-[190px] bg-zinc-900/85 backdrop-blur-xl border border-white/15 rounded-xl p-1.5 shadow-2xl z-50 select-none"
+                        className="min-w-[190px] bg-[var(--color-main-secondary)]  border border-white/15 rounded-xl p-1.5 shadow-2xl z-50 select-none"
                     >
-                        <ContextMenu.Item
-                            className="flex items-center gap-2 px-2.5 py-1.5 text-xs text-zinc-200 rounded-lg outline-none cursor-pointer transition-colors duration-100 data-[highlighted]:bg-blue-600 data-[highlighted]:text-white"
-                            onClick={handleOpen}
-                        >
-                            <i className="ti ti-folder-open text-sm" />
-                            <span className="flex-1 font-medium">{t('open')}</span>
-                            <span className="text-[10px] opacity-50">↵</span>
-                        </ContextMenu.Item>
 
                         <ContextMenu.Item
-                            className="flex items-center gap-2 px-2.5 py-1.5 text-xs text-zinc-200 rounded-lg outline-none cursor-pointer transition-colors duration-100 data-[highlighted]:bg-blue-600 data-[highlighted]:text-white"
+                            className="flex items-center gap-2 px-2.5 py-1.5 text-xs text-zinc-200 rounded-lg outline-none cursor-pointer transition-colors duration-100 data-[highlighted]:bg-[var(--accent)] data-[highlighted]:text-white"
                             onClick={() => onEdit(project)}
                         >
                             <i className="ti ti-pencil text-sm" />
@@ -90,7 +82,7 @@ export function FolderProjectItem({ project, onEdit, onChangeStatus, onDelete })
                         <ContextMenu.Separator className="h-px bg-white/10 my-1" />
 
                         <ContextMenu.Sub>
-                            <ContextMenu.SubTrigger className="flex items-center gap-2 px-2.5 py-1.5 text-xs text-zinc-200 rounded-lg outline-none cursor-pointer transition-colors duration-100 data-[highlighted]:bg-blue-600 data-[highlighted]:text-white">
+                            <ContextMenu.SubTrigger className="flex items-center gap-2 px-2.5 py-1.5 text-xs text-zinc-200 rounded-lg outline-none cursor-pointer transition-colors duration-100 data-[highlighted]:bg-[var(--accent)] data-[highlighted]:text-white">
                                 <i className="ti ti-adjustments text-sm" />
                                 <span className="flex-1 font-medium">{t('change status')}</span>
                                 <i className="ti ti-chevron-right text-[10px] opacity-60" />
@@ -103,24 +95,24 @@ export function FolderProjectItem({ project, onEdit, onChangeStatus, onDelete })
                                         animate="visible"
                                         exit="exit"
                                         variants={menuVariants}
-                                        className="min-w-[150px] bg-zinc-900/85 backdrop-blur-xl border border-white/15 rounded-xl p-1.5 shadow-2xl z-50 select-none"
+                                        className="min-w-[150px] bg-[var(--color-main-secondary)] border border-white/15 rounded-xl p-1.5 shadow-2xl z-50 select-none"
                                     >
                                         <ContextMenu.Item
-                                            className="flex items-center gap-2 px-2.5 py-1.5 text-xs text-zinc-200 rounded-lg outline-none cursor-pointer transition-colors duration-100 data-[highlighted]:bg-blue-600 data-[highlighted]:text-white"
+                                            className="flex items-center gap-2 px-2.5 py-1.5 text-xs text-zinc-200 rounded-lg outline-none cursor-pointer transition-colors duration-100 data-[highlighted]:bg-[var(--accent)] data-[highlighted]:text-white"
                                             onClick={() => onChangeStatus(project.project_uuid, 'actif')}
                                         >
                                             <i className="ti ti-activity text-sm" />
                                             <span>{t('active')}</span>
                                         </ContextMenu.Item>
                                         <ContextMenu.Item
-                                            className="flex items-center gap-2 px-2.5 py-1.5 text-xs text-zinc-200 rounded-lg outline-none cursor-pointer transition-colors duration-100 data-[highlighted]:bg-blue-600 data-[highlighted]:text-white"
+                                            className="flex items-center gap-2 px-2.5 py-1.5 text-xs text-zinc-200 rounded-lg outline-none cursor-pointer transition-colors duration-100 data-[highlighted]:bg-[var(--accent)] data-[highlighted]:text-white"
                                             onClick={() => onChangeStatus(project.project_uuid, 'pause')}
                                         >
                                             <i className="ti ti-player-pause text-sm" />
                                             <span>{t('paused')}</span>
                                         </ContextMenu.Item>
                                         <ContextMenu.Item
-                                            className="flex items-center gap-2 px-2.5 py-1.5 text-xs text-zinc-200 rounded-lg outline-none cursor-pointer transition-colors duration-100 data-[highlighted]:bg-blue-600 data-[highlighted]:text-white"
+                                            className="flex items-center gap-2 px-2.5 py-1.5 text-xs text-zinc-200 rounded-lg outline-none cursor-pointer transition-colors duration-100 data-[highlighted]:bg-[var(--accent)] data-[highlighted]:text-white"
                                             onClick={() => onChangeStatus(project.project_uuid, 'termine')}
                                         >
                                             <i className="ti ti-check text-sm" />

@@ -13,8 +13,11 @@ import {BloomMenu} from "@/components/motion/bloom-menu.jsx";
 import {Bell, FileText, Folder, FolderClosed, LayoutGrid, Link, RobotArm, Table} from "lucide-react";
 import {NewProjectModal} from "@/components/modals/NewProjectModal.jsx";
 import {useAuth} from "@/context/AuthContext.jsx";
+import {AnimatedToastStack} from "@/components/motion/animated-toast-stack.jsx";
+import {useToast} from "@/components/ui/ToastNotification.jsx";
 
 export function MainLayout() {
+    const { notify, showToast, updateToast } = useToast();
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [step, setStep] = useState(1);
     const { t } = useTranslation();
