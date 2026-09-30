@@ -10,6 +10,7 @@ import { ProjectsPage } from "./pages/home/ProjectsPage";
 import { ContributionsPage } from "./pages/home/ContributionsPage";
 import { TasksPage } from "./pages/home/TasksPage";
 import { ToastProvider } from './components/ui/ToastNotification';
+import {NotFound} from "@/pages/NotFound.jsx";
 
 export default function App() {
     return (
@@ -29,7 +30,7 @@ export default function App() {
                             </Route>
                         </Route>
 
-                        <Route path="*" element={<Navigate to="/dashboard" replace />} />
+                        <Route path="*" element={<NotFound />} />
                     </Routes>
                 </BrowserRouter>
             </ToastProvider>
