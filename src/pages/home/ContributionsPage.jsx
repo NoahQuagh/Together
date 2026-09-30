@@ -4,6 +4,9 @@ import { FolderProjectItem } from '../../components/ui/FolderProjectItem';
 import './../../../assets/style/home/myproject.css';
 import {LoadingSpinner} from "../../components/ui/LoadingSpinner.jsx";
 import {ErrorMessage} from "../../components/ui/ErrorMessage.jsx";
+import {ErrorState} from "@/components/common/ErrorState.jsx";
+import EmptyStates from "../../components/motion/empty-states/empty-states.tsx";
+import {EmptyStateContainer} from "@/components/common/EmptyStateContainer.jsx";
 
 export function ContributionsPage() {
     const { t } = useTranslation();
@@ -79,9 +82,15 @@ export function ContributionsPage() {
     }
 
     if (error) {
-        return (<article className="dash-page">
-            <ErrorMessage message={t(error)} />
-        </article>);
+        return (
+            <article className="dash-page">
+                <ErrorState
+                    title="Impossible de charger vos contributions"
+                    description={error}
+                    onRetry={() => window.location.reload()}
+                />
+            </article>
+        );
     }
 
     return (
@@ -119,10 +128,7 @@ export function ContributionsPage() {
                     <p>{t("you don't have any contributions yet")}</p>
                 </div>
             ) : filteredContributions.length === 0 ? (
-                <div className="dash-empty proj-empty-filtered">
-                    <i className="ti ti-filter-off" />
-                    <p>{t('no projects match this filter')}</p>
-                </div>
+                <EmptyStateContainer/>
             ) : (
                 <div className="projects-folder-grid">
                     {filteredContributions.map((project) => (

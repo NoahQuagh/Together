@@ -5,6 +5,9 @@ import { useToolbox } from '../../hooks/useToolbox';
 import './../../../assets/style/home/myTasks.css'
 import {LoadingSpinner} from "../../components/ui/LoadingSpinner.jsx";
 import {ErrorMessage} from "../../components/ui/ErrorMessage.jsx";
+import {ErrorState} from "@/components/common/ErrorState.jsx";
+import EmptyStates from "../../components/motion/empty-states/empty-states.tsx";
+import {EmptyStateContainer} from "@/components/common/EmptyStateContainer.jsx";
 
 export function TasksPage() {
     const { t } = useTranslation();
@@ -15,7 +18,6 @@ export function TasksPage() {
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
 
-    // Filtres d'état
     const [statutFilter, setStatutFilter] = useState('tout');
     const [prioFilter, setPrioFilter] = useState('tout');
 
@@ -41,7 +43,6 @@ export function TasksPage() {
             });
     }, []);
 
-    // Fonction de normalisation équivalente à celle de ton JS vanille
     const normalizeStatut = (rawStatut) => {
         if (!rawStatut) return '';
         const str = String(rawStatut).toLowerCase().trim();
@@ -59,13 +60,11 @@ export function TasksPage() {
         return String(rawPrio).toLowerCase().trim();
     };
 
-    // Redirection au clic
     const handleTaskClick = (task) => {
         const searchParam = encodeURIComponent(task.titre_tache || '');
         navigate(`/project/${task.projet_uuid}?tab=tasks&search=${searchParam}`);
     };
 
-    // Filtrage combiné (Statut AND Priorité)
     const filteredTasks = tasks.filter((task) => {
         const taskStatut = normalizeStatut(task.statut);
         const taskPrio = normalizePrio(task.prio);
@@ -87,16 +86,20 @@ export function TasksPage() {
     }
 
     if (error) {
-        return (<article className="dash-page">
-            <ErrorMessage message={t(error)} />
-        </article>);
+        return (
+            <article className="dash-page">
+                <ErrorState
+                    title="Impossible de charger vos taches"
+                    description={error}
+                    onRetry={() => window.location.reload()}
+                />
+            </article>
+        );
     }
 
     return (
         <article className="dash-page p-6 space-y-6">
-            {/* Conteneur des filtres */}
             <div className="flex flex-col gap-3 bg-zinc-900/50 p-4 rounded-xl border border-white/5">
-                {/* Filtres par Statut */}
                 <div className="flex flex-wrap items-center gap-2">
           <span className="text-xs font-semibold text-zinc-400 mr-2 uppercase tracking-wider">
             {t('status')} :
@@ -122,7 +125,6 @@ export function TasksPage() {
                     ))}
                 </div>
 
-                {/* Filtres par Priorité */}
                 <div className="flex flex-wrap items-center gap-2">
           <span className="text-xs font-semibold text-zinc-400 mr-2 uppercase tracking-wider">
             {t('priority')} :
@@ -150,12 +152,8 @@ export function TasksPage() {
                 </div>
             </div>
 
-            {/* Liste des Tâches */}
             {filteredTasks.length === 0 ? (
-                <div className="dash-empty flex flex-col items-center justify-center py-16 text-zinc-500">
-                    <i className="ti ti-filter-off text-4xl mb-2" />
-                    <p>{t('no tasks match this filter')}</p>
-                </div>
+                <EmptyStateContainer/>
             ) : (
                 <ul className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
                     {filteredTasks.map((task, index) => (
@@ -168,7 +166,6 @@ export function TasksPage() {
                                     : 'border-white/10'
                             }`}
                         >
-                            {/* Entête */}
                             <div className="flex items-start justify-between gap-2 mb-3">
                                 <div className="space-y-1">
                                     <div className="flex items-center gap-2 font-semibold text-white text-sm">
@@ -183,14 +180,12 @@ export function TasksPage() {
                                 <i className="ti ti-external-link text-zinc-500 hover:text-white transition-colors" />
                             </div>
 
-                            {/* Description */}
                             {task.desc_tache && (
                                 <p className="text-xs text-zinc-400 line-clamp-2 mb-4 leading-relaxed">
                                     {task.desc_tache}
                                 </p>
                             )}
 
-                            {/* Pied */}
                             <div className="flex items-center justify-between pt-3 border-t border-white/5 text-[11px] text-zinc-500">
                                 <div className="flex items-center gap-1">
                                     <i className="ti ti-calendar" />

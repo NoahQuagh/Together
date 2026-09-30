@@ -1,0 +1,152 @@
+.root {
+    display: flex;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+    padding: 1.5rem;
+    background: transparent !important;
+}
+
+.card {
+    display: flex;
+    width: 100%;
+    max-width: 28rem;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    background: transparent !important;
+}
+
+.panel {
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    align-items: center;
+}
+
+.stage {
+    position: relative;
+    display: flex;
+    width: 100%;
+    max-width: 320px;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+
+.art {
+    width: 100%;
+    height: auto;
+    overflow: visible;
+}
+
+/* --- Styles des formes SVG --- */
+.shape {
+    vector-effect: non-scaling-stroke;
+    transition: opacity 0.2s ease, fill 0.2s ease;
+}
+
+/* MASQUER LES FORMES REPLIÉES/CACHÉES DES AUTRES SCÈNES */
+.shape[data-tone="tuck"] {
+    opacity: 0 !important;
+    visibility: hidden;
+}
+
+/* Remplissage et contours des tuiles et du corps */
+.shape[data-kind="tile"] {
+    fill: rgba(255, 255, 255, 0.03);
+    stroke: rgba(255, 255, 255, 0.15);
+}
+
+.shape[data-kind="body"] {
+    fill: rgba(255, 255, 255, 0.05);
+    stroke: rgba(255, 255, 255, 0.9);
+    stroke-width: 1.5px;
+}
+
+.shape[data-kind="stroke"],
+.shape[data-kind="mark"] {
+    stroke: #ffffff;
+    stroke-width: 1.5px;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
+
+/* Couleurs spécifiques des traits */
+.shape[data-tone="slot"],
+.shape[data-tone="bar"] {
+    fill: rgba(255, 255, 255, 0.08);
+    stroke: rgba(255, 255, 255, 0.2);
+}
+
+.shape[data-tone="query"] {
+    fill: rgba(255, 255, 255, 0.15);
+    stroke: rgba(255, 255, 255, 0.4);
+}
+
+.shape[data-tone="subtle"] { stroke: rgba(255, 255, 255, 0.25); }
+.shape[data-tone="muted"] { stroke: rgba(255, 255, 255, 0.5); }
+.shape[data-tone="ink"] { stroke: #ffffff; }
+.shape[data-tone="accent"] { stroke: var(--accent, #226db8); }
+.shape[data-tone="success"] { stroke: #10b981; }
+.shape[data-tone="warning"] { stroke: #f59e0b; }
+
+/* --- Typographie et contraste texte --- */
+.copy {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    width: 100%;
+}
+
+.copyFrame {
+    width: 100%;
+    overflow: hidden;
+}
+
+.copyInner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.title {
+    font-size: 1.125rem;
+    font-weight: 600;
+    color: #ffffff !important; /* Texte blanc lisible */
+    margin: 0;
+    line-height: 1.4;
+}
+
+.line {
+    font-size: 0.875rem;
+    color: rgba(255, 255, 255, 0.6) !important; /* Texte secondaire gris clair */
+    margin: 0;
+    max-width: 22rem;
+    line-height: 1.5;
+}
+
+.swap {
+    display: inline-block;
+}
+
+.srOnly {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+}
+
+.shape[data-kind="stroke"],
+.shape[data-kind="mark"] {
+    fill: none !important;
+    stroke-width: 1.5px;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}

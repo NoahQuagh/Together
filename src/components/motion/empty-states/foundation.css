@@ -1,0 +1,13 @@
+:root {
+    --background: transparent !important;
+    --surface: transparent !important;
+}
+
+:is(*:focus, *:focus-visible, *:focus-within) {
+    outline: none !important;
+}
+
+svg [data-kind="stroke"],
+svg [data-kind="mark"] {
+    fill: none !important;
+}

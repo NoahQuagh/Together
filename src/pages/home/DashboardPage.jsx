@@ -7,6 +7,7 @@ import {LoadingSpinner} from "../../components/ui/LoadingSpinner.jsx";
 import './../../../assets/style/home/dashBoard.css';
 import {useToolbox} from "../../hooks/useToolbox.js";
 import { useTranslation } from '../../context/LanguageContext';
+import {ErrorState} from "@/components/common/ErrorState.jsx";
 
 export function DashboardPage() {
     const [data, setData] = useState(null);
@@ -44,7 +45,11 @@ export function DashboardPage() {
     if (error || !data) {
         return (
             <article className="dash-page">
-                <ErrorMessage message={error} />
+                <ErrorState
+                    title="Impossible de charger vos données"
+                    description={error}
+                    onRetry={() => window.location.reload()}
+                />
             </article>
         );
     }
