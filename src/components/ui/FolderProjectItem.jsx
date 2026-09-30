@@ -5,7 +5,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { useTranslation } from '../../context/LanguageContext';
 import { useToolbox } from '../../hooks/useToolbox';
 
-export function FolderProjectItem({ project, onEdit, onChangeStatus, onDelete }) {
+export function FolderProjectItem({ project, onEdit, onChangeStatus, onDelete,from}) {
     const { t } = useTranslation();
     const { formatDate, statutBadge } = useToolbox();
     const navigate = useNavigate();
@@ -27,7 +27,12 @@ export function FolderProjectItem({ project, onEdit, onChangeStatus, onDelete })
     };
 
     const handleOpen = () => {
-        navigate(`/project/${project.project_uuid}`);
+        navigate(`/project/${project.project_uuid}`, {
+            state: {
+                projectName: project.project_nom,
+                from: from
+            }
+        });
     };
 
     return (

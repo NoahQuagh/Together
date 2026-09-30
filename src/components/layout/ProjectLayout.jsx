@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Outlet } from "react-router-dom";
+import {Outlet, useParams} from "react-router-dom";
 import { Header } from "./Header";
 import { Footer } from "./Footer";
 import { Sidebar } from "./Sidebar";
@@ -16,12 +16,13 @@ import {useAuth} from "@/context/AuthContext.jsx";
 import {AnimatedToastStack} from "@/components/motion/animated-toast-stack.jsx";
 import {useToast} from "@/components/ui/ToastNotification.jsx";
 
-export function MainLayout() {
+export function ProjectLayout() {
     const { notify, showToast, updateToast } = useToast();
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [step, setStep] = useState(1);
     const { t } = useTranslation();
     const { logout } = useAuth();
+    const { projectId } = useParams();
 
     const handleOpenModal = (initialStep = 1) => {
         setStep(initialStep)
@@ -58,45 +59,40 @@ export function MainLayout() {
     }, []);
 
     const ITEMS = [
-        { label: "Projet", icon: "ti ti-folder" },
-        { label: "Affaire", icon: "ti ti-building-factory-2" },
-        { label: "Rapport", icon: "ti ti-report" },
+        { label: "Tâche", icon: "ti ti-checklist" },
+        { label: "Sprint", icon: "ti ti-run" },
+        { label: "Membre", icon: "ti ti-users" },
+        { label: "Ressource", icon: "ti ti-link" }
     ];
 
     const sidebarSections = [
         {
-            label: "GÉNÉRAL",
+            label: "PROJET",
             items: [
-                { to: "/dashboard", label: "Tableau de bord", icon: "ti ti-layout-dashboard" },
-                { to: "/notifications", label: "Notifications", icon: "ti ti-bell", badge: "3" },
-                { to: "/calendar", label: "Calendrier", icon: "ti ti-calendar" },
+                { to: `/project/${projectId}`, label: "Aperçu", icon: "ti ti-layout" },
+                { to: `/project/${projectId}/tasks`, label: "Tâches", icon: "ti ti-checklist" },
+                { to: `/project/${projectId}/sprints`, label: "Sprints", icon: "ti ti-run" },
+                { to: `/project/${projectId}/members`, label: "Membres", icon: "ti ti-users-group" },
             ],
         },
         {
-            label: "PROJETS",
+            label: "ANALYSE & LIENS",
             items: [
-                { to: "/myprojects", label: "Mes projets", icon: "ti ti-folder" },
-                { to: "/mycontributions", label: "Mes Contributions", icon: "ti ti-users" },
+                { to: `/project/${projectId}/insights`, label: "Insights", icon: "ti ti-chart-bar" },
+                { to: `/project/${projectId}/resources`, label: "Ressources", icon: "ti ti-link" },
             ],
         },
         {
-            label: "TRAVAIL",
+            label: "CONFIGURATION",
             items: [
-                { to: "/tasks", label: "Mes tâches", icon: "ti ti-checklist" },
-                { to: "/recent", label: "Récent", icon: "ti ti-clock" },
-            ],
-        },
-        {
-            label: "ANALYSE",
-            items: [
-                { to: "/stats", label: "Statistiques", icon: "ti ti-chart-bar" },
-                { to: "/reports", label: "Rapports", icon: "ti ti-report" },
+                { to: `/project/${projectId}/settings`, label: "Paramètres projet", icon: "ti ti-adjustments" },
+                { to: "/profile/settings", label: "Paramètres compte", icon: "ti ti-settings-2" },
             ],
         },
         {
             label: "COMPTE",
             items: [
-                { to: "/profile/settings", label: "Paramètres", icon: "ti ti-settings-2" },
+                { to: "/myprojects", label: "Quitter le projet", icon: "ti ti-arrow-left" },
                 { to: "/quicklinks/help", label: "Aide", icon: "ti ti-help" },
                 { onClick: logout, label: "Déconnexion", icon: "ti ti-logout" },
             ],
@@ -109,11 +105,11 @@ export function MainLayout() {
                 <BloomMenu
                     key="bloom"
                     items={ITEMS}
-                    label={"Créer"}
+                    label={"Nouveau"}
                     onSelect={(label) => {
-                        if (label === "Projet") {
+                        if (label === "") {
                             handleOpenModal(1);
-                        } else if (label === "Affaire") {
+                        } else if (label === "") {
                             handleOpenModal(2);
                         }
                     }}

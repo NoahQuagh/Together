@@ -27,7 +27,8 @@ const SPRING_FOLDER = {
 export function BloomMenu({
                             items = ITEMS,
                             onSelect,
-                            className
+                            className,
+                            label
                           }) {
   const [open, setOpen] = useState(false);
   const reduce = useReducedMotion();
@@ -75,7 +76,7 @@ export function BloomMenu({
                   >
                     <div className="flex items-center justify-between border-b border-[var(--color-second-six)] px-4 py-3">
                   <span className="text-sm font-medium text-[var(--color-second-secondary)]">
-                    Créer
+                    {label}
                   </span>
                       <button
                           type="button"
@@ -168,7 +169,7 @@ export function BloomMenu({
                       layout
                       className="inline-flex items-center gap-2 whitespace-nowrap text-[var(--color-second-secondary)]"
                   >
-                    Créer
+                    {label}
                     <Plus className="h-4 w-4 text-[var(--color-second-secondary)]" />
                   </motion.span>
                 </motion.button>

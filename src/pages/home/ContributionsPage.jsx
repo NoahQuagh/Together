@@ -129,6 +129,7 @@ export function ContributionsPage() {
                         <FolderProjectItem
                             key={project.project_uuid}
                             project={project}
+                            from={{ path: '/mycontributions', label: 'Mes contributions' }}
                             onDelete={handleLeaveProject}
                             onChangeStatus={() => {}}
                             onEdit={() => {}}
@@ -137,7 +138,6 @@ export function ContributionsPage() {
                 </div>
             )}
 
-            {/* Modale de Confirmation de Sortie */}
             {projectToLeave && (
                 <div className="fixed inset-0 bg-black/60 backdrop-blur-sm flex items-center justify-center z-50 p-4">
                     <div className="bg-zinc-900 border border-white/10 rounded-2xl p-6 max-w-md w-full shadow-2xl">

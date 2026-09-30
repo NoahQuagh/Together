@@ -113,6 +113,7 @@ export function ProjectsPage() {
                                 key={project.project_uuid}
                                 project={project}
                                 onEdit={handleEdit}
+                                from={{ path: '/myprojects', label: 'Mes projets' }}
                                 onChangeStatus={handleStatusChange}
                                 onDelete={handleDelete}
                             />
