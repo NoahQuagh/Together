@@ -14,6 +14,7 @@ import {
     AnimatedSidebarRail,
 } from "../motion/animated-sidebar";
 import './../../../assets/style/navigation/sidebar.css';
+import {AppLogo} from "@/components/ui/AppLogo.jsx";
 
 const DEFAULT_USER = { id: 0, name: 'Invité Utilisateur', email: 'guest@together.com', avatarUrl: '' };
 
@@ -27,12 +28,10 @@ export function Sidebar({ title = "Together", sections = [], user: userProp }) {
             className="sidebar-custom-wrapper"
             panelClassName="sidebar"
         >
-            <AnimatedSidebarHeader className="sb-header">
-                <div className="flex items-center gap-2 overflow-hidden">
-                    <span className="sb-title truncate group-data-[state=collapsed]/sidebar:hidden">
-                        {title}
-                    </span>
-                </div>
+            <AnimatedSidebarHeader className="sb-header mt-2 pl-3.5">
+                <Link to="/" className="flex items-center w-full overflow-hidden">
+                    <AppLogo title={title} />
+                </Link>
             </AnimatedSidebarHeader>
 
             <AnimatedSidebarContent className="sb-content">
