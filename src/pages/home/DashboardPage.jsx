@@ -64,8 +64,16 @@ export function DashboardPage() {
                             colorClass="dash-kpi-icon--blue"
                             value={data.tasks_today?.length || 0}
                             label={t('tasks to do')}
-                            statLabel={"Moyenne 4 dernières semaines"}
-                            stat={data.stat_nb_faire}
+                            statLabel={"Tâches moyenne à faire"}
+                            stat={`${data.stat_nb_faire ?? 0} /sem`}
+                        />
+                        <KpiCard
+                            icon="ti ti-circle-dashed"
+                            colorClass="dash-kpi-icon--blue"
+                            value={data.tasks_today_progress || 0}
+                            label={t('task in progress')}
+                            statLabel={"Tâches moyenne en cours"}
+                            stat={`${data.stat_nb_en_cour ?? 0} /sem`}
                         />
                         <KpiCard
                             icon="ti ti-alert-triangle"
@@ -73,7 +81,7 @@ export function DashboardPage() {
                             value={data.tasks_late?.length || 0}
                             label={t('overdue tasks')}
                             statLabel={"Taux de retard"}
-                            stat={data.stat_nb_retard}
+                            stat={`${data.stat_nb_retard ?? 0}%`}
                         />
                         <KpiCard
                             icon="ti ti-circle-check"
@@ -81,7 +89,7 @@ export function DashboardPage() {
                             value={data.nb_done_month || 0}
                             label={t('completed this month')}
                             statLabel={"Taux d'achèvement"}
-                            stat={data.taux_achevement}
+                            stat={`${data.taux_achevement ?? 0}%`}
                         />
                         <KpiCard
                             icon="ti ti-folder"
@@ -89,7 +97,7 @@ export function DashboardPage() {
                             value={data.project_on?.length || 0}
                             label={t('active projects')}
                             statLabel={"Nouveaux projets du mois"}
-                            stat={data.stat_projet}
+                            stat={`+ ${data.stat_projet ?? 0}`}
                         />
                     </div>
 
