@@ -64,24 +64,32 @@ export function DashboardPage() {
                             colorClass="dash-kpi-icon--blue"
                             value={data.tasks_today?.length || 0}
                             label={t('tasks to do')}
+                            statLabel={"Moyenne 4 dernières semaines"}
+                            stat={data.stat_nb_faire}
                         />
                         <KpiCard
                             icon="ti ti-alert-triangle"
                             colorClass="dash-kpi-icon--red"
                             value={data.tasks_late?.length || 0}
                             label={t('overdue tasks')}
+                            statLabel={"Taux de retard"}
+                            stat={data.stat_nb_retard}
                         />
                         <KpiCard
                             icon="ti ti-circle-check"
                             colorClass="dash-kpi-icon--green"
                             value={data.nb_done_month || 0}
                             label={t('completed this month')}
+                            statLabel={"Taux d'achèvement"}
+                            stat={data.taux_achevement}
                         />
                         <KpiCard
                             icon="ti ti-folder"
                             colorClass="dash-kpi-icon--yellow"
                             value={data.project_on?.length || 0}
                             label={t('active projects')}
+                            statLabel={"Nouveaux projets du mois"}
+                            stat={data.stat_projet}
                         />
                     </div>
 

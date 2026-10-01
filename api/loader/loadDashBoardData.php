@@ -69,6 +69,43 @@ ORDER BY t.tas_priorite_id DESC
     ORDER BY not_created_at DESC
 ');
 
+    $reqst1= $db->prepare('SELECT
+    ROUND(
+            ((COUNT(DISTINCT CASE WHEN DATE(t.tas_date_fin) = CURDATE() AND t.tas_statut_id = 1 THEN t.tas_id END) -
+              (COUNT(DISTINCT CASE WHEN t.tas_date_fin BETWEEN DATE_SUB(CURDATE(), INTERVAL 28 DAY) AND DATE_SUB(CURDATE(), INTERVAL 1 DAY) AND t.tas_statut_id = 1 THEN t.tas_id END) / 4))
+                / NULLIF((COUNT(DISTINCT CASE WHEN t.tas_date_fin BETWEEN DATE_SUB(CURDATE(), INTERVAL 28 DAY) AND DATE_SUB(CURDATE(), INTERVAL 1 DAY) AND t.tas_statut_id = 1 THEN t.tas_id END) / 4), 0)
+                ) * 100, 1
+    ) AS variation_pct
+FROM TOG_TASK_ASSIGNEES tta
+         JOIN TOG_TASKS t ON tta.tta_task_id = t.tas_id
+WHERE tta.tta_user_id = ?');
+
+    $reqst2= $db->prepare('SELECT concat(100-
+    ROUND(
+            (COUNT(DISTINCT CASE WHEN (t.tas_statut_id = 1 or t.tas_statut_id = 2) AND t.tas_date_fin < NOW() THEN t.tas_id END) * 100.0)
+                / NULLIF(COUNT(DISTINCT CASE WHEN (t.tas_statut_id = 1 or t.tas_statut_id = 2) THEN t.tas_id END), 0), 1
+    ),"%") AS pct_du_total_ouvert
+FROM TOG_TASK_ASSIGNEES tta
+         JOIN TOG_TASKS t ON tta.tta_task_id = t.tas_id
+WHERE tta.tta_user_id = ?');
+
+    $reqst4= $db->prepare("SELECT
+    COUNT(DISTINCT CASE WHEN DATE_FORMAT(pm.tpm_joined_at, '%Y-%m') = DATE_FORMAT(NOW(), '%Y-%m') THEN p.pro_id END) AS nouveaux_ce_mois
+FROM TOG_PROJECT_MEMBERS pm
+         JOIN TOG_PROJECTS p ON pm.tpm_project_id = p.pro_id
+WHERE pm.tpm_user_id = ? AND p.pro_statut_id = 1");
+
+    $reqst3= $db->prepare("select concat(ROUND((SELECT COUNT(*) AS nombre
+        FROM TOG_ACTIVITY_LOG l
+                 JOIN TOG_USERS u ON l.act_user_id = u.use_id
+        WHERE l.act_type_id = 3
+          AND DATE_FORMAT(l.act_created_at, '%Y-%m') = DATE_FORMAT(NOW(), '%Y-%m'))*100/(select count(*) total_afaire_ce_mois
+    FROM TOG_TASK_ASSIGNEES tta
+    JOIN TOG_TASKS t ON tta.tta_task_id = t.tas_id
+    WHERE tta.tta_user_id = ? and (DATE_FORMAT(t.tas_date_debut,'%Y-%m')=DATE_FORMAT(NOW(), '%Y-%m')
+    or DATE_FORMAT(t.tas_date_fin,'%Y-%m')=DATE_FORMAT(NOW(), '%Y-%m')))),'%') as taux
+from dual");
+
     $req1->execute([Session::id()]);
     $req2->execute([Session::id()]);
     $req3->execute([Session::id()]);
@@ -76,6 +113,15 @@ ORDER BY t.tas_priorite_id DESC
     $req5->execute([Session::id()]);
     $req6->execute([Session::id()]);
     $req7->execute([Session::id()]);
+    $reqst1->execute([Session::id()]);
+    $reqst2->execute([Session::id()]);
+    $reqst3->execute([Session::id()]);
+    $reqst4->execute([Session::id()]);
+
+    $stat_nb_faire  = $reqst1->fetchColumn();//TODO refaire les requete de stat
+    $stat_nb_retard = $reqst2->fetchColumn();
+    $taux_achevement = $reqst3->fetchColumn();
+    $stat_projet    = $reqst4->fetchColumn();
 
     echo json_encode([
         'success' => true,
@@ -86,7 +132,11 @@ ORDER BY t.tas_priorite_id DESC
             'nb_done_month'    => (int) $req4->fetchColumn(),
             'activity_project' => $req5->fetchAll(),
             'sprint'           => $req6->fetchAll(),
-            'notification'     => $req7->fetchAll()
+            'notification'     => $req7->fetchAll(),
+            'stat_nb_faire'    => $stat_nb_faire,
+            'stat_nb_retard'   => $stat_nb_retard ,
+            'taux_achevement'  => $taux_achevement,
+            'stat_projet'      => $stat_projet
         ]
     ]);
 } catch (\Throwable $e) {
