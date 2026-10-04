@@ -1,7 +1,6 @@
 .dash-page {
     display: flex;
     flex-direction: column;
-    gap: var(--space-lg);
     width: 100%;
     min-height: 100%;
     box-sizing: border-box;
@@ -14,7 +13,7 @@
     display: grid;
     width: 100%;
     grid-template-columns:1fr;
-    grid-template-rows: 240px 1fr;
+    grid-template-rows: auto 1fr;
     gap: var(--space-xl);
     padding: 0;
     align-items: start;
@@ -30,16 +29,20 @@
 .dash-grid {
     display: grid;
     grid-template-columns: 1.5fr 1.5fr;
-    gap: var(--space-lg);
+    gap: var(--space-xl);
 }
 .dash-block {
     display: flex;
     flex-direction: column;
     overflow: hidden;
-}
-
-#tab {
-    gap: var(--space-lg);
+    background: var(--color-main-quaternary);
+    border-radius: var(--radiusBox-lg);
+    padding: var(--space-base);
+    gap: var(--space-xs);
+    width: 100%;
+    height: 100%;
+    transition: border-color 0.2s ease;
+    border: 1px solid var(--color-second-six);
 }
 
 .dash-block{
@@ -47,14 +50,9 @@
 }
 
 .dash-block--full {
-    border: 1px solid var(--box-icon-color-hover);
-    border-radius: var(--radiusBox-sm);
     grid-column: 1 / -1;
 }
 
-#tab{
-    gap: var(--space-4xl);
-}
 
 .dash-block--full .dash-block-header{
     background: var(--color-main-primary);

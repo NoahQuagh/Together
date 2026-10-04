@@ -87,7 +87,7 @@ export function Sidebar({ title = "Together", sections = [], user: userProp }) {
             </AnimatedSidebarContent>
 
             <AnimatedSidebarFooter className="sb-footer">
-                <Link className="sb-user-card group-data-[state=collapsed]/sidebar:justify-center" to="/profile">
+                <Link className="sb-user-card group-data-[state=collapsed]/sidebar:justify-center" to={`/${currentUser.name.replace(' ','')}`}>
                     <CustomAvatar
                         size="md"
                         variant="blue"

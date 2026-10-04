@@ -72,7 +72,7 @@ export function Header({
                         );
                     })}
 
-                    <Link to={"/profile"}>
+                    <Link to={`${user.name.replace(' ','')}`}>
                         <CustomAvatar
                             size="md"
                             variant="blue"

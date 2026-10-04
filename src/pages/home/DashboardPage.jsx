@@ -69,7 +69,7 @@ export function DashboardPage() {
                         />
                         <KpiCard
                             icon="ti ti-circle-dashed"
-                            colorClass="dash-kpi-icon--blue"
+                            colorClass="dash-kpi-icon--yellow"
                             value={data.tasks_today_progress || 0}
                             label={t('task in progress')}
                             statLabel={"Tâches moyenne en cours"}
@@ -93,7 +93,7 @@ export function DashboardPage() {
                         />
                         <KpiCard
                             icon="ti ti-folder"
-                            colorClass="dash-kpi-icon--yellow"
+                            colorClass="dash-kpi-icon--gray"
                             value={data.project_on?.length || 0}
                             label={t('active projects')}
                             statLabel={"Nouveaux projets du mois"}

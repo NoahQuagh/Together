@@ -17,23 +17,30 @@ export function Breadcrumb({ user }) {
     const pathnames = location.pathname.split('/').filter((x) => x);
 
     const rootLabel = user?.name || "User";
+    const cleanRootLabel = rootLabel.replace(/\s+/g, '');
 
-    // Si on est dans un projet, on récupère le nom du projet et l'origine transmis via location.state
     const isProjectRoute = pathnames[0] === 'project';
     const projectName = location.state?.projectName;
-    const originRoute = location.state?.from; // ex: { path: '/myprojects', label: 'Mes projets' }
+    const originRoute = location.state?.from;
+
+    const isProfileRoute = pathnames[0]?.toLowerCase() === cleanRootLabel.toLowerCase() || pathnames[0] === 'profile';
 
     return (
         <nav aria-label="breadcrumb" className="flex items-center gap-2 text-sm">
-            {/* Racine : Nom de l'utilisateur */}
-            <Link to="/dashboard" className="text-[color:var(--color-second-five)] hover:text-white transition-colors font-medium">
-                {rootLabel}
-            </Link>
 
-            {/* CAS SPECIFIQUE : VUE PROJET */}
+            {isProfileRoute && pathnames.length === 1 ? (
+                <span className="text-white font-semibold">
+                    {cleanRootLabel}
+                </span>
+            ) : (
+                <Link to={`/${cleanRootLabel}`} className="text-[color:var(--color-second-five)] hover:text-white transition-colors font-medium">
+                    {cleanRootLabel}
+                </Link>
+            )}
+
+            {/* CAS 1 : VUE PROJET */}
             {isProjectRoute ? (
                 <>
-                    {/* 1. Origine d'où l'on vient (ex: Mes projets) */}
                     {originRoute && (
                         <>
                             <span className="text-[color:var(--color-second-five)] text-base">
@@ -45,15 +52,13 @@ export function Breadcrumb({ user }) {
                         </>
                     )}
 
-                    {/* 2. Étape intermediate "Project" */}
                     <span className="text-[color:var(--color-second-five)] text-base">
                         <i className="ti ti-chevron-right" />
                     </span>
                     <span className="text-[color:var(--color-second-five)]">
-                        Project
+                        Projet
                     </span>
 
-                    {/* 3. Nom du projet au lieu du UUID */}
                     <span className="text-[color:var(--color-second-five)] text-base">
                         <i className="ti ti-chevron-right" />
                     </span>
@@ -62,8 +67,7 @@ export function Breadcrumb({ user }) {
                     </span>
                 </>
             ) : (
-                /* CAS CLASSIQUE POUR TOUTES LES AUTRES PAGES */
-                pathnames.map((value, index) => {
+                !isProfileRoute && pathnames.map((value, index) => {
                     const to = `/${pathnames.slice(0, index + 1).join('/')}`;
                     const isLast = index === pathnames.length - 1;
                     const label = ROUTE_LABELS[value] || value.charAt(0).toUpperCase() + value.slice(1);

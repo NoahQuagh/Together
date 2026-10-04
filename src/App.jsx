@@ -15,6 +15,7 @@ import { ToastProvider } from './components/ui/ToastNotification';
 import {NotFoundPage} from "@/pages/NotFoundPage.jsx";
 import {OfflineState} from "@/components/common/OfflineState.jsx";
 import {ErrorBoundary} from "@/components/common/ErrorBoundary.jsx";
+import {ProfilePage} from "@/pages/profile/ProfilePage.jsx";
 
 export default function App() {
     return (
@@ -32,6 +33,7 @@ export default function App() {
                                         <Route path="/dashboard" element={<DashboardPage />} />
                                         <Route path="/myprojects" element={<ProjectsPage />} />
                                         <Route path="/mycontributions" element={<ContributionsPage />} />
+                                        <Route path="/:user" element={<ProfilePage />} />
                                         <Route path="/tasks" element={<TasksPage />} />
                                     </Route>
                                 </Route>

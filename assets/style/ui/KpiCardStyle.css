@@ -24,9 +24,10 @@
 }
 
 .dash-kpi-icon--blue   { background: var(--badge-bg-blue);   color: var(--badge-col-blue); }
+.dash-kpi-icon--yellow   { background: var(--badge-bg-yellow);   color: var(--badge-col-yellow); }
 .dash-kpi-icon--red    { background: var(--badge-bg-red);    color: var(--badge-col-red); }
 .dash-kpi-icon--green  { background: var(--badge-bg-green);  color: var(--badge-col-green); }
-.dash-kpi-icon--yellow { background: var(--badge-bg-yellow); color: var(--badge-col-yellow); }
+.dash-kpi-icon--gray { background: var(--badge-bg-gray); color: var(--badge-col-gray); }
 
 .dash-kpi-card-row {
     display: flex;
@@ -50,6 +51,9 @@
     color: var(--color-second-tertiary);
     font-family: var(--font-text);
     line-height: 1;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .dash-kpi-label {

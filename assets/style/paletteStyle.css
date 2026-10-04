@@ -169,9 +169,9 @@ main[class] {
 :root {
     --font-title: 'Embed code', sans-serif;
     --font-subtitle: 'Montserrat ', sans-serif;
-    --font-text: 'DM Sans', sans-serif;
+    --font-text: 'DM Sans', sans-serif;/*DM Sans*/
     --font-button: 'Syne', sans-serif;
-    --font-together:'IBM Plex Mono', monospace;
+    --font-together:'Space Grotesk',sans-serif;/*'IBM Plex Mono', monospace;*/
 }
 
 /* BADGES */
@@ -195,6 +195,11 @@ main[class] {
     --badge-bg-green: rgba(30, 160, 90, 0.12);
     --badge-col-green: #28b870;
     --badge-bor-green: rgba(30, 160, 90, 0.35);
+
+    /*GRIS*/
+    --badge-bg-gray: rgba(140, 150, 165, 0.12);
+    --badge-col-gray: #94a3b8;
+    --badge-bor-gray: rgba(140, 150, 165, 0.35);
 }
 
 *, *::before, *::after {

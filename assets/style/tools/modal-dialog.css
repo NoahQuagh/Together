@@ -89,7 +89,6 @@ button{
 .modal-close-btn:hover { color: var(--color-second-secondary); }
 
 .modal-body {
-    padding: 20px;
     color: var(--color-second-tertiary);
     font-family: var(--font-text);
     font-size: 0.95rem;

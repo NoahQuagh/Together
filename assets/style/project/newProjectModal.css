@@ -531,6 +531,19 @@
     }
 }
 
+.tabs{
+    button{
+        i{
+            color:var(--color-second-tertiary);
+        }
+        &:hover{
+            i{
+                color: var(--color-second-secondary);
+            }
+        }
+    }
+}
+
 @keyframes x-animation {
     from {
         transform: translateX(0);
@@ -823,6 +836,9 @@
     i,span{
         color:var(--color-second-secondary);
     }
+}
+
+.modal-body-nw-project{
 }
 
 @keyframes member-loader-spin {
