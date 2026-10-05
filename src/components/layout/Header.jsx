@@ -72,7 +72,7 @@ export function Header({
                         );
                     })}
 
-                    <Link to={`${user.name.replace(' ','')}`}>
+                    <Link to={`${CurrentUser.replace(' ','')}`}>
                         <CustomAvatar
                             size="md"
                             variant="blue"

@@ -27,7 +27,7 @@ try {
     }
 
     $req = $db->prepare('SELECT u.use_id, u.use_nom, u.use_role_id, u.use_mot_de_passe, 
-                                p.tup_langue as use_lang, p.tup_theme_id
+                                p.tup_langue as use_lang, p.tup_theme_id,u.avatar_url
                         FROM TOG_USERS u
                         LEFT JOIN TOG_USER_PREFERENCES p ON u.use_id = p.tup_user_id
                         WHERE u.use_email = ?
@@ -41,7 +41,8 @@ try {
             'nom'   => $user['use_nom'],
             'role'  => $user['use_role_id'],
             'lang'  => $user['use_lang'] ?? 'fr',
-            'theme' => $user['tup_theme_id'] ?? '2'
+            'theme' => $user['tup_theme_id'] ?? '2',
+            'avatar' => $user['avatar_url'] ?? ''
         ]);
 
         echo json_encode([

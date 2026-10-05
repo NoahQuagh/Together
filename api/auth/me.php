@@ -11,13 +11,15 @@ if (Session::estConnecte()) {
     echo json_encode([
         'success' => true,
         'user' => [
-            'id'    => $_SESSION['user_id'] ?? null,
-            'nom'   => $_SESSION['user_nom'] ?? '',
-            'role'  => $_SESSION['role'] ?? 'user',
-            'lang'  => $_SESSION['lang'] ?? 'fr',
-            'theme' => $_SESSION['theme'] ?? '1'
+            'id'    => Session::get('id'),
+            'nom'   => Session::get('nom'),
+            'role'  => Session::get('role'),
+            'lang'  => Session::get('lang'),
+            'theme' => Session::get('theme'),
+            'avatar' => Session::get('avatar'),
         ]
     ], JSON_UNESCAPED_UNICODE);
+
 } else {
     http_response_code(401);
     echo json_encode([

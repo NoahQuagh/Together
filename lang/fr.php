@@ -210,7 +210,7 @@ return [
     'new features'                                                                                 => 'Nouveautés',
     'integrations'                                                                                 => 'Intégrations',
     'support'                                                                                      => 'Support',
-    'help & documentation'                                                                         => 'Aide &amp; documentation',
+    'help & documentation'                                                                         => 'Aide & documentation',
     'slogan2'                                                                                      => 'Organisez, collaborez, livrez — ensemble',
     'appDescription'                                                                               => "Together est l'application de gestion de projet pensée pour les équipes qui veulent
                                                                                                    avancer vite sans perdre en clarté. Tâches, sprints, calendrier et statistiques,

@@ -1,4 +1,5 @@
-import React from "react";
+import React, {useEffect, useState} from "react";
+import {useAuth} from "@/context/AuthContext.jsx";
 
 const AVATAR_GRADIENTS = {
     blue: "bg-gradient-to-tr from-cyan-500 via-blue-500 to-indigo-500",
@@ -10,9 +11,9 @@ const AVATAR_GRADIENTS = {
 };
 
 const SIZES = {
-    sm: "size-8 text-xs",
+    sm: "size-9 text-xs",
     md: "size-9 text-xs",
-    lg: "size-12 text-sm",
+    lg: "size-20 text-sm",
 };
 
 export function CustomAvatar({
@@ -32,7 +33,6 @@ export function CustomAvatar({
         return str.slice(0, 2).toUpperCase();
     };
 
-    const user = sessionStorage.getItem("together_user");
 
 
     const sizeClass = SIZES[size] || SIZES.md;
@@ -47,9 +47,6 @@ export function CustomAvatar({
                     src={src}
                     alt={name}
                     className="size-full object-cover rounded-full"
-                    onError={(e) => {
-                        e.currentTarget.style.display = 'none';
-                    }}
                 />
             ) : null}
 
