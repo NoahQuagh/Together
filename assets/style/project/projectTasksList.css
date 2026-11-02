@@ -361,7 +361,6 @@
     text-decoration: line-through;
 }
 
-/* ── Tâche en retard ── */
 @keyframes pulse-red-border {
     0%, 100% {
         border-color: var(--badge-bor-red);

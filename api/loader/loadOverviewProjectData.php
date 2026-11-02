@@ -16,7 +16,6 @@ try {
 
     $db = getDB();
 
-    /*sprint key number*/
     $req = $db->prepare('
         SELECT
             COUNT(CASE WHEN s.spr_statut_id = 2 THEN 1 END) AS spr_actif,

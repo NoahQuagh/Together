@@ -1,0 +1,50 @@
+.tcuCard{
+    background: var(--color-main-secondary);
+    div{
+        .tcuExternLink{
+            color: var(--color-second-tertiary);
+        }
+    }
+    &:hover{
+        background: var(--color-main-tertiary);
+        div{
+            .tcuExternLink{
+                color: var(--color-second-secondary);
+            }
+        }
+    }
+    .tcuCardDesc{
+        color: var(--color-second-secondary);
+    }
+    .tcuCardFooter{
+        color: var(--color-second-tertiary);
+    }
+}
+
+.tcuCardHeader{
+    color: var(--color-second-secondary);
+}
+
+.taskLate{
+    border-color: var(--badge-col-red);
+    animation: pulse-red-border 2s infinite ease-in-out;
+}
+
+.taskLateBorderOnly{
+    border-color: var(--badge-col-red);
+}
+
+.tcuExternLink{
+    font-size: var(--text-base);
+}
+
+@keyframes pulse-red-border {
+    0%, 100% {
+        border-color: var(--badge-bor-red);
+        box-shadow: 0 0 0 0 rgba(209, 54, 39, 0.25);
+    }
+    50% {
+        border-color: var(--badge-col-red);
+        box-shadow: 0 0 0 4px rgba(209, 54, 39, 0.12);
+    }
+}

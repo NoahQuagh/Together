@@ -77,13 +77,7 @@ export function MainLayout() {
             items: [
                 { to: "/myprojects", label: "Mes projets", icon: "ti ti-folder" },
                 { to: "/mycontributions", label: "Mes Contributions", icon: "ti ti-users" },
-            ],
-        },
-        {
-            label: "TRAVAIL",
-            items: [
                 { to: "/tasks", label: "Mes tâches", icon: "ti ti-checklist" },
-                { to: "/recent", label: "Récent", icon: "ti ti-clock" },
             ],
         },
         {
