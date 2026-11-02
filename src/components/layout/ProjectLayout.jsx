@@ -86,7 +86,6 @@ export function ProjectLayout() {
             label: "CONFIGURATION",
             items: [
                 { to: `/project/${projectId}/settings`, label: "Paramètres projet", icon: "ti ti-adjustments" },
-                { to: "/profile/settings", label: "Paramètres compte", icon: "ti ti-settings-2" },
             ],
         },
         {

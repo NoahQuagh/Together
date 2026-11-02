@@ -1,6 +1,7 @@
 .dash-page {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
+    gap: var(--space-xl);
     width: 100%;
     min-height: 100%;
     box-sizing: border-box;
@@ -8,6 +9,21 @@
     padding: var(--space-xl) var(--space-2xl);
 }
 
+.tasksPageUser{
+    width: 20%;
+    height: 50%;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-lg);
+    background: var(--color-main-primary);
+    border: 2px solid var(--color-main-quaternary);
+    h3{
+        align-self: start;
+        font-weight: 600;
+        letter-spacing: 0.5px;
+        font-family: var(--font-text);
+    }
+}
 
 .dash-layout {
     display: grid;

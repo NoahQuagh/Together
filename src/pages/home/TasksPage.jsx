@@ -18,8 +18,8 @@ export function TasksPage() {
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
 
-    const [statutFilter, setStatutFilter] = useState('tout');
-    const [prioFilter, setPrioFilter] = useState('tout');
+    const [statutFilter, setStatutFilter] = useState([]);
+    const [prioFilter, setPrioFilter] = useState([]);
 
     useEffect(() => {
         fetch('/api/loader/loadTasksUser.php', {
@@ -43,21 +43,30 @@ export function TasksPage() {
             });
     }, []);
 
+    // Normalisation permissive du Statut
     const normalizeStatut = (rawStatut) => {
-        if (!rawStatut) return '';
+        if (!rawStatut && rawStatut !== 0) return '';
         const str = String(rawStatut).toLowerCase().trim();
 
-        if (str.includes('attente') || str === 'waiting' || str === '1') return 'attente';
-        if (str.includes('cours') || str === 'in progress' || str === 'encours' || str === '2') return 'encours';
+        if (str.includes('attente') || str.includes('wait') || str === '1') return 'attente';
+        if (str.includes('cours') || str.includes('progress') || str === 'encours' || str === '2') return 'encours';
         if (str.includes('review') || str.includes('relecture') || str === '3') return 'review';
-        if (str.includes('termine') || str.includes('fini') || str === '4') return 'termine';
+        if (str.includes('termine') || str.includes('fini') || str.includes('done') || str === '4') return 'termine';
 
         return str;
     };
 
+    // Normalisation permissive de la Priorité
     const normalizePrio = (rawPrio) => {
-        if (!rawPrio) return '';
-        return String(rawPrio).toLowerCase().trim();
+        if (!rawPrio && rawPrio !== 0) return '';
+        const str = String(rawPrio).toLowerCase().trim();
+
+        if (str.includes('bas') || str === '1' || str === 'low') return 'basse';
+        if (str.includes('norm') || str.includes('moyen') || str === '2' || str === 'medium') return 'normale';
+        if (str.includes('haut') || str === '3' || str === 'high') return 'haute';
+        if (str.includes('crit') || str.includes('urg') || str === '4') return 'critique';
+
+        return str;
     };
 
     const handleTaskClick = (task) => {
@@ -65,18 +74,18 @@ export function TasksPage() {
         navigate(`/project/${task.projet_uuid}?tab=tasks&search=${searchParam}`);
     };
 
+    // Filtrage dynamique
     const filteredTasks = tasks.filter((task) => {
-        const taskStatut = normalizeStatut(task.statut);
-        const taskPrio = normalizePrio(task.prio);
+        const taskStatut = normalizeStatut(task.statut || task.tas_statut_id || task.statut_id);
+        const taskPrio = normalizePrio(task.prio || task.tas_prio_id || task.prio_id);
 
-        const matchStatut = statutFilter === 'tout' || taskStatut === statutFilter;
-        const matchPrio = prioFilter === 'tout' || taskPrio === prioFilter;
+        const matchStatut = statutFilter.length === 0 || statutFilter.includes(taskStatut);
+        const matchPrio = prioFilter.length === 0 || prioFilter.includes(taskPrio);
 
         return matchStatut && matchPrio;
     });
 
     const statusOptions = [
-        { id: 'tout', label: t('all') },
         { id: 'attente', label: t('waiting') },
         { id: 'encours', label: t('in progress') },
         { id: 'review', label: t('in review') },
@@ -84,7 +93,6 @@ export function TasksPage() {
     ];
 
     const priorityOptions = [
-        { id: 'tout', label: t('all') },
         { id: 'basse', label: t('basse') },
         { id: 'normale', label: t('normale') },
         { id: 'haute', label: t('haute') },
@@ -115,7 +123,9 @@ export function TasksPage() {
 
     return (
         <article className="dash-page p-6 space-y-6">
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 bg-zinc-900/50 p-4 rounded-xl border border-white/5">
+            <div className="p-4 tasksPageUser rounded-xl border">
+                <h3>Filtrer par :</h3>
+
                 <div className="flex flex-col gap-1.5">
                     <span className="text-xs font-semibold text-zinc-400 uppercase tracking-wider">
                         {t('status')} :
@@ -125,8 +135,8 @@ export function TasksPage() {
                         options={statusOptions}
                         keyExpr="id"
                         labelExpr="label"
-                        placeholder={t('select status')}
-                        onChange={(val) => setStatutFilter(val || 'tout')}
+                        placeholder={t('Tous les statuts')}
+                        onChange={(selected) => setStatutFilter(selected)}
                     />
                 </div>
 
@@ -139,8 +149,8 @@ export function TasksPage() {
                         options={priorityOptions}
                         keyExpr="id"
                         labelExpr="label"
-                        placeholder={t('select priority')}
-                        onChange={(val) => setPrioFilter(val || 'tout')}
+                        placeholder={t('Toutes les priorités')}
+                        onChange={(selected) => setPrioFilter(selected)}
                     />
                 </div>
             </div>
@@ -148,7 +158,7 @@ export function TasksPage() {
             {filteredTasks.length === 0 ? (
                 <EmptyStateContainer />
             ) : (
-                <ul className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                <ul className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 grid-rows-5">
                     {filteredTasks.map((task, index) => (
                         <TasksCardUser
                             key={task.id || task.tas_id || index}
