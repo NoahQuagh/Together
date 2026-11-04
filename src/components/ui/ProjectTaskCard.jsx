@@ -1,14 +1,10 @@
 import React, { useState } from 'react';
 import { useTranslation } from '@/context/LanguageContext';
+import { CustomAvatar } from '@/components/ui/CustomAvatar'; // Ajuste le chemin si besoin
 
-export function ProjectTaskCard({ task, onOpenModal, onOpenModify }) {
+export function ProjectTaskCard({ task, onOpenModal, onOpenModify, membres = [] }) {
     const { t } = useTranslation();
     const [dropdownShow, setDropdownShow] = useState(false);
-
-    const initiales = (nom) => {
-        if (!nom) return '';
-        return nom.split(' ').map(n => n[0]).join('').toUpperCase().slice(0, 2);
-    };
 
     const formatDate = (dateStr) => {
         if (!dateStr) return t('not specified');
@@ -81,12 +77,31 @@ export function ProjectTaskCard({ task, onOpenModal, onOpenModify }) {
             <div className="tk-card-meta">
                 <div className="tk-meta-col">
                     <span className="tk-meta-label">{t('assigned')}</span>
-                    <div className="tk-avatars">
+                    <div className="tk-avatars flex items-center -space-x-2">
                         {(task.assignes ?? []).length > 0 ? (
                             <>
-                                {task.assignes.slice(0, 4).map((a, idx) => (
-                                    <div key={idx} className="tk-avatar" title={a.nom}>{initiales(a.nom)}</div>
-                                ))}
+                                {task.assignes.slice(0, 4).map((a, idx) => {
+                                    const memberInfo = membres.find(
+                                        m => String(m.member_id || m.id || m.use_id) === String(a.id || a.member_id)
+                                    );
+
+                                    const avatarFileName = memberInfo?.member_avatar;
+                                    const avatarPath = avatarFileName ? `/assets/uploads/avatars/${avatarFileName}` : null;
+                                    const memberName = a.nom || memberInfo?.member_nom || memberInfo?.nom;
+
+
+                                    return (
+                                        <CustomAvatar
+                                            key={a.id || idx}
+                                            size={'sm'}
+                                            variant="blue"
+                                            src={avatarPath}
+                                            name={memberName}
+                                            role={memberInfo?.member_role}
+                                            showTooltip={true}
+                                        />
+                                    );
+                                })}
                                 {task.assignes.length > 4 && (
                                     <div className="tk-avatar tk-avatar-more">+{task.assignes.length - 4}</div>
                                 )}
@@ -116,7 +131,7 @@ export function ProjectTaskCard({ task, onOpenModal, onOpenModify }) {
                 <button
                     className="tk-quick-action"
                     onClick={(e) => {
-                        e.stopPropagation();//TODO action here
+                        e.stopPropagation();
                     }}
                     title={t('quick action')}
                 >

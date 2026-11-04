@@ -1,4 +1,5 @@
 import React from 'react';
+import {CustomAvatar} from "@/components/ui/CustomAvatar.jsx";
 
 export function OverviewCard({ title, icon, children, className = '' }) {
     return (
@@ -60,32 +61,21 @@ export function SprintItem({ sprint }) {
 }
 
 export function MemberItem({ member }) {
-    const nomMembre = member.membre || 'Membre';
-    const initiales = nomMembre
-        .trim()
-        .split(/\s+/)
-        .filter(Boolean)
-        .map((p) => p[0])
-        .join('')
-        .toUpperCase()
-        .slice(0, 2) || '??';
-
-    const totalMembre =
-        Number(member.nb_a_faire ?? 0) +
-        Number(member.nb_en_cours ?? 0) +
-        Number(member.nb_en_revue ?? 0) +
-        Number(member.nb_terminer ?? 0);
+    if (!member) return null;
 
     return (
         <li className="mb-item">
-            <div className="mb-avatar">{initiales}</div>
-            <div className="mb-info">
-                <div className="mb-name">{nomMembre}</div>
-                <div className="mb-role">
-                    {totalMembre} tâche{totalMembre > 1 ? 's' : ''}
-                </div>
+            <CustomAvatar
+                size={'sm'}
+                variant="blue"
+                src={`/assets/uploads/avatars/${member.member_avatar}`}
+                name={member.member_nom}
+                role={member.member_role}
+            />
+            <div className="flex flex-col">
+                <span className="text-sm font-medium text-white">{member.member_nom}</span>
+                <span className="text-xs text-zinc-400">{member.member_role}</span>
             </div>
-            <span className="mb-badge">{member.nb_terminer ?? 0} terminées</span>
         </li>
     );
 }

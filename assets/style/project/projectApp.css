@@ -58,7 +58,7 @@ body{
 }
 
 .pro-btn{
-    background:  #18181b;
+    background:  var(--color-main-tertiary);
     border-radius: var(--radiusBox-sm);
     border: 1px solid #27272a;
     color: var(--color-second-primary);
@@ -70,7 +70,7 @@ body{
         color: var(--color-second-primary);
     }
     &:hover{
-        background: rgb(39 39 42 / 0.6);
+        background: var(--color-main-quaternary);
         color: var(--color-second-secondary);
         i{
             color: var(--color-second-secondary);

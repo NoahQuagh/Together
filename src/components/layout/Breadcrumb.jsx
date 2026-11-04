@@ -1,6 +1,8 @@
 import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
 
+//TODO quand je vais sur tache il modifie la route et remplace mes contribution par un mes projet
+
 const ROUTE_LABELS = {
     dashboard: "Tableau de bord",
     myprojects: "Mes projets",

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import {useOutletContext, useParams} from 'react-router-dom';
 import { useTranslation } from '@/context/LanguageContext';
 import { LoadingSpinner } from '@/components/ui/LoadingSpinner';
 import { ErrorState } from '@/components/common/ErrorState';
@@ -36,6 +36,8 @@ ChartJS.register(
 export function ProjectOverviewPage() {
     const { t } = useTranslation();
     const { projectId } = useParams();
+    const { user, projectName, projectMemberInfo } = useOutletContext();
+    const members = Array.isArray(projectMemberInfo) ? projectMemberInfo : [];
 
     const [data, setData] = useState(null);
     const [loading, setLoading] = useState(true);
@@ -269,13 +271,14 @@ export function ProjectOverviewPage() {
                 </div>
 
                 <div id="membre-layout">
-                    <OverviewCard title={t('Membres')} icon="ti-users">
-                        <ul className="mb-list">
-                            {membersKN.length ? (
-                                membersKN.map((m, i) => <MemberItem key={m.use_id || i} member={m} />)
-                            ) : (
-                                <li className="mb-empty">{t('Aucun membre.')}</li>
-                            )}
+                    <OverviewCard title={t('Membres')} className={"flex flex-col gap-3"} icon="ti-users">
+                        <ul className="mb-list flex flex-col gap-4">
+                            {members.map((member) => (
+                                <MemberItem
+                                    key={member.member_id}
+                                    member={member}
+                                />
+                            ))}
                         </ul>
                     </OverviewCard>
                 </div>

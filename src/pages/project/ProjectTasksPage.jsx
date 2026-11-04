@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useMemo } from 'react';
-import { useParams } from 'react-router-dom';
+import {useOutletContext, useParams} from 'react-router-dom';
 import { useTranslation } from '@/context/LanguageContext';
 import { LoadingSpinner } from '@/components/ui/LoadingSpinner';
 import { ErrorState } from '@/components/common/ErrorState';
@@ -15,6 +15,9 @@ import '@/../assets/style/project/projectApp.css';
 export function ProjectTasksPage() {
     const { t } = useTranslation();
     const { projectId } = useParams();
+
+    const { user, projectName, projectMemberInfo } = useOutletContext();
+    const members = Array.isArray(projectMemberInfo) ? projectMemberInfo : [];
 
     const [data, setData] = useState(null);
     const [allTasks, setAllTasks] = useState([]);
@@ -150,6 +153,7 @@ export function ProjectTasksPage() {
                         <ProjectTaskCard
                             key={task.id}
                             task={task}
+                            membres={members}
                             onOpenModal={setSelectedDetailTask}
                             onOpenModify={setSelectedModifyTask}
                         />

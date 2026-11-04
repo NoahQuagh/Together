@@ -159,7 +159,7 @@ export function TaskFilterDropdown({ membersList = [], onApplyFilters, initialFi
 
             {isOpen && (
                 <div
-                    className="absolute left-0 top-full mt-1.5 z-50 w-64 bg-zinc-900 border border-zinc-800 rounded-xl shadow-2xl p-1.5 text-zinc-200 !flex !flex-col !justify-start !gap-1"
+                    className="absolute left-0 top-full mt-1.5 z-50 w-64 bg-[var(--color-main-tertiary)] border border-zinc-800 rounded-xl shadow-2xl p-1.5 text-zinc-200 !flex !flex-col !justify-start !gap-1"
                     onMouseLeave={() => setActiveSubmenu(null)}
                 >
                     {filterSections.map((section) => {
@@ -174,8 +174,8 @@ export function TaskFilterDropdown({ membersList = [], onApplyFilters, initialFi
                             >
                                 <div
                                     onClick={() => setActiveSubmenu(isSubmenuOpen ? null : section.id)}
-                                    className={`!flex !flex-row items-center justify-between w-full px-3 py-2 rounded-lg cursor-pointer text-sm transition-colors ${
-                                        isSubmenuOpen ? 'bg-zinc-800 text-white font-medium' : 'hover:bg-zinc-800/60 text-zinc-300'
+                                    className={`!flex !flex-row items-center justify-between w-full px-3 py-2 rounded-lg hover:bg-[var(--color-main-quaternary)] cursor-pointer text-sm transition-colors ${
+                                        isSubmenuOpen ? 'bg-[var(--color-main-tertiary)] text-white font-medium' : 'hover:bg-[var(--color-main-quaternary)] text-zinc-300'
                                     }`}
                                 >
                                     <div className="!flex !flex-row items-center gap-2.5 min-w-0">
@@ -194,7 +194,7 @@ export function TaskFilterDropdown({ membersList = [], onApplyFilters, initialFi
                                 </div>
 
                                 {isSubmenuOpen && (
-                                    <div className="absolute left-full top-0 ml-1.5 z-50 w-56 bg-zinc-900 border border-zinc-800 rounded-xl shadow-2xl p-1.5 text-zinc-200 max-h-72 overflow-y-auto !flex !flex-col !justify-start !gap-1">
+                                    <div className="absolute left-full top-0 ml-1.5 z-50 w-56 bg-[var(--color-main-tertiary)] border border-zinc-800 rounded-xl shadow-2xl p-1.5 text-zinc-200 max-h-72 overflow-y-auto !flex !flex-col !justify-start !gap-1">
 
                                         {section.items.map((item) => {
                                             const selected = isItemSelected(section.id, item.id);
@@ -206,7 +206,7 @@ export function TaskFilterDropdown({ membersList = [], onApplyFilters, initialFi
                                                         handleToggleFilter(section.id, item.id);
                                                     }}
                                                     className={`w-full !flex !flex-row items-center justify-between px-3 py-1.5 text-sm rounded-lg transition-colors cursor-pointer ${
-                                                        selected ? 'bg-blue-500/15 text-blue-400 font-medium' : 'hover:bg-zinc-800 text-zinc-300'
+                                                        selected ? 'bg-blue-500/15 text-blue-400 font-medium' : 'hover:bg-[var(--color-main-quaternary)] text-zinc-300'
                                                     }`}
                                                 >
                                                     <div className="!flex !flex-row items-center gap-2.5 min-w-0">

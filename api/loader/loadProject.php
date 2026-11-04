@@ -72,10 +72,10 @@ ORDER BY t.tas_priorite_id DESC, t.tas_date_fin ASC');
     }, $etiList);
 
     $stmtMembers = $db->prepare('
-        SELECT use_id, concat(use_prenom," ",use_nom) as nom, rrp_label
+        SELECT use_id, concat(use_prenom," ",use_nom) as nom,avatar_url, rrp_label
 FROM TOG_PROJECT_MEMBERS
-         JOIN TOG_USERS ON TOG_PROJECT_MEMBERS.tpm_user_id = TOG_USERS.use_id
-         JOIN TOG_REF_ROLE_PROJET ON TOG_REF_ROLE_PROJET.rrp_id = TOG_PROJECT_MEMBERS.tpm_role_id
+    JOIN TOG_USERS ON TOG_PROJECT_MEMBERS.tpm_user_id = TOG_USERS.use_id
+    JOIN TOG_REF_ROLE_PROJET ON TOG_REF_ROLE_PROJET.rrp_id = TOG_PROJECT_MEMBERS.tpm_role_id
 WHERE tpm_project_id = ?');
     $stmtMembers->execute([$projectId]);
     $memberList = $stmtMembers->fetchAll();
@@ -84,7 +84,8 @@ WHERE tpm_project_id = ?');
         return [
             'member_id'     => $e['use_id'],
             'member_nom'    => $e['nom'],
-            'member_role'   => $e['rrp_label']
+            'member_role'   => $e['rrp_label'],
+            'member_avatar'   => $e['avatar_url']
         ];
     }, $memberList);
 

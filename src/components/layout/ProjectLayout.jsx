@@ -23,6 +23,7 @@ export function ProjectLayout() {
     const [step, setStep] = useState(1);
 
     const [projectName, setProjectName] = useState("");
+    const [projectMemberInfo, setProjectMemberInfo] = useState({});
 
     const [data, setData] = useState(() => {
         const cachedUser = sessionStorage.getItem("together_user");
@@ -48,6 +49,23 @@ export function ProjectLayout() {
     }, []);
 
     useEffect(() => {
+        if (!projectId) return;
+
+        fetch(`/api/loader/loadProject.php?project=${encodeURIComponent(projectId)}`, {
+            credentials: "include"
+        })
+            .then((res) => res.json())
+            .then((res) => {
+                if (res.success && res.data?.membersList) {
+                    setProjectMemberInfo(res.data.membersList);
+                }
+            })
+            .catch((err) => console.error("Erreur chargement membres du projet :", err));
+    }, [projectId]);
+
+
+
+    useEffect(() => {//TODO requete moins lourde pour le nom du pro
         if (!projectId) return;
 
         fetch(`/api/loader/loadOverviewProjectData.php?project=${encodeURIComponent(projectId)}`, {
@@ -207,7 +225,7 @@ export function ProjectLayout() {
                     />
 
                     <main className="flex justify-center content-center w-full text-left p-0 m-0 bg-[var(--bg-body)]" style={{ backgroundColor: 'var(--bg-body)' }}>
-                        <Outlet context={{ user: data, projectName }} />
+                        <Outlet context={{ user: data, projectName,projectMemberInfo }} />
                     </main>
 
                     <Footer
