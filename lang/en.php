@@ -31,7 +31,7 @@ return [
     'validate'                                                              => 'Validate',
     'complete'                                                              => 'Complete',
     'cancel'                                                                => 'Cancel',
-    'no tasks match the selected filter'                                    => 'No tasks match the selected filter',
+    'no task found'                                                         => 'No task found',
     'try modifying or resetting your search criteria'                       => 'Try modifying or resetting your search criteria',
     'filters unavailable'                                                   => 'Filters unavailable',
     'an error occurred while loading the tasks'                             => 'Oops! An error occurred while loading the tasks',

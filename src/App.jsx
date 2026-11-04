@@ -8,6 +8,9 @@ import { ProjectLayout } from "./components/layout/ProjectLayout.jsx";
 import { LoginPage } from "./pages/LoginPage";
 import { DashboardPage } from "./pages/home/DashboardPage";
 import { ProjectsPage } from "./pages/home/ProjectsPage";
+import { ReportsPage } from "./pages/home/ReportsPage";
+import { StatistiquePage } from "./pages/home/StatistiquePage";
+import { CalendarPage } from "./pages/home/CalendarPage";
 import { ContributionsPage } from "./pages/home/ContributionsPage";
 import { ProjectOverviewPage } from "./pages/project/ProjectOverviewPage.jsx";
 import { TasksPage } from "./pages/home/TasksPage";
@@ -16,6 +19,7 @@ import {NotFoundPage} from "@/pages/NotFoundPage.jsx";
 import {OfflineState} from "@/components/common/OfflineState.jsx";
 import {ErrorBoundary} from "@/components/common/ErrorBoundary.jsx";
 import {ProfilePage} from "@/pages/profile/ProfilePage.jsx";
+import {ProjectTasksPage} from "@/pages/project/ProjectTasksPage.jsx";
 
 export default function App() {
     return (
@@ -35,11 +39,15 @@ export default function App() {
                                         <Route path="/mycontributions" element={<ContributionsPage />} />
                                         <Route path="/:user" element={<ProfilePage />} />
                                         <Route path="/tasks" element={<TasksPage />} />
+                                        <Route path="/calendar" element={<CalendarPage />} />
+                                        <Route path="/stats" element={<StatistiquePage />} />
+                                        <Route path="/reports" element={<ReportsPage />} />
                                     </Route>
                                 </Route>
 
                                 <Route path="/project/:projectId" element={<ProjectLayout />}>
                                     <Route index element={<ProjectOverviewPage />} />
+                                    <Route path="tasks" element={<ProjectTasksPage />} />
                                 </Route>
 
                                 <Route path="*" element={<NotFoundPage />} />

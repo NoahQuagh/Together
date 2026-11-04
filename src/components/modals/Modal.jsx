@@ -13,7 +13,7 @@ export function Modal({
                           size = "md",
                           isNewProject = false
                       }) {
-    // Association des tailles Tailwind avec le max-width souhaité
+
     const sizeClasses = {
         sm: "max-w-sm",
         md: "max-w-md",

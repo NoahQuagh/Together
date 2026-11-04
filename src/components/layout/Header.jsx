@@ -15,6 +15,7 @@ export function Header({
                            searchItems = [],
                            actions = [],
                            user,
+                           projectName,
                            tabs,
                        }) {
     const {toggleSidebar} = useSidebar();
@@ -41,7 +42,7 @@ export function Header({
                     <button className="sb-close" onClick={toggleSidebar} type="button">
                         <i className="ti ti-layout-sidebar" aria-hidden={true}></i>
                     </button>
-                    <Breadcrumb user={user}/>
+                    <Breadcrumb user={user} projectName={projectName} />
                 </div>
 
                 <div className="header-disposition-left">

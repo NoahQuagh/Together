@@ -31,7 +31,7 @@ return [
     'validate'                                                              => 'Valider',
     'complete'                                                              => 'Terminer',
     'cancel'                                                                => 'Annuler',
-    'no tasks match the selected filter'                                    => 'Aucune tâche ne correspond au filtre choisi',
+    'no task found'                                                         => 'Aucune tâche trouvé',
     'try modifying or resetting your search criteria'                       => 'Essayez de modifier ou de réinitialiser vos critères de recherche',
     'filters unavailable'                                                   => 'Filtres indisponibles',
     'an error occurred while loading the tasks'                             => 'Oups ! Une erreur est survenue lors du chargement des tâches',

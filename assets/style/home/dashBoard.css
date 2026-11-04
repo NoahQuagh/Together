@@ -1,12 +1,16 @@
 .dash-page {
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     gap: var(--space-xl);
     width: 100%;
     min-height: 100%;
     box-sizing: border-box;
     margin: 0;
     padding: var(--space-xl) var(--space-2xl);
+}
+
+.personnalTasksPage{
+    flex-direction: row;
 }
 
 .tasksPageUser{

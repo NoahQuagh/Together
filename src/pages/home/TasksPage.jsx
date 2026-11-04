@@ -122,7 +122,7 @@ export function TasksPage() {
     }
 
     return (
-        <article className="dash-page p-6 space-y-6">
+        <article className="dash-page personnalTasksPage p-6 space-y-6">
             <div className="p-4 tasksPageUser rounded-xl border">
                 <h3>Filtrer par :</h3>
 

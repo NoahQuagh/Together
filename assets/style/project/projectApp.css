@@ -38,7 +38,7 @@ body{
     justify-content: space-between;
     flex-direction: column;
     gap: var(--space-xl);
-    padding: var(--space-xl) var(--space-4xl) 0  var(--space-4xl);
+    padding: 0 var(--space-4xl) 0  var(--space-4xl);
 
     div{
         display: flex;
@@ -55,6 +55,38 @@ body{
         gap: var(--space-base);
     }
 
+}
+
+.pro-btn{
+    background:  #18181b;
+    border-radius: var(--radiusBox-sm);
+    border: 1px solid #27272a;
+    color: var(--color-second-primary);
+    padding: var(--space-3xs) var(--space-base);
+    display: flex;
+    flex-direction: row;
+    gap: var(--space-xxs);
+    i{
+        color: var(--color-second-primary);
+    }
+    &:hover{
+        background: rgb(39 39 42 / 0.6);
+        color: var(--color-second-secondary);
+        i{
+            color: var(--color-second-secondary);
+        }
+    }
+}
+
+.pro-btn.accent{
+    background: var(--accent);
+    &:hover{
+        background: var(--accent-second);
+    }
+}
+
+.pro-btn.active{
+    border: 2px solid var(--accent-second);
 }
 
 
@@ -330,16 +362,16 @@ body{
 
 .tk-search {
     position: relative;
+    width: 30%;
 
     .search-box,
     &:has(input[type="text"]) {
         display: flex;
         align-items: center;
         background: var(--color-second-primary);
-        border: 1px solid var(--paper-border, rgba(0, 0, 0, 0.1));
-        border-radius: var(--radiusBox-sm, 8px);
-        padding: 0 var(--space-xs, 10px);
-        height: 36px;
+        border-radius: var(--radiusBox-sm);
+        padding: 0.4rem var(--space-base);
+        gap: var(--space-xxs);
         transition: all 0.2s ease;
 
         i {
@@ -364,20 +396,12 @@ body{
                 color: var(--color-main-tertiary);
                 opacity: 0.7;
             }
-
-            &:focus {
-                width: 220px;
-            }
-        }
-
-        &:hover {
-            border-color: var(--color-main-tertiary);
         }
 
 
         &:focus-within {
             border-color: var(--color-main-quaternary);
-            background: var(--paper);
+            background: var(--color-second-secondary);
 
             i {
                 color: var(--color-main-quaternary);
@@ -390,7 +414,7 @@ body{
 .tk-modify {
     .modal-box {
         width: 100%;
-        max-width: 900px; /
+        max-width: 900px;
         max-height: 95vh;
 
         .tk-form-layout {
@@ -585,7 +609,7 @@ body{
         border-radius: var(--radiusBox-sm, 8px);
         box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
         z-index: 100;
-        min-width: 160px;
+        min-width: 200px;
         padding: 6px 0;
 
         &.show {
@@ -703,11 +727,12 @@ body{
     padding: 3rem 1.5rem;
     text-align: center;
     border-radius: 8px;
-    background-color: rgba(255, 255, 255, 0.03);
+    height: 60%;
     margin: 2rem 0;
 
     i{
         margin-bottom: 1rem;
+        color: var(--color-second-secondary);
 
     }
 
@@ -716,7 +741,7 @@ body{
         font-size: var(--text-2xl);
         font-weight: 600;
         margin-bottom: 0.5rem;
-        color: var(--color-second-tertiary);
+        color: var(--color-second-secondary);
     }
 
     p{

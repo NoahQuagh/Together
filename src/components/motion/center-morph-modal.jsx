@@ -99,32 +99,33 @@ export function CenterMorphModalContent({
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 exit={{ opacity: 0 }}
-                transition={{ duration: 0.25, ease: "easeInOut" }}
+                transition={{ duration: 0.15, ease: "linear" }}
                 onClick={() => dismissible && setIsOpen(false)}
-                className={cn("fixed inset-0 bg-black/70 backdrop-blur-md", backdropClassName)}
+                className={cn("fixed inset-0 bg-black/80 backdrop-blur-[2px] will-change-opacity", backdropClassName)}
             />
 
             <motion.div
                 initial={{
                     opacity: 0,
-                    scale: 0.2,
+                    scale: 0.92,
+                    y: 8,
                 }}
                 animate={{
                     opacity: 1,
                     scale: 1,
+                    y: 0,
                 }}
                 exit={{
                     opacity: 0,
-                    scale: 0.2,
+                    scale: 0.95,
+                    y: 4,
                 }}
                 transition={{
-                    type: "spring",
-                    stiffness: 300,
-                    damping: 25,
-                    mass: 0.8,
+                    duration: 0.18,
+                    ease: [0.16, 1, 0.3, 1],
                 }}
                 className={cn(
-                    "relative z-10 w-full max-w-lg overflow-hidden text-zinc-100 shadow-2xl",
+                    "relative z-10 w-full max-w-lg overflow-hidden text-zinc-100 shadow-2xl transform-gpu will-change-transform",
                     className
                 )}
             >

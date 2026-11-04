@@ -137,13 +137,18 @@ try {
         ];
     }, $ressource);
 
+    $reqProName = $db->prepare("select pro_nom from TOG_PROJECTS where pro_uuid=?");
+    $reqProName->execute([$projectUuid]);
+    $projectName= $reqProName->fetchAll();
+
     echo json_encode([
         'success' => true,
         'sprintKN'    => $formattedSprintKeyNum,
         'tasksKN'    => $formattedTasksKeyNum,
         'membersKN' => $formattedMembersKeyNum,
         'sprintAvance' => $formattedSprintAvancement,
-        'ressourceList' => $formattedRessource
+        'ressourceList' => $formattedRessource,
+        'nom_projet' => $projectName[0]['pro_nom']
     ]);
 
 } catch (\Throwable $e) {

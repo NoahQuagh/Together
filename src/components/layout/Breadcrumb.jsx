@@ -5,14 +5,19 @@ const ROUTE_LABELS = {
     dashboard: "Tableau de bord",
     myprojects: "Mes projets",
     mycontributions: "Mes contributions",
-    tasks: "Mes tâches",
+    tasks: "Tâches",
     profile: "Profil",
     settings: "Paramètres",
     notifications: "Notifications",
     project: "Projet",
+    overview: "Aperçu",
+    sprints: "Sprints",
+    members: "Membres",
+    resources: "Ressources",
+    insights: "Insights",
 };
 
-export function Breadcrumb({ user }) {
+export function Breadcrumb({ user, projectName: propProjectName }) {
     const location = useLocation();
     const pathnames = location.pathname.split('/').filter((x) => x);
 
@@ -20,8 +25,15 @@ export function Breadcrumb({ user }) {
     const cleanRootLabel = rootLabel.replace(/\s+/g, '');
 
     const isProjectRoute = pathnames[0] === 'project';
-    const projectName = location.state?.projectName;
+
+    const projectName = location.state?.projectName || propProjectName || "...";//possibilé d'avoir un index des projet pour la rapidité du chagement du nom du projet par clé->valeur : uuid->nom
     const originRoute = location.state?.from;
+
+    const subRouteKey = pathnames[2];
+    const hasSubRoute = Boolean(subRouteKey && subRouteKey !== 'overview');
+    const subRouteLabel = hasSubRoute
+        ? (ROUTE_LABELS[subRouteKey] || subRouteKey.charAt(0).toUpperCase() + subRouteKey.slice(1))
+        : null;
 
     const isProfileRoute = pathnames[0]?.toLowerCase() === cleanRootLabel.toLowerCase() || pathnames[0] === 'profile';
 
@@ -38,10 +50,9 @@ export function Breadcrumb({ user }) {
                 </Link>
             )}
 
-            {/* CAS 1 : VUE PROJET */}
             {isProjectRoute ? (
                 <>
-                    {originRoute && (
+                    {originRoute ? (
                         <>
                             <span className="text-[color:var(--color-second-five)] text-base">
                                 <i className="ti ti-chevron-right" />
@@ -50,21 +61,40 @@ export function Breadcrumb({ user }) {
                                 {originRoute.label}
                             </Link>
                         </>
+                    ) : (
+                        <>
+                            <span className="text-[color:var(--color-second-five)] text-base">
+                                <i className="ti ti-chevron-right" />
+                            </span>
+                            <Link to="/myprojects" className="text-[color:var(--color-second-five)] hover:text-white transition-colors">
+                                Mes projets
+                            </Link>
+                        </>
                     )}
 
                     <span className="text-[color:var(--color-second-five)] text-base">
                         <i className="ti ti-chevron-right" />
                     </span>
-                    <span className="text-[color:var(--color-second-five)]">
-                        Projet
-                    </span>
 
-                    <span className="text-[color:var(--color-second-five)] text-base">
-                        <i className="ti ti-chevron-right" />
-                    </span>
-                    <span className="text-white font-semibold">
-                        {projectName || "Détails"}
-                    </span>
+                    {hasSubRoute ? (
+                        <>
+                            <Link to={`/project/${pathnames[1]}`} className="text-[color:var(--color-second-five)] hover:text-white transition-colors">
+                                {projectName}
+                            </Link>
+
+                            <span className="text-[color:var(--color-second-five)] text-base">
+                                <i className="ti ti-chevron-right" />
+                            </span>
+
+                            <span className="text-white font-semibold">
+                                {subRouteLabel}
+                            </span>
+                        </>
+                    ) : (
+                        <span className="text-white font-semibold">
+                            {projectName}
+                        </span>
+                    )}
                 </>
             ) : (
                 !isProfileRoute && pathnames.map((value, index) => {

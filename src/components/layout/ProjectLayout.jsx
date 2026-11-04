@@ -1,36 +1,28 @@
 import React, { useEffect, useState } from "react";
-import {Outlet, useParams} from "react-router-dom";
+import { Outlet, useParams } from "react-router-dom";
 import { Header } from "./Header";
 import { Footer } from "./Footer";
 import { Sidebar } from "./Sidebar";
-import { Modal } from "../modals/Modal.jsx";
 import { useTranslation } from '../../context/LanguageContext';
 import { AnimatedSidebarProvider, AnimatedSidebarInset } from "../motion/animated-sidebar";
 import './../../../assets/style/project/newProjectModal.css';
 import './../../../assets/style/tools/modal-dialog.css';
-import './../../../assets/style/home/home.css'
-import {BloomMenu} from "@/components/motion/bloom-menu.jsx";
-import {Bell, FileText, Folder, FolderClosed, LayoutGrid, Link, RobotArm, Table} from "lucide-react";
-import {NewProjectModal} from "@/components/modals/NewProjectModal.jsx";
-import {useAuth} from "@/context/AuthContext.jsx";
-import {AnimatedToastStack} from "@/components/motion/animated-toast-stack.jsx";
-import {useToast} from "@/components/ui/ToastNotification.jsx";
+import './../../../assets/style/home/home.css';
+import { BloomMenu } from "@/components/motion/bloom-menu.jsx";
+import { NewProjectModal } from "@/components/modals/NewProjectModal.jsx";
+import { useAuth } from "@/context/AuthContext.jsx";
+import { useToast } from "@/components/ui/ToastNotification.jsx";
 
 export function ProjectLayout() {
     const { notify, showToast, updateToast } = useToast();
-    const [isModalOpen, setIsModalOpen] = useState(false);
-    const [step, setStep] = useState(1);
     const { t } = useTranslation();
     const { logout } = useAuth();
     const { projectId } = useParams();
 
-    const handleOpenModal = (initialStep = 1) => {
-        setStep(initialStep)
-        setIsModalOpen(true);
-    };
+    const [isModalOpen, setIsModalOpen] = useState(false);
+    const [step, setStep] = useState(1);
 
-
-    const handleCloseModal = () => setIsModalOpen(false);
+    const [projectName, setProjectName] = useState("");
 
     const [data, setData] = useState(() => {
         const cachedUser = sessionStorage.getItem("together_user");
@@ -39,10 +31,7 @@ export function ProjectLayout() {
 
     useEffect(() => {
         fetch("/api/loader/loadProfile.php", { credentials: "include" })
-            .then((res) => {
-                if (!res.ok) throw new Error(`Erreur réseau: ${res.status}`);
-                return res.json();
-            })
+            .then((res) => res.json())
             .then((res) => {
                 if (!res.success) throw new Error(res.message);
 
@@ -53,10 +42,32 @@ export function ProjectLayout() {
                 };
 
                 setData(fetchedUser);
-
                 sessionStorage.setItem("together_user", JSON.stringify(fetchedUser));
             })
+            .catch((err) => console.error("Erreur profil :", err));
     }, []);
+
+    useEffect(() => {
+        if (!projectId) return;
+
+        fetch(`/api/loader/loadOverviewProjectData.php?project=${encodeURIComponent(projectId)}`, {
+            credentials: "include"
+        })
+            .then((res) => res.json())
+            .then((res) => {
+                if (res.success && res.nom_projet) {
+                    setProjectName(res.nom_projet);
+                }
+            })
+            .catch((err) => console.error("Erreur chargement projet :", err));
+    }, [projectId]);
+
+    const handleOpenModal = (initialStep = 1) => {
+        setStep(initialStep);
+        setIsModalOpen(true);
+    };
+
+    const handleCloseModal = () => setIsModalOpen(false);
 
     const ITEMS = [
         { label: "Tâche", icon: "ti ti-checklist" },
@@ -106,11 +117,8 @@ export function ProjectLayout() {
                     items={ITEMS}
                     label={"Nouveau"}
                     onSelect={(label) => {
-                        if (label === "") {
-                            handleOpenModal(1);
-                        } else if (label === "") {
-                            handleOpenModal(2);
-                        }
+                        if (label === "Tâche") handleOpenModal(1);
+                        else if (label === "Sprint") handleOpenModal(2);
                     }}
                 />
             )
@@ -181,26 +189,25 @@ export function ProjectLayout() {
         },
     ];
 
-
-
     return (
         <AnimatedSidebarProvider defaultOpen={false}>
             <div className="flex min-h-screen w-full">
-                <Sidebar sections={sidebarSections} user={data} />
+                <Sidebar sections={sidebarSections} title={'Together Project'} user={data} />
 
                 <AnimatedSidebarInset className="flex flex-col flex-1 min-w-0">
                     <Header
-                        title="Together"
+                        title={projectName || "Together"}
                         titleLink="/dashboard"
                         searchPlaceholder="Rechercher..."
                         searchItems={searchItems}
                         actions={headerActions}
                         user={data}
+                        projectName={projectName}
                         tabs
                     />
 
-                    <main className={"flex-1 w-full text-left p-0 m-0 bg-[var(--bg-body)]"} style={{ backgroundColor: 'var(--bg-body)' }}>
-                        <Outlet context={{ user: data }} />
+                    <main className="flex justify-center content-center w-full text-left p-0 m-0 bg-[var(--bg-body)]" style={{ backgroundColor: 'var(--bg-body)' }}>
+                        <Outlet context={{ user: data, projectName }} />
                     </main>
 
                     <Footer

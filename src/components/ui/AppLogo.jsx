@@ -5,7 +5,7 @@ export function AppLogo({ title = "Together", className = "" }) {
         <div className={`flex items-center gap-3 select-none ${className}`}>
             <div className="relative flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-[var(--color-second-secondary)] text-black shadow-sm transition-transform active:scale-95">
                   <span className="font-serif text-lg leading-none select-none">
-                    T
+                    Tg
                   </span>
             </div>
 
