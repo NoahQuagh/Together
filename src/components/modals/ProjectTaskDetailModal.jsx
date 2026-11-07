@@ -1,13 +1,14 @@
 import React from 'react';
 import { useTranslation } from '@/context/LanguageContext';
-import { Modal } from '@/components/modals/Modal.jsx'; // Ajuste le chemin selon ton projet
+import { Modal } from '@/components/modals/Modal.jsx';
+import {CustomAvatar} from "@/components/ui/CustomAvatar.jsx";
 
 export function ProjectTaskDetailModal({ task, onClose }) {
     const { t } = useTranslation();
 
     if (!task) return null;
 
-    const initiales = (nom) => {
+    const initiales = (nom) => {//TODO a sup apres avatar placé
         if (!nom) return '';
         return nom.split(' ').map(n => n[0]).join('').toUpperCase().slice(0, 2);
     };
@@ -17,20 +18,17 @@ export function ProjectTaskDetailModal({ task, onClose }) {
         return dateStr.split(' ')[0];
     };
 
-    const headerContent = (
-        <div className="modal-header-meta">
-            <span className="modal-statut">{t(task.statut)}</span>
-        </div>
+
+    const modalHeader = (
+        <h3>
+            <i className="ti ti-info-circle text-md" aria-hidden={true}></i>
+            {task.titre}
+        </h3>
     );
 
-    return (
-        <Modal
-            isOpen={Boolean(task)}
-            onClose={onClose}
-            header={headerContent}
-            size="lg"
-        >
-            <h2 className="modal-titre">{task.titre}</h2>
+    const modalBody = (
+        <div className={"modal-body-nw-project flex flex-col gap-8"}>
+            <span className="modal-statut">{t(task.statut)}</span>
             <p className="modal-desc">
                 {task.desc ? task.desc : <em>{t("no description")}</em>}
             </p>
@@ -40,8 +38,12 @@ export function ProjectTaskDetailModal({ task, onClose }) {
                     {(task.assignes ?? []).length > 0 ? (
                         task.assignes.map((a, idx) => (
                             <div key={a.id || idx} className="tk-person">
-                                <div className="tk-avatar">{initiales(a.nom)}</div>
-                                <span className="tk-person-label" style={{ color: 'var(--color-second-primary)' }}>{a.nom}</span>
+                                <CustomAvatar
+                                    size={'sm'}
+                                    src={a.avatar}
+                                    name={a.nom}
+                                    mode={'card'}
+                                />
                             </div>
                         ))
                     ) : (
@@ -65,20 +67,45 @@ export function ProjectTaskDetailModal({ task, onClose }) {
                 <div className="modal-date-item">
                     <span className="modal-section-label"><i className="ti ti-calendar-event" />{t('beginning')}</span>
                     <span className="tk-date-modal">
-                        {task.date_debut ? formatDate(task.date_debut) : t("not specified")} {t('at')} {task.date_debut && task.date_debut.split(' ')[1] ? task.date_debut.split(' ')[1].slice(0, 5) : ''}
-                    </span>
+                            {task.date_debut ? formatDate(task.date_debut) : t("not specified")} {t('at')} {task.date_debut && task.date_debut.split(' ')[1] ? task.date_debut.split(' ')[1].slice(0, 5) : ''}
+                        </span>
                 </div>
                 <div className="modal-date-item">
                     <span className="modal-section-label"><i className="ti ti-calendar-due" />{t('end')}</span>
                     <span className="tk-date-modal">
-                        {task.date_fin ? formatDate(task.date_fin) : t("not specified")} {t('at')} {task.date_fin && task.date_fin.split(' ')[1] ? task.date_fin.split(' ')[1].slice(0, 5) : ''}
-                    </span>
+                            {task.date_fin ? formatDate(task.date_fin) : t("not specified")} {t('at')} {task.date_fin && task.date_fin.split(' ')[1] ? task.date_fin.split(' ')[1].slice(0, 5) : ''}
+                        </span>
                 </div>
                 <div className="modal-date-item">
                     <span className="modal-section-label"><i className="ti ti-user-check" /> {t("reporter")}</span>
                     <span>{task.reporter ?? '—'}</span>
                 </div>
             </div>
-        </Modal>
+        </div>
+
+    );
+
+    const modalFooter = (
+        <>
+            <button className="modal-btn btn-cancel items-center" onClick={onClose}>
+                {t('close')}
+            </button>
+            <button className="modal-btn btn-confirm items-center">
+                {t('(next state)')}
+            </button>
+        </>
+    );
+
+
+
+    return (
+        <Modal
+            isOpen={Boolean(task)}
+            onClose={onClose}
+            header={modalHeader}
+            body={modalBody}
+            footer={modalFooter}
+            size="xl"
+        />
     );
 }

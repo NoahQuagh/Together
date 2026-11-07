@@ -39,7 +39,7 @@ export function ProjectLayout() {
                 const fetchedUser = {
                     name: `${res.data.prenom} ${res.data.nom}`,
                     email: res.data.email,
-                    avatarUrl: res.data.avatar ? `/assets/uploads/avatars/${res.data.avatar}` : ""
+                    avatarUrl: res.data.avatar
                 };
 
                 setData(fetchedUser);
@@ -51,7 +51,7 @@ export function ProjectLayout() {
     useEffect(() => {
         if (!projectId) return;
 
-        fetch(`/api/loader/loadProject.php?project=${encodeURIComponent(projectId)}`, {
+        fetch(`/api/loader/loadProject.php?project=${encodeURIComponent(projectId)}`, {//TODO mettre les images de profiles des user dans le localeStorage
             credentials: "include"
         })
             .then((res) => res.json())

@@ -45,19 +45,126 @@ export function ProjectTaskModifyModal({ task, membersList = [], labelsList = []
         });
     };
 
-    const headerContent = (
-        <div className="modal-header-meta">
-            <h4>{t('edit task')}</h4>
-        </div>
+    const modalHeader = (
+        <h3>
+            <i className="ti ti-edit text-md" aria-hidden={true}></i>
+            {t('edit task')}
+        </h3>
     );
 
-    const footerContent = (
-        <div className="tk-footer-actions flex justify-end gap-3 w-full">
-            <button type="button" className="tk-btn-cancel" onClick={onClose}>{t('cancel')}</button>
-            <button type="button" className="tk-btn-save" onClick={handleSubmit}>
+    const modalFooter = (
+        <>
+            <button className="modal-btn btn-cancel items-center" onClick={onClose}>
+                {t('cancel')}
+            </button>
+            <button className="modal-btn btn-confirm items-center" onClick={handleSubmit}>
                 <i className="ti ti-device-floppy" />{t('save')}
             </button>
-        </div>
+        </>
+    );
+
+    const modalBody = (
+        <form className="tk-form-layout" onSubmit={handleSubmit}>
+            <input type="hidden" className="id-tk" value={task.id} />
+
+            <div className="modal-section modal-section-full mb-4">
+                <label className="modal-section-label">{t('task title')}</label>
+                <input
+                    type="text"
+                    className="tk-input titre-tk"
+                    value={titre}
+                    onChange={(e) => setTitre(e.target.value)}
+                    required
+                />
+            </div>
+
+            <div className="modal-section modal-section-full mb-4">
+                <label className="modal-section-label">{t('description')}</label>
+                <textarea
+                    className="tk-input tk-textarea desc-tk"
+                    placeholder={`${t('add a description')}...`}
+                    value={desc}
+                    onChange={(e) => setDesc(e.target.value)}
+                />
+            </div>
+
+            <div className="modal-section mb-4">
+                <span className="modal-section-label"><i className="ti ti-users" />{t('assigned')}</span>
+                <div className="tk-people">
+                    {assignes.map((a) => (
+                        <div key={a.id} className="tk-person tk-person-item tk-editable-badge">
+                            <div className="tk-avatar">{initiales(a.nom)}</div>
+                            <span className="tk-person-label" style={{ color: 'var(--color-second-primary)' }}>{a.nom}</span>
+                            <button type="button" className="tk-remove-btn" onClick={() => handleRemoveAssignee(a.id)} title="Retirer">
+                                <i className="ti ti-x" />
+                            </button>
+                        </div>
+                    ))}
+                    <button type="button" className="tk-btn-add-badge" onClick={() => setShowAssignSubModal(true)}>
+                        <i className="ti ti-plus" />{t('add')}
+                    </button>
+                </div>
+            </div>
+
+            <div className="modal-section mb-4">
+                <span className="modal-section-label"><i className="ti ti-tag" />{t('labels')}</span>
+                <div className="tk-etiquettes">
+                    {etiquettes.map((e) => (
+                        <span key={e.id} className="tk-info-badge tk-tag-item tk-editable-badge" style={{ background: e.couleur, color: 'white' }}>
+                                    {e.label}
+                            <button type="button" className="tk-remove-btn" onClick={() => handleRemoveLabel(e.id)} title="Retirer">
+                                        <i className="ti ti-x" />
+                                    </button>
+                                </span>
+                    ))}
+                    <button type="button" className="tk-btn-add-badge" onClick={() => setShowTagSubModal(true)}>
+                        <i className="ti ti-plus" />{t('add')}
+                    </button>
+                </div>
+            </div>
+
+            <div className="modal-section modal-dates">
+                <div className="modal-date-item">
+                    <label className="modal-section-label"><i className="ti ti-calendar-event" />{t('beginning')}</label>
+                    <input
+                        type="datetime-local"
+                        className="tk-input date_debut-tk"
+                        value={dateDebut}
+                        onChange={(e) => setDateDebut(e.target.value)}
+                    />
+                </div>
+
+                <div className="modal-date-item">
+                    <label className="modal-section-label">{t('priority')}</label>
+                    <select className="tk-input tk-select priority-tk" value={priorite} onChange={(e) => setPriorite(e.target.value)}>
+                        <option value="1">{t('low')}</option>
+                        <option value="2">{t('normal')}</option>
+                        <option value="3">{t('high')}</option>
+                        <option value="4">{t('critical')}</option>
+                    </select>
+                </div>
+
+                <div className="modal-date-item">
+                    <label className="modal-section-label">{t('status')}</label>
+                    <select className="tk-input tk-select statut-tk" value={statut} onChange={(e) => setStatut(e.target.value)}>
+                        <option value="1">{t('waiting')}</option>
+                        <option value="2">{t('in progress')}</option>
+                        <option value="3">{t('in review')}</option>
+                        <option value="4">{t('finished')}</option>
+                    </select>
+                </div>
+
+                <div className="modal-date-item">
+                    <label className="modal-section-label"><i className="ti ti-calendar-due" />{t('end')}</label>
+                    <input
+                        type="datetime-local"
+                        className="tk-input date_fin-tk"
+                        value={dateFin}
+                        onChange={(e) => setDateFin(e.target.value)}
+                    />
+                </div>
+            </div>
+        </form>
     );
 
     return (
@@ -65,112 +172,11 @@ export function ProjectTaskModifyModal({ task, membersList = [], labelsList = []
             <Modal
                 isOpen={Boolean(task)}
                 onClose={onClose}
-                header={headerContent}
-                footer={footerContent}
-                size="lg"
-            >
-                <form className="tk-form-layout" onSubmit={handleSubmit}>
-                    <input type="hidden" className="id-tk" value={task.id} />
-
-                    <div className="modal-section modal-section-full mb-4">
-                        <label className="modal-section-label">{t('task title')}</label>
-                        <input
-                            type="text"
-                            className="tk-input titre-tk"
-                            value={titre}
-                            onChange={(e) => setTitre(e.target.value)}
-                            required
-                        />
-                    </div>
-
-                    <div className="modal-section modal-section-full mb-4">
-                        <label className="modal-section-label">{t('description')}</label>
-                        <textarea
-                            className="tk-input tk-textarea desc-tk"
-                            placeholder={`${t('add a description')}...`}
-                            value={desc}
-                            onChange={(e) => setDesc(e.target.value)}
-                        />
-                    </div>
-
-                    <div className="modal-section mb-4">
-                        <span className="modal-section-label"><i className="ti ti-users" />{t('assigned')}</span>
-                        <div className="tk-people">
-                            {assignes.map((a) => (
-                                <div key={a.id} className="tk-person tk-person-item tk-editable-badge">
-                                    <div className="tk-avatar">{initiales(a.nom)}</div>
-                                    <span className="tk-person-label" style={{ color: 'var(--color-second-primary)' }}>{a.nom}</span>
-                                    <button type="button" className="tk-remove-btn" onClick={() => handleRemoveAssignee(a.id)} title="Retirer">
-                                        <i className="ti ti-x" />
-                                    </button>
-                                </div>
-                            ))}
-                            <button type="button" className="tk-btn-add-badge" onClick={() => setShowAssignSubModal(true)}>
-                                <i className="ti ti-plus" />{t('add')}
-                            </button>
-                        </div>
-                    </div>
-
-                    <div className="modal-section mb-4">
-                        <span className="modal-section-label"><i className="ti ti-tag" />{t('labels')}</span>
-                        <div className="tk-etiquettes">
-                            {etiquettes.map((e) => (
-                                <span key={e.id} className="tk-info-badge tk-tag-item tk-editable-badge" style={{ background: e.couleur, color: 'white' }}>
-                                    {e.label}
-                                    <button type="button" className="tk-remove-btn" onClick={() => handleRemoveLabel(e.id)} title="Retirer">
-                                        <i className="ti ti-x" />
-                                    </button>
-                                </span>
-                            ))}
-                            <button type="button" className="tk-btn-add-badge" onClick={() => setShowTagSubModal(true)}>
-                                <i className="ti ti-plus" />{t('add')}
-                            </button>
-                        </div>
-                    </div>
-
-                    <div className="modal-section modal-dates">
-                        <div className="modal-date-item">
-                            <label className="modal-section-label"><i className="ti ti-calendar-event" />{t('beginning')}</label>
-                            <input
-                                type="datetime-local"
-                                className="tk-input date_debut-tk"
-                                value={dateDebut}
-                                onChange={(e) => setDateDebut(e.target.value)}
-                            />
-                        </div>
-
-                        <div className="modal-date-item">
-                            <label className="modal-section-label">{t('priority')}</label>
-                            <select className="tk-input tk-select priority-tk" value={priorite} onChange={(e) => setPriorite(e.target.value)}>
-                                <option value="1">{t('low')}</option>
-                                <option value="2">{t('normal')}</option>
-                                <option value="3">{t('high')}</option>
-                                <option value="4">{t('critical')}</option>
-                            </select>
-                        </div>
-
-                        <div className="modal-date-item">
-                            <label className="modal-section-label">{t('status')}</label>
-                            <select className="tk-input tk-select statut-tk" value={statut} onChange={(e) => setStatut(e.target.value)}>
-                                <option value="1">{t('waiting')}</option>
-                                <option value="2">{t('in progress')}</option>
-                                <option value="3">{t('in review')}</option>
-                                <option value="4">{t('finished')}</option>
-                            </select>
-                        </div>
-
-                        <div className="modal-date-item">
-                            <label className="modal-section-label"><i className="ti ti-calendar-due" />{t('end')}</label>
-                            <input
-                                type="datetime-local"
-                                className="tk-input date_fin-tk"
-                                value={dateFin}
-                                onChange={(e) => setDateFin(e.target.value)}
-                            />
-                        </div>
-                    </div>
-                </form>
-            </Modal>
+                header={modalHeader}
+                footer={modalFooter}
+                body={modalBody}
+                size="xl"
+            />
 
             {/* Sous-modale Assignation */}
             <Modal

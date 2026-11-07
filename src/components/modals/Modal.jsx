@@ -8,7 +8,7 @@ export function Modal({
                           isOpen,
                           onClose,
                           header,
-                          children,
+                          body,
                           footer,
                           size = "md",
                           isNewProject = false
@@ -39,7 +39,7 @@ export function Modal({
             >
                 <div className={isNewProject ? "modalNewProject" : ""}>
                     {header && (
-                        <div className="modal-header">
+                        <div className="modal-header font-bold">
                             {header}
                             <button
                                 className="modal-close-btn"
@@ -52,7 +52,7 @@ export function Modal({
                     )}
 
                     <div className="modal-body">
-                        {children}
+                        {body}
                     </div>
 
                     {footer && (

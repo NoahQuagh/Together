@@ -48,7 +48,7 @@ export function MainLayout() {
                 const fetchedUser = {
                     name: `${res.data.prenom} ${res.data.nom}`,
                     email: res.data.email,
-                    avatarUrl: res.data.avatar ? `/assets/uploads/avatars/${res.data.avatar}` : ""
+                    avatarUrl: res.data.avatar
                 };
 
                 setData(fetchedUser);

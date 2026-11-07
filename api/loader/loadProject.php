@@ -114,6 +114,7 @@ WHERE tpm_project_id = ?');
         SELECT tta.tta_task_id                         AS task_id,
                u.use_id                               AS id,
                CONCAT(u.use_prenom, ' ', u.use_nom)   AS nom,
+               u.avatar_url as avatar,
                CASE 
                     WHEN u.use_id = ? THEN 1
                     ELSE 0
@@ -132,6 +133,7 @@ WHERE tpm_project_id = ?');
         $assigneesByTask[$row['task_id']][] = [
             'id'      => (int)$row['id'],
             'nom'     => $row['nom'],
+            'avatar' => $row['avatar'],
             'myTask' => (int)$row['myTasks']
         ];
     }

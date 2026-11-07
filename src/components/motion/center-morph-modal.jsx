@@ -107,8 +107,8 @@ export function CenterMorphModalContent({
             <motion.div
                 initial={{
                     opacity: 0,
-                    scale: 0.92,
-                    y: 8,
+                    scale: 1,
+                    y: 0,
                 }}
                 animate={{
                     opacity: 1,
@@ -117,11 +117,11 @@ export function CenterMorphModalContent({
                 }}
                 exit={{
                     opacity: 0,
-                    scale: 0.95,
-                    y: 4,
+                    scale: 1,
+                    y: 0,
                 }}
                 transition={{
-                    duration: 0.18,
+                    duration: 0.4,
                     ease: [0.16, 1, 0.3, 1],
                 }}
                 className={cn(

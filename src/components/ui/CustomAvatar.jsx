@@ -33,7 +33,9 @@ export function CustomAvatar({
                                  size = "md",
                                  className = "",
                                  src,
-                                 name,
+                                 path= '/assets/uploads/avatars/',
+                                 name = 'Utilisateur',
+                                 mode = 'imgOnly',
                                  role = 'utilisateur',
                                  showTooltip = false
                              }) {
@@ -41,7 +43,7 @@ export function CustomAvatar({
 
     useEffect(() => {
         setImageError(false);
-    }, [src]);
+    }, [path+src]);
 
     const colorIndex = getAvatarColorIndex(name);
     const sizeClass = SIZES[size] || SIZES.md;
@@ -53,35 +55,39 @@ export function CustomAvatar({
     };
 
     return (
-        <div className={`group relative inline-flex shrink-0 ${className}`}>
-            {/* Rond de l'Avatar (Image ou Dégradé) */}
-            <div className={`relative rounded-full overflow-hidden flex items-center justify-center font-semibold select-none ${sizeClass} ${src && !imageError ? '' : gradientClass}`}>
-                {src && !imageError ? (
-                    <img
-                        src={src}
-                        alt={name || 'Avatar'}
-                        className="size-full object-cover rounded-full"
-                        onError={() => setImageError(true)}
-                    />
+        <div className={`group relative inline-flex shrink-0 ${className} flex flex-row gap-2 ${mode === 'card' ? 'bg-[var(--color-main-primary)] px-3 py-2 rounded-[var(--radiusBox-sm)] border border-[var(--color-main-quaternary)]' : ''}`}>
+            <div className={`relative rounded-full overflow-hidden flex items-center justify-center font-semibold select-none ${sizeClass} ${path+src && !imageError ? '' : gradientClass}`}>
+                {path+src && !imageError ? (
+                        <img
+                            src={`${path || ''}${src}`}
+                            alt={name || 'Avatar'}
+                            className="size-full object-cover rounded-full"
+                            onError={() => setImageError(true)}
+                        />
                 ) : (
-                    <span className="text-white font-normal drop-shadow-sm">
+                    <span className="text-white font-normal fontFamDMSans drop-shadow-sm">
                         {initiales(name)}
                     </span>
                 )}
+
             </div>
 
-            {/* Tooltip conditionnel au survol */}
             {showTooltip && (name || role) && (
                 <div className="absolute top-full left-1/2 -translate-x-1/2 mt-2 z-50 opacity-0 group-hover:opacity-100 transition-all duration-200 pointer-events-none flex flex-col items-center">
-                    {/* Flèche du tooltip */}
                     <div className="w-2 h-2 bg-zinc-900 border-t border-l border-zinc-800 rotate-45 -mb-1" />
 
-                    {/* Conteneur du texte */}
                     <div className="bg-zinc-900 border border-zinc-800 rounded-lg px-2.5 py-1.5 shadow-xl text-center whitespace-nowrap">
                         {name && <div className="text-xs font-semibold text-white">{name}</div>}
                         {role && <div className="text-[10px] text-zinc-400 font-medium">{role}</div>}
                     </div>
                 </div>
+            )}
+            {mode === 'card' ? (
+                <div className="flex items-center justify-center">
+                    <span className={'text-[var(--color-second-primary)] fontFamDMSans font-semibold text-base'}>{name}</span>
+                </div>
+            ) : (
+                ''
             )}
         </div>
     );

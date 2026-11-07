@@ -86,7 +86,6 @@ export function ProjectTaskCard({ task, onOpenModal, onOpenModify, membres = [] 
                                     );
 
                                     const avatarFileName = memberInfo?.member_avatar;
-                                    const avatarPath = avatarFileName ? `/assets/uploads/avatars/${avatarFileName}` : null;
                                     const memberName = a.nom || memberInfo?.member_nom || memberInfo?.nom;
 
 
@@ -95,7 +94,7 @@ export function ProjectTaskCard({ task, onOpenModal, onOpenModify, membres = [] 
                                             key={a.id || idx}
                                             size={'sm'}
                                             variant="blue"
-                                            src={avatarPath}
+                                            src={avatarFileName}
                                             name={memberName}
                                             role={memberInfo?.member_role}
                                             showTooltip={true}
